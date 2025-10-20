@@ -36,6 +36,34 @@
   $ ln(x) < x - 1 $
   Justify your claims.*
 
+  Let $f(x) = ln(x) - (x - 1)$. 
+
+
+
+  *  Lemma 1: $f$ has at least one zero. 
+  *  
+  $
+    f(1) = ln(1) - (1 - 1) = 0
+  $
+
+  Therefore $f(x)$ has one zero at $x = 1$. 
+  
+
+  *  Lemma 2: $f$ has only one zero. * 
+
+  Proof by contrapositive. 
+  
+  Assume $f$ has more than one zero. Then there exists at least two values such that $f(a) = 0$ and $f(b) = 0$. 
+
+  
+
+  $ 
+    ln(x) - (x - 1) < 0  \ 
+    therefore ln(x) < x - 1
+  $
+  for all $x > 0, x != 1$. 
+  
+
 + *Consider the “Gompertz” model of population dynamics,
   $ (d P)/(d t) = c P ln(K/P), wide P(0) = P_0 $
   where c and K are positive constants. Verify that the functions $P(t) = K e^((−b e^((−c t))))$, where b is a
