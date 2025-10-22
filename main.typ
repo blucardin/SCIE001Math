@@ -36,40 +36,92 @@
   $ ln(x) < x - 1 $
   Justify your claims.*
 
-  Let $f(x) = ln(x) - (x - 1)$. 
+  Let $f(x) = ln(x)$
 
-
-
-  *  Lemma 1: $f$ has at least one zero. 
-  *  
-  $
-    f(1) = ln(1) - (1 - 1) = 0
-  $
-
-  Therefore $f(x)$ has one zero at $x = 1$. 
+  *Lemma 1: $ln(c) < (c - 1)$ for all $c > 1$*
   
-
-  *  Lemma 2: $f$ has only one zero. * 
-
-  Proof by contrapositive. 
+  $f(x)$ is continuous on $[1, infinity)$ and differentiable on $(1, + infinity) in in$
   
-  Assume $f$ has more than one zero. Then there exists at least two values such that $f(a) = 0$ and $f(b) = 0$. 
-
-  
+  By the Mean Value Theorem there exists some $c in (1, + infinity) $ such that: 
 
   $ 
-    ln(x) - (x - 1) < 0  \ 
-    therefore ln(x) < x - 1
+  f prime (c) = (f(c) - f(1))/(c - 1) \
+  1/c = (ln(c) - ln(1))/(c - 1)
   $
-  for all $x > 0, x != 1$. 
+  Since we are only looking at $c > 1$: 
+  $ 
+    0 < 1/c < 1 \ 
+    (ln(c) - ln(1))/(c - 1) = 1/c < 1  \ 
+    (ln(c) - ln(1))/(c - 1) < 1
+  $
+
+  Since $c > 1$, $c - 1 > 0$: 
+  $
+    ln(c) - ln(1) < c - 1
+  $
   
+  $ln(1) = 0$ therefore: 
+  $
+    #rect[For  $c > 1 ":" wide ln(c) < c - 1$]
+  $
+
+  *Lemma 2: $ln(c) < (c - 1)$ for all $0 < c < 1$*
+
+  $f(x)$ is continuous on $[0, 1]$ and differentiable on $(0, 1)$
+  
+  By the Mean Value Theorem there exists some $c in (0, 1) $ such that: 
+
+  $ 
+  f prime (c) = (f(c) - f(1))/(c - 1) \
+  1/c = (ln(c) - ln(1))/(c - 1)
+  $
+  Since we are only looking at $0 < c < 1$: 
+  $ 
+    1/c &> 1 \ 
+    (ln(c) - ln(1))/(c - 1) &= 1/c > 1 \
+    (ln(c) - ln(1))/(c - 1) &> 1 
+    $
+
+  Note that since $0 < c < 1$, $c-1 < 0$, so we flip the comparison when we multiply. 
+
+  $
+    ln(c) - ln(1) < c - 1
+  $
+  
+  $ln(1) = 0$ therefore: 
+  $
+    #rect[For  $x > 1 ":" wide ln(c) < c - 1$]
+  $
+
+  Combining the equalities from *Lemma 1* and *Lemma 2* we get: 
+
+  $
+    #rect[For  $x > 0, x != 1 ":" wide ln(c) < c - 1$]
+  $
+
+  Q.E.D
+
+
 
 + *Consider the “Gompertz” model of population dynamics,
   $ (d P)/(d t) = c P ln(K/P), wide P(0) = P_0 $
-  where c and K are positive constants. Verify that the functions $P(t) = K e^((−b e^((−c t))))$, where b is a
+  where c and K are positive constants. Verify that the functions $P(t) = K e^((-b e^((-c t))))$, where b is a
   constant, are solutions of the Gompertz equation. Then find an expression for $b$ in terms of $P_0$.*
+
+  If the functions $P(t) = K e^((-b e^((-c t))))$ are solutions of the Gompertz equations, then it should satisfy the ordinary differential equation. 
+
+  $
+  P(t) = K e^((-b e^((-c t))))\
+  P prime (t) = K e^((-b e^((-c t))))(-b e^((-c t)))(-c t) \ 
+  P prime (t) = K c t b e^((-c t))e^((-b e^((-c t)))) \ 
+  
+  $
+
+
+
+
 + *Let 
-  $ f(x) = cases(x^n cos(1/x) wide &"if" x > 0, x^n  &"if" x >= 0) $
+  $ f(x) = cases(x^n cos(1/x) wide &"if" x > 0, x^n  &"if" x <= 0) $
   for $n > 0$. *
   + *For what values of $n$ is $f prime$ differentiable at x = 0?*
   + *For what values of $n$ is $f prime$ is continuous at x = 0?*
