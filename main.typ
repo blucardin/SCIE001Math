@@ -189,11 +189,11 @@
         table.header([*$a>0$*], [*$a<0$*]),
 
         $
-          f prime (a) & = (n x^(n - 1))cos(1/x) + (x^n)(-sin(1/x))(-1x^(-2))
+          f prime (a) & = (n a^(n - 1))cos(1/a) + (x^n)(-sin(1/a))(-1a^(-2))
         $,
 
         $
-          f prime (a) & = n x^(n - 1) \
+          f prime (a) & = n a^(n - 1) \
         $,
       )
     ]
@@ -204,6 +204,24 @@
     $
 
     This splits to left and right hand limits:
+
+    $
+      lim_(h -> 0^- ) (f(h) - 0^n)/h \
+      =lim_(h -> 0^- ) (h^n - 0^n)/h \
+      "For all" n != 0: \
+      =lim_(h -> 0^- ) (h^n)/h \
+      =lim_(h -> 0^- ) (h^(n-1)) \
+      =0 \
+    $
+
+    $
+      lim_(h -> 0^+ ) (f(h) - 0^n)/h \
+      = lim_(h -> 0^+ ) (h^n cos (1/h) - 0^n)/h \
+      "For all" n != 0: \
+      = lim_(h -> 0^+ ) h^(n-1) cos (1/h) \
+    $
+
+
     #align(center)[
       #table(
         columns: (auto, auto),
@@ -212,33 +230,39 @@
         stroke: (x, y) => if x == 0 {
           (right: 0.7pt + black)
         },
-        table.header([$&=lim_(h -> 0^- ) (f(h) - 0^n)/h$], [$=lim_(h -> 0^+ ) (f(h) - 0^n)/h$]),
-
+        table.header([*$n < 1$*], [*$n = 1$*]),
         $
-          =lim_(h -> 0^- ) (h^n - 0^n)/h \
-          "For all" n != 0: \
-          =lim_(h -> 0^- ) (h^n)/h \
-          =lim_(h -> 0^- ) (h^(n-1)) \
-          =0 \
+          n - 1 < 0 \
+          therefore lim_(h -> 0^+ ) h^(n-1) cos (1/h) \
+          = D.N.E \
         $,
         $
-          = lim_(h -> 0^+ ) (h^n cos (1/h) - 0^n)/h \
-          "For all" n != 0: \
-          = lim_(h -> 0^+ ) h^(n-1) cos (1/h) \
-          -1 < cos(h) < 1 \
-          "For all" n in ZZ: \
-          #table(
-            columns: (auto, auto),
-            inset: 10pt,
-            align: center,
-            stroke: (x, y) => if x == 0 { (right: 0.7pt + black) },
-            table.header([$n$ is odd], [$n$ is even]),
-            $ -h^(n-1) < cos(h) < h^(n-1) \ $, $$,
-          ) \
-          "Squeeze Theroem"
+          lim_(h -> 0^+ ) h^(n-1) cos (1/h) \
+          = lim_(h -> 0^+ ) h^(0) cos (1/h) \
+          = lim_(h -> 0^+ ) cos (1/h) \
+          = D.N.E
         $,
       )
+
+      *$ n > 1 $*
+      $
+        -1 <= cos(1/h) <= 1 \
+        "For all" h > 0: h^(n-1) > 0\
+        -h^(n-1) <= h^(n-1)cos(1/h) <= h^(n-1) \
+        lim_(h -> 0^+ ) -h^(n-1) <= lim_(h -> 0^+ ) h^(n-1) cos (1/h) <= lim_(h -> 0^+ ) h^(n-1) \
+        0 <= lim_(h -> 0^+ ) h^(n-1) cos (1/h) <= 0 \
+        therefore "by The Squeeze Theorem" \
+        lim_(h -> 0^+ ) h^(n-1) cos (1/h) = 0
+      $
     ]
+
+    The left and right hand limits exist and are equal only when $n > 1$.
+
+    Therefore:
+    $
+      "When" n > 1: wide f prime (0) = 0
+    $
+
 
     Now we have the tools to solve the original limit.
 
@@ -247,36 +271,215 @@
                         & = lim_(h -> 0 ) (f prime (h) - 0)/h \
     $
     This splits to left and right hand limits:
+    $
+      lim_(h -> 0^- ) (f^prime (h))/h \
+      =lim_(h -> 0^- ) (n h^(n - 1))/h \
+      =lim_(h -> 0^- ) n h^(n - 2) \
+    $
     #align(center)[
       #table(
-        columns: (auto, auto),
+        columns: (auto, auto, auto),
         inset: 10pt,
         align: center,
-        stroke: (x, y) => if x == 0 {
+        stroke: (x, y) => if x == 0 or x == 1 {
           (right: 0.7pt + black)
         },
-        table.header([$lim_(h -> 0^- ) (f^prime (h))/h$], [$lim_(h -> 0^+ ) (f^prime (h))/h$]),
+        table.header([*$n < 2$*], [*$n = 2$*], [*$n > 2$*]),
 
         $
-          f prime (a) & = (n x^(n - 1))cos(1/x) + (x^n)(-sin(1/x))(-1x^(-2))
+          n - 2 < 0 \
+          lim_(h -> 0^- ) n h^(n - 2) = D.N.E \
         $,
 
         $
-          f prime (a) & = n x^(n - 1) \
+          lim_(h -> 0^- ) n h^(n - 2) \
+          = lim_(h -> 0^- ) 2 h^0 \
+          = 2
+        $,
+
+        $
+          n - 2 > 0 \
+          lim_(h -> 0^- ) n h^(n - 2) \
+          = 0\
+          "For our purposes,"\ h^(n-2) "is undefined"\ "for" x < 1 "when" n in.not ZZ \
+          therefore "This only holds for" \
+          n in ZZ
         $,
       )
     ]
 
+    $
+      lim_(h -> 0^+ ) (f^prime (h))/h \
+      = lim_(h -> 0^+ ) ((n h^(n - 1))cos(1/h) + (h^n)(-sin(1/h))(-1h^(-2)))/h \
+      = lim_(h -> 0^+ ) (n h^(n - 2))cos(1/h) + (h^(n-1))(-sin(1/h))(-1h^(-2)) \
+      = lim_(h -> 0^+ ) n h^(n - 2)cos(1/h) + h^(n-3)sin(1/h)
+    $
 
 
+    #align(center)[*For $n < 3$:*]
+    $
+      n - 3 < 0 \
+      lim_(h -> 0^+ ) h^(n-3)sin(1/h) = D.N.E \
+      therefore
+      lim_(h -> 0^+ ) n h^(n - 2)cos(1/h) + h^(n-3)sin(1/h) = D.N.E
+    $
+
+    #align(center)[* For $n = 3$:*]
+
+    $
+      lim_(h -> 0^+ ) n h^(n - 2)cos(1/h) + h^(n-3)sin(1/h) \
+      = lim_(h -> 0^+ ) 3 h^(1)cos(1/h) + h^(0)sin(1/h) \
+      = lim_(h -> 0^+ ) 3 h cos(1/h) + sin(1/h) \
+      lim_(h -> 0^+ ) sin(1/h) = D.N.E \
+      therefore lim_(h -> 0^+ ) n h^(n - 2)cos(1/h) + h^(n-3)sin(1/h) = D.N.E
+    $
+
+    #align(center)[*For $n > 3$:*]
+    $
+      -1 <= cos(1/h) <= 1 \
+      "For all" h > 0: h^(n-2) > 0\
+      -h^(n-2) <= h^(n-2)cos(1/h) <= h^(n-2) \
+      lim_(h -> 0^+ ) -h^(n-2) <= lim_(h -> 0^+ ) h^(n-2) cos (1/h) <= lim_(h -> 0^+ ) h^(n-2) \
+      n - 2 > 0 \
+      0 <= lim_(h -> 0^+ ) h^(n-2) cos (1/h) <= 0 \
+      therefore "by The Squeeze Theorem" \
+    $
+    *$ lim_(h -> 0^+ ) h^(n-2) cos (1/h) = 0 $*
+
+
+
+    $
+      -1 <= sin(1/h) <= 1 \
+      "For all" h > 0: h^(n-3) > 0\
+      -h^(n-3) <= h^(n-3)sin(1/h) <= h^(n-3) \
+      lim_(h -> 0^+ ) -h^(n-3) <= lim_(h -> 0^+ ) h^(n-3) sin(1/h) <= lim_(h -> 0^+ ) h^(n-3) \
+      n - 3 > 0 \
+      0 <= lim_(h -> 0^+ ) h^(n-3) sin(1/h) <= 0 \
+      therefore "by The Squeeze Theorem" \
+    $
+    *$ lim_(h -> 0^+ ) h^(n-3) sin(1/h) = 0 $*
+
+    $
+      lim_(h -> 0^+ ) n h^(n - 2)cos(1/h) + h^(n-3)sin(1/h) \
+      = (lim_(h -> 0^+ ) n)(lim_(h -> 0^+ ) h^(n - 2)cos(1/h)) + lim_(h -> 0^+ ) (h^(n-3)sin(1/h)) \
+      = n(0) + 0\
+      therefore lim_(h -> 0^+ ) n h^(n - 2)cos(1/h) + h^(n-3)sin(1/h) = 0
+    $
+
+    The only values of $n$ for which the left and right hand limit both exist and are equal are when $n > 3, n in ZZ$.
+
+    #align(center)[
+      #rect[$therefore f prime$ is differentiable at $x = 0$ for all $n > 3, n in ZZ$ ]
+    ]
 
 
   + *For what values of $n$ is $f prime$ is continuous at $x = 0$?*
 
-  For $f prime$ to be continuous at $x = 0$:
+    For $f prime$ to be continuous at $x = 0$:
+
+    $ lim_(x -> 0) f prime (x) = f prime (0) $
+
+    Using our previously derived definition of $f prime$:
+    $
+      f prime (0) = 0
+    $
+
+    $lim_(x -> 0) f prime (x)$ splits to right and left hand limits:
+
+    $
+      lim_(x -> 0^- ) f^prime (x) \
+      =lim_(h -> 0^- ) n h^(n - 1) \
+    $
+    #align(center)[
+      #table(
+        columns: (auto, auto, auto),
+        inset: 10pt,
+        align: center,
+        stroke: (x, y) => if x == 0 or x == 1 {
+          (right: 0.7pt + black)
+        },
+        table.header([*$n < 1$*], [*$n = 1$*], [*$n > 1$*]),
+
+        $
+          n - 1 < 0 \
+          lim_(h -> 0^- ) n h^(n - 1) = D.N.E \
+        $,
+
+        $
+          lim_(h -> 0^- ) n h^(n - 1) \
+          = lim_(h -> 0^- ) 1 h^0 \
+          = 1
+        $,
+
+        $
+          n - 1 > 0 \
+          lim_(h -> 0^- ) n h^(n - 1) \
+          = 0\
+          "For our purposes,"\ h^(n-1) "is undefined"\ "for" x < 1 "when" n in.not ZZ \
+          therefore "This only holds for" \
+          n in ZZ
+        $,
+      )
+    ]
+
+    $
+      lim_(h -> 0^+ ) f^prime (h)\
+      = lim_(h -> 0^+ ) (n h^(n - 1))cos(1/h) + (h^n)(-sin(1/h))(-1h^(-2)) \
+      = lim_(h -> 0^+ ) n h^(n - 1)cos(1/h) + h^(n-2)sin(1/h)
+    $
 
 
-  $ lim_(x -> 0) f prime (x) = f prime (0) $
+    #align(center)[*For $n < 2$:*]
+    $
+      n - 2 < 0 \
+      lim_(h -> 0^+ ) h^(n-2)sin(1/h) = D.N.E \
+      therefore
+      lim_(h -> 0^+ ) n h^(n - 1)cos(1/h) + h^(n-2)sin(1/h) = D.N.E
+    $
+
+    #align(center)[* For $n = 2$:*]
+
+    $
+      lim_(h -> 0^+ ) n h^(n - 1)cos(1/h) + h^(n-2)sin(1/h) \
+      = lim_(h -> 0^+ ) 3 h^(1)cos(1/h) + h^(0)sin(1/h) \
+      = lim_(h -> 0^+ ) 3 h cos(1/h) + sin(1/h) \
+      lim_(h -> 0^+ ) sin(1/h) = D.N.E \
+      therefore lim_(h -> 0^+ ) n h^(n - 2)cos(1/h) + h^(n-3)sin(1/h) = D.N.E
+    $
+
+    #align(center)[*For $n > 2$:*]
+    $
+      -1 <= cos(1/h) <= 1 \
+      "For all" h > 0: h^(n-1) > 0\
+      -h^(n-1) <= h^(n-1)cos(1/h) <= h^(n-1) \
+      lim_(h -> 0^+ ) -h^(n-1) <= lim_(h -> 0^+ ) h^(n-1) cos (1/h) <= lim_(h -> 0^+ ) h^(n-1) \
+      n - 2 > 0 \
+      0 <= lim_(h -> 0^+ ) h^(n-1) cos (1/h) <= 0 \
+      therefore "by The Squeeze Theorem" \
+    $
+    *$ lim_(h -> 0^+ ) h^(n-1) cos (1/h) = 0 $*
+
+
+
+    $
+      -1 <= sin(1/h) <= 1 \
+      "For all" h > 0: h^(n-2) > 0\
+      -h^(n-2) <= h^(n-2)sin(1/h) <= h^(n-2) \
+      lim_(h -> 0^+ ) -h^(n-2) <= lim_(h -> 0^+ ) h^(n-2) sin(1/h) <= lim_(h -> 0^+ ) h^(n-2) \
+      n - 3 > 0 \
+      0 <= lim_(h -> 0^+ ) h^(n-2) sin(1/h) <= 0 \
+      therefore "by The Squeeze Theorem" \
+    $
+    *$ lim_(h -> 0^+ ) h^(n-2) sin(1/h) = 0 $*
+
+    $
+      lim_(h -> 0^+ ) n h^(n - 1)cos(1/h) + h^(n-2)sin(1/h) \
+      = (lim_(h -> 0^+ ) n)(lim_(h -> 0^+ ) h^(n - 1)cos(1/h)) + lim_(h -> 0^+ ) (h^(n-2)sin(1/h)) \
+      = n(0) + 0\
+      therefore lim_(h -> 0^+ ) n h^(n - 1)cos(1/h) + h^(n-2)sin(1/h) = 0
+    $
+
+    The only values of $n$ for which the left and right hand limit both exist and are equal are when $n > 2, n in ZZ$.
 
 + *Escaping a predator. A large fish (predator) of (vertical) size $S$ is approaching a small fish (prey) at a constant speed $v$. Let $x(t)$ be the distance between the predator and the prey at time $t$.*
 
