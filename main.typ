@@ -206,13 +206,29 @@
     This splits to left and right hand limits:
 
     $
-      lim_(h -> 0^- ) (f(h) - 0^n)/h \
-      =lim_(h -> 0^- ) (h^n - 0^n)/h \
-      "For all" n != 0: \
-      =lim_(h -> 0^- ) (h^n)/h \
-      =lim_(h -> 0^- ) (h^(n-1)) \
-      =0 \
+                  & lim_(h -> 0^- ) (f(h) - 0^n)/h \
+                  & =lim_(h -> 0^- ) (h^n - 0^n)/h \
+      "For" "all" & n != 0: \
+                  & =lim_(h -> 0^- ) (h^n)/h \
+                  & =lim_(h -> 0^- ) (h^(n-1)) \
     $
+
+    #align(center)[
+      #table(
+        columns: (auto, auto, auto),
+        inset: 10pt,
+        align: center,
+        stroke: (x, y) => if x < 2 {
+          (right: 0.7pt + black)
+        },
+        table.header([*$n < 1$*], [*$n = 1$*], [*$n > 1$*]),
+        $ n - 1 < 0 \ lim_(h -> 0^- ) (h^(n-1))=D.N.E $,
+        $ n - 1 = 0 \ lim_(h -> 0^- ) (h^(n-1))=1 $,
+        $n - 1 > 0 \ lim_(h -> 0^- ) (h^(n-1))=0 \ "For our purposes,"\ h^(n-1) "is undefined"\ "for" h < 0 "when" n in.not ZZ \
+        therefore "This only holds for" \
+        n in ZZ$,
+      )]
+
 
     $
       lim_(h -> 0^+ ) (f(h) - 0^n)/h \
@@ -260,7 +276,7 @@
 
     Therefore:
     $
-      "When" n > 1: wide f prime (0) = 0
+      "When" n > 1, n in ZZ: wide f prime (0) = 0
     $
 
 
@@ -301,8 +317,8 @@
           n - 2 > 0 \
           lim_(h -> 0^- ) n h^(n - 2) \
           = 0\
-          "For our purposes,"\ h^(n-2) "is undefined"\ "for" x < 1 "when" n in.not ZZ \
-          therefore "This only holds for" \
+          "For our purposes,"\ h^(n-2) "is undefined"\ "for" h < 0 "when" n in.not ZZ \
+          therefore "Again this only holds for" \
           n in ZZ
         $,
       )
@@ -366,7 +382,7 @@
       therefore lim_(h -> 0^+ ) n h^(n - 2)cos(1/h) + h^(n-3)sin(1/h) = 0
     $
 
-    The only values of $n$ for which the left and right hand limit both exist and are equal are when $n > 3, n in ZZ$.
+    The only values of $n$ for which the left and right hand limit both exist and are equal are $n > 3, n in ZZ$.
 
     #align(center)[
       #rect[$therefore f prime$ is differentiable at $x = 0$ for all $n > 3, n in ZZ$ ]
@@ -381,7 +397,7 @@
 
     Using our previously derived definition of $f prime$:
     $
-      f prime (0) = 0
+      f prime (0) = 0 "when" n > 1, n in ZZ
     $
 
     $lim_(x -> 0) f prime (x)$ splits to right and left hand limits:
@@ -415,7 +431,7 @@
           n - 1 > 0 \
           lim_(h -> 0^- ) n h^(n - 1) \
           = 0\
-          "For our purposes,"\ h^(n-1) "is undefined"\ "for" x < 1 "when" n in.not ZZ \
+          "For our purposes,"\ h^(n-1) "is undefined"\ "for" h < 0 "when" n in.not ZZ \
           therefore "This only holds for" \
           n in ZZ
         $,
@@ -480,6 +496,14 @@
     $
 
     The only values of $n$ for which the left and right hand limit both exist and are equal are when $n > 2, n in ZZ$.
+
+    Therefore: 
+    $
+      &"When" n > 2, n in ZZ: wide lim_(x -> 0) f prime (x) = 0 \
+      &"When" n > 1, n in ZZ: wide f prime (0) = 0
+    $
+
+    So $lim_(x -> 0) f prime (x) = f prime (0)$ only when $n > 2, n in ZZ$.
 
     #align(center)[
       #rect[$therefore f prime$ is continuous at $x = 0$ for all $n > 2, n in ZZ$ ]
