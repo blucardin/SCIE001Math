@@ -549,7 +549,7 @@
 
     #rect[Therefore, the visual angle is getting bigger faster as the predator approaches the prey.]
 
-    Our result is consistent with the expected behavior.
+    Our result is consistent with the expected behavior. #todo[Verify this is consistent by saying that the first derivative is always positive. ]
 
   + *Visual angles are important factors in studies of predator avoidance. A model proposed by L. Dill, a behavioural ecologist at Simon Fraser University, about the behaviour of the Zebra Danio (a small tropical fish) suggested that “Zebra Danios react to an approaching predator when the rate of change of the angle subtended by the predator at the prey's eye exceeds some threshold level” (L. Dill (1974) “The escape response of the Zebra Danio (Brachydanio rerio). I. The stimulus for escape.”, Animal Behaviour, 22, 711-722). Suppose an escape reaction is triggered when the rate of change of the visual angle reaches the threshold value $r_"crit"$. Using the model developed in part (a), find the distance $x_"react"$ between prey and predator at which an escape response is triggered.*
 
