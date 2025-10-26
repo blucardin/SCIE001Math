@@ -3,6 +3,35 @@
 
 #import "@preview/dashy-todo:0.1.2": todo
 
+#set page(header: context {
+  // Handle the case when page.numbering is not set by
+  // falling back to the default "1" numbering pattern.
+  let page-numbering = page.numbering
+  if page-numbering == none { page-numbering = "1" }
+
+  let both = type(page-numbering) == function or {
+    page-numbering.clusters().filter(c => c in (
+      // Counting symbols: https://typst.app/docs/reference/model/numbering
+      "1", "a", "A", "i", "I", "α", "Α", "*",
+      "א", "一", "壹", "あ", "い", "ア", "イ", "ㄱ",
+      "가", "\u{0661}", "\u{06F1}", "\u{0967}",
+      "\u{09E7}", "\u{0995}", "①", "⓵"
+    )).len() >= 2
+  }
+
+  let x = numbering(
+      page-numbering,
+      ..counter(page).get(),
+      ..if both { counter(page).at(<numbering-main-end>) }
+    )
+  if x != "1" {
+    "HW1.2"
+    h(1fr)
+    x
+  }
+
+
+})
 
 #set enum(
   full: true,
