@@ -37,67 +37,67 @@
     $ ln(x) < x - 1 $
     Justify your claims.*
 
-  Let $f(x) = ln(x)$
+  Start of proof:
 
-  *Lemma 1: $ln(c) < (c - 1)$ for all $c > 1$*
+  *Lemma 1: $ln(x) < (x - 1)$ for all $x > 1$*
 
-  $f(x)$ is continuous on $[1, infinity)$ and differentiable on $(1, + infinity) in in$
+  $ln(x)$ is continuous on $[1, +infinity)$ and differentiable on $(1, + infinity)$
 
-  By the Mean Value Theorem there exists some $c in (1, + infinity)$ such that:
+  By the Mean Value Theorem there exists some $c > 1$ for all $x > 1$ such that:
 
   $
-    f prime (c) = (f(c) - f(1))/(c - 1) \
-    1/c = (ln(c) - ln(1))/(c - 1)
+    d/(d c)(ln(c)) = (ln(x) - ln(1))/(x - 1) \
+    1/c = (ln(x) - ln(1))/(x - 1)
   $
   Since we are only looking at $c > 1$:
   $
     0 < 1/c < 1 \
-    (ln(c) - ln(1))/(c - 1) = 1/c < 1 \
-    (ln(c) - ln(1))/(c - 1) < 1
+    (ln(x) - ln(1))/(x - 1) = 1/c < 1 \
+    (ln(x) - ln(1))/(x - 1) < 1
   $
 
-  Since $c > 1$, $c - 1 > 0$:
+  Since $x > 1$, $x - 1 > 0$:
   $
-    ln(c) - ln(1) < c - 1
+    ln(x) - ln(1) < x - 1
   $
 
   $ln(1) = 0$ therefore:
   $
-    #rect[For  $c > 1 ":" wide ln(c) < c - 1$]
+    #rect[For all $x > 1 ":" wide ln(x) < x - 1$]
   $
 
-  *Lemma 2: $ln(c) < (c - 1)$ for all $0 < c < 1$*
+  *Lemma 2: $ln(x) < (x - 1)$ for all $0 < x < 1$*
 
-  $f(x)$ is continuous on $[0, 1]$ and differentiable on $(0, 1)$
+  $ln(x)$ is continuous on $[0, 1]$ and differentiable on $(0, 1)$
 
-  By the Mean Value Theorem there exists some $c in (0, 1)$ such that:
+  By the Mean Value Theorem there exists some $0 < c < 1$ for all $0 < x < 1$ such that:
 
   $
-    f prime (c) = (f(c) - f(1))/(c - 1) \
-    1/c = (ln(c) - ln(1))/(c - 1)
+    d/(d c)(ln(c)) = (ln(1) - ln(x))/(1 - x) \
+    1/c = (ln(x) - ln(1))/(x - 1)
   $
   Since we are only looking at $0 < c < 1$:
   $
                         1/c & > 1 \
-    (ln(c) - ln(1))/(c - 1) & = 1/c > 1 \
-    (ln(c) - ln(1))/(c - 1) & > 1
+    (ln(x) - ln(1))/(x - 1) & = 1/c > 1 \
+    (ln(x) - ln(1))/(x - 1) & > 1
   $
 
-  Note that since $0 < c < 1$, $c-1 < 0$, so we flip the comparison when we multiply.
+  Since $0 < x < 1$, $x - 1 < 0$, so we must flip the comparison when we multiply.
 
   $
-    ln(c) - ln(1) < c - 1
+    ln(x) - ln(1) < x - 1
   $
 
   $ln(1) = 0$ therefore:
   $
-    #rect[For  $x > 1 ":" wide ln(c) < c - 1$]
+    #rect[For all $0 < x < 1 ":" wide ln(x) < x - 1$]
   $
 
-  Combining the equalities from *Lemma 1* and *Lemma 2* we get:
+  Combining the comparisons from *Lemma 1* and *Lemma 2* we get:
 
   $
-    #rect[For  $x > 0, x != 1 ":" wide ln(c) < c - 1$]
+    #rect[For all $x > 0, x != 1 ":" wide ln(x) < x - 1$]
   $
 
   Q.E.D
@@ -109,13 +109,13 @@
     where c and K are positive constants. Verify that the functions $P(t) = K e^((-b e^((-c t))))$, where b is a
     constant, are solutions of the Gompertz equation. Then find an expression for $b$ in terms of $P_0$.*
 
-  If the functions $P(t) = K e^((-b e^((-c t))))$ are solutions of the Gompertz equation, then it should satisfy the ordinary differential equation:
+  For a function $P$ to be a solution of the Gompertz equation, it must satisfy the ordinary differential equation:
 
   $
     (d P)/(d t) = c P ln(K/P)
   $
 
-  To prove this, we can use just rearrange them to show they are equal:
+  To prove that the functions $P(t) = K e^((-b e^((-c t))))$ are solutions, we can rearrange to show equality:
 
   $ (d P)/(d t) = (d P)/(d t) $
   #align(center)[
@@ -132,7 +132,6 @@
         & = d/(d t)(K e^((-b e^((-c t))))) \
         & = K e^((-b e^((-c t))))(-b e^((-c t)))(-c) \
         & = K c b e^((-c t))e^((-b e^((-c t)))) \
-        & = K c b e^((-c t))e^((-b e^((-c t)))) \
       $,
 
       $
@@ -142,6 +141,10 @@
         & = K c b e^((-c t)) e^((-b e^((-c t)))) \
       $,
     )
+
+    $
+      K c b e^((-c t))e^((-b e^((-c t)))) = K c b e^((-c t)) e^((-b e^((-c t))))
+    $
 
     *  Left Side = Right Side
     *
@@ -156,7 +159,9 @@
     P_0 & = P(0) \
         & = K e^((-b e^((-c (0))))) \
     P_0 & = K e^((-b)) \
-        & #rect[$ therefore b & = - ln(P_0 / K) $]
+  $
+  $
+    #rect[$ therefore b & = - ln(P_0 / K) $]
   $
 
 
@@ -170,13 +175,9 @@
     $ lim_(h -> 0 ) (f prime (0 + h) - f prime (0))/h $
     must exist.
 
-    So we can attempt to solve this equation for our possible values of $n$. This first involves finding the derivative of $f$.
+    Consequently, to find the values of $n$ for which $f prime$ is differentiable, we must first find the derivative of $f$.
 
-    Based on the definition of the derivative:
-    $
-      f prime (a) & = lim_(h -> 0 ) (f(a + h) - f(a))/h \
-    $
-    This can be seen as a piecewise function for values of $a$ below 0, at 0, or above 0. Below and above zero we can just take the derivative of the respective piecewise cases of $f$, but at zero we need to use the definition of the derivative.
+    The derivative of $f$ can be seen as a piecewise function for values of $a$ below 0, at 0, or above 0. Below and above zero we can just take the derivative of the respective piecewise cases of $f$, but at zero we need to use the definition of the derivative.
 
     #align(center)[
       #table(
@@ -283,8 +284,8 @@
     Now we have the tools to solve the original limit.
 
     $
-      f prime prime (0) & = lim_(h -> 0 ) (f prime (0 + h) - f prime (0))/h wide "must exist" \
-                        & = lim_(h -> 0 ) (f prime (h) - 0)/h \
+      &lim_(h -> 0 ) (f prime (0 + h) - f prime (0))/h wide "must exist" \
+                        & = lim_(h -> 0 ) (f prime (h) - 0)/h wide "for" n > 1, n in ZZ\
     $
     This splits to left and right hand limits:
     $
@@ -497,13 +498,13 @@
 
     The only values of $n$ for which the left and right hand limit both exist and are equal are when $n > 2, n in ZZ$.
 
-    Therefore: 
+    Therefore:
     $
-      &"When" n > 2, n in ZZ: wide lim_(x -> 0) f prime (x) = 0 \
-      &"When" n > 1, n in ZZ: wide f prime (0) = 0
+      & "When" n > 2, n in ZZ: wide lim_(x -> 0) f prime (x) = 0 \
+      & "When" n > 1, n in ZZ: wide f prime (0) = 0
     $
 
-    So $lim_(x -> 0) f prime (x) = f prime (0)$ only when $n > 2, n in ZZ$.
+    So $lim_(x -> 0) f prime (x) = f prime (0)$ holds only when $n > 2, n in ZZ$.
 
     #align(center)[
       #rect[$therefore f prime$ is continuous at $x = 0$ for all $n > 2, n in ZZ$ ]
@@ -520,36 +521,41 @@
       theta & = 2 tan^(-1)((S / 2) / x(t) ) \
             & = 2 tan^(-1)((S / 2)x(t)^(-1))
     $
+    Since we are *approaching* at speed $v$, the change in distance over time would be negative $v$.
     $
-      (d x) / (d t) = v
+      (d x) / (d t) = -v
     $
     $
       (d theta) / (d t) & = 2 (( 1 / (1 + ((S / 2)x(t)^(-1))^2))(S / 2)(-1)x(t)^(-2)((d x) / (d t)) ) \
-                        & = (-S x(t)^(-2) v ) / (1 + (S^2 / 4)x(t)^(-2)) \
-                        & = (-S x(t)^(-2) v ) / (( (4 x(t)^2 + S^2) / (4 x(t)^2 ))) \
-                        & = (-S x(t)^(-2) v (4 x(t)^2 ) ) / (4 x(t)^2 + S^2) \
-                        & = (-4 S v ) / (4 x(t)^2 + S^2) \
+                        & = (-S x(t)^(-2) (-v) ) / (1 + (S^2 / 4)x(t)^(-2)) \
+                        & = (S x(t)^(-2) v ) / (( (4 x(t)^2 + S^2) / (4 x(t)^2 ))) \
+                        & = (S x(t)^(-2) v (4 x(t)^2 ) ) / (4 x(t)^2 + S^2) \
+                        & = (4 S v ) / (4 x(t)^2 + S^2) \
     $
 
     $
-      #rect[$ therefore (d theta) / (d t) & = (-4 S v ) / (4 x(t)^2 + S^2) $]
+      #rect[$ therefore (d theta) / (d t) & = (4 S v ) / (4 x(t)^2 + S^2) $]
     $
 
   + *As the predator approaches its prey, we expect the visual angle perceived by the prey to increase, as objects appear bigger when they are closer. Verify this is consistent with your result from part (a). Is the visual angle getting bigger faster or slower as the predator approaches its prey?*
 
     $
-          (d theta) / (d t) & = (-4 S v ) / (4 x(t)^2 + S^2) \
-                            & = (-4 S v ) (4 x(t)^2 + S^2)^(-1) \
-      (d^2 theta) / (d^2 t) & = (-4 S v ) (-1) (4 x(t)^2 + S^2)^(-2)(8 x(t))(v) \
+      (d theta) / (d t) & = (4 S v ) / (4 x(t)^2 + S^2) \
+                        & = (4 S v ) (4 x(t)^2 + S^2)^(-1) \
+    $
+    Since $S > 0, v > 0, x^2 > 0$ the change in visual angle over time is always positive. In other words, the visual angle is always increasing with time. And since $x$ is decreasing with time ($(d x)/(d t) < 0$), the visual angle is getting larger as the predator approaches.
+
+    #rect[Therefore, our results are consistent: as the predator approaches the prey the visual angle gets bigger.]
+
+    $
+      (d^2 theta) / (d^2 t) & = (4 S v ) (-1) (4 x(t)^2 + S^2)^(-2)(8 x(t))(-v) \
                             & = (32 S v^2 x(t) ) (4 x(t)^2 + S^2)^(-2) \
                             & = (32 S v^2 x(t) ) / (4 x(t)^2 + S^2)^2
     $
 
-    For all $x > 0$, $(d^2 theta) / (d^2 t) > 0$, in other words $theta(t)$ is concave up on $x > 0$.
+    For all $x > 0$, $(d^2 theta) / (d^2 t) > 0$. In other words $theta(t)$ is concave up on $x > 0$.
 
     #rect[Therefore, the visual angle is getting bigger faster as the predator approaches the prey.]
-
-    Our result is consistent with the expected behavior. #todo[Verify this is consistent by saying that the first derivative is always positive. ]
 
   + *Visual angles are important factors in studies of predator avoidance. A model proposed by L. Dill, a behavioural ecologist at Simon Fraser University, about the behaviour of the Zebra Danio (a small tropical fish) suggested that “Zebra Danios react to an approaching predator when the rate of change of the angle subtended by the predator at the prey's eye exceeds some threshold level” (L. Dill (1974) “The escape response of the Zebra Danio (Brachydanio rerio). I. The stimulus for escape.”, Animal Behaviour, 22, 711-722). Suppose an escape reaction is triggered when the rate of change of the visual angle reaches the threshold value $r_"crit"$. Using the model developed in part (a), find the distance $x_"react"$ between prey and predator at which an escape response is triggered.*
 
@@ -557,75 +563,76 @@
 
     $
                                        r_"crit" & = (d theta) / (d t) \
-                                       r_"crit" & = (-4 S v ) / (4 x_"react"^2 + S^2) \
-                r_("crit")(4 x_"react"^2 + S^2) & = -4 S v \
-      4 x_"react"^2 r_("crit") + S^2 r_("crit") & = -4 S v \
-                                      x_"react" & = plus.minus sqrt((-4 S v - S^2 r_("crit")) / (4 r_("crit"))) \
+                                       r_"crit" & = (4 S v ) / (4 x_"react"^2 + S^2) \
+                r_("crit")(4 x_"react"^2 + S^2) & = 4 S v \
+      4 x_"react"^2 r_("crit") + S^2 r_("crit") & = 4 S v \
+                                      x_"react" & = plus.minus sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit"))) \
     $
 
     Since we only care if the prey is in front of the predator:
 
     #align(center)[
-      #rect($ x_"react" & = sqrt((-4 S v - S^2 r_("crit")) / (4 r_("crit"))) $)
+      #rect($ x_"react" & = sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit"))) $)
     ]
 
   + *Using the model developed in part (a) and (c), explain why for a predator of a given size S your model requires a “hunting speed” $v > (S r_"crit") / 4$ in order to trigger an escape response by the prey.*
 
     $
-      x_"react" & = sqrt((-4 S v - S^2 r_("crit")) / (4 r_("crit")))
+      x_"react" & = sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit")))
     $
     For $x_"react"$ to exist and not be 0 (the distance at which the predator eats the prey):
     $
-      (-4 S v - S^2 r_("crit")) / (4 r_("crit")) > 0 \
+      (4 S v - S^2 r_("crit")) / (4 r_("crit")) > 0 \
       r_("crit") > 0 \
-      -4 S v > S^2 r_("crit") \
-      v < (S^2 r_("crit")) / (-4S) \
-      v < (S r_("crit")) / (-4) \
+      4 S v > S^2 r_("crit") \
+      v > (S^2 r_("crit")) / (4S) \
+      v > (S r_("crit")) / (4) \
     $
-    Since velocity is assumed to be negative in my model, we need some adjustments to show the relationship for a positive "hunting speed".
+    // Since velocity is assumed to be negative in my model, we need some adjustments to show the relationship for a positive "hunting speed".
 
-    $
-      "Hunting speed" > 0\
-      v = -"Hunting speed" \
-      -"Hunting speed" < (S r_("crit")) / (-4) \
-      "Hunting speed" > (S r_("crit")) / (4) \
-      "For" x_"react" "to exist:" wide "Hunting Speed" > (S r_("crit")) / (4) \
-    $
+    // $
+    //   "Hunting speed" > 0\
+    //   v = -"Hunting speed" \
+    //   -"Hunting speed" < (S r_("crit")) / (-4) \
+    //   "Hunting speed" > (S r_("crit")) / (4) \
+    //   "For" x_"react" "to exist:" wide "Hunting Speed" > (S r_("crit")) / (4) \
+    // $
 
     #align(center)[
-      #rect[Therefore, using the model derived in (c), for the animal to react: $ "Hunting Speed" > (S r_("crit")) / (4) $]]
+      #rect[Therefore, using the model derived in (c), for the animal to react: $ v > (S r_("crit")) / (4) $]]
 
 
   + *Again, using the model developed in part (a) and (c), for a given “hunting speed” $v$, what size S would not result in an escape response by the prey?*
     $
-      x_"react" & = sqrt((-4 S v - S^2 r_("crit")) / (4 r_("crit")))
+      x_"react" & = sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit")))
     $
     For $x_"react"$ to exist and not be 0 (the distance at which the predator eats the prey):
     $
-      (-4 S v - S^2 r_("crit")) / (4 r_("crit")) > 0 \
+      (4 S v - S^2 r_("crit")) / (4 r_("crit")) > 0 \
       r_("crit") > 0 \
-      S(-4v - S r_("crit")) > 0 \
+      S(4v - S r_("crit")) > 0 \
       S > 0 \
-      -4v - S r_("crit") > 0 \
-      - S > (4v) / r_("crit") \
-      S < -(4v) / r_("crit") \
+      4v - S r_("crit") > 0 \
+      4v > S r_("crit") \
+      (4v)/r_("crit") > S \
+      S < (4v) / r_("crit") \
     $
 
 
-    Again, since velocity is assumed to be negative in my model, we need some adjustments to show the relationship for a positive "hunting speed".
-    $
-      "Hunting speed" > 0\
-      v = -"Hunting speed" \
-      S < (4 times "Hunting speed") / r_("crit") \
-    $
-    $
-      "For" x_"react" "to exist:" wide S < (4 times "Hunting speed") / r_("crit") \
-    $
+    // Again, since velocity is assumed to be negative in my model, we need some adjustments to show the relationship for a positive "hunting speed".
+    // $
+    //   "Hunting speed" > 0\
+    //   v = -"Hunting speed" \
+    //   S < (4 times "Hunting speed") / r_("crit") \
+    // $
+    // $
+    //   "For" x_"react" "to exist:" wide S < (4 times "Hunting speed") / r_("crit") \
+    // $
 
     To determine the speed that will *not* trigger an escape response, we can just negate the less than symbol (again ignoring the point at which $x_"react" = 0$).
 
     #align(center)[
-      #rect[Therefore, using the model derived in (c), to *not* trigger an escape response in the prey : $ S > (4 times "Hunting speed") / r_("crit") $]]
+      #rect[Therefore, using the model derived in (c), to *not* trigger an escape response in the prey : $ S > (4 v) / r_("crit") $]]
 
 
 
@@ -633,15 +640,15 @@
 
     If you are slow moving enough you can sneak up on the small Zebra Danio without the change in visual angle over time reaching the critical level $r_"crit"$ and triggering its escape response. This is because when:
 
-    $ "Hunting Speed" < (S r_("crit")) / (4) $
+    $ v < (S r_("crit")) / (4) $
 
     $x_"react"$ does not exist, as developed in (d).
 
     Similarly if you are large enough you can sneak up on the small Zebra Danio without the change in visual angle over time reaching the critical level $r_"crit"$ and triggering its escape response. This is because when:
 
-    $ S > (4 times "Hunting speed") / r_("crit") $
+    $ S > (4 v) / r_("crit") $
 
     $x_"react"$ does not exist, as developed in (e).
 
-    #rect[Therefore slow predators and large predators can reach the Zebra Danio without triggering its escape response, and in turn would have a higher success rate in trying to eat it.]
+    #rect[Therefore, slow predators and large predators can approach the Zebra Danio without triggering its escape response, and in turn, they would have a higher success rate at eating it.]
 
