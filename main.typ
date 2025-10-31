@@ -3,6 +3,8 @@
 
 #import "@preview/dashy-todo:0.1.2": todo
 
+#import "@preview/cetz:0.4.2"
+
 #set page(header: context {
   // Handle the case when page.numbering is not set by
   // falling back to the default "1" numbering pattern.
@@ -546,12 +548,52 @@
 
   + *Find an expression for the rate of change of the visual angle θ perceived by the prey in terms of the size and speed of the approaching predator, and the predator's distance away from its prey. The visual angle is the angle subtended by an object at the eye of the observer.*
 
+    We can construct the triangle:
+    #align(center,
+    cetz.canvas({
+      
+      import cetz.draw: *
+      let x = 11; 
+      line((0, 0), (x, 0), stroke: (dash: "dashed"), name: "x")
+      line((0, 0), (0, 2), name: "S/2")
+      line((0, 2), (x, 0))
+      // Anchor at 30 degree
+
+      // circle((x, 0), radius: 4, name: "theta")
+      arc((x - 4, 0), start: 180deg, stop: 166deg, radius: 3, stroke: (thickness: 0.5pt), name : "theta")
+
+      content(
+        ("x.start", 50%, "x.end"),
+        padding: .1,
+        anchor: "north",
+        box(fill: white, $ x(t) $)
+      )
+
+      content(
+        ("S/2.start", 50%, "S/2.end"),
+        padding: .1,
+        anchor: "east",
+        box(fill: white, $ S/2 $)
+      )
+
+      content(( name: "theta", anchor: 50%), align(center, $theta/2$), padding: .1, anchor: "east")
+
+    }), 
+    )
+
     #todo[Maybe add in a bit here about how this formula was derived, maybe an image]
+
+    Therefore: 
+    $
+      tan(theta/ 2) = (S / 2) / x(t) 
+    $
+    #todo[Double check this math.]
+
     $
       theta & = 2 tan^(-1)((S / 2) / x(t) ) \
             & = 2 tan^(-1)((S / 2)x(t)^(-1))
     $
-    Since we are *approaching* at speed $v$, the change in distance over time would be negative $v$.
+    Since the predator is *approaching* the prey, the distance is decreasing at speed $v$. Therefore, the change in distance over time would be negative $v$.
     $
       (d x) / (d t) = -v
     $
