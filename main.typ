@@ -546,6 +546,7 @@
 
   + *Find an expression for the rate of change of the visual angle θ perceived by the prey in terms of the size and speed of the approaching predator, and the predator's distance away from its prey. The visual angle is the angle subtended by an object at the eye of the observer.*
 
+    #todo[Maybe add in a bit here about how this formula was derived, maybe an image]
     $
       theta & = 2 tan^(-1)((S / 2) / x(t) ) \
             & = 2 tan^(-1)((S / 2)x(t)^(-1))
