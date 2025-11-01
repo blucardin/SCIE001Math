@@ -98,67 +98,101 @@
     $ ln(x) < x - 1 $
     Justify your claims.*
 
-  Start of proof:
+  Let $f(x) = x - 1 - ln(x)$
 
-  *Lemma 1: $ln(x) < (x - 1)$ for all $x > 1$*
+  $f(x)$ is defined, continuous, and differentiable for all $x > 0$
 
-  $ln(x)$ is continuous on $[1, +infinity)$ and differentiable on $(1, + infinity)$
+  To prove $ln(x) < x - 1$, we can show $f(x) > 0$ for all $x > 0, x != 1$. In other words, we must first prove that $f(x)$ has a global minimum at $(1, 0)$.
 
-  By the Mean Value Theorem there exists some $c > 1$ for all $x > 1$ such that:
-
+  We can find the points at which $f prime (x)$ is $0$:
   $
-    d/(d c)(ln(c)) = (ln(x) - ln(1))/(x - 1) \
-    1/c = (ln(x) - ln(1))/(x - 1)
-  $
-  Since we are only looking at $c > 1$:
-  $
-    0 < 1/c < 1 \
-    (ln(x) - ln(1))/(x - 1) = 1/c < 1 \
-    (ln(x) - ln(1))/(x - 1) < 1
+    f prime (x) & = 1 - 1/x \
+    f prime (x) & = 0 \
+        1 - 1/x & = 0 \
+              1 & = 1/x \
+              x & = 1 \
   $
 
-  Since $x > 1$, $x - 1 > 0$:
+  // We can find the value of $f prime prime (x)$ at $x = 1$.
+  // $
+  //         f prime (x) & = 1 - x^(-1) \
+  //   f prime prime (x) & = x^(-2) \
+  //   f prime prime (1) & = 1^(-2) = 1 \
+  // $
+
+  // From these calculations we can see: \
+  // - $f(x)$ has a critical point at $x = 0$,
+  // - $f(x)$ is concave up at $x = 0$,
+  // 
+  
+  Next, lets find the second derivative: 
   $
-    ln(x) - ln(1) < x - 1
+    f prime (x) & = 1 - x^(-1) \
+    f prime prime (x) & = x^(-2) \
+  
   $
 
-  $ln(1) = 0$ therefore:
+  // We can go a bit further to fully show that $f$ has a *global* minimum at $(1, 0)$.
+
+  Since we are only concerned with $x > 0$ ($f(x)$ is only defined for $x > 0$):
   $
-    #rect[For all $x > 1 ":" wide ln(x) < x - 1$]
+                    x & > 0 \
+               x^(-2) & > 0 \
+    f prime prime (x) & > 0
   $
 
-  *Lemma 2: $ln(x) < (x - 1)$ for all $0 < x < 1$*
+  Therefore, the function is concave up at all $x > 0$, so $f prime (x)$ is always increasing for all $x > 0$.
+  Since $f prime (1) = 0$ and $f prime (x)$ is continuous on all $x > 0$, it follows that:
 
-  $ln(x)$ is continuous on $[0, 1]$ and differentiable on $(0, 1)$
+  #align(center)[
+    #table(
+      columns: (auto, auto),
+      inset: 10pt,
+      align: center,
+      stroke: (x, y) => if x == 0 {
+        (right: 0.7pt + black)
+      },
+      table.header([*For $0 < x < 1$:*], [*For $1 < x$:*]),
 
-  By the Mean Value Theorem there exists some $0 < c < 1$ for all $0 < x < 1$ such that:
+      $
+        f prime (x) < f prime (1) \
+        f prime (x) < 0 \
+        "Hence" f(x) "is always decreasing". \
+        therefore f(x) > f(1)
+      $,
 
-  $
-    d/(d c)(ln(c)) = (ln(1) - ln(x))/(1 - x) \
-    1/c = (ln(x) - ln(1))/(x - 1)
-  $
-  Since we are only looking at $0 < c < 1$:
-  $
-                        1/c & > 1 \
-    (ln(x) - ln(1))/(x - 1) & = 1/c > 1 \
-    (ln(x) - ln(1))/(x - 1) & > 1
-  $
+      $
+        f prime (x) > f prime (1) \
+        f prime (x) > 0 \
+        "Hence" f(x) "is always increasing". \
+        therefore f(1) < f(x)
+      $,
+    )
+  ]
 
-  Since $0 < x < 1$, $x - 1 < 0$, so we must flip the comparison when we multiply.
-
+  We can find the value of $f(x)$ at $x = 1$.
   $
-    ln(x) - ln(1) < x - 1
-  $
-
-  $ln(1) = 0$ therefore:
-  $
-    #rect[For all $0 < x < 1 ":" wide ln(x) < x - 1$]
+    f(1) & = 1 - 1 - ln(1) = 0
   $
 
-  Combining the comparisons from *Lemma 1* and *Lemma 2* we get:
+  Therefore, combining both sides, for all $x > 0, x != 1$:
+  $
+    f(x) &> f(1) \
+    f(x) &> 0
+  $
+
+  Therefore, $x$ has a global minimum at the point $(1, 0)$. 
+  So we can finally resolve:
 
   $
-    #rect[For all $x > 0, x != 1 ":" wide ln(x) < x - 1$]
+    "For all" x > 0, x != 1 ":" \
+                           f(x) & > 0 \
+                  x - 1 - ln(x) & > 0 \
+                          x - 1 & > ln(x) \
+  $
+
+  $
+    #rect[$therefore$ For all $x > 0, x != 1 ":" wide ln(x) < x - 1$]
   $
 
   Q.E.D
@@ -461,8 +495,8 @@
     $
       f prime (0) = 0 "when" n > 1, n in ZZ
     $
-
-    #todo[Add else undefined]
+    Note that if $n < 1$ or $n in.not ZZ$, $f prime (0)$ does not exist.
+    #todo[Check]
 
     $lim_(x -> 0) f prime (x)$ splits to right and left hand limits:
 
@@ -609,10 +643,8 @@
       content((name: "theta", anchor: 50%), align(center, $theta/2$), padding: .1, anchor: "east")
     }))
 
-    #todo[Maybe add in a bit here about how this formula was derived, maybe an image]
 
     Therefore:
-    #todo[Double check this math.]
 
     $
       tan(theta/ 2) & = (S / 2) / x(t) \
@@ -667,12 +699,10 @@
                                       x_"react" & = plus.minus sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit"))) \
     $
 
-    Since we only care if the prey is in front of the predator:
-
-    #todo[Make it sound less krass]
+    Since our model is only concerned with the predator approaching the prey from the front, we can drop the $plus.minus$ for the positive $x_"react"$.
 
     #align(center)[
-      #rect($ x_"react" & = sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit"))) $)
+      #rect($ therefore x_"react" & = sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit"))) $)
     ]
 
   + *Using the model developed in part (a) and (c), explain why for a predator of a given size S your model requires a “hunting speed” $v > (S r_"crit") / 4$ in order to trigger an escape response by the prey.*
