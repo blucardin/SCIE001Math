@@ -104,7 +104,7 @@
 
   To prove $ln(x) < x - 1$, we can show $f(x) > 0$ for all $x > 0, x != 1$. In other words, we must first prove that $f(x)$ has a global minimum at $(1, 0)$.
 
-  We can find the points at which $f prime (x)$ is $0$:
+  First we find all points at which $f prime (x)$ is $0$:
   $
     f prime (x) & = 1 - 1/x \
     f prime (x) & = 0 \
@@ -123,13 +123,12 @@
   // From these calculations we can see: \
   // - $f(x)$ has a critical point at $x = 0$,
   // - $f(x)$ is concave up at $x = 0$,
-  // 
-  
-  Next, lets find the second derivative: 
+  //
+
+  Next, lets find the second derivative:
   $
-    f prime (x) & = 1 - x^(-1) \
+          f prime (x) & = 1 - x^(-1) \
     f prime prime (x) & = x^(-2) \
-  
   $
 
   // We can go a bit further to fully show that $f$ has a *global* minimum at $(1, 0)$.
@@ -141,8 +140,8 @@
     f prime prime (x) & > 0
   $
 
-  Therefore, the function is concave up at all $x > 0$, so $f prime (x)$ is always increasing for all $x > 0$.
-  Since $f prime (1) = 0$ and $f prime (x)$ is continuous on all $x > 0$, it follows that:
+  Therefore, $f(x)$ is concave up at all $x > 0$, so $f prime (x)$ is always increasing for all $x > 0$.
+  Since $f prime (1) = 0$ and $f prime (x)$ is continuous for all $x > 0$, it follows that:
 
   #align(center)[
     #table(
@@ -175,14 +174,14 @@
     f(1) & = 1 - 1 - ln(1) = 0
   $
 
-  Therefore, combining both sides, for all $x > 0, x != 1$:
+  Combining both sides, for all $x > 0, x != 1$:
   $
-    f(x) &> f(1) \
-    f(x) &> 0
+    f(x) & > f(1) \
+    f(x) & > 0
   $
 
-  Therefore, $x$ has a global minimum at the point $(1, 0)$. 
-  So we can finally resolve:
+  Therefore, $f(x)$ has a global minimum at the point $(1, 0)$.
+  So we can finally show:
 
   $
     "For all" x > 0, x != 1 ":" \
