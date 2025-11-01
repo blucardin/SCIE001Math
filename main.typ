@@ -106,9 +106,9 @@
 
   $f(x)$ is defined, continuous, and differentiable for all $x > 0$
 
-  To prove $ln(x) < x - 1$, we can show $f(x) > 0$ for all $x > 0, x != 1$. In other words, we must first prove that $f(x)$ has a global minimum at $(1, 0)$.
+  To prove $ln(x) < x - 1$, we can show $f(x) > 0$ for all $x > 0, x != 1$.
 
-  First we find all points at which $f prime (x)$ is $0$:
+  First we find all values at which $f prime (x)$ is $0$:
   $
     f prime (x) & = 1 - 1/x \
     f prime (x) & = 0 \
@@ -188,7 +188,7 @@
   So we can finally show:
 
   $
-    "For all" x > 0, x != 1 ":" \
+    "For all" x > 0,& x != 1 ":" \
                            f(x) & > 0 \
                   x - 1 - ln(x) & > 0 \
                           x - 1 & > ln(x) \
@@ -307,6 +307,8 @@
     $
                   & lim_(h -> 0^- ) (f(h) - 0^n)/h \
                   & =lim_(h -> 0^- ) (h^n - 0^n)/h \
+      "For" & n = 0: \
+                  & =lim_(h -> 0^- ) (h^n - 1)/h = D.N.E\
       "For" "all" & n != 0: \
                   & =lim_(h -> 0^- ) (h^n)/h \
                   & =lim_(h -> 0^- ) (h^(n-1)) \
@@ -332,6 +334,8 @@
     $
       lim_(h -> 0^+ ) (f(h) - 0^n)/h \
       = lim_(h -> 0^+ ) (h^n cos (1/h) - 0^n)/h \
+      "For" n = 0: \
+      = lim_(h -> 0^+ ) (h^n cos (1/h) - 1)/h = D.N.E\
       "For all" n != 0: \
       = lim_(h -> 0^+ ) h^(n-1) cos (1/h) \
     $
