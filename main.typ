@@ -90,6 +90,10 @@
   #today.display("[month repr:long]")
   #today.day(), #today.year()// or another custom format
 
+  Noah Virjee
+
+  45515863
+
 ]
 
 #pagebreak()
@@ -495,7 +499,6 @@
       f prime (0) = 0 "when" n > 1, n in ZZ
     $
     Note that if $n < 1$ or $n in.not ZZ$, $f prime (0)$ does not exist.
-    #todo[Check]
 
     $lim_(x -> 0) f prime (x)$ splits to right and left hand limits:
 
@@ -710,13 +713,13 @@
       x_"react" & = sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit")))
     $
     For $x_"react"$ to exist and not be 0 (the distance at which the predator eats the prey):
-    #todo[Ensure all of the greater than or equal to's work out for the whole document]
+    
     $
-      (4 S v - S^2 r_("crit")) / (4 r_("crit")) > 0 \
-      r_("crit") > 0 \
-      4 S v > S^2 r_("crit") \
-      v > (S^2 r_("crit")) / (4S) \
-      v > (S r_("crit")) / (4) \
+      (4 S v - S^2 r_("crit")) / (4 r_("crit")) &> 0 \
+      4 S v &> S^2 r_("crit") wide r_("crit") > 0 \
+      // S &> 0 \ 
+      v &> (S^2 r_("crit")) / (4S) wide S > 0 \
+      v &> (S r_("crit")) / (4) \
     $
     // Since velocity is assumed to be negative in my model, we need some adjustments to show the relationship for a positive "hunting speed".
 
@@ -729,7 +732,7 @@
     // $
 
     #align(center)[
-      #rect[Therefore, using the model derived in (c), for the animal to react: $ v > (S r_("crit")) / (4) $]]
+      #rect[Therefore, using the model derived in (c), for an escape response to be triggered: $ v > (S r_("crit")) / (4) $]]
 
 
   + *Again, using the model developed in part (a) and (c), for a given “hunting speed” $v$, what size S would not result in an escape response by the prey?*
@@ -738,14 +741,12 @@
     $
     For $x_"react"$ to exist and not be 0 (the distance at which the predator eats the prey):
     $
-      (4 S v - S^2 r_("crit")) / (4 r_("crit")) > 0 \
-      r_("crit") > 0 \
-      S(4v - S r_("crit")) > 0 \
-      S > 0 \
-      4v - S r_("crit") > 0 \
-      4v > S r_("crit") \
-      (4v)/r_("crit") > S \
-      S < (4v) / r_("crit") \
+      (4 S v - S^2 r_("crit")) / (4 r_("crit")) &> 0 wide r_("crit") > 0\
+      S(4v - S r_("crit")) &> 0 wide S > 0\
+      4v - S r_("crit") &> 0 \
+      4v &> S r_("crit") \
+      (4v)/r_("crit") &> S \
+      S &< (4v) / r_("crit") \
     $
 
 
@@ -759,22 +760,35 @@
     //   "For" x_"react" "to exist:" wide S < (4 times "Hunting speed") / r_("crit") \
     // $
 
-    To determine the speed that will *not* trigger an escape response, we can just negate the less than symbol (again ignoring the point at which $x_"react" = 0$).
+    To determine the speed that will *not* trigger an escape response, we can just negate the less than (again ignoring the point at which $x_"react" = 0: S = (4 v) / r_("crit") $).
+    $
+      S &lt.not (4 v) / r_("crit") \
+      S &> (4 v) / r_("crit") wide "ignoring" S = (4 v) / r_("crit") 
+    $
 
     #align(center)[
-      #rect[Therefore, using the model derived in (c), to *not* trigger an escape response in the prey : $ S > (4 v) / r_("crit") $]]
+      #rect[Therefore, using the model derived in (c), for an escape response to *not* be triggered: $ S > (4 v) / r_("crit") $]]
 
 
 
   + *Using your results found in parts (d) and (e), explain why large predators and slowing moving predators would have higher success rate at eating the small Zebra Danio.*
 
-    If you are slow moving enough you can sneak up on the small Zebra Danio without the change in visual angle over time reaching the critical level $r_"crit"$ and triggering its escape response. This is because when:
+    If you are slow moving enough you can sneak up on the small Zebra Danio without the change in visual angle over time reaching the critical level $r_"crit"$ and triggering its escape response. 
+    
+  
+    This is because for $x_"react"$ to exist and not be 0: 
 
-    #todo[ensure this is a good explanation]
+    $ v > (S r_("crit")) / (4) $
 
-    $ v < (S r_("crit")) / (4) $
+    as developed in (d).
 
-    $x_"react"$ does not exist, as developed in (d).
+    Therefore for $x_"react"$ not to exist and not be 0 (when $v = (S r_("crit")) / (4) $): 
+
+    $ 
+    v &gt.not (S r_("crit")) / (4) \
+    v &< (S r_("crit")) / (4) wide "ignoring" v = (S r_("crit")) / (4)
+    $
+
 
     Similarly if you are large enough you can sneak up on the small Zebra Danio without the change in visual angle over time reaching the critical level $r_"crit"$ and triggering its escape response. This is because when:
 
