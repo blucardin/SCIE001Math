@@ -11,28 +11,58 @@
   let page-numbering = page.numbering
   if page-numbering == none { page-numbering = "1" }
 
-  let both = type(page-numbering) == function or {
-    page-numbering.clusters().filter(c => c in (
-      // Counting symbols: https://typst.app/docs/reference/model/numbering
-      "1", "a", "A", "i", "I", "α", "Α", "*",
-      "א", "一", "壹", "あ", "い", "ア", "イ", "ㄱ",
-      "가", "\u{0661}", "\u{06F1}", "\u{0967}",
-      "\u{09E7}", "\u{0995}", "①", "⓵"
-    )).len() >= 2
-  }
+  let both = (
+    type(page-numbering) == function
+      or {
+        (
+          page-numbering
+            .clusters()
+            .filter(c => (
+              c
+                in (
+                  // Counting symbols: https://typst.app/docs/reference/model/numbering
+                  "1",
+                  "a",
+                  "A",
+                  "i",
+                  "I",
+                  "α",
+                  "Α",
+                  "*",
+                  "א",
+                  "一",
+                  "壹",
+                  "あ",
+                  "い",
+                  "ア",
+                  "イ",
+                  "ㄱ",
+                  "가",
+                  "\u{0661}",
+                  "\u{06F1}",
+                  "\u{0967}",
+                  "\u{09E7}",
+                  "\u{0995}",
+                  "①",
+                  "⓵",
+                )
+            ))
+            .len()
+            >= 2
+        )
+      }
+  )
 
   let x = numbering(
-      page-numbering,
-      ..counter(page).get(),
-      ..if both { counter(page).at(<numbering-main-end>) }
-    )
+    page-numbering,
+    ..counter(page).get(),
+    ..if both { counter(page).at(<numbering-main-end>) },
+  )
   if x != "1" {
     "HW1.2"
     h(1fr)
     x
   }
-
-
 })
 
 #set enum(
@@ -315,8 +345,8 @@
     Now we have the tools to solve the original limit.
 
     $
-      &lim_(h -> 0 ) (f prime (0 + h) - f prime (0))/h wide "must exist" \
-                        & = lim_(h -> 0 ) (f prime (h) - 0)/h wide "for" n > 1, n in ZZ\
+      & lim_(h -> 0 ) (f prime (0 + h) - f prime (0))/h wide "must exist" \
+      & = lim_(h -> 0 ) (f prime (h) - 0)/h wide "for" n > 1, n in ZZ \
     $
     This splits to left and right hand limits:
     $
@@ -431,6 +461,8 @@
     $
       f prime (0) = 0 "when" n > 1, n in ZZ
     $
+
+    #todo[Add else undefined]
 
     $lim_(x -> 0) f prime (x)$ splits to right and left hand limits:
 
@@ -549,49 +581,43 @@
   + *Find an expression for the rate of change of the visual angle θ perceived by the prey in terms of the size and speed of the approaching predator, and the predator's distance away from its prey. The visual angle is the angle subtended by an object at the eye of the observer.*
 
     We can construct the triangle:
-    #align(center,
-    cetz.canvas({
-      
+    #align(center, cetz.canvas({
       import cetz.draw: *
-      let x = 11; 
+      let x = 11
       line((0, 0), (x, 0), stroke: (dash: "dashed"), name: "x")
       line((0, 0), (0, 2), name: "S/2")
       line((0, 2), (x, 0))
       // Anchor at 30 degree
 
       // circle((x, 0), radius: 4, name: "theta")
-      arc((x - 4, 0), start: 180deg, stop: 166deg, radius: 3, stroke: (thickness: 0.5pt), name : "theta")
+      arc((x - 4, 0), start: 180deg, stop: 166deg, radius: 3, stroke: (thickness: 0.5pt), name: "theta")
 
       content(
         ("x.start", 50%, "x.end"),
         padding: .1,
         anchor: "north",
-        box(fill: white, $ x(t) $)
+        box(fill: white, $ x(t) $),
       )
 
       content(
         ("S/2.start", 50%, "S/2.end"),
         padding: .1,
         anchor: "east",
-        box(fill: white, $ S/2 $)
+        box(fill: white, $ S/2 $),
       )
 
-      content(( name: "theta", anchor: 50%), align(center, $theta/2$), padding: .1, anchor: "east")
-
-    }), 
-    )
+      content((name: "theta", anchor: 50%), align(center, $theta/2$), padding: .1, anchor: "east")
+    }))
 
     #todo[Maybe add in a bit here about how this formula was derived, maybe an image]
 
-    Therefore: 
-    $
-      tan(theta/ 2) = (S / 2) / x(t) 
-    $
+    Therefore:
     #todo[Double check this math.]
 
     $
-      theta & = 2 tan^(-1)((S / 2) / x(t) ) \
-            & = 2 tan^(-1)((S / 2)x(t)^(-1))
+      tan(theta/ 2) & = (S / 2) / x(t) \
+              theta & = 2 tan^(-1)((S / 2) / x(t) ) \
+              theta & = 2 tan^(-1)((S / 2)x(t)^(-1))
     $
     Since the predator is *approaching* the prey, the distance is decreasing at speed $v$. Therefore, the change in distance over time would be negative $v$.
     $
@@ -643,6 +669,8 @@
 
     Since we only care if the prey is in front of the predator:
 
+    #todo[Make it sound less krass]
+
     #align(center)[
       #rect($ x_"react" & = sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit"))) $)
     ]
@@ -653,6 +681,7 @@
       x_"react" & = sqrt((4 S v - S^2 r_("crit")) / (4 r_("crit")))
     $
     For $x_"react"$ to exist and not be 0 (the distance at which the predator eats the prey):
+    #todo[Ensure all of the greater than or equal to's work out for the whole document]
     $
       (4 S v - S^2 r_("crit")) / (4 r_("crit")) > 0 \
       r_("crit") > 0 \
@@ -711,6 +740,8 @@
   + *Using your results found in parts (d) and (e), explain why large predators and slowing moving predators would have higher success rate at eating the small Zebra Danio.*
 
     If you are slow moving enough you can sneak up on the small Zebra Danio without the change in visual angle over time reaching the critical level $r_"crit"$ and triggering its escape response. This is because when:
+
+    #todo[ensure this is a good explanation]
 
     $ v < (S r_("crit")) / (4) $
 
