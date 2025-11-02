@@ -308,7 +308,7 @@
                   & lim_(h -> 0^- ) (f(h) - 0^n)/h \
                   & =lim_(h -> 0^- ) (h^n - 0^n)/h \
       "For" & n = 0: \
-                  & =lim_(h -> 0^- ) (h^n - 1)/h = D.N.E\
+                  & =lim_(h -> 0^- ) (1 - 1)/h = lim_(h -> 0^- ) (0)/h = D.N.E\
       "For" "all" & n != 0: \
                   & =lim_(h -> 0^- ) (h^n)/h \
                   & =lim_(h -> 0^- ) (h^(n-1)) \
@@ -335,7 +335,7 @@
       lim_(h -> 0^+ ) (f(h) - 0^n)/h \
       = lim_(h -> 0^+ ) (h^n cos (1/h) - 0^n)/h \
       "For" n = 0: \
-      = lim_(h -> 0^+ ) (h^n cos (1/h) - 1)/h = D.N.E\
+      = lim_(h -> 0^+ ) (cos (1/h) - 1)/h = D.N.E\
       "For all" n != 0: \
       = lim_(h -> 0^+ ) h^(n-1) cos (1/h) \
     $
