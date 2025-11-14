@@ -57,7 +57,7 @@
     ..if both { counter(page).at(<numbering-main-end>) },
   )
   if x != "1" {
-    "HW1.2"
+    "HW1.x"
     h(1fr)
     x
   }
