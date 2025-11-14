@@ -57,7 +57,7 @@
     ..if both { counter(page).at(<numbering-main-end>) },
   )
   if x != "1" {
-    "HW1.x"
+    "HW1.3"
     h(1fr)
     x
   }
@@ -75,9 +75,9 @@
 #align(center + horizon)[
 
   _#text(30pt)[
-    Math Assignment Template 
+    HW1.3
   ] \ \
-  *Subtitle*
+  *Climate Modeling*
   _
 
   // #show heading: it => pad(left: 1em * (it.level - 1), it)
