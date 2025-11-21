@@ -3,6 +3,21 @@
 
 #import "@preview/dashy-todo:0.1.2": todo
 
+#import "@preview/frame-it:1.2.0": *
+
+#let (example, feature, variant, syntax) = frames(
+  feature: ("Feature",),
+  // For each frame kind, you have to provide its supplement title to be displayed
+  variant: ("Variant",),
+  // You can provide a color or leave it out and it will be generated
+  example: ("Example", gray),
+  // You can add as many as you want
+  syntax: ("Syntax",),
+)
+// This is necessary. Don't forget this!
+#show: frame-style(styles.boxy)
+
+
 #let appendix(body) = {
   set heading(numbering: "A", supplement: [Appendix])
   counter(heading).update(0)
@@ -112,6 +127,10 @@
 // ]
 
 #pagebreak()
+
+#set page(height: auto) // for intinite page
+
+
 #show: regular
 
 = Instructions
@@ -136,6 +155,8 @@ The First Law of thermodynamics states that in a closed system, energy can neith
 
 When we apply this fundamental thermodynamics principle and write down equations expressing the energy balance occurring in a system, the resulting mathematical model is called *Energy Balance Model* (EBM).
 In climatology, EBMs are used to build highly simplified models of the climate system. Despite their simplicity, EBMs can provide a reasonable conceptual approach to understanding climate changes.
+
+#pagebreak()
 
 = Part A
 Here we will derive an EBM for the Earth-atmosphere system.
@@ -173,15 +194,18 @@ $
 
 where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, energy flowing in from the Sun and energy flowing out as the Earth's thermal radiation.
 
-+ #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the equation agree. Use the following thermodynamics identities (here $Delta T$ and $Delta E$ are changes in temperature and energy over an interval in time $Delta t$):
++ #example[
+    #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the equation agree. Use the following thermodynamics identities (here $Delta T$ and $Delta E$ are changes in temperature and energy over an interval in time $Delta t$):
 
-  $
-    q = C Delta T \
-    q = q_"in" - q_"out" \
-    q_"in" = Delta E_"in" wide "and" wide q_"out" = Delta E_"out" \
-  $
 
-  Note: the subscripts “in” and “out” refer to, respectively, energy flowing into and exiting the Earth-atmosphere system.
+    $
+      q = C Delta T \
+      q = q_"in" - q_"out" \
+      q_"in" = Delta E_"in" wide "and" wide q_"out" = Delta E_"out" \
+    $
+
+    Note: the subscripts “in” and “out” refer to, respectively, energy flowing into and exiting the Earth-atmosphere system.
+  ]
 
   We can start by combining some of the identities
   $
@@ -259,63 +283,62 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
   Therefore, the units are consistent.
 
-+ Assume that the amount of solar energy reaching the Earth's surface per unit time per square meter is a constant Q, and that the Earth's surface is a sphere of radius $r$. The _albedo_ of the Earth $alpha in [0, 1]$ is defined to be the proportion of incoming solar energy that is reflected away from the Earth's surface.
+#pagebreak()
 
-  #underline[*Your task:*] Justify why the power corresponding to energy flowing in from the Sun is given by
++ #example[Assume that the amount of solar energy reaching the Earth's surface per unit time per square meter is a constant Q, and that the Earth's surface is a sphere of radius $r$. The _albedo_ of the Earth $alpha in [0, 1]$ is defined to be the proportion of incoming solar energy that is reflected away from the Earth's surface.
 
-  Lemma 1: 
+    #underline[*Your task:*] Justify why the power corresponding to energy flowing in from the Sun is given by
 
-  $1 - alpha$ represents the proportion of solar energy absorbed. 
+    $
+      P_"in" = pi r^2 Q(1 - alpha)
+    $
 
-  $alpha$ represents the proportion of incoming solar energy reflected away relative to the total solar energy that hits earth: 
+    and verify this equation has consistent units.
+  ]
+  *Lemma 1: $1 - alpha$ represents the proportion of solar energy absorbed. *
+
+  $alpha$ represents the proportion of incoming solar energy reflected away relative to the total solar energy that hits earth:
   $
     alpha = "reflected solar energy" / "total solar energy"
   $
-  We can assume that all solar energy that is not reflected is absorbed. So it follows: 
+  We can assume that all solar energy that is not reflected is absorbed. So it follows:
   $
     "reflected solar energy" + "absorbed solar energy" = "total solar energy"
   $
-  So we can rearrange for the proportion of absorbed solar energy to total solar energy. 
+  So we can rearrange for the proportion of absorbed solar energy to total solar energy.
   $
-    "absorbed solar energy" = "total solar energy" - "reflected solar energy" \ 
-    "absorbed solar energy" / "total solar energy" = "total solar energy"  / "total solar energy" - "reflected solar energy"  / "total solar energy"
+    "absorbed solar energy" = "total solar energy" - "reflected solar energy" \
+    "absorbed solar energy" / "total solar energy" = "total solar energy" / "total solar energy" - "reflected solar energy" / "total solar energy"
   $
-  Therefore: 
+  Therefore:
   $
     "absorbed solar energy" / "total solar energy" = 1 - alpha
   $
 
-  $
-    
-  $
+  $$
 
-  $
-    P_"in" = pi r^2 Q(1 - alpha)
-  $
+#pagebreak()
++ #example[An expression for Pout can be derived by first considering the Earth to be a blackbody which perfectly radiates energy at a rate proportional to the fourth power of its temperature (for more information, look up the Stefan-Boltzmann Law in your Physics notes). Under the blackbody assumption, the maximum rate at which energy can be radiated by the Earth is given by $P_"out" = A sigma T 4$, where A is the surface area of the Earth and sigma is the Stefan-Boltzmann constant with units $W m^(-2) K^(-4)$. However, since the Earth does not radiate perfectly an additional term $epsilon in [0,1]$ is introduced (called the emitted fraction) which represents the proportion of this theoretical maximum energy output that is actually radiated away from the Earth and into space.
 
-  and verify this equation has consistent units.
+    #underline[*Your task:*] Justify why the power corresponding to energy flowing out as radiation is given by
+    $
+      P_"out" = 4π pi r^2 sigma epsilon T^4
+    $
+    and verify this equation has consistent units.]
 
-+ An expression for Pout can be derived by first considering the Earth to be a blackbody which perfectly radiates energy at a rate proportional to the fourth power of its temperature (for more information, look up the Stefan-Boltzmann Law in your Physics notes). Under the blackbody assumption, the maximum rate at which energy can be radiated by the Earth is given by $P_"out" = A sigma T 4$, where A is the surface area of the Earth and sigma is the Stefan-Boltzmann constant with units $W m^(-2) K^(-4)$. However, since the Earth does not radiate perfectly an additional term $epsilon in [0,1]$ is introduced (called the emitted fraction) which represents the proportion of this theoretical maximum energy output that is actually radiated away from the Earth and into space.
++ #example[For this model, albedo is assumed to be negatively correlated with temperature because colder temperatures tend to result in increased snow and ice coverage, yielding lighter coloured surfaces that reflect more light.
 
-  #underline[*Your task:*] Justify why the power corresponding to energy flowing out as radiation is given by
-  $
-    P_"out" = 4π pi r^2 sigma epsilon T^4
-  $
-  and verify this equation has consistent units.
+    Let's say that experimental evidence indicates that the albedo of the Earth is approximately constant at 0.7 below 247K and 0.3 above 282K. Let's use the following piecewise function for albedo, where f
 
-+ For this model, albedo is assumed to be negatively correlated with temperature because colder temperatures tend to result in increased snow and ice coverage, yielding lighter coloured surfaces that reflect more light.
+    $
+      alpha(T) = cases(
+        0.07 "for" T<= 246 K,
+        f(T) "for" 247K < T < 282K,
+        0.300 "for" T >= 282K
+      )
+    $
 
-  Let’s say that experimental evidence indicates that the albedo of the Earth is approximately constant at 0.7 below 247K and 0.3 above 282K. Let’s use the following piecewise function for albedo, where f
-
-  $
-    alpha(T) = cases(
-      0.07 "for" T<= 246 K,
-      f(T) "for" 247K < T < 282K,
-      0.300 "for" T >= 282K
-    )
-  $
-
-  #underline[*Your task:*]  Find a suitable linear function $f(T) = a T + b$such that $alpha(T)$ is continuous for all T. Keep at-least five sig-figs in each number you report (these will be needed for later calculations).
+    #underline[*Your task:*]  Find a suitable linear function $f(T) = a T + b$ such that $alpha(T)$ is continuous for all T. Keep at-least five sig-figs in each number you report (these will be needed for later calculations).]
 
 = Part B
 Combining all the pieces from Part A yields the following EBM:
@@ -335,37 +358,36 @@ $
   alpha & = 5.6704 times 10^(-8) W m^(-2) K^(-4) \
 $
 
-+ Note that the value for the emitted fraction, epsilon, is not given. We will estimate it from a graph.
++ #example[Note that the value for the emitted fraction, epsilon, is not given. We will estimate it from a graph.
 
-  Below is the graph of the function $T(t)$ that solves the EBM with a particular initial value $T_0 = 267K$,
-  where the arrow indicates the approximated value of the slope of the solution function at $T = 278K$.
+    Below is the graph of the function $T(t)$ that solves the EBM with a particular initial value $T_0 = 267K$,
+    where the arrow indicates the approximated value of the slope of the solution function at $T = 278K$.
 
-  Note that time is expressed in years.
+    Note that time is expressed in years.
 
-  #underline[*Your task:*]  Using the information provided in the figure and the parameters given above for the
-  EBM, estimate the value of epsilon to one decimal place. Show which exact equation you're solving. Give the numerical value you found, there is no need to show intermediate steps.
+    #underline[*Your task:*]  Using the information provided in the figure and the parameters given above for the
+    EBM, estimate the value of epsilon to one decimal place. Show which exact equation you're solving. Give the numerical value you found, there is no need to show intermediate steps.
 
-  #figure(
-    image("0.png"),
-    caption: [
-      Solution to the EBM with $T_0 = 267K$. The slope of the solution curve at $T = 278K$ is $3.2 K y−1$.
-    ],
-  )
+    #figure(
+      image("0.png"),
+      caption: [
+        Solution to the EBM with $T_0 = 267K$. The slope of the solution curve at $T = 278K$ is $3.2 K y−1$.
+      ],
+    )]
 
-+ The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r 2 Q(1 -alpha)$ and $P_"out" = 4 pi r 2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of Pin and Pout.
++ #example[The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r 2 Q(1 -alpha)$ and $P_"out" = 4 pi r 2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of Pin and Pout.
 
-  Your task: Explain what the temperature values output by the code represent with respect to the EBM as an ODE, and why we are interested in them.
+    Your task: Explain what the temperature values output by the code represent with respect to the EBM as an ODE, and why we are interested in them.]
 
-+ Let $T_"eq"$ denote any equilibrium solution to the EBM.
++ #example[Let $T_"eq"$ denote any equilibrium solution to the EBM.
 
-  Your task: Using the value of $epsilon$ you found in Part B(a), find all values for Teq and determine whether they are stable, unstable, or neither, and briefly explain why. Round your answers to whole numbers.
+    Your task: Using the value of $epsilon$ you found in Part B(a), find all values for Teq and determine whether they are stable, unstable, or neither, and briefly explain why. Round your answers to whole numbers.
 
-  You can use the code provided in the Appendix to find the necessary information to answer this
-  question.
+    You can use the code provided in the Appendix to find the necessary information to answer this question.]
 
-+ Your task: Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.
++ #example[Your task: Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
 
-+ Your task: Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?
++ #example[Your task: Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
 
 #show: appendix
 
