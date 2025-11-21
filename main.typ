@@ -80,7 +80,7 @@
   numbering: numbly("{1:(a)}"),
 )
 
-#let lim =  math.limits(math.lim)
+#let lim = math.limits(math.lim)
 
 // #set heading(numbering: "1.")
 
@@ -154,12 +154,12 @@ We have the following variable definitions.
     align: (left, left, left),
     table.header[*Symbol*][*Definition*][*Units*],
     table.hline(),
-    [$q$], [Energy transfer due to heat], [J],
-    [$C$], [Effective heat capacity of the Earth], [JK-1],
-    [$T > 0$], [Average surface temperature of the Earth], [K],
-    [$E$], [Thermal energy], [J],
-    [$P = (d E) / (d t)$], [Power], [W],
-    [$t > 0$], [Time], [s],
+    [$q$], [Energy transfer due to heat], [$J$],
+    [$C$], [Effective heat capacity of the Earth], [$J K^(-1)$],
+    [$T > 0$], [Average surface temperature of the Earth], [$K$],
+    [$E$], [Thermal energy], [$J$],
+    [$P = (d E) / (d t)$], [Power], [$W$],
+    [$t > 0$], [Time], [$s$],
   )
 ]
 
@@ -173,7 +173,7 @@ $
 
 where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, energy flowing in from the Sun and energy flowing out as the Earth's thermal radiation.
 
-+ #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the equation agree. Use the following thermodynamics identities (here $Delta T$ and $Delta E$ are changes in temperature and energy over an interval in time ∆t):
++ #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the equation agree. Use the following thermodynamics identities (here $Delta T$ and $Delta E$ are changes in temperature and energy over an interval in time $Delta t$):
 
   $
     q = C Delta T \
@@ -181,12 +181,113 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
     q_"in" = Delta E_"in" wide "and" wide q_"out" = Delta E_"out" \
   $
 
-  Note: the subscripts “in” and “out” refer to, respectively, energy flowing into and exiting the Earth-
-  atmosphere system.
+  Note: the subscripts “in” and “out” refer to, respectively, energy flowing into and exiting the Earth-atmosphere system.
 
-+ Assume that the amount of solar energy reaching the Earth's surface per unit time per square meter is a constant Q, and that the Earth's surface is a sphere of radius r. The _albedo_ of the Earth $alpha in [0, 1]$ is defined to be the proportion of incoming solar energy that is reflected away from the Earth's surface.
+  We can start by combining some of the identities
+  $
+            q & = q_"in" - q_"out" \
+            q & = Delta E_"in" - Delta E_"out" \
+    C Delta T & = Delta E_"in" - Delta E_"out" \
+  $
+
+  We now divide both sides by the change in time $Delta t$ over which the temperature and energy is changing:
+  $
+    C (Delta T)/(Delta t) & = (Delta E_"in")/(Delta t) - (Delta E_"out")/(Delta t) \
+  $
+
+  Since $Delta T$ and $Delta E$ represent changes in $E$ and $T$ with respect to a finite change in time, $Delta t$ after some $t$, we can change their expressions to represent this.
+
+  $
+    C (T (t + Delta t) - T(t))/(Delta t) &= (E_"in" (t + Delta t) - E_"in"(t) )/(Delta t) - (E_"out" (t + Delta t) - E_"out"(t) )/(Delta t) \
+  $
+
+  Next take the limit of both sides as the change in time approaches $0$.
+
+  Note, we are making the simplification/assumption that $C$, the heat capacity of the earth, does not change with time.
+  $
+    lim_(Delta t -> 0) C (T (t + Delta t) - T(t))/(Delta t) &= lim_(Delta t -> 0) ((E_"in" (t + Delta t) - E_"in"(t) )/(Delta t) - (E_"out" (t + Delta t) - E_"out"(t) )/(Delta t)) \
+    C lim_(Delta t -> 0) (T (t + Delta t) - T(t))/(Delta t) &= lim_(Delta t -> 0) (E_"in" (t + Delta t) - E_"in"(t) )/(Delta t) - lim_(Delta t -> 0) (E_"out" (t + Delta t) - E_"out"(t) )/(Delta t) \
+  $
+  Where $T(t)$ and $E(t)$ represents the temperature and energy at time $t$ respectively.
+
+  Now we can rewrite this with Leibnitz notation:
+
+  $
+    C (d T) / (d t) & = ( d E_"in"(t) ) / (d t) - ( d E_"in"(t) ) / (d t) \
+  $
+
+  Change in energy over time is power, so we can simplify.
+
+  $
+    (d E) / (d t) = P \
+    C (d T) / (d t) = P_"in" - P_"out" \
+  $
+
+  Now we can check units:
+  $
+    C [J K^(-1)] (d T [K]) / (d t [s]) = P_"in" [W] - P_"out" [W] \
+  $
+
+  #align(center)[
+    #table(
+      columns: (auto, auto),
+      inset: 10pt,
+      align: center,
+      stroke: (x, y) => if x == 0 and y >= 1 {
+        (right: 0.7pt + black)
+      },
+      table.header([*Left Side*], [*Right Side*]),
+
+      $
+        & = J K^(-1) K / s \
+        & = J / s \
+        & = W
+      $,
+
+      $
+        & = W - W \
+        & = W \
+      $,
+    )
+
+    $
+      W = W
+    $
+    *  Left Side = Right Side
+    *
+  ]
+
+  Therefore, the units are consistent.
+
++ Assume that the amount of solar energy reaching the Earth's surface per unit time per square meter is a constant Q, and that the Earth's surface is a sphere of radius $r$. The _albedo_ of the Earth $alpha in [0, 1]$ is defined to be the proportion of incoming solar energy that is reflected away from the Earth's surface.
 
   #underline[*Your task:*] Justify why the power corresponding to energy flowing in from the Sun is given by
+
+  Lemma 1: 
+
+  $1 - alpha$ represents the proportion of solar energy absorbed. 
+
+  $alpha$ represents the proportion of incoming solar energy reflected away relative to the total solar energy that hits earth: 
+  $
+    alpha = "reflected solar energy" / "total solar energy"
+  $
+  We can assume that all solar energy that is not reflected is absorbed. So it follows: 
+  $
+    "reflected solar energy" + "absorbed solar energy" = "total solar energy"
+  $
+  So we can rearrange for the proportion of absorbed solar energy to total solar energy. 
+  $
+    "absorbed solar energy" = "total solar energy" - "reflected solar energy" \ 
+    "absorbed solar energy" / "total solar energy" = "total solar energy"  / "total solar energy" - "reflected solar energy"  / "total solar energy"
+  $
+  Therefore: 
+  $
+    "absorbed solar energy" / "total solar energy" = 1 - alpha
+  $
+
+  $
+    
+  $
 
   $
     P_"in" = pi r^2 Q(1 - alpha)
@@ -198,23 +299,23 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
   #underline[*Your task:*] Justify why the power corresponding to energy flowing out as radiation is given by
   $
-  P_"out" = 4π pi r^2 sigma epsilon T^4
+    P_"out" = 4π pi r^2 sigma epsilon T^4
   $
   and verify this equation has consistent units.
 
 + For this model, albedo is assumed to be negatively correlated with temperature because colder temperatures tend to result in increased snow and ice coverage, yielding lighter coloured surfaces that reflect more light.
 
   Let’s say that experimental evidence indicates that the albedo of the Earth is approximately constant at 0.7 below 247K and 0.3 above 282K. Let’s use the following piecewise function for albedo, where f
-  
+
   $
     alpha(T) = cases(
-      0.07 "for" T<= 246 K, 
-      f(T) "for" 247K < T < 282K, 
+      0.07 "for" T<= 246 K,
+      f(T) "for" 247K < T < 282K,
       0.300 "for" T >= 282K
     )
   $
 
-  #underline[*Your task:*]  Find a suitable linear function $f(T) = a T + b $such that $alpha(T)$ is continuous for all T. Keep at-least five sig-figs in each number you report (these will be needed for later calculations).
+  #underline[*Your task:*]  Find a suitable linear function $f(T) = a T + b$such that $alpha(T)$ is continuous for all T. Keep at-least five sig-figs in each number you report (these will be needed for later calculations).
 
 = Part B
 Combining all the pieces from Part A yields the following EBM:
@@ -228,19 +329,19 @@ where the albedo alpha(T) is given by the piecewise function described in Part A
 For the remaining parts of this assignment, use the expression for f you found in Part A(d), and use the following parameter values:
 
 $
-  C &= 1.0 times 10^23 J K^(-1) \
-  r &= 6.3781 times 106 m \ 
-  Q &= 1365 W m^(-2) \ 
-  alpha &= 5.6704 times 10^(-8) W m^(-2) K^(-4) \ 
+      C & = 1.0 times 10^23 J K^(-1) \
+      r & = 6.3781 times 106 m \
+      Q & = 1365 W m^(-2) \
+  alpha & = 5.6704 times 10^(-8) W m^(-2) K^(-4) \
 $
 
 + Note that the value for the emitted fraction, epsilon, is not given. We will estimate it from a graph.
 
   Below is the graph of the function $T(t)$ that solves the EBM with a particular initial value $T_0 = 267K$,
   where the arrow indicates the approximated value of the slope of the solution function at $T = 278K$.
-  
+
   Note that time is expressed in years.
-  
+
   #underline[*Your task:*]  Using the information provided in the figure and the parameters given above for the
   EBM, estimate the value of epsilon to one decimal place. Show which exact equation you're solving. Give the numerical value you found, there is no need to show intermediate steps.
 
@@ -248,11 +349,11 @@ $
     image("0.png"),
     caption: [
       Solution to the EBM with $T_0 = 267K$. The slope of the solution curve at $T = 278K$ is $3.2 K y−1$.
-    ]
+    ],
   )
 
-+ The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r 2 Q(1 -alpha)$ and $P_"out" = 4 pi r 2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of Pin and Pout. 
-  
++ The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r 2 Q(1 -alpha)$ and $P_"out" = 4 pi r 2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of Pin and Pout.
+
   Your task: Explain what the temperature values output by the code represent with respect to the EBM as an ODE, and why we are interested in them.
 
 + Let $T_"eq"$ denote any equilibrium solution to the EBM.
@@ -304,7 +405,7 @@ def plot(epsilon):
     # Find intersection points
     idx = list(filter(lambda x: ((T_eq[x] < 310) and (T_eq[x] > 230)),
     np.argwhere(np.diff(np.sign(P_in - P_out))).flatten()))
-    
+
     if len(idx) == 0:
         print("No intersection points found!")
     else:
