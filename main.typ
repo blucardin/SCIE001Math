@@ -3,6 +3,17 @@
 
 #import "@preview/dashy-todo:0.1.2": todo
 
+#let appendix(body) = {
+  set heading(numbering: "A", supplement: [Appendix])
+  counter(heading).update(0)
+  body
+}
+#let regular(body) = {
+  set heading(supplement: [Regular])
+  body
+}
+
+
 #set page(header: context {
   // Handle the case when page.numbering is not set by
   // falling back to the default "1" numbering pattern.
@@ -65,10 +76,11 @@
 
 
 #set enum(
-   full:true, 
-   numbering: numbly("{1:1}.", "{2:(a)}" )
+  full: true,
+  numbering: numbly("{1:(a)}"),
 )
 
+#let lim =  math.limits(math.lim)
 
 // #set heading(numbering: "1.")
 
@@ -86,13 +98,227 @@
 
   #let today = datetime.today()
 
-  #today.display("[month repr:long]") 
+  #today.display("[month repr:long]")
   #today.day(), #today.year()// or another custom format
 
 ]
 
-#pagebreak()
+// #align(bottom)[
 
-+  
-  + *Construct a function $f$ such that $lim_(x->1^+)  f(x) = 3 + lim_(x→1^−) f(x) $ Your answer should include a definition of $f$ using  mathematical notation. You should also sketch a graph of $f$.*
-    $ f(x) = cases(0 "if" x < 1, 3 "if" x > 1 )  $
+#outline(target: heading.where(supplement: [Regular]))
+
+#outline(target: heading.where(supplement: [Appendix]), title: [Appendix])
+
+// ]
+
+#pagebreak()
+#show: regular
+
+= Instructions
+In this assignment you will be working on a mathematical model from climatology, the scientific field that study climate. There are two main parts in this assignment:
+
+- In part A, you will learn about the guiding principles of mathematical modelling and you will apply
+
+them to derive an ODE for the energy balance of the Earth-atmosphere system.
+- In part B, you will study the behavior of solutions of the ODE for a particular set of parameter values.
+
+There is a lot of information here. Read carefully and hand in a full solution to the questions in each part.
+Note that some of the computations may get messy.
+
+In the next Math tutorial, you will explore the same climate model described here and discover some interesting properties
+
+#line(length: 100%)
+
+== On Modelling
+When approaching a modelling problem, mathematicians often start from fundamental principles (sometimes called first principles). We can think of these principles as the building blocks of science. For example, Newton's laws of motion and the laws of thermodynamics are fundamental principles from which we can build models from. Let's look more closely at the First Law of Thermodynamics.
+
+The First Law of thermodynamics states that in a closed system, energy can neither be created nor destroyed, only altered in form. Thus, by “tracking” the energy of a system and how it is transformed, the First Law allows us to gain insight into the dynamics of the system.
+
+When we apply this fundamental thermodynamics principle and write down equations expressing the energy balance occurring in a system, the resulting mathematical model is called *Energy Balance Model* (EBM).
+In climatology, EBMs are used to build highly simplified models of the climate system. Despite their simplicity, EBMs can provide a reasonable conceptual approach to understanding climate changes.
+
+= Part A
+Here we will derive an EBM for the Earth-atmosphere system.
+
+Our underlying assumption is that the Earth and its atmosphere are a closed system and thus the First Law of thermodynamics applies. This is reasonable considering that the Earth-atmosphere system does not exchange matter with the surrounding environment or space.
+
+In our model, we assume the Earth-atmosphere system absorbs energy from the Sun as heat and emits thermal energy back into space as radiation, resulting in energy flowing in and out of the system. The energy balance in this process can be expressed as a simple ODE with only one dependent variable: the
+Earth's average surface temperature. Let's see how.
+
+We have the following variable definitions.
+
+#figure()[
+  #table(
+    columns: 3,
+    stroke: none,
+    align: (left, left, left),
+    table.header[*Symbol*][*Definition*][*Units*],
+    table.hline(),
+    [$q$], [Energy transfer due to heat], [J],
+    [$C$], [Effective heat capacity of the Earth], [JK-1],
+    [$T > 0$], [Average surface temperature of the Earth], [K],
+    [$E$], [Thermal energy], [J],
+    [$P = (d E) / (d t)$], [Power], [W],
+    [$t > 0$], [Time], [s],
+  )
+]
+
+The EBM is based on the assumption that the Earth-atmosphere system gains and loses thermal energy
+uniformly, and that the rate of change of the Earth's average surface temperature is proportional to the
+difference between the incoming and outgoing rates of energy transfer due to thermal radiation. The resulting
+equation is:
+$
+  C (d T)/(d t) = P_"in" -P_"out"
+$
+
+where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, energy flowing in from the Sun and energy flowing out as the Earth's thermal radiation.
+
++ #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the equation agree. Use the following thermodynamics identities (here $Delta T$ and $Delta E$ are changes in temperature and energy over an interval in time ∆t):
+
+  $
+    q = C Delta T \
+    q = q_"in" - q_"out" \
+    q_"in" = Delta E_"in" wide "and" wide q_"out" = Delta E_"out" \
+  $
+
+  Note: the subscripts “in” and “out” refer to, respectively, energy flowing into and exiting the Earth-
+  atmosphere system.
+
++ Assume that the amount of solar energy reaching the Earth's surface per unit time per square meter is a constant Q, and that the Earth's surface is a sphere of radius r. The _albedo_ of the Earth $alpha in [0, 1]$ is defined to be the proportion of incoming solar energy that is reflected away from the Earth's surface.
+
+  #underline[*Your task:*] Justify why the power corresponding to energy flowing in from the Sun is given by
+
+  $
+    P_"in" = pi r^2 Q(1 - alpha)
+  $
+
+  and verify this equation has consistent units.
+
++ An expression for Pout can be derived by first considering the Earth to be a blackbody which perfectly radiates energy at a rate proportional to the fourth power of its temperature (for more information, look up the Stefan-Boltzmann Law in your Physics notes). Under the blackbody assumption, the maximum rate at which energy can be radiated by the Earth is given by $P_"out" = A sigma T 4$, where A is the surface area of the Earth and sigma is the Stefan-Boltzmann constant with units $W m^(-2) K^(-4)$. However, since the Earth does not radiate perfectly an additional term $epsilon in [0,1]$ is introduced (called the emitted fraction) which represents the proportion of this theoretical maximum energy output that is actually radiated away from the Earth and into space.
+
+  #underline[*Your task:*] Justify why the power corresponding to energy flowing out as radiation is given by
+  $
+  P_"out" = 4π pi r^2 sigma epsilon T^4
+  $
+  and verify this equation has consistent units.
+
++ For this model, albedo is assumed to be negatively correlated with temperature because colder temperatures tend to result in increased snow and ice coverage, yielding lighter coloured surfaces that reflect more light.
+
+  Let’s say that experimental evidence indicates that the albedo of the Earth is approximately constant at 0.7 below 247K and 0.3 above 282K. Let’s use the following piecewise function for albedo, where f
+  
+  $
+    alpha(T) = cases(
+      0.07 "for" T<= 246 K, 
+      f(T) "for" 247K < T < 282K, 
+      0.300 "for" T >= 282K
+    )
+  $
+
+  #underline[*Your task:*]  Find a suitable linear function $f(T) = a T + b $such that $alpha(T)$ is continuous for all T. Keep at-least five sig-figs in each number you report (these will be needed for later calculations).
+
+= Part B
+Combining all the pieces from Part A yields the following EBM:
+
+$
+  C (d T) / (d t) = pi r 2 Q(1 -alpha (T)) - 4 pi r 2 sigma epsilon T^4
+$
+
+where the albedo alpha(T) is given by the piecewise function described in Part A(d).
+
+For the remaining parts of this assignment, use the expression for f you found in Part A(d), and use the following parameter values:
+
+$
+  C &= 1.0 times 10^23 J K^(-1) \
+  r &= 6.3781 times 106 m \ 
+  Q &= 1365 W m^(-2) \ 
+  alpha &= 5.6704 times 10^(-8) W m^(-2) K^(-4) \ 
+$
+
++ Note that the value for the emitted fraction, epsilon, is not given. We will estimate it from a graph.
+
+  Below is the graph of the function $T(t)$ that solves the EBM with a particular initial value $T_0 = 267K$,
+  where the arrow indicates the approximated value of the slope of the solution function at $T = 278K$.
+  
+  Note that time is expressed in years.
+  
+  #underline[*Your task:*]  Using the information provided in the figure and the parameters given above for the
+  EBM, estimate the value of epsilon to one decimal place. Show which exact equation you're solving. Give the numerical value you found, there is no need to show intermediate steps.
+
+  #figure(
+    image("0.png"),
+    caption: [
+      Solution to the EBM with $T_0 = 267K$. The slope of the solution curve at $T = 278K$ is $3.2 K y−1$.
+    ]
+  )
+
++ The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r 2 Q(1 -alpha)$ and $P_"out" = 4 pi r 2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of Pin and Pout. 
+  
+  Your task: Explain what the temperature values output by the code represent with respect to the EBM as an ODE, and why we are interested in them.
+
++ Let $T_"eq"$ denote any equilibrium solution to the EBM.
+
+  Your task: Using the value of $epsilon$ you found in Part B(a), find all values for Teq and determine whether they are stable, unstable, or neither, and briefly explain why. Round your answers to whole numbers.
+
+  You can use the code provided in the Appendix to find the necessary information to answer this
+  question.
+
++ Your task: Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.
+
++ Your task: Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?
+
+#show: appendix
+
+= Guide to Finding Intersection Points of $P_"in"$ and $P_"out"$ in Python<app1>
+Create a new Jupyter notebook using anaconda. Copy and paste the following lines of code into a new cell.
+
+```python
+
+# define the constants
+C = 1e23
+r = 6.3781e6
+Q = 1365
+sigma = 5.6704e-8
+# generate a function for the albedo values
+temp = [200,247,282,340]
+albedo = [0.7,0.7,0.3,0.3]
+alpha = lambda T: np.interp(T,temp,albedo)
+# temperature axis
+T_eq = np.linspace(0,500,1000)
+
+def plot(epsilon):
+    eps = epsilon # choose emissivity
+    # Define power in and power out functions
+    P_in = np.pi * r**2 * Q * (1 - alpha(T_eq))
+    P_out = 4 * np.pi * r**2 * sigma * eps * T_eq**4
+    # Plot function
+    plt.plot(T_eq, P_in, 'b-.', label=r'$P_{in}$') # plot LHS
+    plt.plot(T_eq, P_out, 'r', label=r'$P_{out}$') # plot RHS
+    plt.title("Power in vs. Power out for the Energy Balance Model")
+    plt.xlabel('Temperature, T(t) (Kelvin)') # x axis label
+    plt.ylabel('Power P(T) (W)') # y axis label
+    plt.grid() # add grid to plot
+    plt.xlim([230,310]) #x axis range
+    plt.ylim([5e16,1.4e17]) #y axis range
+    plt.legend(loc='upper left') # add legend
+    plt.gca().get_yaxis().set_major_formatter(ticker.FormatStrFormatter('%.2e'))
+    # Find intersection points
+    idx = list(filter(lambda x: ((T_eq[x] < 310) and (T_eq[x] > 230)),
+    np.argwhere(np.diff(np.sign(P_in - P_out))).flatten()))
+    
+    if len(idx) == 0:
+        print("No intersection points found!")
+    else:
+        print("Intersection points:")
+
+    for i in idx:
+        print(" T:", round(T_eq[i],2), "P: ", '{:0.2e}'.format(P_in[i]))
+
+    plt.plot(T_eq[idx], P_in[idx], 'ko')
+    plt.show()
+```
+
+Now you can create a new cell and call the following method to generate a graph of $P_"in"$ vs. $P_"out"$. This will also print out the intersection points for a given epsilon (e.x. here $epsilon = 0.3$).
+
+```python
+plot(0.3) # plot P_in vs. P_out for given epsilon
+```
