@@ -315,7 +315,62 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
     "absorbed solar energy" / "total solar energy" = 1 - alpha
   $
 
-  $$
+  *Lemma 2: $pi r^2$ represents surface area of the earth from the perspective of the sun.*
+
+  Assume the earth is a perfect sphere, the number of rays originating at the sun that would hit it is no different than if it was a perfect circle facing the sun at the same distance.
+  
+  Therefore, we can approximate the area that the sun transfers energy to as the area of a circle with the same radius as our idealized earth. 
+
+  So, the effective solar heating area is: 
+  $
+    pi r^2
+  $
+
+  *Putting it all together*
+
+  Logically, the solar energy that the earth absorbs over time should be equal to the amount of solar energy reaching the Earth's surface per unit time per square meter times the effective surface area that receives the energy, times the proportion of this energy that is absorbed. 
+
+  Modeling this mathematically using Lemma 1 and Lemma 2:
+
+  $
+    P_"in" = (pi r^2) Q (1 - alpha)
+  $
+  
+  Checking units: 
+  $
+    P_"in" [W] = (pi (r[m])^2) Q [J s^-2 m^-2 ] (1 - alpha)
+  $
+
+  #align(center)[
+    #table(
+      columns: (auto, auto),
+      inset: 10pt,
+      align: center,
+      stroke: (x, y) => if x == 0 and y >= 1 {
+        (right: 0.7pt + black)
+      },
+      table.header([*Left Side*], [*Right Side*]),
+
+      $
+        & = J K^(-1) K / s \
+        & = J / s \
+        & = W
+      $,
+
+      $
+        & = W - W \
+        & = W \
+      $,
+    )
+
+    $
+      W = W
+    $
+    *  Left Side = Right Side
+    *
+  ]
+
+  Therefore, the units are consistent.
 
 #pagebreak()
 + #example[An expression for Pout can be derived by first considering the Earth to be a blackbody which perfectly radiates energy at a rate proportional to the fourth power of its temperature (for more information, look up the Stefan-Boltzmann Law in your Physics notes). Under the blackbody assumption, the maximum rate at which energy can be radiated by the Earth is given by $P_"out" = A sigma T 4$, where A is the surface area of the Earth and sigma is the Stefan-Boltzmann constant with units $W m^(-2) K^(-4)$. However, since the Earth does not radiate perfectly an additional term $epsilon in [0,1]$ is introduced (called the emitted fraction) which represents the proportion of this theoretical maximum energy output that is actually radiated away from the Earth and into space.
