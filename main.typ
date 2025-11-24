@@ -375,7 +375,7 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
   #colbreak()
 
-+ #example[An expression for Pout can be derived by first considering the Earth to be a blackbody which perfectly radiates energy at a rate proportional to the fourth power of its temperature (for more information, look up the Stefan-Boltzmann Law in your Physics notes). Under the blackbody assumption, the maximum rate at which energy can be radiated by the Earth is given by $P_"out" = A sigma T^4$, where A is the surface area of the Earth and sigma is the Stefan-Boltzmann constant with units $W m^(-2) K^(-4)$. However, since the Earth does not radiate perfectly an additional term $epsilon in [0,1]$ is introduced (called the emitted fraction) which represents the proportion of this theoretical maximum energy output that is actually radiated away from the Earth and into space.
++ #example[An expression for $P_"out"$ can be derived by first considering the Earth to be a blackbody which perfectly radiates energy at a rate proportional to the fourth power of its temperature (for more information, look up the Stefan-Boltzmann Law in your Physics notes). Under the blackbody assumption, the maximum rate at which energy can be radiated by the Earth is given by $P_"out" = A sigma T^4$, where A is the surface area of the Earth and sigma is the Stefan-Boltzmann constant with units $W m^(-2) K^(-4)$. However, since the Earth does not radiate perfectly an additional term $epsilon in [0,1]$ is introduced (called the emitted fraction) which represents the proportion of this theoretical maximum energy output that is actually radiated away from the Earth and into space.
 
     #underline[*Your task:*] Justify why the power corresponding to energy flowing out as radiation is given by
     $
@@ -677,19 +677,29 @@ $
           $]
   $
 
-+ #example[The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r 2 Q(1 -alpha)$ and $P_"out" = 4 pi r 2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of Pin and Pout.
++ #example[The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r^2 Q(1 -alpha)$ and $P_"out" = 4 pi r^2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of $P_"in"$ and $P_"out"$.
 
-    Your task: Explain what the temperature values output by the code represent with respect to the EBM as an ODE, and why we are interested in them.]
+    #underline[*Your task:*] Explain what the temperature values output by the code represent with respect to the EBM as an ODE, and why we are interested in them.]
+
+  The temperature values output by the code represent the points of intersection where $P_"in"$ = $P_"out"$. This is important because our equation for the change in temperature over time is these values subtracted, meaning that when they are zero, temperature will not change.
+
+  $
+  C (d T) / (d t) = pi r^2 Q(1 -alpha (T)) - 4 pi r^2 sigma epsilon T^4
+  $
 
 + #example[Let $T_"eq"$ denote any equilibrium solution to the EBM.
 
-    Your task: Using the value of $epsilon$ you found in Part B(a), find all values for Teq and determine whether they are stable, unstable, or neither, and briefly explain why. Round your answers to whole numbers.
+    #underline[*Your task:*] Using the value of $epsilon$ you found in Part B(a), find all values for $T_"eq"$ and determine whether they are stable, unstable, or neither, and briefly explain why. Round your answers to whole numbers.
 
     You can use the code provided in the Appendix to find the necessary information to answer this question.]
 
-+ #example[Your task: Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
 
-+ #example[Your task: Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
+
++ #example[#underline[*Your task:*] Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
+
+
+
++ #example[#underline[*Your task:*] Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
 
 #show: appendix
 
