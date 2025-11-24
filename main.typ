@@ -5,6 +5,8 @@
 
 #import "@preview/frame-it:1.2.0": *
 
+#import "@preview/lilaq:0.5.0" as lq
+
 #let (example, feature, variant, syntax) = frames(
   feature: ("Feature",),
   // For each frame kind, you have to provide its supplement title to be displayed
@@ -447,7 +449,7 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
     $
       alpha(T) = cases(
-        0.07 "for" T<= 246 K,
+        0.700 "for" T<= 247 K,
         f(T) "for" 247K < T < 282K,
         0.300 "for" T >= 282K
       )
@@ -455,26 +457,26 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
     #underline[*Your task:*]  Find a suitable linear function $f(T) = a T + b$ such that $alpha(T)$ is continuous for all T. Keep at-least five sig-figs in each number you report (these will be needed for later calculations).
   ]
-  Above $282 K$ and below $246 K$, $alpha(T)$ is constant, and is therefore continuous.
-  Between $282 K$ and $246 K$, $alpha(T) = f(T) = a T + b$ which is linear, and therefore continuous.
+  Above $282 K$ and below $247 K$, $alpha(T)$ is constant, and is therefore continuous.
+  Between $282 K$ and $247 K$, $alpha(T) = f(T) = a T + b$ which is linear, and therefore continuous.
 
-  The only points where $alpha(T)$ could be discountinuous are at $T = 282 K$ and $T = 246 K$, so we can solve for $a$ and $b$ such that the function is continuous at those points, and therefore will be continuous at all points.
+  The only points where $alpha(T)$ could be discountinuous are at $T = 282 K$ and $T = 247 K$, so we can solve for $a$ and $b$ such that the function is continuous at those points, and therefore will be continuous at all points.
 
   For a function $f$ to be continuous at $x = a$:
   $
     lim_(x -> a )f(x) = f(a)
   $
 
-  For $alpha(T)$ to be continuous at $T = 282 K$ and $T = 246 K$ :
+  For $alpha(T)$ to be continuous at $T = 282 K$ and $T = 247 K$ :
 
   $
-    lim_(T -> 246 )alpha(T) = alpha(246) wide lim_(T -> 282 )alpha(T) = alpha(282)
+    lim_(T -> 247 )alpha(T) = alpha(247) wide lim_(T -> 282 )alpha(T) = alpha(282)
   $
 
   Both of these limits split,
 
   $
-    lim_(T -> 246^- )alpha(T) = alpha(246) wide lim_(T -> 246^+ )alpha(T) = alpha(246) wide lim_(T -> 282^- )alpha(T) = alpha(282) wide lim_(T -> 282^+ )alpha(T) = alpha(282)
+    lim_(T -> 247^- )alpha(T) = alpha(247) wide lim_(T -> 247^+ )alpha(T) = alpha(247) wide lim_(T -> 282^- )alpha(T) = alpha(282) wide lim_(T -> 282^+ )alpha(T) = alpha(282)
   $
 
   There are two cases that do not provide us with any information:
@@ -488,7 +490,7 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
       stroke: (x, y) => if x == 0 and y >= 1 {
         (right: 0.7pt + black)
       },
-      table.header([*  $ lim_(T -> 246^- )alpha(T) = alpha(246) $*], [*$lim_(T -> 282^+ )alpha(T) = alpha(282)$*]),
+      table.header([*  $ lim_(T -> 247^- )alpha(T) = alpha(247) $*], [*$lim_(T -> 282^+ )alpha(T) = alpha(282)$*]),
 
       table(
         columns: (auto, auto),
@@ -500,11 +502,11 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
         table.header([*Left Side*], [*Right Side*]),
 
         $
-          = 0.07
+          = 0.700
         $,
 
         $
-          = 0.07
+          = 0.700
         $,
       ),
 
@@ -548,7 +550,7 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
       stroke: (x, y) => if x == 0 and y >= 1 {
         (right: 0.7pt + black)
       },
-      table.header([*  $ lim_(T -> 246^+ )alpha(T) = alpha(246) $*], [*$lim_(T -> 282^- )alpha(T) = alpha(282)$*]),
+      table.header([*  $ lim_(T -> 247^+ )alpha(T) = alpha(247) $*], [*$lim_(T -> 282^- )alpha(T) = alpha(282)$*]),
 
       table(
         columns: (auto, auto),
@@ -560,11 +562,11 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
         table.header([*Left Side*], [*Right Side*]),
 
         $
-          = f(246)
+          = f(247)
         $,
 
         $
-          = 0.07
+          = 0.700
         $,
       ),
 
@@ -596,21 +598,21 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
   For these to hold, *Left Side = Right Side *, therefore:
 
   $
-       f(246) & = 0.07 wide f(282)    & = 0.300, \
-    246 a + b & = 0.07 wide 282 a + b &  = 0.300 \
+       f(247) & = 0.700 wide f(282)    & = 0.300, \
+    247 a + b & = 0.700 wide 282 a + b &  = 0.300 \
   $
 
   $
-    36a & = 0.23 \
-      a & = 0.006388888889 \
-      b & = 0.07 - 246 a \
-      b & = 0.07 - 246 (0.006388888889) \
-      b & = -1.5016666667
+    35a & = -0.4 \
+      a & = -0.01142857143 \
+      b & = 0.700 - 247 a \
+      b & = 0.700 - 247 (-0.01142857143) \
+      b & = 3.5228571432
   $
 
   Therefore:
   $
-    #rect($f(T) = 0.006388888889T - 1.5016666667$)
+    #rect($f(T) = -0.01142857143T + 3.5228571432$)
   $
 
   #colbreak()
@@ -666,14 +668,14 @@ $
 
   With values this becomes:
   $
-    (1.0 times 10^23) ( 0.000000101471334) = pi (6.3781 times 10^6)^2 ( (1365)(1 - ( 0.006388888889 (278) - 1.5016666667))) - 4 (5.6704 times 10^(-8)) epsilon (278)^4) \
-    4 (5.6704 times 10^(-8)) epsilon (278)^4 = (1365)(1 - ( 0.006388888889 (278) - 1.5016666667))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) \
-    epsilon = ((1365)(1 - (( 0.006388888889 (278) - 1.5016666667))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) ) / ( 4 (5.6704 times 10^(-8)) (278)^4) \ 
+    (1.0 times 10^23) ( 0.000000101471334) = pi (6.3781 times 10^6)^2 ( (1365)(1 - ( -0.01142857143(278) + 3.5228571432))) - 4 (5.6704 times 10^(-8)) epsilon (278)^4) \
+    4 (5.6704 times 10^(-8)) epsilon (278)^4 = (1365)(1 - ( -0.01142857143(278) + 3.5228571432 ))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) \
+    epsilon = ((1365)(1 - ((-0.01142857143(278) + 3.5228571432))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) ) / ( 4 (5.6704 times 10^(-8)) (278)^4) \ 
   $
 
   $
     #rect[$
-            epsilon = 0.672447529
+            epsilon = 0.6006374223
           $]
   $
 
@@ -693,6 +695,16 @@ $
 
     You can use the code provided in the Appendix to find the necessary information to answer this question.]
 
+
+#let (times, temperatures, slopes) = json("fieldData.json")
+
+// #lq.diagram(
+//   lq.quiver(
+//     times,
+//     temperatures,
+//     (x, y) => (slopes.at(x), )
+//   )
+// )
 
 
 + #example[#underline[*Your task:*] Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
