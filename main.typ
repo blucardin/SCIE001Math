@@ -128,7 +128,7 @@
 
 #pagebreak()
 
-#set page(height: auto) // for intinite page
+// #set page(height: auto) // for intinite page
 
 
 #show: regular
@@ -196,7 +196,6 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
 + #example[
     #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the equation agree. Use the following thermodynamics identities (here $Delta T$ and $Delta E$ are changes in temperature and energy over an interval in time $Delta t$):
-
 
     $
       q = C Delta T \
@@ -283,7 +282,7 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
   Therefore, the units are consistent.
 
-#pagebreak()
+  #colbreak()
 
 + #example[Assume that the amount of solar energy reaching the Earth's surface per unit time per square meter is a constant Q, and that the Earth's surface is a sphere of radius $r$. The _albedo_ of the Earth $alpha in [0, 1]$ is defined to be the proportion of incoming solar energy that is reflected away from the Earth's surface.
 
@@ -318,27 +317,28 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
   *Lemma 2: $pi r^2$ represents surface area of the earth from the perspective of the sun.*
 
   Assume the earth is a perfect sphere, the number of rays originating at the sun that would hit it is no different than if it was a perfect circle facing the sun at the same distance.
-  
-  Therefore, we can approximate the area that the sun transfers energy to as the area of a circle with the same radius as our idealized earth. 
 
-  So, the effective solar heating area is: 
+  Therefore, we can approximate the area that the sun transfers energy to as the area of a circle with the same radius as our idealized earth.
+
+  So, the effective solar heating area is:
   $
     pi r^2
   $
 
   *Putting it all together*
 
-  Logically, the solar energy that the earth absorbs over time should be equal to the amount of solar energy reaching the Earth's surface per unit time per square meter times the effective surface area that receives the energy, times the proportion of this energy that is absorbed. 
+  Logically, the solar energy that the earth absorbs over time should be equal to the amount of solar energy reaching the Earth's surface per unit time per square meter times the effective surface area that receives the energy, times the proportion of this energy that is absorbed.
 
   Modeling this mathematically using Lemma 1 and Lemma 2:
 
   $
-    P_"in" = (pi r^2) Q (1 - alpha)
+              P_"in" & = Q (pi r^2)(1 - alpha) \
+    therefore P_"in" & = pi r^2 Q (1 - alpha) \
   $
-  
-  Checking units: 
+
+  Checking units:
   $
-    P_"in" [W] = (pi (r[m])^2) Q [J s^-2 m^-2 ] (1 - alpha)
+    P_"in" [W] = pi (r[m])^2 (Q [J s^(-1) m^(-2) ]) (1 - alpha)
   $
 
   #align(center)[
@@ -352,13 +352,14 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
       table.header([*Left Side*], [*Right Side*]),
 
       $
-        & = J K^(-1) K / s \
-        & = J / s \
-        & = W
+        & = W \
+        // & = J / s \
+        // & = W
       $,
 
       $
-        & = W - W \
+        & = m^2 J s^(-1) m^(-2) \
+        & = J s^(-1) \
         & = W \
       $,
     )
@@ -372,18 +373,77 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
   Therefore, the units are consistent.
 
-#pagebreak()
-+ #example[An expression for Pout can be derived by first considering the Earth to be a blackbody which perfectly radiates energy at a rate proportional to the fourth power of its temperature (for more information, look up the Stefan-Boltzmann Law in your Physics notes). Under the blackbody assumption, the maximum rate at which energy can be radiated by the Earth is given by $P_"out" = A sigma T 4$, where A is the surface area of the Earth and sigma is the Stefan-Boltzmann constant with units $W m^(-2) K^(-4)$. However, since the Earth does not radiate perfectly an additional term $epsilon in [0,1]$ is introduced (called the emitted fraction) which represents the proportion of this theoretical maximum energy output that is actually radiated away from the Earth and into space.
+  #colbreak()
+
++ #example[An expression for Pout can be derived by first considering the Earth to be a blackbody which perfectly radiates energy at a rate proportional to the fourth power of its temperature (for more information, look up the Stefan-Boltzmann Law in your Physics notes). Under the blackbody assumption, the maximum rate at which energy can be radiated by the Earth is given by $P_"out" = A sigma T^4$, where A is the surface area of the Earth and sigma is the Stefan-Boltzmann constant with units $W m^(-2) K^(-4)$. However, since the Earth does not radiate perfectly an additional term $epsilon in [0,1]$ is introduced (called the emitted fraction) which represents the proportion of this theoretical maximum energy output that is actually radiated away from the Earth and into space.
 
     #underline[*Your task:*] Justify why the power corresponding to energy flowing out as radiation is given by
     $
-      P_"out" = 4π pi r^2 sigma epsilon T^4
+      P_"out" = 4 pi r^2 sigma epsilon T^4
     $
-    and verify this equation has consistent units.]
+    and verify this equation has consistent units.
+  ]
+
+  If the earth was a perfect black body, then its power output would be:
+  $
+    P_"out blackbody" = A sigma T^4
+  $
+  Since the earth does not radiate perfectly, only a portion of this energy $epsilon in [0,1]$ is being radiated. So our power output would be:
+  $
+    P_"out" = A sigma epsilon T^4
+  $
+
+  If we make the assumption/simplification that the earth is a perfect sphere, its surface area would be:
+  $
+    A = 4 pi r^2
+  $
+
+  Combing these expressions:
+  $
+    P_"out" = 4 pi r^2 sigma epsilon^4
+  $
+
+  Checking units:
+  $
+    P_"out" [W] = 4 pi (r [m])^2 sigma (epsilon [W m^(-2) K^(-4)]) (T [K])^4
+  $
+
+  #align(center)[
+    #table(
+      columns: (auto, auto),
+      inset: 10pt,
+      align: center,
+      stroke: (x, y) => if x == 0 and y >= 1 {
+        (right: 0.7pt + black)
+      },
+      table.header([*Left Side*], [*Right Side*]),
+
+      $
+        & = W \
+        // & = J / s \
+        // & = W
+      $,
+
+      $
+        & = m^2 W m^(-2) K^(-4) K^4 \
+        & = W \
+      $,
+    )
+
+    $
+      W = W
+    $
+    *  Left Side = Right Side
+    *
+  ]
+
+  Therefore, the units are consistent.
+
+  #colbreak()
 
 + #example[For this model, albedo is assumed to be negatively correlated with temperature because colder temperatures tend to result in increased snow and ice coverage, yielding lighter coloured surfaces that reflect more light.
 
-    Let's say that experimental evidence indicates that the albedo of the Earth is approximately constant at 0.7 below 247K and 0.3 above 282K. Let's use the following piecewise function for albedo, where f
+    Let's say that experimental evidence indicates that the albedo of the Earth is approximately constant at 0.7 below 247K and 0.3 above 282K. Let's use the following piecewise function for albedo, where $f$ is an unknown function,
 
     $
       alpha(T) = cases(
@@ -393,24 +453,184 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
       )
     $
 
-    #underline[*Your task:*]  Find a suitable linear function $f(T) = a T + b$ such that $alpha(T)$ is continuous for all T. Keep at-least five sig-figs in each number you report (these will be needed for later calculations).]
+    #underline[*Your task:*]  Find a suitable linear function $f(T) = a T + b$ such that $alpha(T)$ is continuous for all T. Keep at-least five sig-figs in each number you report (these will be needed for later calculations).
+  ]
+  Above $282 K$ and below $246 K$, $alpha(T)$ is constant, and is therefore continuous.
+  Between $282 K$ and $246 K$, $alpha(T) = f(T) = a T + b$ which is linear, and therefore continuous.
+
+  The only points where $alpha(T)$ could be discountinuous are at $T = 282 K$ and $T = 246 K$, so we can solve for $a$ and $b$ such that the function is continuous at those points, and therefore will be continuous at all points.
+
+  For a function $f$ to be continuous at $x = a$:
+  $
+    lim_(x -> a )f(x) = f(a)
+  $
+
+  For $alpha(T)$ to be continuous at $T = 282 K$ and $T = 246 K$ :
+
+  $
+    lim_(T -> 246 )alpha(T) = alpha(246) wide lim_(T -> 282 )alpha(T) = alpha(282)
+  $
+
+  Both of these limits split,
+
+  $
+    lim_(T -> 246^- )alpha(T) = alpha(246) wide lim_(T -> 246^+ )alpha(T) = alpha(246) wide lim_(T -> 282^- )alpha(T) = alpha(282) wide lim_(T -> 282^+ )alpha(T) = alpha(282)
+  $
+
+  There are two cases that do not provide us with any information:
+
+  #align(center)[
+
+    #table(
+      columns: (auto, auto),
+      inset: 10pt,
+      align: center,
+      stroke: (x, y) => if x == 0 and y >= 1 {
+        (right: 0.7pt + black)
+      },
+      table.header([*  $ lim_(T -> 246^- )alpha(T) = alpha(246) $*], [*$lim_(T -> 282^+ )alpha(T) = alpha(282)$*]),
+
+      table(
+        columns: (auto, auto),
+        inset: 10pt,
+        align: center,
+        stroke: (x, y) => if x == 0 and y >= 1 {
+          (right: 0.7pt + black)
+        },
+        table.header([*Left Side*], [*Right Side*]),
+
+        $
+          = 0.07
+        $,
+
+        $
+          = 0.07
+        $,
+      ),
+
+      // $
+      //   W = W
+      // $
+
+      table(
+        columns: (auto, auto),
+        inset: 10pt,
+        align: center,
+        stroke: (x, y) => if x == 0 and y >= 1 {
+          (right: 0.7pt + black)
+        },
+        table.header([*Left Side*], [*Right Side*]),
+
+        $
+          = 0.300
+        $,
+
+        $
+          = 0.300
+        $,
+      ),
+
+      [*Left Side = Right Side *],
+
+      [*Left Side = Right Side *],
+    )
+
+  ]
+
+  Then we get to the two interesting cases:
+
+  #align(center)[
+
+    #table(
+      columns: (auto, auto),
+      inset: 10pt,
+      align: center,
+      stroke: (x, y) => if x == 0 and y >= 1 {
+        (right: 0.7pt + black)
+      },
+      table.header([*  $ lim_(T -> 246^+ )alpha(T) = alpha(246) $*], [*$lim_(T -> 282^- )alpha(T) = alpha(282)$*]),
+
+      table(
+        columns: (auto, auto),
+        inset: 10pt,
+        align: center,
+        stroke: (x, y) => if x == 0 and y >= 1 {
+          (right: 0.7pt + black)
+        },
+        table.header([*Left Side*], [*Right Side*]),
+
+        $
+          = f(246)
+        $,
+
+        $
+          = 0.07
+        $,
+      ),
+
+      // $
+      //   W = W
+      // $
+
+      table(
+        columns: (auto, auto),
+        inset: 10pt,
+        align: center,
+        stroke: (x, y) => if x == 0 and y >= 1 {
+          (right: 0.7pt + black)
+        },
+        table.header([*Left Side*], [*Right Side*]),
+
+        $
+          = f(282)
+        $,
+
+        $
+          = 0.300
+        $,
+      ),
+    )
+
+  ]
+
+  For these to hold, *Left Side = Right Side *, therefore:
+
+  $
+       f(246) & = 0.07 wide f(282)    & = 0.300, \
+    246 a + b & = 0.07 wide 282 a + b &  = 0.300 \
+  $
+
+  $
+    36a & = 0.23 \
+      a & = 0.006388888889 \
+      b & = 0.07 - 246 a \
+      b & = 0.07 - 246 (0.006388888889) \
+      b & = -1.5016666667
+  $
+
+  Therefore:
+  $
+    #rect($f(T) = 0.006388888889T - 1.5016666667$)
+  $
+
+  #colbreak()
 
 = Part B
 Combining all the pieces from Part A yields the following EBM:
 
 $
-  C (d T) / (d t) = pi r 2 Q(1 -alpha (T)) - 4 pi r 2 sigma epsilon T^4
+  C (d T) / (d t) = pi r^2 Q(1 -alpha (T)) - 4 pi r^2 sigma epsilon T^4
 $
 
-where the albedo alpha(T) is given by the piecewise function described in Part A(d).
+where the albedo $alpha(T)$ is given by the piecewise function described in Part A(d).
 
 For the remaining parts of this assignment, use the expression for f you found in Part A(d), and use the following parameter values:
 
 $
       C & = 1.0 times 10^23 J K^(-1) \
-      r & = 6.3781 times 106 m \
+      r & = 6.3781 times 10^6 m \
       Q & = 1365 W m^(-2) \
-  alpha & = 5.6704 times 10^(-8) W m^(-2) K^(-4) \
+  sigma & = 5.6704 times 10^(-8) W m^(-2) K^(-4) \
 $
 
 + #example[Note that the value for the emitted fraction, epsilon, is not given. We will estimate it from a graph.
@@ -426,9 +646,36 @@ $
     #figure(
       image("0.png"),
       caption: [
-        Solution to the EBM with $T_0 = 267K$. The slope of the solution curve at $T = 278K$ is $3.2 K y−1$.
+        Solution to the EBM with $T_0 = 267K$. The slope of the solution curve at $T = 278K$ is $3.2 K y^(-1)$.
       ],
     )]
+
+  We are solving:
+  $
+    C (d T) / (d t) = pi^r 2 Q(1 -alpha (T)) - 4 pi r^2 sigma epsilon T^4 \
+    C (d T) / (d t) = pi r^2 ( Q(1 -alpha (T)) - 4 sigma epsilon T^4)
+  $
+  for $epsilon$.
+
+  Note, we have to convert years to seconds.
+
+  $
+    (3.2 K y^(-1)) ((1 y)/(60 "s" times 60 "min" times 24 "hours" times 365 "days") )) = 0.000000101471334 K s^(-1)
+  $
+
+
+  With values this becomes:
+  $
+    (1.0 times 10^23) ( 0.000000101471334) = pi (6.3781 times 10^6)^2 ( (1365)(1 - ( 0.006388888889 (278) - 1.5016666667))) - 4 (5.6704 times 10^(-8)) epsilon (278)^4) \
+    4 (5.6704 times 10^(-8)) epsilon (278)^4 = (1365)(1 - ( 0.006388888889 (278) - 1.5016666667))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) \
+    epsilon = ((1365)(1 - (( 0.006388888889 (278) - 1.5016666667))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) ) / ( 4 (5.6704 times 10^(-8)) (278)^4) \ 
+  $
+
+  $
+    #rect[$
+            epsilon = 0.672447529
+          $]
+  $
 
 + #example[The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r 2 Q(1 -alpha)$ and $P_"out" = 4 pi r 2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of Pin and Pout.
 
