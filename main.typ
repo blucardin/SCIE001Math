@@ -30,6 +30,15 @@
   body
 }
 
+// darkmode 
+#set page(
+  fill: black.lighten(10%)
+)
+#set text(
+  fill: black.lighten(75%)
+)
+
+#show link: underline
 
 #set page(header: context {
   // Handle the case when page.numbering is not set by
@@ -689,6 +698,8 @@ $
   C (d T) / (d t) = pi r^2 Q(1 -alpha (T)) - 4 pi r^2 sigma epsilon T^4
   $
 
+  These essentially form equilibrium solutions to the ODE, where at the temperatures of the intersections there is no change in temperature over time. 
+
 + #example[Let $T_"eq"$ denote any equilibrium solution to the EBM.
 
     #underline[*Your task:*] Using the value of $epsilon$ you found in Part B(a), find all values for $T_"eq"$ and determine whether they are stable, unstable, or neither, and briefly explain why. Round your answers to whole numbers.
@@ -712,6 +723,15 @@ $
 
 
 + #example[#underline[*Your task:*] Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
+
+#let s(x) = calc.round(x, digits: 2); 
+#let anomaly_temp = 1.29
+#let old_average_temp = 13.9
+#let surface_temp = ((anomaly_temp + old_average_temp) + 273.15); 
+#let closest_equilibrium_temp = 289.29
+According to the #link("https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature")[National Oceanic and Atmospheric Administration], the average global surface temperature of earth is now $#anomaly_temp degree C$ above the 20th century average of $#old_average_temp degree C$. In kelvin that sums to $#s(surface_temp) degree K$. This is $#s( closest_equilibrium_temp - surface_temp) degree C $ away from our last equilibrium temperature of $#s(closest_equilibrium_temp) degree K$
+
+#pagebreak()
 
 #show: appendix
 
