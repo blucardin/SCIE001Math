@@ -30,13 +30,13 @@
   body
 }
 
-// darkmode 
-#set page(
-  fill: black.lighten(10%)
-)
-#set text(
-  fill: black.lighten(75%)
-)
+// // darkmode 
+// #set page(
+//   fill: black.lighten(10%)
+// )
+// #set text(
+//   fill: black.lighten(75%)
+// )
 
 #show link: underline
 
