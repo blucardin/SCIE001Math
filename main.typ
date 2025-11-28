@@ -122,6 +122,9 @@
 
   SCIE 001 Math
 
+  Noah Virjee\
+  45515863
+
   #let today = datetime.today()
 
   #today.display("[month repr:long]")
@@ -655,7 +658,7 @@ $
     EBM, estimate the value of epsilon to one decimal place. Show which exact equation you're solving. Give the numerical value you found, there is no need to show intermediate steps.
 
     #figure(
-      image("0.png"),
+      image("images/0.png"),
       caption: [
         Solution to the EBM with $T_0 = 267K$. The slope of the solution curve at $T = 278K$ is $3.2 K y^(-1)$.
       ],
@@ -676,11 +679,14 @@ $
 
 
   With values this becomes:
+  #[
+    #set text(0.75em);
   $
     (1.0 times 10^23) ( 0.000000101471334) = pi (6.3781 times 10^6)^2 ( (1365)(1 - ( -0.01142857143(278) + 3.5228571432))) - 4 (5.6704 times 10^(-8)) epsilon (278)^4) \
     4 (5.6704 times 10^(-8)) epsilon (278)^4 = (1365)(1 - ( -0.01142857143(278) + 3.5228571432 ))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) \
     epsilon = ((1365)(1 - ((-0.01142857143(278) + 3.5228571432))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) ) / ( 4 (5.6704 times 10^(-8)) (278)^4) \ 
   $
+  ]
 
   $
     #rect[$
@@ -720,7 +726,12 @@ $
 
 + #example[#underline[*Your task:*] Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
 
+#figure(
+  image("images/slopeField.svg"), 
+  // caption: [This]
+)
 
+// #todo("Finish this")
 
 + #example[#underline[*Your task:*] Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
 
