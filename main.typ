@@ -758,8 +758,6 @@ $
 
 
 
-
-
 + #example[#underline[*Your task:*] Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
 
   #figure(
@@ -771,7 +769,34 @@ $
 
   #todo("Add hand drawn slope field")
 
+
   #todo("Finish this question")
+
+  For all initial values of $T_0 in (200K,300K)$: 
+  #align(center)[
+    #table(
+      columns: (auto, auto, auto),
+      inset: 10pt,
+      align: center,
+      stroke: (x, y) => if (x == 0 or x == 1) {
+        (right: 0.7pt + black)
+      },
+      table.header([*$200K <= T_0 < 261.26 K$*], [*$T_0 = 261.26  K$*], [*$261.26 < T_0 <= 300 K$*]),
+
+      $
+        lim_(t -> infinity) T  = 233.73 K
+      $,
+
+      $
+        lim_(t -> infinity) T  = 261.26 K
+      $,
+
+      $
+        lim_(t -> infinity) T  = 289.29 K
+      $,
+    )
+  ]
+
 
 + #example[#underline[*Your task:*] Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
 
