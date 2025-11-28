@@ -30,7 +30,7 @@
   body
 }
 
-// // darkmode 
+// // darkmode
 // #set page(
 //   fill: black.lighten(10%)
 // )
@@ -235,22 +235,22 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
   Since $Delta T$ and $Delta E$ represent changes in $E$ and $T$ with respect to a finite change in time, $Delta t$ after some $t$, we can change their expressions to represent this.
 
   $
-    C (T (t + Delta t) - T(t))/(Delta t) &= (E_"in" (t + Delta t) - E_"in"(t) )/(Delta t) - (E_"out" (t + Delta t) - E_"out"(t) )/(Delta t) \
+    C (T (t + Delta t) - T(t))/(Delta t) &= (E_"in" (t + Delta t) - E_"in" (t) )/(Delta t) - (E_"out" (t + Delta t) - E_"out" (t) )/(Delta t) \
   $
 
   Next take the limit of both sides as the change in time approaches $0$.
 
   Note, we are making the simplification/assumption that $C$, the heat capacity of the earth, does not change with time.
   $
-    lim_(Delta t -> 0) C (T (t + Delta t) - T(t))/(Delta t) &= lim_(Delta t -> 0) ((E_"in" (t + Delta t) - E_"in"(t) )/(Delta t) - (E_"out" (t + Delta t) - E_"out"(t) )/(Delta t)) \
-    C lim_(Delta t -> 0) (T (t + Delta t) - T(t))/(Delta t) &= lim_(Delta t -> 0) (E_"in" (t + Delta t) - E_"in"(t) )/(Delta t) - lim_(Delta t -> 0) (E_"out" (t + Delta t) - E_"out"(t) )/(Delta t) \
+    lim_(Delta t -> 0) C (T (t + Delta t) - T(t))/(Delta t) &= lim_(Delta t -> 0) ((E_"in" (t + Delta t) - E_"in" (t) )/(Delta t) - (E_"out" (t + Delta t) - E_"out" (t) )/(Delta t)) \
+    C lim_(Delta t -> 0) (T (t + Delta t) - T(t))/(Delta t) &= lim_(Delta t -> 0) (E_"in" (t + Delta t) - E_"in" (t) )/(Delta t) - lim_(Delta t -> 0) (E_"out" (t + Delta t) - E_"out" (t) )/(Delta t) \
   $
   Where $T(t)$ and $E(t)$ represents the temperature and energy at time $t$ respectively.
 
   Now we can rewrite this with Leibnitz notation:
 
   $
-    C (d T) / (d t) & = ( d E_"in"(t) ) / (d t) - ( d E_"in"(t) ) / (d t) \
+    C (d T) / (d t) & = ( d E_"in" (t) ) / (d t) - ( d E_"in" (t) ) / (d t) \
   $
 
   Change in energy over time is power, so we can simplify.
@@ -607,16 +607,18 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
   ]
 
-  For these to hold, *Left Side = Right Side *, therefore:
+  For these limits to hold, *Left Side* must equal *Right Side*, therefore:
 
   $
        f(247) & = 0.700 wide f(282)    & = 0.300, \
     247 a + b & = 0.700 wide 282 a + b &  = 0.300 \
   $
+  Subtracting left from right gives:
 
   $
     35a & = -0.4 \
       a & = -0.01142857143 \
+        \
       b & = 0.700 - 247 a \
       b & = 0.700 - 247 (-0.01142857143) \
       b & = 3.5228571432
@@ -666,7 +668,7 @@ $
 
   We are solving:
   $
-    C (d T) / (d t) = pi^r 2 Q(1 -alpha (T)) - 4 pi r^2 sigma epsilon T^4 \
+    C (d T) / (d t) = pi r^2 Q(1 -alpha (T)) - 4 pi r^2 sigma epsilon T^4 \
     C (d T) / (d t) = pi r^2 ( Q(1 -alpha (T)) - 4 sigma epsilon T^4)
   $
   for $epsilon$.
@@ -674,37 +676,49 @@ $
   Note, we have to convert years to seconds.
 
   $
-    (3.2 K y^(-1)) ((1 y)/(60 "s" times 60 "min" times 24 "hours" times 365 "days") )) = 0.000000101471334 K s^(-1)
+    (3.2 K y^(-1)) ((1 y)/(60 "s/min" times 60 "min/hour" times 24 "hours/day" times 365 "days/y") )) = 0.000000101471334 K s^(-1)
   $
 
 
-  With values this becomes:
+  Now we solve for $epsilon$:
   #[
     #set text(0.75em);
-  $
-    (1.0 times 10^23) ( 0.000000101471334) = pi (6.3781 times 10^6)^2 ( (1365)(1 - ( -0.01142857143(278) + 3.5228571432))) - 4 (5.6704 times 10^(-8)) epsilon (278)^4) \
-    4 (5.6704 times 10^(-8)) epsilon (278)^4 = (1365)(1 - ( -0.01142857143(278) + 3.5228571432 ))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) \
-    epsilon = ((1365)(1 - ((-0.01142857143(278) + 3.5228571432))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) ) / ( 4 (5.6704 times 10^(-8)) (278)^4) \ 
-  $
+    $
+      (1.0 times 10^23) ( 0.000000101471334) = pi (6.3781 times 10^6)^2 ( (1365)(1 - ( -0.01142857143(278) + 3.5228571432))) - 4 (5.6704 times 10^(-8)) epsilon (278)^4) \
+      4 (5.6704 times 10^(-8)) epsilon (278)^4 = (1365)(1 - ( -0.01142857143(278) + 3.5228571432 ))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) \
+      epsilon = ((1365)(1 - ((-0.01142857143(278) + 3.5228571432))) - (((1.0 times 10^23) ( 0.000000101471334)) / (pi (6.3781 times 10^6)^2)) ) / ( 4 (5.6704 times 10^(-8)) (278)^4) \
+    $
   ]
 
   $
-    #rect[$
-            epsilon = 0.6006374223
-          $]
+    #rect[$ epsilon = 0.6006374223 $]
   $
 
 + #example[The code provided in the Appendix at the end of this assignment does two things: using the set of parameters given above, 1) it plots the functions $P_"in" = pi r^2 Q(1 -alpha)$ and $P_"out" = 4 pi r^2 sigma epsilon T^4$, using the piecewise function for albedo defined in Part A(d), and a given value of epsilon, and 2) it prints the points of intersection of the graphs of $P_"in"$ and $P_"out"$.
 
     #underline[*Your task:*] Explain what the temperature values output by the code represent with respect to the EBM as an ODE, and why we are interested in them.]
 
-  The temperature values output by the code represent the points of intersection where $P_"in"$ = $P_"out"$. This is important because our equation for the change in temperature over time is these values subtracted, meaning that when they are zero, temperature will not change.
+  The values output by the code represent the temperatures of the points of intersection of the graphs of $P_"in"$ and $P_"out"$. In other words, the temperatures where $P_"in"$ = $P_"out"$. This is important because in our equation for the change in temperature over time these values are subtracted, meaning that when they are equal, the temperature will not change.
 
   $
-  C (d T) / (d t) = pi r^2 Q(1 -alpha (T)) - 4 pi r^2 sigma epsilon T^4
+    C (d T)/(d t) = P_"in" -P_"out" \
+  $
+  #v(10pt)
+  $
+    "If" P_"in" = P_"out": \
+          P_"in" - P_"out" & = 0 \
+             C (d T)/(d t) & = 0 \
+     therefore (d T)/(d t) & = 0
   $
 
-  These essentially form equilibrium solutions to the ODE, where at the temperatures of the intersections there is no change in temperature over time. 
+  When $(d T)/(d t)(T) = 0$, there exists an equilibrium solution at T, as the system's temperature is not changing relative to time at that temperature.
+
+  Therefore, these points of intersection represent temperatures that are equilibrium solutions to the EMB where (in our model) the temperature of the earth would stay static.
+
+  #figure(
+    image("images/powerInVsPowerOut.svg"),
+    caption: [#todo("add captions")],
+  ) <powerInVsOut>
 
 + #example[Let $T_"eq"$ denote any equilibrium solution to the EBM.
 
@@ -712,37 +726,61 @@ $
 
     You can use the code provided in the Appendix to find the necessary information to answer this question.]
 
+  Since we have defined our EBM as:
+  $
+    C (d T)/(d t) = P_"in" -P_"out"
+  $
+  We can find the change in temperature over time at each time step using:
+  $
+    (d T)/(d t) = (P_"in" -P_"out")/C
+  $
+  Using the code in @app1, we can generate $P_"in"$ and $P_"out"$ at different temperatures, then using the above formula, calculate the change in temperature over time.
 
-#let (times, temperatures, slopes) = json("fieldData.json")
+  Plotting our change in temperature over time relative to the temperature, we get:
 
-// #lq.diagram(
-//   lq.quiver(
-//     times,
-//     temperatures,
-//     (x, y) => (slopes.at(x), )
-//   )
-// )
+
+  #figure(
+    image("images/changeInTempVsTemp.svg"),
+    caption: [#todo("add captions")],
+  )
+  See @pythonderivativegraph, for the code to generate this graph.
+
+
+  The points at which $(d T)/(d t)$ equals zero are equilibrium solutions where the temperature does not change, and how it touches the zero line shows the equilibrium solution's stability.
+
+  Therefore there is a stable equilibrium at $T_"eq" = 233.73 K$ and $T_"eq" = 289.29 K$ because as we approach that temperature from the left (temperatures below equilibrium), the derivative is positive, causing the temperature to increase over time towards the equilibrium, and as we approach from the right (temperatures above equilibrium), the derivative is negative, causing the temperature to decrease over time towards equilibrium.
+
+  In addition, there is an unstable equilibrium at $T_"eq" = 261.26 K$ because as we approach from the left, the derivative is negative, decreasing temperature over time away from equilibrium, and from the right, positive, increasing temperature over time, again away from equilibrium.
+
+  This is confirmed by @slopeField, as we can see from the slope fields that the temperature slopes' point towards $233.73 K$ and $289.29 K$ and away from $261.26 K$ even though they all provide no change in temperature over time at that temperature.
+
+  Note: This could also be inferred from @powerInVsOut by looking at when $P_"in"$ is greater than, less than, or equal to $P_"out"$, but this is method is more fun.
+
+
+
 
 
 + #example[#underline[*Your task:*] Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
 
-#figure(
-  image("images/slopeField.svg"), 
-  // caption: [This]
-)
+  #figure(
+    image("images/slopeField.svg"),
+    caption: [#todo("add captions")],
+  ) <slopeField>
 
-See @pythonslopefield, for the code to generate this graph. 
+  See @pythonslopefield, for the code to generate this graph.
 
-#todo("Finish this question")
+  #todo("Add hand drawn slope field")
+
+  #todo("Finish this question")
 
 + #example[#underline[*Your task:*] Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
 
-#let s(x) = calc.round(x, digits: 2); 
-#let anomaly_temp = 1.29
-#let old_average_temp = 13.9
-#let surface_temp = ((anomaly_temp + old_average_temp) + 273.15); 
-#let closest_equilibrium_temp = 289.29
-According to the #link("https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature")[National Oceanic and Atmospheric Administration], the average global surface temperature of earth is now $#anomaly_temp degree C$ above the 20th century average of $#old_average_temp degree C$. In kelvin that sums to $#s(surface_temp) degree K$. This is $#s( closest_equilibrium_temp - surface_temp) degree C $ away from our last equilibrium temperature of $#s(closest_equilibrium_temp) degree K$
+  #let s(x) = calc.round(x, digits: 2);
+  #let anomaly_temp = 1.29
+  #let old_average_temp = 13.9
+  #let surface_temp = ((anomaly_temp + old_average_temp) + 273.15);
+  #let closest_equilibrium_temp = 289.29
+  According to the #link("https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature")[National Oceanic and Atmospheric Administration], the average global surface temperature of earth is now $#anomaly_temp degree C$ above the 20th century average of $#old_average_temp degree C$. In kelvin that sums to $#s(surface_temp) degree K$. This is $#s(closest_equilibrium_temp - surface_temp) degree C$ away from our last equilibrium temperature of $#s(closest_equilibrium_temp) degree K$
 
 #pagebreak()
 
@@ -806,8 +844,8 @@ plot(0.3) # plot P_in vs. P_out for given epsilon
 #pagebreak()
 
 = Code for Generating Slope Field  <pythonslopefield>
-I wrote some code to generate the slope field of the EBM. 
-```python 
+I wrote some code to generate the slope field of the EBM.
+```python
 num_times = 30
 times = np.linspace(0, 60 * 60 * 24 * 365 - 1, num_times)
 derivativeT = (P_in - P_out)/C
@@ -828,7 +866,7 @@ coords_x = np.array([])
 coords_y = np.array([])
 derivative_at_coordinate = np.array([])
 
-for time in times: 
+for time in times:
     coords_x = np.concatenate((coords_x, np.full((len(temps), ), time)))
     coords_y = np.concatenate((coords_y, temps))
     derivative_at_coordinate = np.concatenate((derivative_at_coordinate, derivatives_reduced))
@@ -838,13 +876,13 @@ vector_derivative_y = derivative_at_coordinate/maxDerivative
 vector_derivative_x =  np.full((len(coords_x), ), 1)
 magnitudes = np.sqrt(vector_derivative_y **2 + vector_derivative_x**2)
 
-M = derivative_at_coordinate 
+M = derivative_at_coordinate
 
 norm_deriv_vector_y = vector_derivative_y / magnitudes
 norm_deriv_vector_x = vector_derivative_x / magnitudes
 
 fig, ax = plt.subplots()
-x_times =  coords_x / (60 * 60 * 24) 
+x_times =  coords_x / (60 * 60 * 24)
 
 q = ax.quiver(x_times, coords_y, norm_deriv_vector_x, norm_deriv_vector_y, M, headwidth=0, scale=24)
 
@@ -855,5 +893,36 @@ plt.xlabel("Time Since Start of Year (Days)")
 plt.ylabel("Temperature (K)")
 plt.show()
 fig.savefig("images/slopeField.svg")
+
+```
+
+= Code for Generating a Graph of $(d T)/(d t)$ to T <pythonderivativegraph>
+
+```python
+
+derivativeT = (P_in - P_out)/C
+
+top_cut = 310
+bottom_cut = 200
+
+cut_temps = T_eq[(T_eq > bottom_cut) & (T_eq < top_cut)]
+cut_derivatives = derivativeT[(T_eq > bottom_cut) & (T_eq < top_cut)]
+fig, ax = plt.subplots()
+
+ax.axhline(y=0, color="black", linestyle="--")
+colors = ["green", "purple", "orange"]
+for temp, color in zip(intersections, colors):
+    ax.axvline(x=temp, linestyle="--", label="$\\frac{dT}{dt} (" + f"{temp:.2f}" + ") = 0 $ ", color=color) # color="red"
+
+plt.title("Predicted Change in Temperature over Time given Temperature for EBM")
+# plt.xlim((200, 350))
+# plt.ylim((-1.5e-6, 0.25e-6))
+plt.legend()
+plt.xlabel('Temperature, (Kelvin)') # x axis label
+plt.ylabel("Change in Temperature per Second, $\\frac{dT}{dt}$(T) (K/s)") # y axis label
+plt.plot(cut_temps, cut_derivatives, 'b-') # plot LHS
+ax.margins(x=0.00, y=0.000)
+plt.show()
+fig.savefig("images/changeInTempVsTemp.svg")
 
 ```
