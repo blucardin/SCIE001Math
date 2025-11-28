@@ -143,7 +143,7 @@
 #pagebreak()
 
 // #set page(height: auto) // for intinite page
-
+#todo("turn on infinite pages and fix page braking")
 
 #show: regular
 
@@ -177,8 +177,7 @@ Here we will derive an EBM for the Earth-atmosphere system.
 
 Our underlying assumption is that the Earth and its atmosphere are a closed system and thus the First Law of thermodynamics applies. This is reasonable considering that the Earth-atmosphere system does not exchange matter with the surrounding environment or space.
 
-In our model, we assume the Earth-atmosphere system absorbs energy from the Sun as heat and emits thermal energy back into space as radiation, resulting in energy flowing in and out of the system. The energy balance in this process can be expressed as a simple ODE with only one dependent variable: the
-Earth's average surface temperature. Let's see how.
+In our model, we assume the Earth-atmosphere system absorbs energy from the Sun as heat and emits thermal energy back into space as radiation, resulting in energy flowing in and out of the system. The energy balance in this process can be expressed as a simple ODE with only one dependent variable: the Earth's average surface temperature. Let's see how.
 
 We have the following variable definitions.
 
@@ -717,7 +716,7 @@ $
 
   #figure(
     image("images/powerInVsPowerOut.svg"),
-    caption: [#todo("add captions")],
+    caption: [A graph of the power flowing into and out of the earth at different surface temperatures. The dots represent the temperatures and powers where $P_"in" = P_"out"$ (i.e the intersection points of these lines).],
   ) <powerInVsOut>
 
 + #example[Let $T_"eq"$ denote any equilibrium solution to the EBM.
@@ -737,42 +736,40 @@ $
   Using the code in @app1, we can generate $P_"in"$ and $P_"out"$ at different temperatures, then using the above formula, calculate the change in temperature over time.
 
   Plotting our change in temperature over time relative to the temperature, we get:
-
+  #let p(x) = calc.round(x, digits: 0);
 
   #figure(
     image("images/changeInTempVsTemp.svg"),
-    caption: [#todo("add captions")],
-  )
-  See @pythonderivativegraph, for the code to generate this graph.
+    caption: [The change in temperature per second predicted by the EBM for a given surface temperature. This shows that at $#p(233.73) K, #p(261.26) K, "and" #p(289.29) K$ the change in temperature over time is zero - highlighted by the dashed lines intersecting the zero line. See @pythonderivativegraph, for the code to generate this graph.
 
+    ],
+  )
 
   The points at which $(d T)/(d t)$ equals zero are equilibrium solutions where the temperature does not change, and how it touches the zero line shows the equilibrium solution's stability.
 
-  Therefore there is a stable equilibrium at $T_"eq" = 233.73 K$ and $T_"eq" = 289.29 K$ because as we approach that temperature from the left (temperatures below equilibrium), the derivative is positive, causing the temperature to increase over time towards the equilibrium, and as we approach from the right (temperatures above equilibrium), the derivative is negative, causing the temperature to decrease over time towards equilibrium.
+  Therefore there is a stable equilibrium at $T_"eq" = #p(233.73) K$ and $T_"eq" = #p(289.29) K$ because as we approach that temperature from the left (temperatures below equilibrium), the derivative is positive, causing the temperature to increase over time towards the equilibrium, and as we approach from the right (temperatures above equilibrium), the derivative is negative, causing the temperature to decrease over time towards equilibrium.
 
-  In addition, there is an unstable equilibrium at $T_"eq" = 261.26 K$ because as we approach from the left, the derivative is negative, decreasing temperature over time away from equilibrium, and from the right, positive, increasing temperature over time, again away from equilibrium.
+  // #todo("Rounder the numbers to integers")
 
-  This is confirmed by @slopeField, as we can see from the slope fields that the temperature slopes' point towards $233.73 K$ and $289.29 K$ and away from $261.26 K$ even though they all provide no change in temperature over time at that temperature.
+  In addition, there is an unstable equilibrium at $T_"eq" = #p(261.26) K$ because as we approach from the left, the derivative is negative, decreasing temperature over time away from equilibrium, and from the right, positive, increasing temperature over time, again away from equilibrium.
 
-  Note: This could also be inferred from @powerInVsOut by looking at when $P_"in"$ is greater than, less than, or equal to $P_"out"$, but this is method is more fun.
+  This is confirmed by @slopeField, as we can see from the slope fields that the temperature slopes' point towards $#p(233.73) K$ and $#p(289.29) K$ and away from $#p(261.26) K$ even though they all provide no change in temperature over time at that temperature.
 
-
+  Note: This could also be inferred from @powerInVsOut by looking at when $P_"in"$ is greater than, less than, or equal to $P_"out"$ (more specifically how these  $P_"in"$ and $P_"out"$ approach each other at the intersection points where $P_"in" = P_"out"$) but this is method is more fun.
 
 + #example[#underline[*Your task:*] Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
 
   #figure(
     image("images/slopeField.svg"),
-    caption: [#todo("add captions")],
+    caption: [The slope field of surface temperature over time predicted by the EBM. The lines represent the slope of the tangent of a possible temperature curve at that point. The lines are normalized to be a standard length, and colored based on their slope. See @pythonslopefield, for the code to generate this graph.
+    #todo("check captions")],
   ) <slopeField>
-
-  See @pythonslopefield, for the code to generate this graph.
 
   #todo("Add hand drawn slope field")
 
+  // #todo("Finish this question")
 
-  #todo("Finish this question")
-
-  For all initial values of $T_0 in (200K,300K)$: 
+  For all initial values of $T_0 in (200K,300K)$:
   #align(center)[
     #table(
       columns: (auto, auto, auto),
@@ -781,18 +778,18 @@ $
       stroke: (x, y) => if (x == 0 or x == 1) {
         (right: 0.7pt + black)
       },
-      table.header([*$200K <= T_0 < 261.26 K$*], [*$T_0 = 261.26  K$*], [*$261.26 < T_0 <= 300 K$*]),
+      table.header([*$200K <= T_0 < 261.26 K$*], [*$T_0 = 261.26 K$*], [*$261.26 < T_0 <= 300 K$*]),
 
       $
-        lim_(t -> infinity) T  = 233.73 K
+        lim_(t -> infinity) T = 233.73 K
       $,
 
       $
-        lim_(t -> infinity) T  = 261.26 K
+        lim_(t -> infinity) T = 261.26 K
       $,
 
       $
-        lim_(t -> infinity) T  = 289.29 K
+        lim_(t -> infinity) T = 289.29 K
       $,
     )
   ]
