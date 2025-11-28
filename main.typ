@@ -731,7 +731,9 @@ $
   // caption: [This]
 )
 
-// #todo("Finish this")
+See @pythonslopefield, for the code to generate this graph. 
+
+#todo("Finish this question")
 
 + #example[#underline[*Your task:*] Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
 
@@ -799,4 +801,59 @@ Now you can create a new cell and call the following method to generate a graph 
 
 ```python
 plot(0.3) # plot P_in vs. P_out for given epsilon
+```
+
+#pagebreak()
+
+= Code for Generating Slope Field  <pythonslopefield>
+I wrote some code to generate the slope field of the EBM. 
+```python 
+num_times = 30
+times = np.linspace(0, 60 * 60 * 24 * 365 - 1, num_times)
+derivativeT = (P_in - P_out)/C
+
+top_cut = 310
+bottom_cut = 200
+
+cut_temps = T_eq[(T_eq > bottom_cut) & (T_eq < top_cut)]
+cut_derivatives = derivativeT[(T_eq > bottom_cut) & (T_eq < top_cut)]
+
+num_temps = 50
+idx = np.round(np.linspace(0, len(cut_temps) - 1, num_temps)).astype(int)
+temps = cut_temps[idx]
+
+derivatives_reduced = cut_derivatives[idx]
+
+coords_x = np.array([])
+coords_y = np.array([])
+derivative_at_coordinate = np.array([])
+
+for time in times: 
+    coords_x = np.concatenate((coords_x, np.full((len(temps), ), time)))
+    coords_y = np.concatenate((coords_y, temps))
+    derivative_at_coordinate = np.concatenate((derivative_at_coordinate, derivatives_reduced))
+
+maxDerivative = max(derivative_at_coordinate)
+vector_derivative_y = derivative_at_coordinate/maxDerivative
+vector_derivative_x =  np.full((len(coords_x), ), 1)
+magnitudes = np.sqrt(vector_derivative_y **2 + vector_derivative_x**2)
+
+M = derivative_at_coordinate 
+
+norm_deriv_vector_y = vector_derivative_y / magnitudes
+norm_deriv_vector_x = vector_derivative_x / magnitudes
+
+fig, ax = plt.subplots()
+x_times =  coords_x / (60 * 60 * 24) 
+
+q = ax.quiver(x_times, coords_y, norm_deriv_vector_x, norm_deriv_vector_y, M, headwidth=0, scale=24)
+
+plt.xlim((min(x_times), 365))
+plt.ylim((min(coords_y), max(coords_y)))
+plt.title("Slope Field of Temperature over Time in Energy Balance Model")
+plt.xlabel("Time Since Start of Year (Days)")
+plt.ylabel("Temperature (K)")
+plt.show()
+fig.savefig("images/slopeField.svg")
+
 ```
