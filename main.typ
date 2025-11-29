@@ -794,6 +794,11 @@ $
     )
   ]
 
+  #figure(
+    image("images/IMG_4042.jpeg"), 
+    caption: [Just in case I also drew the slope field by hand. I am a computer guy, not a drawing guy. The image shows how the slope lines point away from the unstable equilibrium at $T = 261.26 K$, and towards the stable equilibriums at $T = 289.29 K$ and $T = 233.73 K$ over time. ]
+  )
+
 
 + #example[#underline[*Your task:*] Which equilibrium solution gives the closest temperature value to the current average surface temperature of the Earth?]
 
