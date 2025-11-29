@@ -143,7 +143,7 @@
 #pagebreak()
 
 // #set page(height: auto) // for intinite page
-#todo("turn on infinite pages and fix page braking")
+// #todo("turn on infinite pages and fix page braking")
 
 #show: regular
 
@@ -249,7 +249,7 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
   Now we can rewrite this with Leibnitz notation:
 
   $
-    C (d T) / (d t) & = ( d E_"in" (t) ) / (d t) - ( d E_"in" (t) ) / (d t) \
+    C (d T) / (d t) & = ( d E_"in"  ) / (d t) - ( d E_"in"  ) / (d t) \
   $
 
   Change in energy over time is power, so we can simplify.
@@ -340,7 +340,7 @@ where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, en
 
   *Putting it all together*
 
-  Logically, the solar energy that the earth absorbs over time should be equal to the amount of solar energy reaching the Earth's surface per unit time per square meter times the effective surface area that receives the energy, times the proportion of this energy that is absorbed.
+  Logically, the solar energy that the earth absorbs over time should be equal to the amount of solar energy reaching the Earth's surface per unit time per square meter, times the effective surface area that receives the energy, times the proportion of this energy that is absorbed.
 
   Modeling this mathematically using Lemma 1 and Lemma 2:
 
@@ -740,7 +740,7 @@ $
 
   #figure(
     image("images/changeInTempVsTemp.svg"),
-    caption: [The change in temperature per second predicted by the EBM for a given surface temperature. This shows that at $#p(233.73) K, #p(261.26) K, "and" #p(289.29) K$ the change in temperature over time is zero - highlighted by the dashed lines intersecting the zero line. See @pythonderivativegraph, for the code to generate this graph.
+    caption: [The change in temperature per second predicted by the EBM at different surface temperatures. This shows that at $#p(233.73) K, #p(261.26) K, "and" #p(289.29) K$ the change in temperature over time is zero - highlighted by the dashed lines intersecting the derivative line and zero line. See @pythonderivativegraph, for the code to generate this graph.
 
     ],
   )
@@ -755,17 +755,18 @@ $
 
   This is confirmed by @slopeField, as we can see from the slope fields that the temperature slopes' point towards $#p(233.73) K$ and $#p(289.29) K$ and away from $#p(261.26) K$ even though they all provide no change in temperature over time at that temperature.
 
-  Note: This could also be inferred from @powerInVsOut by looking at when $P_"in"$ is greater than, less than, or equal to $P_"out"$ (more specifically how these  $P_"in"$ and $P_"out"$ approach each other at the intersection points where $P_"in" = P_"out"$) but this is method is more fun.
+  Note: This could also be inferred from @powerInVsOut by looking at when $P_"in"$ is greater than, less than, or equal to $P_"out"$ (more specifically how the  $P_"in"$ and $P_"out"$ lines approach each other at the intersection points where $P_"in" = P_"out"$) but this is method is more fun.
 
 + #example[#underline[*Your task:*] Draw the slope field for the EBM using the value of $epsilon$ that you found in Part B(a) and determine $lim_(t -> infinity) T$ for all initial values of $T_0 in (200K,300K)$. Keep in mind that the code provided in the Appendix can help you gain information useful for sketching the desired slope field.]
 
   #figure(
     image("images/slopeField.svg"),
-    caption: [The slope field of surface temperature over time predicted by the EBM. The lines represent the slope of the tangent of a possible temperature curve at that point. The lines are normalized to be a standard length, and colored based on their slope. See @pythonslopefield, for the code to generate this graph.
-    #todo("check captions")],
+    caption: [The slope field of surface temperature over time predicted by the EBM. The lines represent the slope of the tangent line of a possible temperature curve at that point. The lines are normalized to be a standard length, and colored based on their slope. See @pythonslopefield, for the code to generate this graph.
+    // #todo("check captions")
+    ],
   ) <slopeField>
 
-  #todo("Add hand drawn slope field")
+  // #todo("Add hand drawn slope field")
 
   // #todo("Finish this question")
 
@@ -778,7 +779,7 @@ $
       stroke: (x, y) => if (x == 0 or x == 1) {
         (right: 0.7pt + black)
       },
-      table.header([*$200K <= T_0 < 261.26 K$*], [*$T_0 = 261.26 K$*], [*$261.26 < T_0 <= 300 K$*]),
+      table.header([*$200K < T_0 < 261.26 K$*], [*$T_0 = 261.26 K$*], [*$261.26 K < T_0 < 300 K$*]),
 
       $
         lim_(t -> infinity) T = 233.73 K
@@ -796,7 +797,7 @@ $
 
   #figure(
     image("images/IMG_4042.jpeg"), 
-    caption: [Just in case I also drew the slope field by hand. I am a computer guy, not a drawing guy. The image shows how the slope lines point away from the unstable equilibrium at $T = 261.26 K$, and towards the stable equilibriums at $T = 289.29 K$ and $T = 233.73 K$ over time. ]
+    caption: [Just in case, I also drew the slope field by hand. I am a computer guy, not a drawing guy. The image shows how the slope lines point away from the unstable equilibrium at $T = 261.26 K$, and towards the stable equilibriums at $T = 289.29 K$ and $T = 233.73 K$ over time. ]
   )
 
 
@@ -807,7 +808,7 @@ $
   #let old_average_temp = 13.9
   #let surface_temp = ((anomaly_temp + old_average_temp) + 273.15);
   #let closest_equilibrium_temp = 289.29
-  According to the #link("https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature")[National Oceanic and Atmospheric Administration], the average global surface temperature of earth is now $#anomaly_temp degree C$ above the 20th century average of $#old_average_temp degree C$. In kelvin that sums to $#s(surface_temp) degree K$. This is $#s(closest_equilibrium_temp - surface_temp) degree C$ away from our last equilibrium temperature of $#s(closest_equilibrium_temp) degree K$
+  According to the #link("https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature")[National Oceanic and Atmospheric Administration], the average global surface temperature of earth is now $#anomaly_temp degree C$ above the 20th century average of $#old_average_temp degree C$. In kelvin that sums to $#s(surface_temp) degree K$. This is $#s(closest_equilibrium_temp - surface_temp) degree C$ away from our greatest equilibrium temperature of $#s(closest_equilibrium_temp) degree K$
 
 #pagebreak()
 
