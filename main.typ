@@ -7,17 +7,17 @@
 
 #import "@preview/lilaq:0.5.0" as lq
 
-#let (example, feature, variant, syntax) = frames(
+#let (p, feature, variant, syntax) = frames(
   feature: ("Feature",),
   // For each frame kind, you have to provide its supplement title to be displayed
   variant: ("Variant",),
   // You can provide a color or leave it out and it will be generated
-  example: ("Example", gray),
+  p: ("Problem", gray),
   // You can add as many as you want
   syntax: ("Syntax",),
 )
 // This is necessary. Don't forget this!
-#show: frame-style(styles.boxy)
+#show: frame-style(styles.thmbox)
 
 
 #let appendix(body) = {
@@ -105,7 +105,7 @@
 
 #set enum(
   full: true,
-  numbering: numbly("{1:1.}", "{2:(a)}"),
+  numbering: numbly("{1:1.}", "{2:(a)}", "{3:i.}"),
 )
 
 #let lim = math.limits(math.lim)
@@ -118,7 +118,6 @@
   _#text(30pt)[
     #title
   ] \ \
-  *Climate Modeling*
   _
 
   // #show heading: it => pad(left: 1em * (it.level - 1), it)
@@ -153,23 +152,37 @@
 // = Instructions
 
 // #line(length: 100%)
+// #show math.integral: math.display
 
-= This
-+ #example[
-  Body, i.e. large content block for the frame.]
-  + That
-
++ #p[
+  Suppose that $f$ is differentiable with $f prime > 0$ for all $x$ and suppose that $f(1) = 0$. Set
   $
-    int_a^b
-    
+    F(x) = int_0^x f(t) dif 
   $
+  Determine if each statement is True or False. Justify your answer.
+  ]
+  + #p[The function $F(x)$ is continuous.]
+  + #p[The function $F(x)$ is not twice differentiable. ]
+  + #p[The value x = 1 is a critical point of $F$.]
+  + #p[The function $F(x)$ takes on a local minimum at $x = 1$. ]
+  + #p[$F(1) > 0$.]
+  #p[Based on your answers above, make a rough sketch of the graph of $F(x)$. ]
 
-  When approaching a modelling problem, mathematicians often start from fundamental principles (sometimes called first principles). We can think of these principles as the
++ #p[Recall in class we proved that $display(sum_(i = 1)^k i = (k(k+1))/2)$. In this problem, we will construct a proof of #block($display(S = sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ )]
 
+  + #p[Calculate the value of $S$ for $k = 1,2,3$ and $4$].
+  
+  + #p[Calculate the value of $(k(k+1)(2k+1))/6$] 
+  + #p[Show that $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ by constructing a proof by induction by:]
+    + #p[showing the equality is true for the base case (i.e., $k=1$).]
+    + #p[for each positive integer $N$, the equality holds for $k = N$ implies the equality for $k = N + 1$.
+    Be sure to end your proof with an appropriate conclusion statement (i.e., "Therefore, by induction, ...").]
+
++ 
 
   where $P_"in"$ and $P_"out"$ denote the power corresponding to, respectively, energy flowing in from the Sun and energy flowing out as the Earth's thermal radiation.
 
-+ #example[
++ #p[
     #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the 
   ]
 
@@ -211,7 +224,7 @@
   #colbreak()
 
 
-+ #example[#underline[*Your task:*] Whi]
++ #p[#underline[*Your task:*] Whi]
 
 
 
