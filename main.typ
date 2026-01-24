@@ -162,61 +162,181 @@
   Determine if each statement is True or False. Justify your answer.
   ]
   + #p[The function $F(x)$ is continuous.]
-    For $F(x)$ to be continuous for all $x$: 
-    $
-    lim_(a->x) F(a) = F(x) 
-    $
-    Therefore we must prove: 
-    $
-    lim_(a->x) int_0^a f(t) dif t =  int_0^x f(t) dif t \
-    $
-    To do this, we can show that we can rearrange the left side to equal the right side.
-    
-    Expanding the integral gives: 
-    $
-    lim_(a->x) (lim_(n->infinity) sum_(i=1)^n (a-0)/n f(i(a-0)/n +0) )\
-    =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) 
-    $
-    Since we know $f(x)$ is differentiable, it must also be continuous, as differentiability implies continuity. For any $n in RR, n !=0$, $a/n$ is continuous for all $a$. Consequently, for any $i in RR$: 
-    $
-    (a)/n f(i a/n )
-    $
-    is also continuous. 
+      For $F(x)$ to be continuous for all $x$: 
+      $
+      lim_(a->x) F(a) = F(x) 
+      $
+      Therefore we must prove: 
+      $
+      lim_(a->x) int_0^a f(t) dif t =  int_0^x f(t) dif t \
+      $
+      To do this, we can show that we can rearrange the left side to equal the right side.
+      
+      Expanding the integral gives: 
+      $
+      lim_(a->x) (lim_(n->infinity) sum_(i=1)^n (a-0)/n f(i(a-0)/n +0) )\
+      =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) 
+      $
+      Since we know $f(x)$ is differentiable, it must also be continuous, as differentiability implies continuity. For any $n in RR, n !=0$, $a/n$ is continuous for all $a$. Consequently, for any $i in RR$: 
+      $
+      (a)/n f(i a/n )
+      $
+      is also continuous for all $a$. 
 
-    Finally, the sum of any continuous functions is also continuous. Therefore:
+      Finally, the sum of any continuous functions is also continuous. Therefore:
+      $
+      sum_(i=1)^n (a)/n f(i a/n )
+      $
+      is continuous for all $a$.  
+      
+      So, we can rewrite our limit:
     $
-    sum_(i=1)^n (a)/n f(i a/n )
-    $
-    is continuous.  
-    
-    So, we can rewrite our limit:
-   $
-    =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) \
+      =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) \
 
-    =lim_(n->infinity) sum_(i=1)^n (x)/n f(i x/n )
-    $
+      =lim_(n->infinity) sum_(i=1)^n (x)/n f(i x/n )
+      $
   + #p[The function $F(x)$ is not twice differentiable. ]
+    False
+
+    $
+      dif/(dif x) F(x) = dif/(dif x) int_0^x f(t) dif t
+    $
+    By the Fundamental Theorem of Calculus: 
+    $
+      dif/(dif x) F(x) =  f(x) 
+    $
+
+    Taking a second derivative: 
+    $
+      dif^2/(dif^2 x) F(x) =  dif/(dif x) f(x) 
+    $
+
+    By definition, $f$ is differentiable for all $x$, hence $dif/(dif x) f(x)$ exists for all $x$, therefore $dif^2/(dif^2 x) F(x)$ exists for all $x$. 
+
+    Therefore $F(x)$ is twice differentiable. 
+
   + #p[The value x = 1 is a critical point of $F$.]
+
+    True
+
+    For $x = 1$ to be a critical point of $F$: 
+    $
+      dif/(dif x) F(1) = 0
+    $
+
+    From part $b$ we know: 
+
+    $
+      dif/(dif x) F(x) =  f(x) 
+    $
+
+    and by definition we know: 
+    $
+      f(1) = 0. 
+    $
+
+    Hence:
+    $
+      dif/(dif x) F(1) = f(1) = 0
+    $
+
+    Therefore, $F(x)$ has a critical point at $x = 1$. 
+
+
   + #p[The function $F(x)$ takes on a local minimum at $x = 1$. ]
+
+    
+
+
   + #p[$F(1) > 0$.]
+
   #p[Based on your answers above, make a rough sketch of the graph of $F(x)$. ]
 
 + #p[Recall in class we proved that $display(sum_(i = 1)^k i = (k(k+1))/2)$. In this problem, we will construct a proof of #block($display(S = sum_(i = 1)^k i^2 )$ )]
 
   + #p[Calculate the value of $S$ for $k = 1,2,3$ and $4$.]
-  $
-    S_(k=1) = sum_(i = 1)^1 i^2 = 1 ^2 = 1 \
-    S_(k=2) = sum_(i = 1)^2 i^2 = 1 ^2 + 2^2 = 3 \
-    S_(k=3) = sum_(i = 1)^3 i^2 = 1^2 + 2^2 + 3^2 = 14 \
-    S_(k=4) = sum_(i = 1)^4 i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30 \
-  $
+    $
+      S_(k=1) = sum_(i = 1)^1 i^2 = 1 ^2 = 1 \
+      S_(k=2) = sum_(i = 1)^2 i^2 = 1 ^2 + 2^2 = 3 \
+      S_(k=3) = sum_(i = 1)^3 i^2 = 1^2 + 2^2 + 3^2 = 14 \
+      S_(k=4) = sum_(i = 1)^4 i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30 \
+    $
   
-  + #p[Calculate the value of $display((k(k+1)(2k+1))/6)$] 
+  + #p[Calculate the value of $display((k(k+1)(2k+1))/6)$ for $k = 1, 2, 3$, and $4$]
+
+    $
+    #for n in (1, 2, 3, 4) [
+      $
+      &k = #n wide (#n (#n+1)(2(#n)+1))/6 = #{( n * ( n + 1) * (2 * ( n)+1)) / 6 }
+      $ \
+    ]
+    $
+
+
   + #p[Show that $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ by constructing a proof by induction by:]
     + #p[showing the equality is true for the base case (i.e., $k=1$).]
     + #p[for each positive integer $N$, the equality holds for $k = N$ implies the equality for $k = N + 1$.
 
     Be sure to end your proof with an appropriate conclusion statement (i.e., "Therefore, by induction, ...").]
+
+    * Lemma 1 :   $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ holds for $k = 1$. *
+
+      $
+        "Left Hand" &wide "Right hand" \
+        sum_(i = 1)^1 i^2 = 1^2 = 1 &wide (1(1+1)(2(1)+1))/6 = #{let n = 1; ( n * ( n + 1) * (2 * ( n)+1)) / 6 } \
+      $
+
+      $
+        therefore &sum_(i = 1)^1 i^2 = (1(1+1)(2(1)+1))/6 \
+      $
+
+      Therefore $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ holds for $k = 1$. 
+
+    * Lemma 2 :  For each positive integer $N$, the equality holding for $k = N$ implies the equality for $k = N + 1$. *
+
+    Let $display(f(x) = sum_(i = 1)^x i^2 )$.  #h(4em) Let $display(g(x) = (x(x+1)(2x+1))/6) $
+
+    Let $n$ be some positive integer such that the equality $display(sum_(i = 1)^n i^2 = (n(n+1)(2n+1))/6)$ holds. Therefore $f(n) = g(n)$
+
+    Consider $f(n + 1)$. 
+    $
+      f(n + 1) &= sum_(i = 1)^(n + 1) i^2 = (sum_(i = 1)^(n) i^2 ) + (n + 1)^2 \ 
+      f(n+1) &= f(n) + (n + 1)^2   // &= f(n) + (n^2 + 2n + 1) 
+    $ 
+    Then consider $g(n + 1)$. 
+    $
+      g(n + 1) &= ((n + 1)((n + 1)+1)(2(n + 1)+1))/6 \
+      &= ((n + 1)(n + 2)(2n + 3))/6 \
+      // &= ((n + 1)(2n^2 + 3n + 4n + 6))/6 \
+      // &= ((n + 1)(2n^2 + 7n + 6))/6 \
+      // &= ((2n^3 + 7n^2 + 6n + 2n^2 + 7n + 6))/6 \
+      &= ((2n^3 + 9n^2 + 13n + 6))/6 \
+      &= ((2n^3 + 3n^2 + 1n) + (6n^2 + 12n + 6))/6 \
+      &= (n(2n^2 + 3n + 1))/6 + (n^2 + 2n + 1) \
+      // &= (n(2n^2 + 3n + 1))/6 + (n + 1)^2 \
+      // &= (n(2n(n + 1) + 1(n + 1)))/6 + (n + 1)^2 \
+      &= (n(2n + 1)(n + 1))/6 + (n + 1)^2 \
+      &= g(n) + (n + 1)^2
+    $
+    Putting them together, by definition
+    $
+    f(n) = g(n) \ 
+    f(n) + (n + 1)^2 = g(n) + (n + 1)^2 \ 
+    therefore f(n + 1) = g(n + 1)
+    $
+
+    Therefore for every $N in ZZ^+$, $f(N) = g(N)$ implies that $f(N + 1) = g(N + 1)$. i.e  the equality holding for $k = N$ implies that it holds for $k = N + 1$ 
+
+    \
+
+    Therefore by induction, since $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ holds for $k = 1$ and this equality holding for $k = N$ implies that it holds for $k = N + 1$ provided that $N in ZZ ^ +$: 
+
+    $ S = sum_(i = 1)^k i^2  = (k(k+1)(2k+1))/6 $ 
+    holds for all $k in ZZ^+$
+
+
+    
+
 
 + #p[Let $f(x)$ be an integrable function over the interval $[a,b]$. Choose an integer $N$ and let
   $
@@ -262,12 +382,43 @@
     F(b) - F(a) = sum_(i=1)^n (F(x_i) - F(x_(i-1)))
   $]
 
+    Let $a = x_0 < x_1 < x_2 < ... < x_n = b $
+
+    Consider the sum: 
+    $
+      sum_(i=1)^n (F(x_i) - F(x_(i-1)))
+    $
+
+    Expanding, we get: 
+    $
+     sum_(i=1)^n (F(x_i) - F(x_(i-1))) \
+      = (sum_(i=1)^n F(x_i))  - sum_(i=1)^n F(x_(i-1))) \ 
+    //  sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(x_1) - F(x_(0)) + F(x_2) - F(x_(1)) + ... + F(x_n) - F(x_(n-1)) 
+    // $
+
+  
+    // We can further expand: 
+    // $
+    // (sum_(i=1)^n F(x_i))  - sum_(i=1)^n F(x_(i-1))) \ 
+    = ( F(x_1) + F(x_2) + ... + F(n - 1) + F(x_n) ) - ( F(x_0) + F(x_1) + F(x_2) + ... + F(x_n-1) )
+    $
+
+    All terms except for $F(x_0)$ and $F(x_n)$ cancel, leaving: 
+    $
+     sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(x_n) - F(x_0) 
+    $
+    By definition $x_n = b$ and $x_0 = a$, therefore 
+    $
+      sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(b) - F(a) 
+    $
+
   + #p[Now suppose that $F$ is any antiderivative of $f$. Show that there exists a number $c_i$ in
-  each interval $[x_(i-1), x_i]$ such that ]
+  each interval $[x_(i-1), x_i]$ such that 
 
     $
       F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
-    $
+    $]
+
 
   + #p[Now build an appropriate Riemann sum for $f$ on $[a,b]$ and show that
   $
