@@ -162,6 +162,39 @@
   Determine if each statement is True or False. Justify your answer.
   ]
   + #p[The function $F(x)$ is continuous.]
+    For $F(x)$ to be continuous for all $x$: 
+    $
+    lim_(a->x) F(a) = F(x) 
+    $
+    Therefore we must prove: 
+    $
+    lim_(a->x) int_0^a f(t) dif t =  int_0^x f(t) dif t \
+    $
+    To do this, we can show that we can rearrange the left side to equal the right side.
+    
+    Expanding the integral gives: 
+    $
+    lim_(a->x) (lim_(n->infinity) sum_(i=1)^n (a-0)/n f(i(a-0)/n +0) )\
+    =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) 
+    $
+    Since we know $f(x)$ is differentiable, it must also be continuous, as differentiability implies continuity. For any $n in RR, n !=0$, $a/n$ is continuous for all $a$. Consequently, for any $i in RR$: 
+    $
+    (a)/n f(i a/n )
+    $
+    is also continuous. 
+
+    Finally, the sum of any continuous functions is also continuous. Therefore:
+    $
+    sum_(i=1)^n (a)/n f(i a/n )
+    $
+    is continuous.  
+    
+    So, we can rewrite our limit:
+   $
+    =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) \
+
+    =lim_(n->infinity) sum_(i=1)^n (x)/n f(i x/n )
+    $
   + #p[The function $F(x)$ is not twice differentiable. ]
   + #p[The value x = 1 is a critical point of $F$.]
   + #p[The function $F(x)$ takes on a local minimum at $x = 1$. ]
@@ -171,6 +204,12 @@
 + #p[Recall in class we proved that $display(sum_(i = 1)^k i = (k(k+1))/2)$. In this problem, we will construct a proof of #block($display(S = sum_(i = 1)^k i^2 )$ )]
 
   + #p[Calculate the value of $S$ for $k = 1,2,3$ and $4$.]
+  $
+    S_(k=1) = sum_(i = 1)^1 i^2 = 1 ^2 = 1 \
+    S_(k=2) = sum_(i = 1)^2 i^2 = 1 ^2 + 2^2 = 3 \
+    S_(k=3) = sum_(i = 1)^3 i^2 = 1^2 + 2^2 + 3^2 = 14 \
+    S_(k=4) = sum_(i = 1)^4 i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30 \
+  $
   
   + #p[Calculate the value of $display((k(k+1)(2k+1))/6)$] 
   + #p[Show that $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ by constructing a proof by induction by:]
