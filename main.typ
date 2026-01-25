@@ -417,7 +417,61 @@
 
     $
       F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
-    $]
+    $
+    ]
+
+
+    * Could be made more concise*
+
+
+    Let $g(x)$ be a function continuous on the interval $[j, k]$. 
+
+    Let $G(x)$ be any antiderivative of a function $g(x)$. 
+
+    By definition, $G(x)$ is differentiable on $[j, k]$, and since differentiability implies continuity, is also continuous on $[j, k]$. 
+
+    By the Mean Value Theorem, the must exist some $u in (j, k)$ such that:
+
+    $
+      (G(k) - G(j))/(k - j) = G prime (u) 
+    $
+
+    Since $G prime (u) = g(u)$, we can rearrange: 
+
+    $
+      G(k) - G(j) = g (u) (k - j)
+    $
+
+    Now we can show that this holds for our original functions $f$ and $F$. 
+
+    $f(x)$ is a function continuous on the interval $[a, b]$ and is therefore continuous on $[x_(i-1), x_i]$ as by definition, $a < x_(i-1) < x_i < b $.
+    
+    $F(x)$ is an antiderivative of a function $f(x)$. 
+
+    Therefore, $f(x)$ and $F(x)$ on $[x_(i-1), x_i]$ is analogous to $g(x)$ and $G(x)$ on $[j, k]$, so there must exist some $c_i$ in $(x_(i-1), x_i)$ such that:
+
+    $
+      F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
+    $ 
+
+    // * Remember to rewrite this with proper logic * 
+
+
+    // Take the derivative of both sides: 
+    // $
+    //   dif / (dif x) (F(x_i) - F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
+    //   dif / (dif x) (F(x_i)) - dif / (dif x)  (F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
+    // $
+
+    // Since $F$ is an antiderivative of $f$: 
+    // $
+    //   dif / (dif x)  (F(x)) = f(x)
+    // $
+
+    // Therefore: 
+    // $
+    //   f(x_i) - f(x_(i-1)) = (x_i - x_(i-1)) dif / (dif x) (f(c_i))
+    // $
 
 
   + #p[Now build an appropriate Riemann sum for $f$ on $[a,b]$ and show that
@@ -425,50 +479,97 @@
     F(b) - F(a) = int^b_a f(x) dif x
   $]
 
-
-
-#show: appendix
-
-= Guide to Finding Intersection Points of $P_"in"$ and $P_"out"$ in Python<app1>
-Create a new Jupyter notebook using anaconda. Copy and paste the following lines of code into a new cell.
-
-+ #p[
-    #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the 
-  ]
-
-  #align(center)[
-    #table(
-      columns: (auto, auto),
-      inset: 10pt,
-      align: center,
-      stroke: (x, y) => if x == 0 and y >= 1 {
-        (right: 0.7pt + black)
-      },
-      table.header([*Left Side*], [*Right Side*]),
-
-      $
-        & = J K^(-1) K / s \
-        & = J / s \
-        & = W
-      $,
-
-      $
-        & = W - W \
-        & = W \
-      $,
-    )
-
-    $
-      W = W
-    $
-    *  Left Side = Right Side
-    *
-  ]
-
-  Therefore, the units are consistent.
-
-    $
-    lim_(T -> 247^- )alpha(T) = alpha(247) wide lim_(T -> 247^+ )alpha(T) = alpha(247) wide lim_(T -> 282^- )alpha(T) = alpha(282) wide lim_(T -> 282^+ )alpha(T) = alpha(282)
+  We have shown that: 
+  $
+    F(b) - F(a) = sum_(i=1)^n (F(x_i) - F(x_(i-1)))
+  $
+  and that there exists some $c_i in (x_i, x_(i-1))$ such that
+  $
+      F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
   $
 
-  #colbreak()
+  for any $f(x)$ continuous on the interval $[a, b]$, any antiderivative of $f(x)$, $F(x)$, any intervals $a = x_0 < x_1 < x_2 < ... < x_n = b $.
+
+  Combining these statements we get:  
+  $
+    F(b) - F(a) = sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))
+  $
+
+  Taking the limit of both sides as $n$ approaches $infinity$: 
+  $
+    lim_(n -> infinity) (F(b) - F(a)) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) \
+     F(b) - F(a) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1))))
+  $
+
+  Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation. 
+
+  Since for any function $g(x)$ defined on any interval $[u, v]$: 
+  $
+    lim_(n->infinity)sum_(i = 1)^n g(x + i Delta x) Delta x = int_u^v g(x)
+  $
+  Where $Delta x = display((u - v) / n)$. 
+
+  In our case $Delta x = x_i - x_(i-1)$. By definition $c_i$ exists in the interval $(x_i, x_(i-1))$, therefore we can substitute $x + i Delta x = c_i$ as this equality holds as long as the sampled point of the function lies within each interval of the sum (i.e the limit of left, right, and midpoint Riemann sums are equivalent). 
+
+  So we can rewrite: 
+  $
+    lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) = int_(x_0)^x_n f(x) = int_(a)^b f(x) 
+  $
+
+  Therefore: 
+  $
+    #rect($
+          
+    F(b) - F(a) = int^b_a f(x) dif x
+    
+    $)
+  $
+
+
+
+
+// #show: appendix
+
+// = Guide to Finding Intersection Points of $P_"in"$ and $P_"out"$ in Python<app1>
+// Create a new Jupyter notebook using anaconda. Copy and paste the following lines of code into a new cell.
+
+// + #p[
+//     #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the 
+//   ]
+
+//   #align(center)[
+//     #table(
+//       columns: (auto, auto),
+//       inset: 10pt,
+//       align: center,
+//       stroke: (x, y) => if x == 0 and y >= 1 {
+//         (right: 0.7pt + black)
+//       },
+//       table.header([*Left Side*], [*Right Side*]),
+
+//       $
+//         & = J K^(-1) K / s \
+//         & = J / s \
+//         & = W
+//       $,
+
+//       $
+//         & = W - W \
+//         & = W \
+//       $,
+//     )
+
+//     $
+//       W = W
+//     $
+//     *  Left Side = Right Side
+//     *
+//   ]
+
+//   Therefore, the units are consistent.
+
+//     $
+//     lim_(T -> 247^- )alpha(T) = alpha(247) wide lim_(T -> 247^+ )alpha(T) = alpha(247) wide lim_(T -> 282^- )alpha(T) = alpha(282) wide lim_(T -> 282^+ )alpha(T) = alpha(282)
+//   $
+
+//   #colbreak()
