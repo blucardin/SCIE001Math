@@ -7,6 +7,9 @@
 
 #import "@preview/lilaq:0.5.0" as lq
 
+#import "@preview/cetz:0.4.2": canvas, draw
+#import "@preview/cetz-plot:0.1.2": plot
+
 #let (p, feature, variant, syntax) = frames(
   feature: ("Feature",),
   // For each frame kind, you have to provide its supplement title to be displayed
@@ -378,9 +381,65 @@
   // $
 
 
-
-
   #p[Based on your answers above, make a rough sketch of the graph of $F(x)$. ]
+
+    As in part c. 
+
+    Let $f(x) = x - 1$. This satisfies our definition. $f$ is differentiable.
+    $
+      f(1) = 1 - 1 = 0 \
+      f prime (x) = 1 > 0
+    $
+    Setting:
+    $
+      F(x) = int_0^x f(t) dif t
+    $
+    We can solve:
+    $
+      F(x) = 1/2x^2 - x
+    $
+
+
+      #let fn = ( 
+      ($ F(x) = int_0^x t - 1 dif t $, x => (((1/2) * x * x) - x), (stroke: red)),
+    )
+  
+      #align(center)[#canvas({
+      import draw: *
+    
+      // Set-up a thin axis style
+      set-style(axes: (stroke: .5pt, tick: (stroke: .5pt)),
+                legend: (stroke: none, orientation: ttb, item: (spacing: .3), scale: 80%))
+    
+      plot.plot(size: (8, 8),
+          x-label: "x",
+          y-label: "y",
+          x-tick-step: 1,
+          y-tick-step: 1,
+          axis-style: "school-book",
+          // x-format: plot.formats.multiple-of,
+          // y-tick-step: 0.25, 
+          // y-min: -30, y-max: 30,
+          legend: "inner-north",
+        {
+          let domain = (-2, 4)
+    
+          for ((title, f, style)) in fn {
+            plot.add(f, domain: domain,
+              style: style, label: title,
+            samples: 50)
+          }
+    
+          // let domain = (2.06, 5)
+          // let s = 0.1; 
+    
+          // for ((title, f, style)) in fn {
+          //   plot.add(f, domain: domain,
+          //     style: style, label: none,
+          //   samples: 500)
+          // }
+        })
+    })]
 
 + #p[Recall in class we proved that $display(sum_(i = 1)^k i = (k(k+1))/2)$. In this problem, we will construct a proof of #block($display(S = sum_(i = 1)^k i^2)$)]
 
