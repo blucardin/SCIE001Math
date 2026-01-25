@@ -109,7 +109,7 @@
 )
 
 #let lim = math.limits(math.lim)
-#let int = $integral$; 
+#let int = $integral$;
 
 // #set heading(numbering: "1.")
 
@@ -155,84 +155,112 @@
 // #show math.integral: math.display
 
 + #p[
-  Suppose that $f$ is differentiable with $f prime (x) > 0$ for all $x$ and suppose that $f(1) = 0$. Set
-  $
-    F(x) = int_0^x f(t) dif t
-  $
-  Determine if each statement is True or False. Justify your answer.
+    Suppose that $f$ is differentiable with $f prime (x) > 0$ for all $x$ and suppose that $f(1) = 0$. Set
+    $
+      F(x) = int_0^x f(t) dif t
+    $
+    Determine if each statement is True or False. Justify your answer.
   ]
   + #p[The function $F(x)$ is continuous.]
-      For $F(x)$ to be continuous for all $x$: 
-      $
-      lim_(a->x) F(a) = F(x) 
-      $
-      Therefore we must prove: 
-      $
-      lim_(a->x) int_0^a f(t) dif t =  int_0^x f(t) dif t \
-      $
-      To do this, we can show that we can rearrange the left side to equal the right side.
-      
-      Expanding the integral gives: 
-      $
-      lim_(a->x) (lim_(n->infinity) sum_(i=1)^n (a-0)/n f(i(a-0)/n +0) )\
-      =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) 
-      $
-      Since we know $f(x)$ is differentiable, it must also be continuous, as differentiability implies continuity. For any $n in RR, n !=0$, $a/n$ is continuous for all $a$. Consequently, for any $i in RR$: 
-      $
-      (a)/n f(i a/n )
-      $
-      is also continuous for all $a$. 
+    *True*
 
-      Finally, the sum of any continuous functions is also continuous. Therefore:
-      $
-      sum_(i=1)^n (a)/n f(i a/n )
-      $
-      is continuous for all $a$.  
-      
-      So, we can rewrite our limit:
+    For $F(x)$ to be continuous for all $x$:
     $
-      =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) \
+      lim_(a->x) F(a) = F(x)
+    $
+    Therefore we must prove:
+    $
+      lim_(a->x) int_0^a f(t) dif t = int_0^x f(t) dif t \
+    $
+    To do this, we can show that we can rearrange the left side to equal the right side.
 
-      =lim_(n->infinity) sum_(i=1)^n (x)/n f(i x/n )
-      $
+    Expanding the integral gives:
+    $
+      lim_(a->x) (lim_(n->infinity) sum_(i=1)^n (a-0)/n f(i(a-0)/n +0) )\
+      =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n ))
+    $
+    Since we know $f(x)$ is differentiable, it must also be continuous, as differentiability implies continuity. For any $n in RR, n !=0$, $a/n$ is continuous for all $a$. Consequently, for any $i in RR$:
+    $
+      (a)/n f(i a/n )
+    $
+    is also continuous for all $a$.
+
+    The sum of any continuous functions is also continuous. Therefore:
+    $
+      sum_(i=1)^n (a)/n f(i a/n )
+    $
+    is continuous for all $a$. More precisely, this expression is continuous for all $a$ independently of the value of $n$. Therefore,
+
+    $
+      lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )
+    $
+
+    is continuous for all $a$.
+
+
+    So, we can rewrite our limit:
+    $
+      & lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) \
+      & =lim_(n->infinity) sum_(i=1)^n (x)/n f(i x/n ) \
+      // &=  int_0^x f(t) dif t
+    $
+
+    Summarizing with integral notation:
+    $
+      lim_(a->x) int_0^a f(t) dif t =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) = lim_(n->infinity) sum_(i=1)^n (x)/n f(i x/n ) = int_0^x f(t) dif t\
+    $
+
+    So:
+    $
+      lim_(a->x) F(a) = F(x)
+    $
+    Therefore $F(x)$ is continuous for all $x$.
+
+
   + #p[The function $F(x)$ is not twice differentiable. ]
-    False
+    *False*
 
+    We know:
+    $
+      F(x) = int_0^x f(t) dif t
+    $
+
+    Taking the derivative of both sides:
     $
       dif/(dif x) F(x) = dif/(dif x) int_0^x f(t) dif t
     $
-    By the Fundamental Theorem of Calculus: 
+    By the Fundamental Theorem of Calculus:
     $
-      dif/(dif x) F(x) =  f(x) 
-    $
-
-    Taking a second derivative: 
-    $
-      dif^2/(dif^2 x) F(x) =  dif/(dif x) f(x) 
+      dif/(dif x) F(x) = f(x)
     $
 
-    By definition, $f$ is differentiable for all $x$, hence $dif/(dif x) f(x)$ exists for all $x$, therefore $dif^2/(dif^2 x) F(x)$ exists for all $x$. 
+    Taking a second derivative:
+    $
+      dif^2/(dif x^2) F(x) = dif/(dif x) f(x)
+    $
 
-    Therefore $F(x)$ is twice differentiable. 
+    By definition, $f$ is differentiable for all $x$, hence $dif/(dif x) f(x)$ exists for all $x$, therefore $dif^2/(dif x^2) F(x)$ exists for all $x$.
+
+    Therefore $F(x)$ is twice differentiable.
 
   + #p[The value x = 1 is a critical point of $F$.]
 
-    True
+    *True*
 
-    For $x = 1$ to be a critical point of $F$: 
+    For $x = 1$ to be a critical point of $F$:
     $
       dif/(dif x) F(1) = 0
     $
 
-    From part $b$ we know: 
+    From part b we know:
 
     $
-      dif/(dif x) F(x) =  f(x) 
+      dif/(dif x) F(x) = f(x)
     $
 
-    and by definition we know: 
+    and by definition we know:
     $
-      f(1) = 0. 
+      f(1) = 0.
     $
 
     Hence:
@@ -240,289 +268,476 @@
       dif/(dif x) F(1) = f(1) = 0
     $
 
-    Therefore, $F(x)$ has a critical point at $x = 1$. 
+    Therefore, $F(x)$ has a critical point at $x = 1$.
 
 
   + #p[The function $F(x)$ takes on a local minimum at $x = 1$. ]
 
-    
+    *True*
 
+    From part b we know:
+
+    $
+      dif^2/(dif x^2) F(x) = dif/(dif x) f(x)
+    $
+
+    And by definition, $f prime (x) > 0$ for all $x$. Hence:
+    $
+      dif^2/(dif x^2) F(x) = f prime (x) > 0 \
+      dif^2/(dif x^2) F(x) > 0
+    $
+
+    Therefore, $F(x)$ is concave up for all $x$.
+
+    From part c we know $F(x)$ has a critical point at $x = 1$.
+
+    If a function has a critical point at $x = c$ and is concave up for all $x$ including $x = c$, it must therefore have have a local minima at $x = c$.
+
+    // This is because, by contradiction, if the function has a local maximum, or no extrema at $x = c$, either it must have some point where it is concave down, or it would not have a critical point at $x = c$.
+
+    Therefore $F(x)$ has a local minimum at $x = 1$.
 
   + #p[$F(1) > 0$.]
 
+    *False*
+
+    Proof by counterexample.
+
+    Let $f(x) = x - 1$. This satisfies our definition. $f$ is differentiable.
+    $
+      f(1) = 1 - 1 = 0 \
+      f prime (x) = 1 > 0
+    $
+    Setting:
+    $
+      F(x) = int_0^x f(t) dif t
+    $
+    We can solve:
+    $
+      F(x) = 1/2x^2 - x
+    $
+
+    $
+      F(1) = 1/2(1)^2 - (1) = -0.5
+    $
+
+    Therefore there exists at least one example of some $f(x)$ for which $F(1) < 0$, so the statement $F(1) > 0$ is false.
+
+
+
+  // *Lemma 1: If a continuous function has a critical point at $x = 1$ and is concave up for all $x$, it must therefore take a global minimum at $x = 1$. *
+
+  // Recall by the Fundamental Theorem of Calculus:
+  // $
+  // f(x) = dif/(dif x) F(x)
+  // $
+
+  // If the function $F(x)$ is concave up for all $x$, its derivative is always increasing. More precisely:
+  // $
+  //   dif/(dif x) f(x) > 0 \
+  // $
+
+  // Since part a showed $F(x)$ is a continuous function, local extrema can only form at a critical point - when:
+  // $
+  //   f(x) = 0 \
+  // $
+
+  // For our function, this occurs at $x = 1$:
+  // $
+  //   f(1) = 0
+  // $
+
+  // Proof by contradiction, assume there is a point $x = c_2$ which is some other local extrema. So we have:
+
+  // $
+  //   f(1) = 0 \
+  //   f(c_2) = 0 \
+  // $
+
+  // By Rolle's Theorem there must exist some number $p in (1, c_2)$ (or $p in (c_2, 1)$ if $c_2 < 1$) such that:
+  // $
+  //   dif/(dif x) f(p) = 0
+  // $
+
+  // However, this contradicts the definition of $f(x)$ such that $dif/(dif x) f(x) > 0$.
+
+  // Hence, $F(x)$ can have no other local extrema, and therefore takes a global minimum at $x = 1$.
+
+  // With *Lemma 1*, we know that for all $u != 1$:
+  // $
+  //   F(u) > F(1)
+  // $
+
+  // Starting with our definition of $F(x)$, we can decompose the integral
+  // $
+  //   F(x) &= int_0^x f(t) dif t \
+  //   &= int_0^1 f(t) dif t + int_1^x f(t) dif t \
+  //   &= int_0^1 f(t) dif t + int_0^x f(t) dif t - int_0^1 f(t) dif t \
+  //   &= F(1) + F(x) - F(1)
+
+  // $
+
+
+
+
   #p[Based on your answers above, make a rough sketch of the graph of $F(x)$. ]
 
-+ #p[Recall in class we proved that $display(sum_(i = 1)^k i = (k(k+1))/2)$. In this problem, we will construct a proof of #block($display(S = sum_(i = 1)^k i^2 )$ )]
++ #p[Recall in class we proved that $display(sum_(i = 1)^k i = (k(k+1))/2)$. In this problem, we will construct a proof of #block($display(S = sum_(i = 1)^k i^2)$)]
 
   + #p[Calculate the value of $S$ for $k = 1,2,3$ and $4$.]
     $
-      S_(k=1) = sum_(i = 1)^1 i^2 = 1 ^2 = 1 \
-      S_(k=2) = sum_(i = 1)^2 i^2 = 1 ^2 + 2^2 = 3 \
+      S_(k=1) = sum_(i = 1)^1 i^2 = 1^2 = 1 \
+      S_(k=2) = sum_(i = 1)^2 i^2 = 1^2 + 2^2 = 3 \
       S_(k=3) = sum_(i = 1)^3 i^2 = 1^2 + 2^2 + 3^2 = 14 \
       S_(k=4) = sum_(i = 1)^4 i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30 \
     $
-  
+
   + #p[Calculate the value of $display((k(k+1)(2k+1))/6)$ for $k = 1, 2, 3$, and $4$]
 
     $
-    #for n in (1, 2, 3, 4) [
-      $
-      &k = #n wide (#n (#n+1)(2(#n)+1))/6 = #{( n * ( n + 1) * (2 * ( n)+1)) / 6 }
-      $ \
-    ]
+      #for n in (1, 2, 3, 4) [
+        $ & k = #n wide (#n (#n+1)(2(#n)+1))/6 = #{ (n * (n + 1) * (2 * (n) + 1)) / 6 } $ \
+      ]
     $
 
 
-  + #p[Show that $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ by constructing a proof by induction by:]
-    + #p[showing the equality is true for the base case (i.e., $k=1$).]
-    + #p[for each positive integer $N$, the equality holds for $k = N$ implies the equality for $k = N + 1$.
+  + #p[Show that $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ by constructing a proof by induction by:
+      + showing the equality is true for the base case (i.e., $k=1$).
+      + for each positive integer $N$, the equality holds for $k = N$ implies the equality for $k = N + 1$.
 
-    Be sure to end your proof with an appropriate conclusion statement (i.e., "Therefore, by induction, ...").]
+        Be sure to end your proof with an appropriate conclusion statement (i.e., "Therefore, by induction, ...").
+    ]
 
     * Lemma 1 :   $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ holds for $k = 1$. *
 
-      $
-        "Left Hand" &wide "Right hand" \
-        sum_(i = 1)^1 i^2 = 1^2 = 1 &wide (1(1+1)(2(1)+1))/6 = #{let n = 1; ( n * ( n + 1) * (2 * ( n)+1)) / 6 } \
-      $
+    $
+                      "Left Hand" & wide "Right hand" \
+      sum_(i = 1)^1 i^2 = 1^2 = 1 & wide (1(1+1)(2(1)+1))/6 = #{
+                                      let n = 1
+                                      (n * (n + 1) * (2 * (n) + 1)) / 6
+                                    } \
+    $
 
-      $
-        therefore &sum_(i = 1)^1 i^2 = (1(1+1)(2(1)+1))/6 \
-      $
+    $
+      therefore & sum_(i = 1)^1 i^2 = (1(1+1)(2(1)+1))/6 \
+    $
 
-      Therefore $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ holds for $k = 1$. 
+    Therefore $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ holds for $k = 1$.
 
     * Lemma 2 :  For each positive integer $N$, the equality holding for $k = N$ implies the equality for $k = N + 1$. *
 
-    Let $display(f(x) = sum_(i = 1)^x i^2 )$.  #h(4em) Let $display(g(x) = (x(x+1)(2x+1))/6) $
+    Let $display(f(x) = sum_(i = 1)^x i^2)$.  #h(4em) Let $display(g(x) = (x(x+1)(2x+1))/6)$
 
     Let $n$ be some positive integer such that the equality $display(sum_(i = 1)^n i^2 = (n(n+1)(2n+1))/6)$ holds. Therefore $f(n) = g(n)$
 
-    Consider $f(n + 1)$. 
+    Consider $f(n + 1)$.
     $
-      f(n + 1) &= sum_(i = 1)^(n + 1) i^2 = (sum_(i = 1)^(n) i^2 ) + (n + 1)^2 \ 
-      f(n+1) &= f(n) + (n + 1)^2   // &= f(n) + (n^2 + 2n + 1) 
-    $ 
-    Then consider $g(n + 1)$. 
+      f(n + 1) & = sum_(i = 1)^(n + 1) i^2 = (sum_(i = 1)^(n) i^2 ) + (n + 1)^2 \
+        f(n+1) & = f(n) + (n + 1)^2 // &= f(n) + (n^2 + 2n + 1)
     $
-      g(n + 1) &= ((n + 1)((n + 1)+1)(2(n + 1)+1))/6 \
-      &= ((n + 1)(n + 2)(2n + 3))/6 \
+    Then consider $g(n + 1)$.
+    $
+      g(n + 1) & = ((n + 1)((n + 1)+1)(2(n + 1)+1))/6 \
+               & = ((n + 1)(n + 2)(2n + 3))/6 \
       // &= ((n + 1)(2n^2 + 3n + 4n + 6))/6 \
       // &= ((n + 1)(2n^2 + 7n + 6))/6 \
       // &= ((2n^3 + 7n^2 + 6n + 2n^2 + 7n + 6))/6 \
-      &= ((2n^3 + 9n^2 + 13n + 6))/6 \
-      &= ((2n^3 + 3n^2 + 1n) + (6n^2 + 12n + 6))/6 \
-      &= (n(2n^2 + 3n + 1))/6 + (n^2 + 2n + 1) \
+               & = ((2n^3 + 9n^2 + 13n + 6))/6 \
+               & = ((2n^3 + 3n^2 + 1n) + (6n^2 + 12n + 6))/6 \
+               & = (n(2n^2 + 3n + 1))/6 + (n^2 + 2n + 1) \
       // &= (n(2n^2 + 3n + 1))/6 + (n + 1)^2 \
       // &= (n(2n(n + 1) + 1(n + 1)))/6 + (n + 1)^2 \
-      &= (n(2n + 1)(n + 1))/6 + (n + 1)^2 \
-      &= g(n) + (n + 1)^2
+               & = (n(2n + 1)(n + 1))/6 + (n + 1)^2 \
+               & = g(n) + (n + 1)^2
     $
     Putting them together, by definition
     $
-    f(n) = g(n) \ 
-    f(n) + (n + 1)^2 = g(n) + (n + 1)^2 \ 
-    therefore f(n + 1) = g(n + 1)
+      f(n) = g(n) \
+      f(n) + (n + 1)^2 = g(n) + (n + 1)^2 \
+      therefore f(n + 1) = g(n + 1)
     $
 
-    Therefore for every $N in ZZ^+$, $f(N) = g(N)$ implies that $f(N + 1) = g(N + 1)$. i.e  the equality holding for $k = N$ implies that it holds for $k = N + 1$ 
+    Therefore for every $N in ZZ^+$, $f(N) = g(N)$ implies that $f(N + 1) = g(N + 1)$. i.e  the equality holding for $k = N$ implies that it holds for $k = N + 1$
 
     \
 
-    Therefore by induction, since $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ holds for $k = 1$ and this equality holding for $k = N$ implies that it holds for $k = N + 1$ provided that $N in ZZ ^ +$: 
+    Therefore by induction, since $display(sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6)$ holds for $k = 1$ and this equality holding for $k = N$ implies that it holds for $k = N + 1$ provided that $N in ZZ^+$:
 
-    $ S = sum_(i = 1)^k i^2  = (k(k+1)(2k+1))/6 $ 
+    $ S = sum_(i = 1)^k i^2 = (k(k+1)(2k+1))/6 $
     holds for all $k in ZZ^+$
 
 
-    
+
 
 
 + #p[Let $f(x)$ be an integrable function over the interval $[a,b]$. Choose an integer $N$ and let
-  $
-    x_k = a + k Delta x, #h(1em) k = 0, 1, 2, ..., N "where" Delta x = (b-a)/N
-  $
+    $
+      x_k = a + k Delta x, #h(1em) k = 0, 1, 2, ..., N "where" Delta x = (b-a)/N
+    $
 
-  The #link("https://en.wikipedia.org/wiki/Trapezoidal_rule")[trapezoid rule] is an approximation of the definite integral: 
-  $
-    int_a^b f(x) dif x approx Delta x sum^N_(k=1) (f(x_k) + f(x_(k-1)) ) / 2,
-  $
+    The #link("https://en.wikipedia.org/wiki/Trapezoidal_rule")[trapezoid rule] is an approximation of the definite integral:
+    $
+      int_a^b f(x) dif x approx Delta x sum^N_(k=1) (f(x_k) + f(x_(k-1)) ) / 2,
+    $
 
-  where $Delta x = (b - a) / N$
+    where $Delta x = (b - a) / N$
 
-  A bound on the error is given by the error formula
+    A bound on the error is given by the error formula
 
-  $
-    abs(int_a^b f(x) dif x - (b-a)/N sum^N_(k=1)  (f(x_k) + f(x_(k-1)) ) / 2, ) <= (b-a)^3 / (12 N^2)K_2
-  $
+    $
+      abs(int_a^b f(x) dif x - (b-a)/N sum^N_(k=1) (f(x_k) + f(x_(k-1)) ) / 2,) <= (b-a)^3 / (12 N^2)K_2
+    $
 
-  where $K_2$ is any number such that $abs(f prime prime (x) ) <= K_2$ for all $x in [a,b]$. 
+    where $K_2$ is any number such that $abs(f prime prime (x)) <= K_2$ for all $x in [a,b]$.
 
-  Consider the #link("https://en.wikipedia.org/wiki/Fresnel_integral")[Fresnel integral]
+    Consider the #link("https://en.wikipedia.org/wiki/Fresnel_integral")[Fresnel integral]
 
-  $
-    int_0^sqrt(pi/2) sin(x^2) dif x
-  $]
+    $
+      int_0^sqrt(pi/2) sin(x^2) dif x
+    $]
 
-  + #p[Write out and calculate the Left and Right Riemann sums for $N = 4$.] 
-  + #p[Write our and calculate the Trapezoid rule for $N = 4$.] 
-  + #p[Find and appropriate value of $K_2$ for the Fresnel integral. Be sure to justify your answer.] 
+  + #p[Write out and calculate the Left and Right Riemann sums for $N = 4$.]
+
+    *Left Riemann Sum*
+    $
+      int_0^sqrt(pi/2) sin(x^2) dif x approx sum_(k = 1)^N sin(((k-1) Delta x )^2) Delta x \
+      = sum_(k = 1)^4 sin(((k-1) ((sqrt(pi/2))/4) )^2) ((sqrt(pi/2))/4) = \
+      =
+      #for k in (1, 2, 3, 4) [
+        $ sin(( (#{k - 1} sqrt(pi/2))/4)^2) ((sqrt(pi/2))/4) #{ if k != 4 [$+$
+
+        ] } $
+      ]\
+      =
+      #{
+        let sum = 0
+        for k in (1, 2, 3, 4) {
+          sum = sum + calc.sin(calc.pow(((k - 1) * calc.sqrt(calc.pi / 2)) / 4, 2)) * ((calc.sqrt(calc.pi / 2)) / 4)
+        }
+        sum
+      }
+    $
+
+    *Right Riemann Sum*
+    $
+      int_0^sqrt(pi/2) sin(x^2) dif x approx sum_(k = 1)^N sin(x_k^2) Delta x \
+      = sum_(k = 1)^4 sin((k ((sqrt(pi/2))/4) )^2) ((sqrt(pi/2))/4) = \
+      =
+      #for k in (1, 2, 3, 4) [
+        $ sin(( (#k sqrt(pi/2))/4)^2) ((sqrt(pi/2))/4) #{ if k != 4 [$+$
+
+        ] } $
+      ]\
+      =
+      #{
+        let sum = 0
+        for k in (1, 2, 3, 4) {
+          sum = sum + calc.sin(calc.pow((k * calc.sqrt(calc.pi / 2)) / 4, 2)) * ((calc.sqrt(calc.pi / 2)) / 4)
+        }
+        sum
+      }
+    $
+
+
+  + #p[Write our and calculate the Trapezoid rule for $N = 4$.]
+
+    $
+      int_a^b sin(x^2) dif x approx Delta x sum^N_(k=1) (sin(x_k^2) + sin(x_(k-1)^2) ) / 2 \
+      = ((sqrt(pi/2))/4) sum^4_(k=1) (sin((k((sqrt(pi/2))/4))^2) + sin(((k-1)((sqrt(pi/2))/4))^2) )/2 \
+      // = ((sqrt(pi/2))/4) sum^4_(k=1) (sin(((k sqrt(pi/2))/4)^2) + sin((((k-1) sqrt(pi/2))/4)^2) )
+
+      =((sqrt(pi/2))/4) (
+      #for k in (1, 2, 3, 4) [
+        $ 
+        (sin(( ( #k sqrt(pi/2))/4)^2) + sin((((#k -1) sqrt(pi/2))/4)^2))/2
+        #{ if k != 4 [
+          $+ \ $
+        ] } 
+        $
+      ]
+      ) \
+      =
+      #{
+        let sum = 0
+        for k in (1, 2, 3, 4) {
+          sum = sum + (calc.sin( calc.pow( ( k * calc.sqrt(calc.pi/2) )/4, 2)) + calc.sin( calc.pow(((k -1) * calc.sqrt(calc.pi/2))/4, 2)))/2
+        }
+        sum
+      }
+    $
+
+  + #p[Find an appropriate value of $K_2$ for the Fresnel integral. Be sure to justify your answer.]
+
+    By definition "$K_2$ is any number such that $abs(f prime prime (x)) <= K_2$ for all $x in [a,b]$."
+
+    In our case, $f(x) = sin(x^2)$ and $a = 0, b = sqrt(pi/2)$. Therefore, we must bound $dif^2/(dif x^2) sin(x^2)$:
+    $
+      // dif /(dif x) sin(x^2) &= 2x cos(x^2) \ 
+      dif^2/(dif x^2) sin(x^2) = dif /(dif x) 2x cos(x^2) = 2cos(x^2) - 4x^2 sin(x^2)
+    $
+    Let $g(x) = 2cos(x^2) - 4x^2 sin(x^2)$
+
+    In other words, we must find $max(g(x))$ on $[0, sqrt(pi/2)]$. 
+
+    First, we can find critical points: 
+    $
+      dif /(dif x) g(x) &= dif /(dif x) ( 2cos(x^2) - 4x^2 sin(x^2) )\
+      &= -4x sin(x^2) - 8x sin(x^2) - 8x^3 cos(x^2) 
+    $
+
+
   + #p[Find the value of (the smallest) $N$ which guarantees the trapezoid rule approximates the Fresnel Integral with errors less than $10^(-1)$ and $10^(-2)$. Be sure to justify your answers.]
+
+
 + #p[In class, we proved Part 2 of the Fundamental Theorem of Calculus, which states that if $f$ is a continuous function on the interval $[a, b]$ and F is any antiderivative of $f$, then
 
-  $
-    F(b)-F(a) = int_a^b f(x) dif x
-  $
+    $
+      F(b)-F(a) = int_a^b f(x) dif x
+    $
 
     Here, you will construct another proof of Part 2 of the Theorem.]
 
-  + #p[Divide the interval $[a, b]$ in $n$ subintervals with endpoints $a = x_0 < x_1 < x_2 < ... < x_n = b $. Show that
+  + #p[Divide the interval $[a, b]$ in $n$ subintervals with endpoints $a = x_0 < x_1 < x_2 < ... < x_n = b$. Show that
 
-  $
-    F(b) - F(a) = sum_(i=1)^n (F(x_i) - F(x_(i-1)))
-  $]
+      $
+        F(b) - F(a) = sum_(i=1)^n (F(x_i) - F(x_(i-1)))
+      $]
 
-    Let $a = x_0 < x_1 < x_2 < ... < x_n = b $
+    Let $a = x_0 < x_1 < x_2 < ... < x_n = b$
 
-    Consider the sum: 
+    Consider the sum:
     $
       sum_(i=1)^n (F(x_i) - F(x_(i-1)))
     $
 
-    Expanding, we get: 
+    Expanding, we get:
     $
-     sum_(i=1)^n (F(x_i) - F(x_(i-1))) \
-      = (sum_(i=1)^n F(x_i))  - sum_(i=1)^n F(x_(i-1))) \ 
-    //  sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(x_1) - F(x_(0)) + F(x_2) - F(x_(1)) + ... + F(x_n) - F(x_(n-1)) 
-    // $
-
-  
-    // We can further expand: 
-    // $
-    // (sum_(i=1)^n F(x_i))  - sum_(i=1)^n F(x_(i-1))) \ 
-    = ( F(x_1) + F(x_2) + ... + F(n - 1) + F(x_n) ) - ( F(x_0) + F(x_1) + F(x_2) + ... + F(x_n-1) )
+      sum_(i=1)^n (F(x_i) - F(x_(i-1))) \
+      = (sum_(i=1)^n F(x_i)) - sum_(i=1)^n F(x_(i-1))) \
+      //  sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(x_1) - F(x_(0)) + F(x_2) - F(x_(1)) + ... + F(x_n) - F(x_(n-1))
+      // $
+      // We can further expand:
+      // $
+      // (sum_(i=1)^n F(x_i))  - sum_(i=1)^n F(x_(i-1))) \
+      = ( F(x_1) + F(x_2) + ... + F(n - 1) + F(x_n) ) - ( F(x_0) + F(x_1) + F(x_2) + ... + F(x_n-1) )
     $
 
-    All terms except for $F(x_0)$ and $F(x_n)$ cancel, leaving: 
+    All terms except for $F(x_0)$ and $F(x_n)$ cancel, leaving:
     $
-     sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(x_n) - F(x_0) 
+      sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(x_n) - F(x_0)
     $
-    By definition $x_n = b$ and $x_0 = a$, therefore 
+    By definition $x_n = b$ and $x_0 = a$, therefore
     $
-      sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(b) - F(a) 
+      sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(b) - F(a)
     $
 
   + #p[Now suppose that $F$ is any antiderivative of $f$. Show that there exists a number $c_i$ in
-  each interval $[x_(i-1), x_i]$ such that 
+      each interval $[x_(i-1), x_i]$ such that
 
-    $
-      F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
-    $
+      $
+        F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
+      $
     ]
 
 
     * Could be made more concise*
 
 
-    Let $g(x)$ be a function continuous on the interval $[j, k]$. 
+    Let $g(x)$ be a function continuous on the interval $[j, k]$.
 
-    Let $G(x)$ be any antiderivative of a function $g(x)$. 
+    Let $G(x)$ be any antiderivative of a function $g(x)$.
 
-    By definition, $G(x)$ is differentiable on $[j, k]$, and since differentiability implies continuity, is also continuous on $[j, k]$. 
+    By definition, $G(x)$ is differentiable on $[j, k]$, and since differentiability implies continuity, is also continuous on $[j, k]$.
 
     By the Mean Value Theorem, the must exist some $u in (j, k)$ such that:
 
     $
-      (G(k) - G(j))/(k - j) = G prime (u) 
+      (G(k) - G(j))/(k - j) = G prime (u)
     $
 
-    Since $G prime (u) = g(u)$, we can rearrange: 
+    Since $G prime (u) = g(u)$, we can rearrange:
 
     $
       G(k) - G(j) = g (u) (k - j)
     $
 
-    Now we can show that this holds for our original functions $f$ and $F$. 
+    Now we can show that this holds for our original functions $f$ and $F$.
 
-    $f(x)$ is a function continuous on the interval $[a, b]$ and is therefore continuous on $[x_(i-1), x_i]$ as by definition, $a < x_(i-1) < x_i < b $.
-    
-    $F(x)$ is an antiderivative of a function $f(x)$. 
+    $f(x)$ is a function continuous on the interval $[a, b]$ and is therefore continuous on $[x_(i-1), x_i]$ as by definition, $a < x_(i-1) < x_i < b$.
+
+    $F(x)$ is an antiderivative of a function $f(x)$.
 
     Therefore, $f(x)$ and $F(x)$ on $[x_(i-1), x_i]$ is analogous to $g(x)$ and $G(x)$ on $[j, k]$, so there must exist some $c_i$ in $(x_(i-1), x_i)$ such that:
 
     $
       F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
-    $ 
+    $
 
-    // * Remember to rewrite this with proper logic * 
+  // * Remember to rewrite this with proper logic *
 
 
-    // Take the derivative of both sides: 
-    // $
-    //   dif / (dif x) (F(x_i) - F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
-    //   dif / (dif x) (F(x_i)) - dif / (dif x)  (F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
-    // $
+  // Take the derivative of both sides:
+  // $
+  //   dif / (dif x) (F(x_i) - F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
+  //   dif / (dif x) (F(x_i)) - dif / (dif x)  (F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
+  // $
 
-    // Since $F$ is an antiderivative of $f$: 
-    // $
-    //   dif / (dif x)  (F(x)) = f(x)
-    // $
+  // Since $F$ is an antiderivative of $f$:
+  // $
+  //   dif / (dif x)  (F(x)) = f(x)
+  // $
 
-    // Therefore: 
-    // $
-    //   f(x_i) - f(x_(i-1)) = (x_i - x_(i-1)) dif / (dif x) (f(c_i))
-    // $
+  // Therefore:
+  // $
+  //   f(x_i) - f(x_(i-1)) = (x_i - x_(i-1)) dif / (dif x) (f(c_i))
+  // $
 
 
   + #p[Now build an appropriate Riemann sum for $f$ on $[a,b]$ and show that
-  $
-    F(b) - F(a) = int^b_a f(x) dif x
-  $]
+      $
+        F(b) - F(a) = int^b_a f(x) dif x
+      $]
 
-  We have shown that: 
+  We have shown that:
   $
     F(b) - F(a) = sum_(i=1)^n (F(x_i) - F(x_(i-1)))
   $
   and that there exists some $c_i in (x_i, x_(i-1))$ such that
   $
-      F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
+    F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
   $
 
-  for any $f(x)$ continuous on the interval $[a, b]$, any antiderivative of $f(x)$, $F(x)$, any intervals $a = x_0 < x_1 < x_2 < ... < x_n = b $.
+  for any $f(x)$ continuous on the interval $[a, b]$, any antiderivative of $f(x)$, $F(x)$, any intervals $a = x_0 < x_1 < x_2 < ... < x_n = b$.
 
-  Combining these statements we get:  
+  Combining these statements we get:
   $
     F(b) - F(a) = sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))
   $
 
-  Taking the limit of both sides as $n$ approaches $infinity$: 
+  Taking the limit of both sides as $n$ approaches $infinity$:
   $
     lim_(n -> infinity) (F(b) - F(a)) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) \
-     F(b) - F(a) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1))))
+    F(b) - F(a) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1))))
   $
 
-  Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation. 
+  Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation.
 
-  Since for any function $g(x)$ defined on any interval $[u, v]$: 
+  Since for any function $g(x)$ defined on any interval $[u, v]$:
   $
     lim_(n->infinity)sum_(i = 1)^n g(x + i Delta x) Delta x = int_u^v g(x)
   $
-  Where $Delta x = display((u - v) / n)$. 
+  Where $Delta x = display((u - v) / n)$.
 
-  In our case $Delta x = x_i - x_(i-1)$. By definition $c_i$ exists in the interval $(x_i, x_(i-1))$, therefore we can substitute $x + i Delta x = c_i$ as this equality holds as long as the sampled point of the function lies within each interval of the sum (i.e the limit of left, right, and midpoint Riemann sums are equivalent). 
+  In our case $Delta x = x_i - x_(i-1)$. By definition $c_i$ exists in the interval $(x_i, x_(i-1))$, therefore we can substitute $x + i Delta x = c_i$ as this equality holds as long as the sampled point of the function lies within each interval of the sum (i.e the limit of left, right, and midpoint Riemann sums are equivalent).
 
-  So we can rewrite: 
+  So we can rewrite:
   $
-    lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) = int_(x_0)^x_n f(x) = int_(a)^b f(x) 
+    lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) = int_(x_0)^x_n f(x) = int_(a)^b f(x)
   $
 
-  Therefore: 
+  Therefore:
   $
-    #rect($
-          
-    F(b) - F(a) = int^b_a f(x) dif x
-    
-    $)
+    #rect($ F(b) - F(a) = int^b_a f(x) dif x $)
   $
 
 
@@ -534,7 +749,7 @@
 // Create a new Jupyter notebook using anaconda. Copy and paste the following lines of code into a new cell.
 
 // + #p[
-//     #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the 
+//     #underline[*Your task:*] Derive the EBM given above and verify that the units on both sides of the
 //   ]
 
 //   #align(center)[
