@@ -447,10 +447,10 @@
 
   + #p[Calculate the value of $S$ for $k = 1,2,3$ and $4$.]
     $
-      S_(k=1) = sum_(i = 1)^1 i^2 = 1^2 = 1 \
-      S_(k=2) = sum_(i = 1)^2 i^2 = 1^2 + 2^2 = 3 \
-      S_(k=3) = sum_(i = 1)^3 i^2 = 1^2 + 2^2 + 3^2 = 14 \
-      S_(k=4) = sum_(i = 1)^4 i^2 = 1^2 + 2^2 + 3^2 + 4^2 = 30 \
+      S_(k=1) &= sum_(i = 1)^1 i^2 = 1^2 &= 1 \
+      S_(k=2) &= sum_(i = 1)^2 i^2 = 1^2 + 2^2 &= 3 \
+      S_(k=3) &= sum_(i = 1)^3 i^2 = 1^2 + 2^2 + 3^2 &= 14 \
+      S_(k=4) &= sum_(i = 1)^4 i^2 = 1^2 + 2^2 + 3^2 + 4^2 &= 30 \
     $
 
   + #p[Calculate the value of $display((k(k+1)(2k+1))/6)$ for $k = 1, 2, 3$, and $4$]
@@ -620,6 +620,8 @@
         for k in (1, 2, 3, 4) {
           sum = sum + (calc.sin(calc.pow((k * calc.sqrt(calc.pi / 2)) / 4, 2)) + calc.sin(calc.pow(((k - 1) * calc.sqrt(calc.pi / 2)) / 4, 2))) / 2
         }
+        sum = sum * ((calc.sqrt(calc.pi / 2)) / 4)
+
         sum
       }
     $
