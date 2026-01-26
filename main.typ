@@ -383,9 +383,7 @@
 
   #p[Based on your answers above, make a rough sketch of the graph of $F(x)$. ]
 
-    As in part c. 
-
-    Let $f(x) = x - 1$. This satisfies our definition. $f$ is differentiable.
+    As in part c, let $f(x) = x - 1$. This satisfies our definition. $f$ is differentiable.
     $
       f(1) = 1 - 1 = 0 \
       f prime (x) = 1 > 0
@@ -658,13 +656,14 @@
       8x = 0  \
       x = 0  \
 
-    $ \
+    $ 
+    So only one critical point at $x = 0$.
     Evaluating, 
     $
     4(0)^2 = 0 \ 
     4(sqrt(pi/2))^2 = 2pi > 0
     $
-    Therefore $max(4x^2)$ for all $x in [0, sqrt(pi/2)]$ is $4(sqrt(pi/2))^2$. 
+    Therefore $max(4x^2)$ for all $x in [0, sqrt(pi/2)]$ is $2pi$. 
 
     So: 
     $
@@ -828,7 +827,7 @@
 
     By definition, $G(x)$ is differentiable on $[j, k]$, and since differentiability implies continuity, is also continuous on $[j, k]$.
 
-    By the Mean Value Theorem, the must exist some $u in (j, k)$ such that:
+    By the Mean Value Theorem, there must exist some $u in (j, k)$ such that:
 
     $
       (G(k) - G(j))/(k - j) = G prime (u)
@@ -842,7 +841,7 @@
 
     Now we can show that this holds for our original functions $f$ and $F$.
 
-    $f(x)$ is a function continuous on the interval $[a, b]$ and is therefore continuous on $[x_(i-1), x_i]$ as by definition, $a < x_(i-1) < x_i < b$.
+    $f(x)$ is a function continuous on the interval $[a, b]$ and is therefore continuous on $[x_(i-1), x_i]$ as by definition, $a <= x_(i-1) < x_i <= b$.
 
     $F(x)$ is an antiderivative of a function $f(x)$.
 
