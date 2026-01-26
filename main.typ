@@ -383,61 +383,63 @@
 
   #p[Based on your answers above, make a rough sketch of the graph of $F(x)$. ]
 
-    As in part c, let $f(x) = x - 1$. This satisfies our definition. $f$ is differentiable.
-    $
-      f(1) = 1 - 1 = 0 \
-      f prime (x) = 1 > 0
-    $
-    Setting:
-    $
-      F(x) = int_0^x f(t) dif t
-    $
-    We can solve:
-    $
-      F(x) = 1/2x^2 - x
-    $
+  As in part c, let $f(x) = x - 1$. This satisfies our definition. $f$ is differentiable.
+  $
+    f(1) = 1 - 1 = 0 \
+    f prime (x) = 1 > 0
+  $
+  Setting:
+  $
+    F(x) = int_0^x f(t) dif t
+  $
+  We can solve:
+  $
+    F(x) = 1/2x^2 - x
+  $
 
 
-      #let fn = ( 
-      ($ F(x) = int_0^x t - 1 dif t $, x => (((1/2) * x * x) - x), (stroke: red)),
+  #let fn = (
+    ($ F(x) = int_0^x t - 1 dif t $, x => (((1 / 2) * x * x) - x), (stroke: red)),
+  )
+
+  #align(center)[#canvas({
+    import draw: *
+
+    // Set-up a thin axis style
+    set-style(
+      axes: (stroke: .5pt, tick: (stroke: .5pt)),
+      legend: (stroke: none, orientation: ttb, item: (spacing: .3), scale: 80%),
     )
-  
-      #align(center)[#canvas({
-      import draw: *
-    
-      // Set-up a thin axis style
-      set-style(axes: (stroke: .5pt, tick: (stroke: .5pt)),
-                legend: (stroke: none, orientation: ttb, item: (spacing: .3), scale: 80%))
-    
-      plot.plot(size: (8, 8),
-          x-label: "x",
-          y-label: "y",
-          x-tick-step: 1,
-          y-tick-step: 1,
-          axis-style: "school-book",
-          // x-format: plot.formats.multiple-of,
-          // y-tick-step: 0.25, 
-          // y-min: -30, y-max: 30,
-          legend: "inner-north",
-        {
-          let domain = (-2, 4)
-    
-          for ((title, f, style)) in fn {
-            plot.add(f, domain: domain,
-              style: style, label: title,
-            samples: 50)
-          }
-    
-          // let domain = (2.06, 5)
-          // let s = 0.1; 
-    
-          // for ((title, f, style)) in fn {
-          //   plot.add(f, domain: domain,
-          //     style: style, label: none,
-          //   samples: 500)
-          // }
-        })
-    })]
+
+    plot.plot(
+      size: (8, 8),
+      x-label: "x",
+      y-label: "y",
+      x-tick-step: 1,
+      y-tick-step: 1,
+      axis-style: "school-book",
+      // x-format: plot.formats.multiple-of,
+      // y-tick-step: 0.25,
+      // y-min: -30, y-max: 30,
+      legend: "inner-north",
+      {
+        let domain = (-2, 4)
+
+        for (title, f, style) in fn {
+          plot.add(f, domain: domain, style: style, label: title, samples: 50)
+        }
+
+        // let domain = (2.06, 5)
+        // let s = 0.1;
+
+        // for ((title, f, style)) in fn {
+        //   plot.add(f, domain: domain,
+        //     style: style, label: none,
+        //   samples: 500)
+        // }
+      },
+    )
+  })]
 
 + #p[Recall in class we proved that $display(sum_(i = 1)^k i = (k(k+1))/2)$. In this problem, we will construct a proof of #block($display(S = sum_(i = 1)^k i^2)$)]
 
@@ -561,7 +563,7 @@
       = sum_(k = 1)^4 sin(((k-1) ((sqrt(pi/2))/4) )^2) ((sqrt(pi/2))/4) = \
       =
       #for k in (1, 2, 3, 4) [
-        $ sin(( (#{k - 1} sqrt(pi/2))/4)^2) ((sqrt(pi/2))/4) #{ if k != 4 [$+$
+        $ sin(( (#{ k - 1 } sqrt(pi/2))/4)^2) ((sqrt(pi/2))/4) #{ if k != 4 [$+$
 
         ] } $
       ]\
@@ -602,22 +604,19 @@
       int_a^b sin(x^2) dif x approx Delta x sum^N_(k=1) (sin(x_k^2) + sin(x_(k-1)^2) ) / 2 \
       = ((sqrt(pi/2))/4) sum^4_(k=1) (sin((k((sqrt(pi/2))/4))^2) + sin(((k-1)((sqrt(pi/2))/4))^2) )/2 \
       // = ((sqrt(pi/2))/4) sum^4_(k=1) (sin(((k sqrt(pi/2))/4)^2) + sin((((k-1) sqrt(pi/2))/4)^2) )
-
       =((sqrt(pi/2))/4) (
-      #for k in (1, 2, 3, 4) [
-        $ 
-        (sin(( ( #k sqrt(pi/2))/4)^2) + sin((((#k -1) sqrt(pi/2))/4)^2))/2
-        #{ if k != 4 [
-          $+ \ $
-        ] } 
-        $
-      ]
+        #for k in (1, 2, 3, 4) [
+          $ (sin(( ( #k sqrt(pi/2))/4)^2) + sin((((#k -1) sqrt(pi/2))/4)^2))/2
+          #{ if k != 4 [
+            $+ \ $
+          ] } $
+        ]
       ) \
       =
       #{
         let sum = 0
         for k in (1, 2, 3, 4) {
-          sum = sum + (calc.sin( calc.pow( ( k * calc.sqrt(calc.pi/2) )/4, 2)) + calc.sin( calc.pow(((k -1) * calc.sqrt(calc.pi/2))/4, 2)))/2
+          sum = sum + (calc.sin(calc.pow((k * calc.sqrt(calc.pi / 2)) / 4, 2)) + calc.sin(calc.pow(((k - 1) * calc.sqrt(calc.pi / 2)) / 4, 2))) / 2
         }
         sum
       }
@@ -629,15 +628,15 @@
 
     In our case, $f(x) = sin(x^2)$ and $a = 0, b = sqrt(pi/2)$. Therefore, we must bound $f prime prime (x)$ on $[0, sqrt(pi/2)]$:
     $
-      // dif /(dif x) sin(x^2) &= 2x cos(x^2) \ 
+      // dif /(dif x) sin(x^2) &= 2x cos(x^2) \
       f prime prime (x) = dif^2/(dif x^2) sin(x^2) = dif /(dif x) 2x cos(x^2) = 2cos(x^2) - 4x^2 sin(x^2)\
     $
 
-    // Using the Triangle Inequality: 
+    // Using the Triangle Inequality:
     // $
     //   abs(2cos(x^2) - 4x^2 sin(x^2)) <= abs(2cos(x^2)) + abs(- 4x^2 sin(x^2))
     // $
-    // Therefore: 
+    // Therefore:
     // $
     //   abs(f prime prime (x)) <= abs(2cos(x^2)) + abs(- 4x^2 sin(x^2))
     // $
@@ -649,28 +648,28 @@
     // $
     //   abs(2cos(x^2)) <= 2  wide abs(sin(x^2)) <= 1
     // $
-    // For $4x^2$ we can look at critical points and endpoints: 
+    // For $4x^2$ we can look at critical points and endpoints:
     // $
     //   dif/(dif x) 4x^2 = 8x \
     //   8x = 0  \
     //   x = 0  \
 
-    // $ 
-    // So only one critical point at $x = 0$.
-    // Evaluating, 
     // $
-    // 4(0)^2 = 0 \ 
+    // So only one critical point at $x = 0$.
+    // Evaluating,
+    // $
+    // 4(0)^2 = 0 \
     // 4(sqrt(pi/2))^2 = 2pi > 0
     // $
-    // Therefore $max(4x^2)$ for all $x in [0, sqrt(pi/2)]$ is $2pi$. 
+    // Therefore $max(4x^2)$ for all $x in [0, sqrt(pi/2)]$ is $2pi$.
 
-    // So: 
+    // So:
     // $
-    //   abs(f prime prime (x)) <= abs(2cos(x^2)) + 4x^2abs(sin(x^2)) \ 
+    //   abs(f prime prime (x)) <= abs(2cos(x^2)) + 4x^2abs(sin(x^2)) \
     //   abs(f prime prime (x)) <= 2 + 2pi
     // $
 
-    // So we can set a good bound: 
+    // So we can set a good bound:
 
     // $
     //   K_2 = 2 + 2pi
@@ -678,77 +677,76 @@
 
 
 
-    // For $abs(- 4x^2 sin(x^2))$ we can evaluate at endpoints: 
+    // For $abs(- 4x^2 sin(x^2))$ we can evaluate at endpoints:
     // $
-    //   abs(- 4(0)^2 sin(0^2)) = 0 \ 
+    //   abs(- 4(0)^2 sin(0^2)) = 0 \
     //   abs(- 4(sqrt(pi/2))^2 sin(sqrt(pi/2)^2)) = 2pi
-    //   dif /(dif x) (- 4x^2 sin(x^2)) = 
+    //   dif /(dif x) (- 4x^2 sin(x^2)) =
     // $
 
     // Unmark this!
-    Let $g(x) = f prime prime (x) =  2cos(x^2) - 4x^2 sin(x^2) $
+    Let $g(x) = f prime prime (x) = 2cos(x^2) - 4x^2 sin(x^2)$
 
-    In other words, we must find $max(abs(g(x)))$ on $[0, sqrt(pi/2)]$. 
+    In other words, we must find $max(abs(g(x)))$ on $[0, sqrt(pi/2)]$.
 
-    First, we can  find critical points: 
+    First, we can  find critical points:
     $
-      0 &= dif /(dif x) g(x)\
-       &= dif /(dif x) ( 2cos(x^2) - 4x^2 sin(x^2) )\
-      &= -4x sin(x^2) - 8x sin(x^2) - 8x^3 cos(x^2)  \ 
-       &= -12x sin(x^2) - 8x^3 cos(x^2)  \
-      0 &= -4x (3sin(x^2) + 2x^2 cos(x^2))  \
-      0 &= 3sin(x^2) + 2x^2 cos(x^2) wide x = 0
-      $
+      0 & = dif /(dif x) g(x) \
+        & = dif /(dif x) ( 2cos(x^2) - 4x^2 sin(x^2) ) \
+        & = -4x sin(x^2) - 8x sin(x^2) - 8x^3 cos(x^2) \
+        & = -12x sin(x^2) - 8x^3 cos(x^2) \
+      0 & = -4x (3sin(x^2) + 2x^2 cos(x^2)) \
+      0 & = 3sin(x^2) + 2x^2 cos(x^2) wide x = 0
+    $
 
     For all $x in [0, sqrt(pi/2)]$:
     $
-      x^2 > 0 \ 
+      x^2 > 0 \
       sin(x^2) > 0 \
-      cos(x^2) > 0 \ 
-      $
-      Hence:
-      $
-      
-      3sin(x^2) > 0\ 
-      2x^2 cos(x^2) > 0\ 
-       3sin(x^2) + 2x^2 cos(x^2) > 0\ 
-        3sin(x^2) + 2x^2 cos(x^2) != 0 \ 
+      cos(x^2) > 0 \
     $
-    Therefore there are no solutions to: 
+    Hence:
+    $
+      3sin(x^2) > 0\
+      2x^2 cos(x^2) > 0\
+      3sin(x^2) + 2x^2 cos(x^2) > 0\
+      3sin(x^2) + 2x^2 cos(x^2) != 0 \
+    $
+    Therefore there are no solutions to:
     $
       0 = 3sin(x^2) + 2x^2 cos(x^2)
     $
     So $g(x)$ has only one critical point at $x = 0$, and two end points at $x = 0, sqrt(pi/2)$ on $[0, sqrt(pi/2)]$.
     $
-      g(0) &= 2cos(0^2) - 4(0^2) sin(0^2) = 2 \ 
-      g(sqrt(pi/2)) &= 2cos(sqrt(pi/2)^2) - 4(sqrt(pi/2)^2) sin(sqrt(pi/2)^2) = -2pi \ 
+               g(0) & = 2cos(0^2) - 4(0^2) sin(0^2) = 2 \
+      g(sqrt(pi/2)) & = 2cos(sqrt(pi/2)^2) - 4(sqrt(pi/2)^2) sin(sqrt(pi/2)^2) = -2pi \
     $
 
-    Therefore, the extrema of $g(x)$ on $[0, sqrt(pi/2)]$ are $g(0) = 2$ and $g(sqrt(pi/2)) = -2pi$. So: 
+    Therefore, the extrema of $g(x)$ on $[0, sqrt(pi/2)]$ are $g(0) = 2$ and $g(sqrt(pi/2)) = -2pi$. So:
     $
-      max(abs(g(x))) = 2 pi \ 
-      max(abs(f''(x))) = 2 pi \ 
+      max(abs(g(x))) = 2 pi \
+      max(abs(f''(x))) = 2 pi \
       abs(f''(x)) <= 2 pi
     $
 
-    So a good value of $K_2$ would be: 
+    So a good value of $K_2$ would be:
     $
       K_2 = 2pi
     $
 
-    //   $
-    //   12x sin(x^2) &= - 8x^3 cos(x^2)  \
-    //   sin(x^2) / cos(x^2) &= (- 8x^3)   / (12x)  \
-    //   tan(x^2) &= (- 8 / 12) x^2   \
-    // $
+  //   $
+  //   12x sin(x^2) &= - 8x^3 cos(x^2)  \
+  //   sin(x^2) / cos(x^2) &= (- 8x^3)   / (12x)  \
+  //   tan(x^2) &= (- 8 / 12) x^2   \
+  // $
 
-    // There doesn't seem to be any apparent zeros between 
+  // There doesn't seem to be any apparent zeros between
 
 
   + #p[Find the value of (the smallest) $N$ which guarantees the trapezoid rule approximates the Fresnel Integral with errors less than $10^(-1)$ and $10^(-2)$. Be sure to justify your answers.]
 
 
-  The bound on the error from the trapezoid rule is: 
+  The bound on the error from the trapezoid rule is:
   $
     abs(int_a^b f(x) dif x - (b-a)/N sum^N_(k=1) (f(x_k) + f(x_(k-1)) ) / 2,) <= (b-a)^3 / (12 N^2)K_2
   $
@@ -757,45 +755,43 @@
     abs(int_a^b sin(x^2) dif x - (sqrt(pi/2))/N sum^N_(k=1) (sin(x_k^2) + sin(x_(k-1)^2) ) / 2,) <= (sqrt(pi/2))^3 / (12 N^2)K_2
   $
 
-  Therefore we can just find values of $N$ for which: 
+  Therefore we can just find values of $N$ for which:
   $
     (sqrt(pi/2))^3 / (12 N^2)K_2 < 10^(-1) wide
-    "and"  wide
+    "and" wide
     (sqrt(pi/2))^3 / (12 N^2)K_2 < 10^(-2)
   $
 
   Starting off with $10^(-1)$:
-   $
-   (sqrt(pi/2))^3 / (12 N^2)K_2 &< 10^(-1) \ 
-   1 / ( N^2) &< ((12) (10^(-1))) / (K_2 (sqrt(pi/2))^3) wide 12, (sqrt(pi/2))^3, K_2 > 0 \ 
+  $
+    (sqrt(pi/2))^3 / (12 N^2)K_2 & < 10^(-1) \
+                      1 / ( N^2) & < ((12) (10^(-1))) / (K_2 (sqrt(pi/2))^3) wide 12, (sqrt(pi/2))^3, K_2 > 0 \
+                             N^2 & > (K_2 (sqrt(pi/2))^3)/((12) (10^(-1))) \
+                               N & > sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-1))))
+  $
 
-    N^2 &>  (K_2 (sqrt(pi/2))^3)/((12) (10^(-1))) \
-
-    N &>  sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-1))))
-   $
-
-   With $K_2 = 2pi $ from part c: 
-   $
-    //  N &>  sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-1)))) \ 
-     N &> sqrt((( 2pi) (sqrt(pi/2))^3)/((12) (10^(-1)))) approx 3.21062230801
-   $
-   Therefore, since $N in ZZ$ the smallest $N$ for which the approximation is within $10^(-1)$ is: 
-   $
-     N = 4
-   $
+  With $K_2 = 2pi$ from part c:
+  $
+    //  N &>  sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-1)))) \
+    N & > sqrt((( 2pi) (sqrt(pi/2))^3)/((12) (10^(-1)))) approx 3.21062230801
+  $
+  Therefore, since $N in ZZ$ the smallest $N$ for which the approximation is within $10^(-1)$ is:
+  $
+    N = 4
+  $
 
 
-   Similarly, for $10^(-2)$: 
-   $
-    //  N &> sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-2)))) \ 
-      N &> sqrt(((2pi) (sqrt(pi/2))^3)/((12) (10^(-2)))) approx 10.1528791998\ 
-   $
+  Similarly, for $10^(-2)$:
+  $
+    //  N &> sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-2)))) \
+    N & > sqrt(((2pi) (sqrt(pi/2))^3)/((12) (10^(-2)))) approx 10.1528791998 \
+  $
 
-   Therefore the smallest $N$ for which the approximation is within $10^(-2)$ is: 
-   $
-     N = 11
-   $
-  
+  Therefore the smallest $N$ for which the approximation is within $10^(-2)$ is:
+  $
+    N = 11
+  $
+
 
 
 + #p[In class, we proved Part 2 of the Fundamental Theorem of Calculus, which states that if $f$ is a continuous function on the interval $[a, b]$ and F is any antiderivative of $f$, then
@@ -907,47 +903,47 @@
         F(b) - F(a) = int^b_a f(x) dif x
       $]
 
-  We have shown that:
-  $
-    F(b) - F(a) = sum_(i=1)^n (F(x_i) - F(x_(i-1)))
-  $
-  and that there exists some $c_i in (x_i, x_(i-1))$ such that
-  $
-    F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
-  $
+    We have shown that:
+    $
+      F(b) - F(a) = sum_(i=1)^n (F(x_i) - F(x_(i-1)))
+    $
+    and that there exists some $c_i in (x_i, x_(i-1))$ such that
+    $
+      F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
+    $
 
-  for any $f(x)$ continuous on the interval $[a, b]$, any antiderivative of $f(x)$, $F(x)$, any intervals $a = x_0 < x_1 < x_2 < ... < x_n = b$.
+    for any $f(x)$ continuous on the interval $[a, b]$, any antiderivative of $f(x)$, $F(x)$, any intervals $a = x_0 < x_1 < x_2 < ... < x_n = b$.
 
-  Combining these statements we get:
-  $
-    F(b) - F(a) = sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))
-  $
+    Combining these statements we get:
+    $
+      F(b) - F(a) = sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))
+    $
 
-  Taking the limit of both sides as $n$ approaches $infinity$:
-  $
-    lim_(n -> infinity) (F(b) - F(a)) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) \
-    F(b) - F(a) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1))))
-  $
+    Taking the limit of both sides as $n$ approaches $infinity$:
+    $
+      lim_(n -> infinity) (F(b) - F(a)) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) \
+      F(b) - F(a) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1))))
+    $
 
-  Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation.
+    Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation.
 
-  Since for any function $g(x)$ defined on any interval $[u, v]$:
-  $
-    lim_(n->infinity)sum_(i = 1)^n g(x + i Delta x) Delta x = int_u^v g(x)
-  $
-  Where $Delta x = display((u - v) / n)$.
+    Since for any function $g(x)$ defined on any interval $[u, v]$:
+    $
+      lim_(n->infinity)sum_(i = 1)^n g(x + i Delta x) Delta x = int_u^v g(x)
+    $
+    Where $Delta x = display((u - v) / n)$.
 
-  In our case $Delta x = x_i - x_(i-1)$. By definition $c_i$ exists in the interval $(x_i, x_(i-1))$, therefore we can substitute $x + i Delta x$ as $ c_i$ as this equality holds as long as the sampled point of the function lies within each interval of the sum (i.e the limit of left, right, and midpoint Riemann sums are equivalent).
+    In our case $Delta x = x_i - x_(i-1)$. By definition $c_i$ exists in the interval $(x_i, x_(i-1))$, therefore we can substitute $x + i Delta x$ as $c_i$ as this equality holds as long as the sampled point of the function lies within each interval of the sum (i.e the limit of left, right, and midpoint Riemann sums are equivalent).
 
-  So we can rewrite:
-  $
-    lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) = int_(x_0)^x_n f(x) = int_(a)^b f(x)
-  $
+    So we can rewrite:
+    $
+      lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) = int_(x_0)^x_n f(x) = int_(a)^b f(x)
+    $
 
-  Therefore:
-  $
-    #rect($ F(b) - F(a) = int^b_a f(x) dif x $)
-  $
+    Therefore:
+    $
+      #rect($ F(b) - F(a) = int^b_a f(x) dif x $)
+    $
 
 
 
