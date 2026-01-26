@@ -441,6 +441,8 @@
     )
   })]
 
+  #colbreak()
+
 + #p[Recall in class we proved that $display(sum_(i = 1)^k i = (k(k+1))/2)$. In this problem, we will construct a proof of #block($display(S = sum_(i = 1)^k i^2)$)]
 
   + #p[Calculate the value of $S$ for $k = 1,2,3$ and $4$.]
@@ -896,6 +898,8 @@
   // $
   //   f(x_i) - f(x_(i-1)) = (x_i - x_(i-1)) dif / (dif x) (f(c_i))
   // $
+  
+    #colbreak()
 
 
   + #p[Now build an appropriate Riemann sum for $f$ on $[a,b]$ and show that
