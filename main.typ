@@ -629,23 +629,143 @@
 
     By definition "$K_2$ is any number such that $abs(f prime prime (x)) <= K_2$ for all $x in [a,b]$."
 
-    In our case, $f(x) = sin(x^2)$ and $a = 0, b = sqrt(pi/2)$. Therefore, we must bound $dif^2/(dif x^2) sin(x^2)$:
+    In our case, $f(x) = sin(x^2)$ and $a = 0, b = sqrt(pi/2)$. Therefore, we must bound $f prime prime (x)$ on $[0, sqrt(pi/2)]$:
     $
       // dif /(dif x) sin(x^2) &= 2x cos(x^2) \ 
-      dif^2/(dif x^2) sin(x^2) = dif /(dif x) 2x cos(x^2) = 2cos(x^2) - 4x^2 sin(x^2)
+      dif^2/(dif x^2) sin(x^2) = dif /(dif x) 2x cos(x^2) = 2cos(x^2) - 4x^2 sin(x^2)\
+      f prime prime (x) = 2cos(x^2) - 4x^2 sin(x^2)
     $
-    Let $g(x) = 2cos(x^2) - 4x^2 sin(x^2)$
 
-    In other words, we must find $max(g(x))$ on $[0, sqrt(pi/2)]$. 
+    Using the Triangle Inequality: 
+    $
+      abs(2cos(x^2) - 4x^2 sin(x^2)) <= abs(2cos(x^2)) + abs(- 4x^2 sin(x^2))
+    $
+    Therefore: 
+    $
+      abs(f prime prime (x)) <= abs(2cos(x^2)) + abs(- 4x^2 sin(x^2))
+    $
+    We can improve this by noting that $x > 0$ for all $x in [0, sqrt(pi/2)]$:
+    $
+      abs(f prime prime (x)) <= abs(2cos(x^2)) + 4x^2abs(sin(x^2))
+    $
 
-    First, we can find critical points: 
     $
-      dif /(dif x) g(x) &= dif /(dif x) ( 2cos(x^2) - 4x^2 sin(x^2) )\
-      &= -4x sin(x^2) - 8x sin(x^2) - 8x^3 cos(x^2) 
+      abs(2cos(x^2)) <= 2  wide abs(sin(x^2)) <= 1
     $
+    For $4x^2$ we can look at critical points and endpoints: 
+    $
+      dif/(dif x) 4x^2 = 8x \
+      8x = 0  \
+      x = 0  \
+
+    $ \
+    Evaluating, 
+    $
+    4(0)^2 = 0 \ 
+    4(sqrt(pi/2))^2 = 2pi > 0
+    $
+    Therefore $max(4x^2)$ for all $x in [0, sqrt(pi/2)]$ is $4(sqrt(pi/2))^2$. 
+
+    So: 
+    $
+      abs(f prime prime (x)) <= abs(2cos(x^2)) + 4x^2abs(sin(x^2)) \ 
+      abs(f prime prime (x)) <= 2 + 2pi
+    $
+
+    So we can set a good bound: 
+
+    $
+      K_2 = 2 + 2pi
+    $
+
+
+
+    // For $abs(- 4x^2 sin(x^2))$ we can evaluate at endpoints: 
+    // $
+    //   abs(- 4(0)^2 sin(0^2)) = 0 \ 
+    //   abs(- 4(sqrt(pi/2))^2 sin(sqrt(pi/2)^2)) = 2pi
+    //   dif /(dif x) (- 4x^2 sin(x^2)) = 
+    // $
+
+    // Unmark this!
+    // Let $g(x) = 2cos(x^2) - 4x^2 sin(x^2)$
+
+    // In other words, we must find $max(abs(g(x)))$ on $[0, sqrt(pi/2)]$. 
+
+    // First, we can look at endpoints: 
+    // $
+    //   g(0) &= 2cos(0^2) - 4(0^2) sin(0^2) = 2 \ 
+    //   g(sqrt(pi/2)) &= 2cos(sqrt(pi/2)^2) - 4(sqrt(pi/2)^2) sin(sqrt(pi/2)^2) = -2pi \ 
+
+    // $
+    
+    // We can then find critical points: 
+    // $
+    //   0 &= dif /(dif x) g(x)\
+    //    &= dif /(dif x) ( 2cos(x^2) - 4x^2 sin(x^2) )\
+    //   &= -4x sin(x^2) - 8x sin(x^2) - 8x^3 cos(x^2)  \ 
+    //   0 &= -12x sin(x^2) - 8x^3 cos(x^2)  \
+    //   $
+    //   $
+    //   12x sin(x^2) &= - 8x^3 cos(x^2)  \
+    //   sin(x^2) / cos(x^2) &= (- 8x^3)   / (12x)  \
+    //   tan(x^2) &= (- 8 / 12) x^2   \
+    // $
+
+    // There doesn't seem to be any apparent zeros between 
 
 
   + #p[Find the value of (the smallest) $N$ which guarantees the trapezoid rule approximates the Fresnel Integral with errors less than $10^(-1)$ and $10^(-2)$. Be sure to justify your answers.]
+
+
+  The bound on the error from the trapezoid rule is: 
+  $
+    abs(int_a^b f(x) dif x - (b-a)/N sum^N_(k=1) (f(x_k) + f(x_(k-1)) ) / 2,) <= (b-a)^3 / (12 N^2)K_2
+  $
+  In our case, $f(x) = sin(x^2)$ and $a = 0, b = sqrt(pi/2)$.
+  $
+    abs(int_a^b sin(x^2) dif x - (sqrt(pi/2))/N sum^N_(k=1) (sin(x_k^2) + sin(x_(k-1)^2) ) / 2,) <= (sqrt(pi/2))^3 / (12 N^2)K_2
+  $
+
+  Therefore we can just find values of $N$ for which: 
+  $
+    (sqrt(pi/2))^3 / (12 N^2)K_2 < 10^(-1) wide
+    "and"  wide
+    (sqrt(pi/2))^3 / (12 N^2)K_2 < 10^(-2)
+  $
+
+  Starting off:
+   $
+   (sqrt(pi/2))^3 / (12 N^2)K_2 &< 10^(-1) \ 
+   1 / ( N^2) &< ((12) (10^(-1))) / (K_2 (sqrt(pi/2))^3) wide 12, (sqrt(pi/2))^3, K_2 > 0 \ 
+
+    N^2 &>  (K_2 (sqrt(pi/2))^3)/((12) (10^(-1))) \
+
+    N &>  sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-1))))
+   $
+
+   With $K_2 = 2 + 2pi$ from part c: 
+   $
+     N &>  sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-1)))) \ 
+     N &> sqrt(((2 + 2pi) (sqrt(pi/2))^3)/((12) (10^(-1)))) approx 3.68
+   $
+   Therefore, since $N in ZZ$ the smallest $N$ for which the approximation within $10^(-1)$ is: 
+   $
+     N = 4
+   $
+
+
+   Similarly, for $10^(-2)$: 
+   $
+     N &> sqrt((K_2 (sqrt(pi/2))^3)/((12) (10^(-2)))) \ 
+      N &> sqrt(((2 + 2pi) (sqrt(pi/2))^3)/((12) (10^(-2)))) approx 11.66\ 
+   $
+
+   Therefore the smallest $N$ for which the approximation within $10^(-1)$ is: 
+   $
+     N = 12
+   $
+  
 
 
 + #p[In class, we proved Part 2 of the Fundamental Theorem of Calculus, which states that if $f$ is a continuous function on the interval $[a, b]$ and F is any antiderivative of $f$, then
