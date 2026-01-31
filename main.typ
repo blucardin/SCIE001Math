@@ -326,7 +326,7 @@
 
     *False*
 
-    #todo("Add a proof by intuition showing that since f(x) is always increasing and f(1) = 0, for all x < 1, f(x) < 0, therefore its integral up to one should be below 0")
+    // #todo("Add a proof by intuition showing that since f(x) is always increasing and f(1) = 0, for all x < 1, f(x) < 0, therefore its integral up to one should be below 0")
 
     Proof by counterexample.
 
@@ -495,7 +495,11 @@
     )
   })]
 
-  #todo("Include a hand-drawn sketch")
+  For completeness, a hand-drawn sketch of a general $F(x)$ is also included: 
+
+  #image("IMG_4366.jpeg", height: 30%)
+
+  // #todo("Include a hand-drawn sketch")
 
   #colbreak()
 
@@ -999,9 +1003,7 @@
       F(b) - F(a) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1))))
     $
 
-    Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation.
-
-    Since for any function $g(x)$ defined on any interval $[u, v]$:
+    Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation, since for any function $g(x)$ defined on any interval $[u, v]$:
     $
       lim_(n->infinity)sum_(i = 1)^n g(x + i Delta x) Delta x = int_u^v g(x)
     $
