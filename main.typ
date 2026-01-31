@@ -165,7 +165,25 @@
     Determine if each statement is True or False. Justify your answer.
   ]
   + #p[The function $F(x)$ is continuous.]
+
+    // #todo("Include a proof by FTC")
     *True*
+
+    Taking the derivative of both sides:
+    $
+      dif/(dif x) F(x) = dif/(dif x) int_0^x f(t) dif t
+    $
+    By the Fundamental Theorem of Calculus:
+    $
+      dif/(dif x) F(x) = f(x)
+    $
+
+    We know $f(x)$ exists for all $x$, therefore $dif/(dif x) F(x)$ must exist for all $x$, hence $F(x)$ is differentiable for all $x$. Since differentiability implies continuity $F(x)$ must therefore be continuous for all $x$.
+
+    Therefore $F(x)$ is continuous for all $x$.
+
+    *A different proof is given below for fun.*
+
 
     For $F(x)$ to be continuous for all $x$:
     $
@@ -177,7 +195,7 @@
     $
     To do this, we can show that we can rearrange the left side to equal the right side.
 
-    Expanding the integral gives:
+    Expanding the left integral to a Riemann Sum gives:
     $
       lim_(a->x) (lim_(n->infinity) sum_(i=1)^n (a-0)/n f(i(a-0)/n +0) )\
       =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n ))
@@ -213,8 +231,12 @@
       lim_(a->x) int_0^a f(t) dif t =lim_(a->x)( lim_(n->infinity) sum_(i=1)^n (a)/n f(i a/n )) = lim_(n->infinity) sum_(i=1)^n (x)/n f(i x/n ) = int_0^x f(t) dif t\
     $
 
+    // #todo("Add to the right that theis expession is euqal to the limit of F(x), and to the left that this is equal to F(x)")
+
+
     So:
     $
+      lim_(a->x) int_0^a f(t) dif t = int_0^x f(t) dif t \
       lim_(a->x) F(a) = F(x)
     $
     Therefore $F(x)$ is continuous for all $x$.
@@ -250,7 +272,7 @@
 
     *True*
 
-    For $x = 1$ to be a critical point of $F$:
+    By definition, for $x = 1$ to be a critical point of $F$:
     $
       dif/(dif x) F(1) = 0
     $
@@ -261,7 +283,7 @@
       dif/(dif x) F(x) = f(x)
     $
 
-    and by definition we know:
+    And by definition we know:
     $
       f(1) = 0.
     $
@@ -294,7 +316,7 @@
 
     From part c we know $F(x)$ has a critical point at $x = 1$.
 
-    If a function has a critical point at $x = c$ and is concave up for all $x$ including $x = c$, it must therefore have have a local minima at $x = c$.
+    By the second derivative test, if a function has a critical point at $x = c$ and is concave up for all $x$ including $x = c$, it must therefore have have a local minima at $x = c$.
 
     // This is because, by contradiction, if the function has a local maximum, or no extrema at $x = c$, either it must have some point where it is concave down, or it would not have a critical point at $x = c$.
 
@@ -303,6 +325,8 @@
   + #p[$F(1) > 0$.]
 
     *False*
+
+    #todo("Add a proof by intuition showing that since f(x) is always increasing and f(1) = 0, for all x < 1, f(x) < 0, therefore its integral up to one should be below 0")
 
     Proof by counterexample.
 
@@ -313,7 +337,7 @@
     $
     Setting:
     $
-      F(x) = int_0^x f(t) dif t
+      F(x) = int_0^x f(t) dif t = int_0^x t - 1 dif t
     $
     We can solve:
     $
@@ -326,6 +350,36 @@
 
     Therefore there exists at least one example of some $f(x)$ for which $F(1) < 0$, so the statement $F(1) > 0$ is false.
 
+    *Another proof is included for fun below. *
+
+    Since by definition: 
+    $
+      F(x) = int_0^x f(t) dif t
+    $
+    $F(x)$ represents the signed area under the curve of $f(t)$ from $t=0$ to $t = x$. 
+
+    We know that $f'(t) > 0$ for all $t$, therefore $f(t)$ is always increasing as $t$ approaches $infinity$. 
+
+    We also know, $f(1) = 0$. 
+    
+    If a function is always increasing as $t$ approaches $infinity$, it must be always decreasing as $t$ approaches $-infinity$. 
+    As a result for all $x < t$: 
+    $
+      f(x) < f(t)
+    $
+    
+    Therefore, for all $x < 1$, $
+    f(x) < f(1) = 0\ 
+    f(x) < 0
+    $
+
+    Since the area under a curve below $0$ is negative, and all sections of $f(x)$ are negative for all $x < 1$ (and at $x = 1, f(x) = 0$). It is intuitive that the area under the curve of $f(t)$ from $t=0$ to $t=1$ should be negative. 
+
+    Therefore: 
+    $
+      0 > int_0^1 f(t) dif t = F(1) \
+      therefore F(1) < 0
+    $
 
 
   // *Lemma 1: If a continuous function has a critical point at $x = 1$ and is concave up for all $x$, it must therefore take a global minimum at $x = 1$. *
@@ -440,6 +494,8 @@
       },
     )
   })]
+
+  #todo("Include a hand-drawn sketch")
 
   #colbreak()
 
@@ -703,11 +759,19 @@
       0 & = 3sin(x^2) + 2x^2 cos(x^2) wide x = 0
     $
 
-    For all $x in [0, sqrt(pi/2)]$:
+
+    We now must show that $g(x)$ has no more critical points other than $x = 0$. In other words, showing that $3sin(x^2) + 2x^2 cos(x^2) != 0$ for all $x in (0, sqrt(pi/2)]$. 
+
+    At $x = sqrt(pi/2)$, $3sin(x^2) + 2x^2 cos(x^2) = 3 $. So now we only have to check $x in (0, sqrt(pi/2))$
+    
+
+    For all $x in (0, sqrt(pi/2))$:
     $
       x^2 > 0 \
       sin(x^2) > 0 \
       cos(x^2) > 0 \
+      // #todo[This is wrong, should be greater than or euqals or adjust bounds]
+
     $
     Hence:
     $
@@ -718,7 +782,7 @@
     $
     Therefore there are no solutions to:
     $
-      0 = 3sin(x^2) + 2x^2 cos(x^2)
+      0 = 3sin(x^2) + 2x^2 cos(x^2) "for" x in (0, sqrt(pi/2))
     $
     So $g(x)$ has only one critical point at $x = 0$, and two end points at $x = 0, sqrt(pi/2)$ on $[0, sqrt(pi/2)]$.
     $
@@ -726,7 +790,7 @@
       g(sqrt(pi/2)) & = 2cos(sqrt(pi/2)^2) - 4(sqrt(pi/2)^2) sin(sqrt(pi/2)^2) = -2pi \
     $
 
-    Therefore, the extrema of $g(x)$ on $[0, sqrt(pi/2)]$ are $g(0) = 2$ and $g(sqrt(pi/2)) = -2pi$. So:
+    Therefore, the global extrema of $g(x)$ on $[0, sqrt(pi/2)]$ are $g(0) = 2$ and $g(sqrt(pi/2)) = -2pi$. So:
     $
       max(abs(g(x))) = 2 pi \
       max(abs(f''(x))) = 2 pi \
@@ -756,8 +820,10 @@
   $
   In our case, $f(x) = sin(x^2)$ and $a = 0, b = sqrt(pi/2)$.
   $
-    abs(int_a^b sin(x^2) dif x - (sqrt(pi/2))/N sum^N_(k=1) (sin(x_k^2) + sin(x_(k-1)^2) ) / 2,) <= (sqrt(pi/2))^3 / (12 N^2)K_2
+    abs(int_0^sqrt(pi/2) sin(x^2) dif x - (sqrt(pi/2))/N sum^N_(k=1) (sin(x_k^2) + sin(x_(k-1)^2) ) / 2,) <= (sqrt(pi/2))^3 / (12 N^2)K_2
   $
+
+  // #todo("Add the bounds here, a, b")
 
   Therefore we can just find values of $N$ for which:
   $
@@ -781,7 +847,7 @@
   $
   Therefore, since $N in ZZ$ the smallest $N$ for which the approximation is within $10^(-1)$ is:
   $
-    N = 4
+    #rect($ N = 4 $)
   $
 
 
@@ -793,7 +859,7 @@
 
   Therefore the smallest $N$ for which the approximation is within $10^(-2)$ is:
   $
-    N = 11
+    #rect($ N = 11 $)
   $
 
 
@@ -837,7 +903,7 @@
     $
     By definition $x_n = b$ and $x_0 = a$, therefore
     $
-      sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(b) - F(a)
+      #rect($ sum_(i=1)^n (F(x_i) - F(x_(i-1))) = F(b) - F(a) $)
     $
 
   + #p[Now suppose that $F$ is any antiderivative of $f$. Show that there exists a number $c_i$ in
@@ -849,7 +915,9 @@
     ]
 
 
-    * Could be made more concise*
+    // * Could be made more concise*
+
+    // #todo("Remove this")
 
 
     Let $g(x)$ be a function continuous on the interval $[j, k]$.
@@ -864,7 +932,7 @@
       (G(k) - G(j))/(k - j) = G prime (u)
     $
 
-    Since $G prime (u) = g(u)$, we can rearrange:
+    Since by definition, $G prime (u) = g(u)$, we can rearrange:
 
     $
       G(k) - G(j) = g (u) (k - j)
@@ -876,7 +944,7 @@
 
     $F(x)$ is an antiderivative of a function $f(x)$.
 
-    Therefore, $f(x)$ and $F(x)$ on $[x_(i-1), x_i]$ is analogous to $g(x)$ and $G(x)$ on $[j, k]$, so there must exist some $c_i$ in $(x_(i-1), x_i)$ such that:
+    Therefore, $f(x)$ and $F(x)$ on $[x_(i-1), x_i]$ is analogous to $g(x)$ and $G(x)$ on $[j, k]$. Therefore, there must exist some $c_i$ in $(x_(i-1), x_i)$ such that:
 
     $
       F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
@@ -913,7 +981,7 @@
     $
       F(b) - F(a) = sum_(i=1)^n (F(x_i) - F(x_(i-1)))
     $
-    and that there exists some $c_i in (x_i, x_(i-1))$ such that
+    And that there exists some $c_i in (x_i, x_(i-1))$ such that
     $
       F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
     $
@@ -940,6 +1008,8 @@
     Where $Delta x = display((u - v) / n)$.
 
     In our case $Delta x = x_i - x_(i-1)$. By definition $c_i$ exists in the interval $(x_i, x_(i-1))$, therefore we can substitute $x + i Delta x$ as $c_i$ as this equality holds as long as the sampled point of the function lies within each interval of the sum (i.e the limit of left, right, and midpoint Riemann sums are equivalent).
+
+    #todo("Look into improving this proof")
 
     So we can rewrite:
     $
