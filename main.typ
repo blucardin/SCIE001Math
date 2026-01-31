@@ -178,7 +178,7 @@
       dif/(dif x) F(x) = f(x)
     $
 
-    We know $f(x)$ exists for all $x$, therefore $dif/(dif x) F(x)$ must exist for all $x$, hence $F(x)$ is differentiable for all $x$. Since differentiability implies continuity $F(x)$ must therefore be continuous for all $x$.
+    We know $f(x)$ exists for all $x$, hence $dif/(dif x) F(x)$ must exist for all $x$, therefore $F(x)$ is differentiable for all $x$. Since differentiability implies continuity $F(x)$ must therefore be continuous for all $x$.
 
     Therefore $F(x)$ is continuous for all $x$.
 
@@ -330,7 +330,7 @@
 
     Proof by counterexample.
 
-    Let $f(x) = x - 1$. This satisfies our definition. $f$ is differentiable.
+    Let $f(x) = x - 1$. This satisfies our definition of $f$. $f$ is differentiable.
     $
       f(1) = 1 - 1 = 0 \
       f prime (x) = 1 > 0
@@ -352,30 +352,28 @@
 
     *Another proof is included for fun below. *
 
-    Since by definition: 
+    Since by definition:
     $
       F(x) = int_0^x f(t) dif t
     $
-    $F(x)$ represents the signed area under the curve of $f(t)$ from $t=0$ to $t = x$. 
+    $F(x)$ represents the signed area under the curve of $f(t)$ from $t=0$ to $t = x$.
 
-    We know that $f'(t) > 0$ for all $t$, therefore $f(t)$ is always increasing as $t$ approaches $infinity$. 
+    We know that $f'(t) > 0$ for all $t$, therefore $f(t)$ is always increasing as $t$ approaches $infinity$.
 
-    We also know, $f(1) = 0$. 
-    
-    If a function is always increasing as $t$ approaches $infinity$, it must be always decreasing as $t$ approaches $-infinity$. 
-    As a result for all $x < t$: 
+    We also know, $f(1) = 0$.
+
+    If a function is always increasing as $t$ approaches $infinity$, it must be always decreasing as $t$ approaches $-infinity$.
+    As a result for all $x < t$:
     $
       f(x) < f(t)
     $
-    
-    Therefore, for all $x < 1$, $
-    f(x) < f(1) = 0\ 
-    f(x) < 0
-    $
 
-    Since the area under a curve below $0$ is negative, and all sections of $f(x)$ are negative for all $x < 1$ (and at $x = 1, f(x) = 0$). It is intuitive that the area under the curve of $f(t)$ from $t=0$ to $t=1$ should be negative. 
+    Therefore, for all $x < 1$, $ f(x) < f(1) = 0\
+    f(x) < 0 $
 
-    Therefore: 
+    Since the area under a curve below $0$ is negative, and all sections of $f(x)$ are negative for all $x < 1$ (and at $x = 1, f(x) = 0$), it is intuitive that the area under the curve of $f(t)$ from $t=0$ to $t=1$ should be negative.
+
+    Therefore:
     $
       0 > int_0^1 f(t) dif t = F(1) \
       therefore F(1) < 0
@@ -444,7 +442,7 @@
   $
   Setting:
   $
-    F(x) = int_0^x f(t) dif t
+    F(x) = int_0^x f(t) dif t = int_0^x t - 1 dif t
   $
   We can solve:
   $
@@ -495,9 +493,11 @@
     )
   })]
 
-  For completeness, a hand-drawn sketch of a general $F(x)$ is also included: 
+  For completeness, a hand-drawn sketch of a general $F(x)$ is also included:
 
-  #image("IMG_4366.jpeg", height: 30%)
+  #align(center)[
+    #image("IMG_4366.jpeg", height: 30%)
+  ]
 
   // #todo("Include a hand-drawn sketch")
 
@@ -507,10 +507,10 @@
 
   + #p[Calculate the value of $S$ for $k = 1,2,3$ and $4$.]
     $
-      S_(k=1) &= sum_(i = 1)^1 i^2 = 1^2 &= 1 \
-      S_(k=2) &= sum_(i = 1)^2 i^2 = 1^2 + 2^2 &= 5 \
-      S_(k=3) &= sum_(i = 1)^3 i^2 = 1^2 + 2^2 + 3^2 &= 14 \
-      S_(k=4) &= sum_(i = 1)^4 i^2 = 1^2 + 2^2 + 3^2 + 4^2 &= 30 \
+      S_(k=1) & = sum_(i = 1)^1 i^2 = 1^2                   &  = 1 \
+      S_(k=2) & = sum_(i = 1)^2 i^2 = 1^2 + 2^2             &  = 5 \
+      S_(k=3) & = sum_(i = 1)^3 i^2 = 1^2 + 2^2 + 3^2       & = 14 \
+      S_(k=4) & = sum_(i = 1)^4 i^2 = 1^2 + 2^2 + 3^2 + 4^2 & = 30 \
     $
 
   + #p[Calculate the value of $display((k(k+1)(2k+1))/6)$ for $k = 1, 2, 3$, and $4$]
@@ -571,7 +571,7 @@
                & = (n(2n + 1)(n + 1))/6 + (n + 1)^2 \
                & = g(n) + (n + 1)^2
     $
-    Putting them together, by definition
+    Putting them together, by definition:
     $
       f(n) = g(n) \
       f(n) + (n + 1)^2 = g(n) + (n + 1)^2 \
@@ -764,10 +764,10 @@
     $
 
 
-    We now must show that $g(x)$ has no more critical points other than $x = 0$. In other words, showing that $3sin(x^2) + 2x^2 cos(x^2) != 0$ for all $x in (0, sqrt(pi/2)]$. 
+    We now must show that $g(x)$ has no more critical points other than $x = 0$. In other words, showing that $3sin(x^2) + 2x^2 cos(x^2) != 0$ for all $x in (0, sqrt(pi/2)]$.
 
-    At $x = sqrt(pi/2)$, $3sin(x^2) + 2x^2 cos(x^2) = 3 $. So now we only have to check $x in (0, sqrt(pi/2))$
-    
+    At $x = sqrt(pi/2)$, $3sin(x^2) + 2x^2 cos(x^2) = 3$. So now we only have to check $x in (0, sqrt(pi/2))$
+
 
     For all $x in (0, sqrt(pi/2))$:
     $
@@ -775,7 +775,6 @@
       sin(x^2) > 0 \
       cos(x^2) > 0 \
       // #todo[This is wrong, should be greater than or euqals or adjust bounds]
-
     $
     Hence:
     $
@@ -954,25 +953,25 @@
       F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
     $
 
-  // * Remember to rewrite this with proper logic *
+    // * Remember to rewrite this with proper logic *
 
 
-  // Take the derivative of both sides:
-  // $
-  //   dif / (dif x) (F(x_i) - F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
-  //   dif / (dif x) (F(x_i)) - dif / (dif x)  (F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
-  // $
+    // Take the derivative of both sides:
+    // $
+    //   dif / (dif x) (F(x_i) - F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
+    //   dif / (dif x) (F(x_i)) - dif / (dif x)  (F(x_(i-1))) = dif / (dif x) (f(c_i)(x_i - x_(i-1))) \
+    // $
 
-  // Since $F$ is an antiderivative of $f$:
-  // $
-  //   dif / (dif x)  (F(x)) = f(x)
-  // $
+    // Since $F$ is an antiderivative of $f$:
+    // $
+    //   dif / (dif x)  (F(x)) = f(x)
+    // $
 
-  // Therefore:
-  // $
-  //   f(x_i) - f(x_(i-1)) = (x_i - x_(i-1)) dif / (dif x) (f(c_i))
-  // $
-  
+    // Therefore:
+    // $
+    //   f(x_i) - f(x_(i-1)) = (x_i - x_(i-1)) dif / (dif x) (f(c_i))
+    // $
+
     #colbreak()
 
 
@@ -990,7 +989,7 @@
       F(x_i) - F(x_(i-1)) = f(c_i)(x_i - x_(i-1))
     $
 
-    for any $f(x)$ continuous on the interval $[a, b]$, any antiderivative of $f(x)$, $F(x)$, any intervals $a = x_0 < x_1 < x_2 < ... < x_n = b$.
+    for any $f(x)$ continuous on the interval $[a, b]$, any antiderivative of $f(x)$: $F(x)$, and any intervals $a = x_0 < x_1 < x_2 < ... < x_n = b$.
 
     Combining these statements we get:
     $
@@ -1011,7 +1010,7 @@
 
     In our case $Delta x = x_i - x_(i-1)$. By definition $c_i$ exists in the interval $(x_i, x_(i-1))$, therefore we can substitute $x + i Delta x$ as $c_i$ as this equality holds as long as the sampled point of the function lies within each interval of the sum (i.e the limit of left, right, and midpoint Riemann sums are equivalent).
 
-    #todo("Look into improving this proof")
+    // #todo("Look into improving this proof")
 
     So we can rewrite:
     $
