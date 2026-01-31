@@ -1004,7 +1004,7 @@
 
     Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation, since for any continuous function $g(x)$ defined on any interval $[u, v]$:
     $
-      lim_(n->infinity)sum_(i = 1)^n g(x + i Delta x) Delta x = int_u^v g(x)
+      lim_(n->infinity)sum_(i = 1)^n g(x + i Delta x) Delta x = int_u^v g(x) dif x
     $
     Where $Delta x = display((v - u) / n)$.
 
@@ -1014,7 +1014,7 @@
 
     So we can rewrite:
     $
-      lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) = int_(x_0)^x_n f(x) = int_(a)^b f(x)
+      lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) = int_(x_0)^x_n f(x) dif x = int_(a)^b f(x) dif x
     $
 
     Therefore:
