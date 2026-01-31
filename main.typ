@@ -897,7 +897,7 @@
       // We can further expand:
       // $
       // (sum_(i=1)^n F(x_i))  - sum_(i=1)^n F(x_(i-1))) \
-      = ( F(x_1) + F(x_2) + ... + F(n - 1) + F(x_n) ) - ( F(x_0) + F(x_1) + F(x_2) + ... + F(x_n-1) )
+      = ( F(x_1) + F(x_2) + ... + F(x_(n - 1)) + F(x_n) ) - ( F(x_0) + F(x_1) + F(x_2) + ... + F(x_(n-1) ))
     $
 
     All terms except for $F(x_0)$ and $F(x_n)$ cancel, leaving:
@@ -925,7 +925,7 @@
 
     Let $g(x)$ be a function continuous on the interval $[j, k]$.
 
-    Let $G(x)$ be any antiderivative of a function $g(x)$.
+    Let $G(x)$ be any antiderivative of the function $g(x)$.
 
     By definition, $G(x)$ is differentiable on $[j, k]$, and since differentiability implies continuity, is also continuous on $[j, k]$.
 
@@ -1002,11 +1002,11 @@
       F(b) - F(a) = lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1))))
     $
 
-    Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation, since for any function $g(x)$ defined on any interval $[u, v]$:
+    Noting that the right hand is equivalent to the limit of the Riemann sum of $f(x)$ as the number of intervals approaches infinity, we can rewrite it in integral notation, since for any continuous function $g(x)$ defined on any interval $[u, v]$:
     $
       lim_(n->infinity)sum_(i = 1)^n g(x + i Delta x) Delta x = int_u^v g(x)
     $
-    Where $Delta x = display((u - v) / n)$.
+    Where $Delta x = display((v - u) / n)$.
 
     In our case $Delta x = x_i - x_(i-1)$. By definition $c_i$ exists in the interval $(x_i, x_(i-1))$, therefore we can substitute $x + i Delta x$ as $c_i$ as this equality holds as long as the sampled point of the function lies within each interval of the sum (i.e the limit of left, right, and midpoint Riemann sums are equivalent).
 
