@@ -1017,6 +1017,8 @@
       lim_(n -> infinity) ( sum_(i=1)^n (f(c_i)(x_i - x_(i-1)))) = int_(x_0)^x_n f(x) dif x = int_(a)^b f(x) dif x
     $
 
+    Where $x$ is different from $x_0$ and $x_n$. 
+
     Therefore:
     $
       #rect($ F(b) - F(a) = int^b_a f(x) dif x $)
