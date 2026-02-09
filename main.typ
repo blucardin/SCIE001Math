@@ -113,6 +113,10 @@
 
 #let lim = math.limits(math.lim)
 #let int = $integral$;
+#let dx = $dif x$;
+#let du = $dif u$;
+#let dp = $dif p$;
+#let dt = $dif t$;
 
 // #set heading(numbering: "1.")
 
@@ -157,23 +161,79 @@
 // #line(length: 100%)
 // #show math.integral: math.display
 
-+ 
++
   + #p[
-    For this problem, consider the integral:
-    $
-      S = int_0^(2pi) sin^k(x) dif x
-    $
-    If $k$ is an odd positive integer, determine the value of S.
-  ]
+      For this problem, consider the integral:
+      $
+        S = int_0^(2pi) sin^k (x) dif x
+      $
+      If $k$ is an odd positive integer, determine the value of S.
+    ]
+
+  // First, we can evaluate the case where $k = 1$:
+
+  // #todo("Maybe remove this")
+
+  // $
+  //   S & = int_0^(2pi) sin^1 (x) dif x \
+  //     & = lr(- cos (x) bar)_0^(2pi) \
+  //     & = - cos (2pi) - (- cos (0) ) \
+  //   S & = 0
+  // $
+
+  // By definition, for all $k != 1$:
+  // $ k > 1 $
+
+  // For all $k > 1$:
+  $
+    S = int_0^(2pi) sin^k (x) dif x & = int_0^(2pi) sin^(k - 1) (x) sin^(1) (x) dif x \
+  $
+  All odd numbers subtract 1 are even. And all even numbers are divisible by $2$, and hence are representable by some integer times 2.
+
+  Since $k$ is odd, $k - 1$ must be even. Therefore, we can let $2p = k - 1$, where $p$ is some positive integer such that $p >= 0$.
+
+  $
+    S & = int_0^(2pi) sin^(2p) (x) sin^(1) (x) dif x \
+      & = int_0^(2pi) (sin^(2) (x))^p sin^(1) (x) dif x \
+      & = int_0^(2pi) (1 - cos^(2) (x))^p sin^(1) (x) dif x wide "since " sin^2(x) + cos^2(x) = 1 \
+  $
+  $u$-substitution for $cos(x)$:
+  $
+    u = cos(x) wide dif u = -sin(x) dif x \
+  $
+  $
+    S & = int_0^(2pi) - (1 - cos^(2) (x))^p ( - sin^(x)) dif x \
+      & = - int_cos(0)^(cos(2pi)) (1 - u^2)^p dif u \
+      & = - int_1^(1) (1 - u^2)^p dif u \
+  $
+  Any integral from one number to itself is 0. So:
+  $
+    S & = - int_1^(1) (1 - u^2)^p dif u = 0 \
+  $
+  Therefore for any odd positive integer $k$:
+  $
+    #rect[S = 0]
+  $
+
+
   + #p[Calculate
       $
-        integral (1/x) sqrt(a^2 - x^2) dif
+        integral 1/x sqrt(a^2 - x^2) dif x
       $
 
       + by using a $u$-substitution.
       + by using a trig substitution.
       Then compare your results.
     ]
+    *First a $u$-substitution:*
+    $
+      int (1/x) sqrt(a^2 - x^2) dif x = int x^(-1) sqrt(a^2 - x^2) dif x
+    $
+    $
+      u = x^(-1) wide dif u = -1 x^(-2) dx 
+    $
+
+
 + #p[
     In tutorial, we looked at metapopulations and the Levins model derived by Richard Levins in 1969 which describes metapopulations as a means for studying spatially structured populations. In particular, the model tracks the proportion of patches that are occupied by the population, but does not track the density of the population nor which specific patches are inhabited. These subpopulations are modelled through the Levins model
     $
@@ -205,20 +265,20 @@
 
   + #p[Compute $Gamma(1)$.]
     $
-      Gamma(1) &= int_0^infinity t^(1-1)e^(-t) dif t \
-      &= int_0^infinity (1)e^(-t) dif t \
-      &= - int_0^infinity (-1)e^(-t) dif t \
+      Gamma(1) & = int_0^infinity t^(1-1)e^(-t) dif t \
+               & = int_0^infinity (1)e^(-t) dif t \
+               & = - int_0^infinity (-1)e^(-t) dif t \
       // Gamma(1) &= - e^(-t) + C wide "where C is a constant"
     $
 
-    // Since we are integrating from $0$, we know that: 
-    // $
-    //   0 &= - int_0^0 (-1)e^(-t) dif t \
-    //   therefore 0 &= - e^(-0) + C \
-    //   -C &= -1 \
-    //   C &= 1
-    // $
-    // So
+  // Since we are integrating from $0$, we know that:
+  // $
+  //   0 &= - int_0^0 (-1)e^(-t) dif t \
+  //   therefore 0 &= - e^(-0) + C \
+  //   -C &= -1 \
+  //   C &= 1
+  // $
+  // So
 
   + #p[Use integration by parts to show that $Gamma(x + 1) = x Gamma(x)$ for $x > 0$. ]
   + #p[Using the fact that $int_0^infinity e^(-t^2) dif t = sqrt(pi)/ 2$, compute $Gamma (1/2)$. Hint: Make a substitution. ]
