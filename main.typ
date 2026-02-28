@@ -112,12 +112,16 @@
 )
 
 #let lim = math.limits(math.lim)
-#let int = $integral$;
-#let dx = $dif x$;
-#let du = $dif u$;
-#let dp = $dif p$;
-#let dt = $dif t$;
-
+#let int = $integral$
+#let inf = $infinity$
+#let th = $theta$
+#let dx = $dif x$
+#let du = $dif u$
+#let dp = $dif p$
+#let dt = $dif t$
+#let dv = $dif v$
+#let dth = $dif th$
+#let lna(x) = $ln abs(#x)$
 // #set heading(numbering: "1.")
 
 #align(center + horizon)[
@@ -131,8 +135,8 @@
 
   SCIE 001 Math
 
-  Noah Virjee\
-  45515863
+  // Noah Virjee\
+  // 45515863
 
   #let today = datetime.today()
 
@@ -227,11 +231,89 @@
     ]
     *First a $u$-substitution:*
     $
-      int (1/x) sqrt(a^2 - x^2) dif x = int x^(-1) sqrt(a^2 - x^2) dif x
+      & int 1/x sqrt(a^2 - x^2) dif x \
+      // = int x^(-1) sqrt(a^2 - x^2) dif x
+      & = int 1/x ((-2x)/(-2x)) sqrt(a^2 - x^2) dif x \
+      & = int 1/(-2x^2) sqrt(a^2 - x^2) ( -2x) dif x wide u = a^2 - x^2 wide du = - 2x dx wide x = sqrt(a^2 - u) \
+      & =int 1/(-2 (sqrt(a^2 - u))^2) sqrt(u) du \
+      & = 1/(-2) int sqrt(u) /( (a^2 - u)) du \
+    $
+    Now we do a quick partial fractions:
+    $
+      sqrt(u) /( a^2 - u) = sqrt(u) / ( (a + sqrt(u)) (a - sqrt(u))) = A / (a + sqrt(u)) + B /(a - sqrt(u)) \
+      A(a - sqrt(u)) + B(a + sqrt(u)) = sqrt(u) \
+      A a - A sqrt(u) + B a + B sqrt(u) = sqrt(u) \
     $
     $
-      u = x^(-1) wide dif u = -1 x^(-2) dx 
+      A a + B a = 0 a & wide B sqrt(u) - A sqrt(u) = 1 sqrt(u) \
+            A + B = 0 & wide B - A = 1 \
+               -A = B & wide -A - A = 1 \
+            A = - 1/2 & wide B = 1/2 \
     $
+    So we can rewrite:
+    $
+      & 1/(-2) int sqrt(u) /( (a^2 - u)) du \
+      & = 1/(-2) int (- 1/2) / (a + sqrt(u)) + (1/2) /(a - sqrt(u)) du \
+      & = 1/(-2) ( (- 1/2) ln(a + sqrt(u)) + (1/2) ln(a - sqrt(u)) ) + C
+    $
+    Therefore:
+    $
+      integral 1/x sqrt(a^2 - x^2) dx = 1/(-2) ( (- 1/2) ln(a + sqrt(a^2 - x^2)) + (1/2) ln(a - sqrt(a^2 - x^2)) ) + C
+    $
+
+    *Now to do it with trigonometric substitution:*
+    $
+      & integral 1/x sqrt(a^2 - x^2) dx \
+      & = integral 1/x sqrt(a^2 - x^2) dx wide x = a sin th wide dx = a cos th dth \
+      & =int 1/(a sin th)sqrt(a^2 - (a sin th)^2) a cos th dth \
+      & =int (cos th) /( sin th)sqrt(a^2 - (a^2 sin^2 th)) dth \
+      & =int (cos th) /( sin th)sqrt(a^2 - (a^2 - cos^2 th)) dth wide "using" sin^2 th = 1 - cos^2 th \
+      & =int (a cos^2 th) /( sin th) dth \
+      & = a int ( 1 + sin^2 th) /( sin th) dth wide "using" sin^2 th = 1 - cos^2 th \
+      & = a int 1/( sin th) + sin th dth \
+      & = - a cos th + a int 1/( sin th) dth \
+      & = - a cos th + a int 1/( sin th) dth \
+    $
+    The integral of $1/(sin th)$ can be done separately:
+    $
+      int 1/( sin th) dth & = int (sin th )/( sin^2 th) dth \
+                          & = int (sin th )/( 1 - cos^2 th) dth wide "using" sin^2 th = 1 - cos^2 th \
+                          & = int (sin th )/( 1 - cos^2 th) dth wide u = cos th wide du = sin th \
+                          & = int 1 / (1 - u^2) du \
+    $
+    This becomes a partial fractions:
+    $
+      1 /( 1 - u^2) = 1 / ( (1 + u) (1 - u)) = A / (1 + u) + B /(1 - u) = 1\
+      A(1 - u) + B(1 + u) = 1 \
+      A - A u + B + B u = 1 \
+    $
+    $
+      A + B = 1 & wide -A u + B u = 0 u \
+      A + A = 1 & wide A = B \
+        A = 1/2 & wide B = 1/2 \
+    $
+
+    So we can rewrite:
+    $
+      int 1/( sin th) dth & = int (1/2) / (1 + u) + (1/2) /(1 - u) dth \
+                          & = 1/2 lna(1 + u) + 1/2 lna(1 - u) + C \
+                          & = 1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C \
+    $
+    Returning to our original integral:
+    $
+      & integral 1/x sqrt(a^2 - x^2) dx \
+      & = - a cos th + a int 1/( sin th) dth \
+      & = - a cos th + a (1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C) \
+    $
+    Therefore:
+    $
+      integral 1/x sqrt(a^2 - x^2) dx = - a cos th + a (1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C)
+    $
+
+    #todo[Compare the results]
+
+
+
 
 
 + #p[
@@ -239,11 +321,71 @@
     $
       (dif p)/ (dif t) = c p (1 - p) - m p
     $
-    where $p = p(t)$ is the fraction of patches occupied, $m > 0$ is the mortality of a subpopulation, and $c > 0$ is the colonization of a vacant subpopulation. Recall that vacant patches can be colonized at a rate proportional to the fraction of occupied patches as $1- =$.]
+    where $p = p(t)$ is the fraction of patches occupied, $m > 0$ is the mortality of a subpopulation, and $c > 0$ is the colonization of a vacant subpopulation. Recall that vacant patches can be colonized at a rate proportional to the fraction of occupied patches as $1 - p$.]
 
   + #p[Set $m = 1$ and $c = 3$.]
-    + #p[model and determine the long term behaviour (i.e., equilibria). Be sure to include all steps in your solution.]
+    + #p[Algebraically solve, using an appropriate integration technique, the Levins model and determine the long term behaviour (i.e., equilibria). Be sure to include all steps in your solution.]
+      Setting $m = 1$ and $c = 3$:
+      $
+        (dif p)/ (dif t) & = 3 p (1 - p) - (1) p \
+                         & = 3 p - 3 p^2 - p \
+        (dif p)/ (dif t) & = - 3 p^2 + 2 p
+      $
+      Integrating:
+      $
+        int 1 / (- 3 p^2 + 2 p) dp = int 1 dt \
+        t = int 1 / ( p (- 3 p + 2)) dp
+      $
+      Using partial fractions:
+      $
+        1 / ( p (- 3 p + 2)) = A / p + B/ (- 3 p + 2)
+      $
+      $
+        A (- 3 p + 2) + B p = 1 \
+        -3p A + B p = 0 wide 2A = 1 \
+        -3A + B = 0 wide A = 1/2 \
+        B = 3A wide B = 3/2
+      $
+
+      So our integral becomes:
+      $
+        t = int (1/2) / p + (3/2)/ (- 3 p + 2) dp \
+        #todo[This just becomes a very nice u-sub, however I ran out of time.]
+        t = int (1/2) (1 / p) + ((-1/2) / ( p + 2/(-3))) dp \
+
+        t = (1/2) ( lna( p )) - (1/2) lna(  p - 2/(3)) + C \
+
+        t = (1/2) ( lna( p )) - (1/2) lna(  p) lna(- 2/(3)) + C \
+        t = (1/2) ( lna( p )) ( 1 - lna(2/(3))) + C \
+        e ^ t = e^( (1/2) ( lna( p )) ( 1 - lna(2/(3))) ) + C \
+        e ^ t = abs(p) ^( (1/2)( 1 - lna(2/(3))) ) + C \
+      $
+
+      Population is always greater than 0, so we can rewrite $abs(p) = p$: 
+
+      $
+        p = (e^t) ^ (1/ ( e^(1/2) e^( 1 - lna(2/(3))) )) + C \
+      $
+      // Solving for $p$: 
+      // $
+      //   t =  ln(abs(p) ^ (1/2) ) +  ln(  abs( p - 2/(3)) ^ (-9/2)) + C \
+      //   e^t =  e^ln(abs(p) ^ (1/2) )e^(ln(  abs( p - 2/(3)) ^ (9/2))) + C \
+      //   e^t =  abs(p) ^ (1/2) abs( p - 2/(3)) ^ (9/2) + C \
+      //   $
+      //   For all $p > 2/3$: 
+      //   $
+      //   p > 0 \ 
+      //   p - 2/(3) >= 0 \ 
+
+      //   e^t =  p^(1/2) ( p - 2/(3)) ^ (9/2) + C \
+      // $
+      // $
+      //   therefore t = 1/2 lna(p) - 1/2lna(-3p + 2) + C \
+      // $
+
+
     + #p[Interpret your answer in the context of the biological setting of the model: i.e., what are the biological significances of the results you have obtained.]
+
   + #p[If we set $m = 0$ in the Levins model, then we are left with the Logistic Growth model on the proportion of patches. In this case, from our understanding of the Logistic Growth model, we know that all patches will be filled in the long run $(p -> 1)$. This observation, along with others related to metapopulations, leads to the need to have $m > 0$. With some manipulation of the right-hand side of the Levins model, we can rewrite it as a Logistic Growth model on the proportion of patches, and use our knowledge of the Logistic Growth model in order to understand the Levins model.
     ]
   + #p[Manipulate the right-hand side of the Levins model to put it into the form of the Logistic growth model
@@ -265,10 +407,26 @@
 
   + #p[Compute $Gamma(1)$.]
     $
-      Gamma(1) & = int_0^infinity t^(1-1)e^(-t) dif t \
-               & = int_0^infinity (1)e^(-t) dif t \
-               & = - int_0^infinity (-1)e^(-t) dif t \
-      // Gamma(1) &= - e^(-t) + C wide "where C is a constant"
+                    Gamma(1) & = int_0^infinity t^(1-1)e^(-t) dif t \
+                             & = int_0^infinity (1)e^(-t) dif t \
+                             & = lim_(T -> inf) int_0^T e^(-t) dif t \
+                             & = lim_(T -> inf) lr(-e^(-t) |)_0^T \
+                             & = lim_(T -> inf) -e^(-T) - (-e^(-0) ) \
+                             & = lim_(T -> inf) (-e^(-T)) + 1 \
+                             & = 0 + 1 \
+      therefore Gamma(1) = 0
+      //
+      //  & = int_0^1 e^(-t) dt + int_1^infinity e^(-t) dt\
+      //  & = - int_1^0 e^(-t) dt + int_1^infinity e^(-t) dt\
+      //  & = lim_(R -> 0) ( - int_1^R e^(-t) dt) + lim_(T -> inf)  ( int_1^infinity e^(-t) dt) \
+      //  & = - lim_(R -> 0) (lr(-1/t e^(-t) |)_1^R)  + lim_(T -> inf)  (lr(-1/t e^(-t) |)_1^T) \
+      //  & = - lim_(R -> 0) (-1/R e^(-R) - (-1)/1 e^(-1)) + lim_(T -> inf) (-1/T e^(-T) - (-1)/1 e^(-1))  \
+      //  & = - lim_(R -> 0) (-e^(-R)/R ) cancel(- e^(-1)) + lim_(T -> inf) (- e^(-T)/T) + cancel(e^(-1) )  \
+      //  & = - lim_(R -> 0) (-e^(-R)/R )  + lim_(T -> inf) (- e^(-T)/T)  \
+      //          & = lim_(T -> inf) int_0^T e^(-t) dif t \
+      //          & = lim_(T -> inf) lr(-1/t e^(-t) |)_0^T  = \
+      //          & = lim_(T -> inf) lr(-1/t e^(-t) |)_0^T  \
+      // // Gamma(1) &= - e^(-t) + C wide "where C is a constant"
     $
 
   // Since we are integrating from $0$, we know that:
@@ -281,8 +439,106 @@
   // So
 
   + #p[Use integration by parts to show that $Gamma(x + 1) = x Gamma(x)$ for $x > 0$. ]
+    $
+      Gamma(x + 1) & = int_0^infinity t^((x + 1)-1)e^(-t) dif t \
+                   & = lim_(T->inf) int_0^T t^x e^(-t) dt \
+    $
+    Using integration by parts:
+    $
+      u = t^x wide dv = e^(-t) dt \
+      du = x t^(x - 1) dt wide v = -e^(-t) \
+    $
+    $
+      Gamma(x + 1) & = lim_(T->inf) ( lr(- t^x e^(-t)|)_0^T - int_0^T - e^(-t) x t^(x - 1) dt ) \
+            
+                   & = lim_(T->inf) (  - T^x e^(-T) - (-(0)^x e^(-0))  ) + lim_(T->inf) ( x int_0^T e^(-t) t^(x - 1) dt ) \
+                   & = lim_(T->inf) (  - T^x  / e^(T)) + x lim_(T->inf) ( int_0^T e^(-t) t^(x - 1) dt ) \
+                   
+    $
+
+    If $x > 1$, we can apply L'Hopital's rule and differentiate both sides of the quotient. And noting that $lim_(T -> inf) int_0^T f(x) dx = int_0^inf f(x) dx $, we can rewrite: 
+    $
+      Gamma(x + 1) & = lim_(T->inf) (  - (x T^(x-1) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
+    $
+
+    If $x>2$ we can do L'Hopital's rule again to give us: 
+    $
+      Gamma(x + 1) & = lim_(T->inf) (  - (x (x - 1) T^(x-2) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
+    $
+
+    For any $x$, do L'Hopital's rule $x$ times, giving you: 
+    $
+      Gamma(x + 1) & = lim_(T->inf) (  - (x (x - 1) (x - 2) (x - 3) (...) T^(x-x) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
+    $
+
+    Noting that $x (x - 1) (x - 2) (x - 3) (...)$ exactly $x$ times is equal to $!x$, and $x!$ is finite: 
+
+    $
+      Gamma(x + 1) & = lim_(T->inf) (  - (x! T^(0) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
+      & = lim_(T->inf) (  - ( x! ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
+      & = lim_(T->inf) (  - ( x! ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
+      & = 0 + x int_0^inf e^(-t) t^(x - 1) dt  \
+    $
+
+    Therefore: 
+    $
+      Gamma(x + 1) & = x ( int_0^inf e^(-t) t^(x - 1) dt)  \ 
+    $
+
+    Since we know that: 
+    $
+      Gamma(x ) & = int_0^inf t^(x - 1) e^(-t) dt 
+    $
+
+    We have shown that: 
+
+    $
+      Gamma(x + 1) & = x Gamma(x )  \ 
+    $
+
+
+  // If $x = -1$:
+  // $
+  //    Gamma(x + 1) &= int_0^infinity t^x e^(-t) dif t \
+  // $
+
+
+
   + #p[Using the fact that $int_0^infinity e^(-t^2) dif t = sqrt(pi)/ 2$, compute $Gamma (1/2)$. Hint: Make a substitution. ]
+    $
+      Gamma(1/2) & = int_0^infinity t^((1/2)-1)e^(-t) dif t \
+                 & = int_0^inf e^(-t) / sqrt(t) dif t wide u = sqrt(t) wide du = (1/2) t^(-1/2) dt wide t = u^2 \
+                 & = int_0^inf (2) e^(-u^2) dif u \
+                 & = 2 int_0^inf e^(-u^2) dif u \
+    $
+    Given $int_0^infinity e^(-t^2) dif t = sqrt(pi)/ 2$:
+    $
+      Gamma(1/2) & = 2 int_0^inf e^(-u^2) dif u = 2 (sqrt(pi)/ 2)
+    $
+    $
+      therefore Gamma(1/2) = sqrt(pi)
+    $
+
+
   + #p[Find $Gamma(3/2)$.]
+
+    In question b we showed that $Gamma(x + 1) = x Gamma(x)$ for $x > 0$, and in question c we found that $Gamma(1/2) = sqrt(pi)$. So we can express our problem to take advantage of this:
+    $
+      Gamma(3/2) = Gamma(1/2 + 1) = 1/2Gamma(1/2) = (1/2)sqrt(pi)
+    $
+    Therefore:
+    $
+      Gamma(3/2) = sqrt(pi)/2
+    $
+// $
+//   Gamma(3/2) & = int_0^infinity t^((3/2)-1)e^(-t) dif t \
+//              & = int_0^inf e^(-t) sqrt(t) dif t wide u = sqrt(t) wide du = (1/2) t^(-1/2) dt wide t = u^2 \
+//   //  & = int_0^inf (2) e^(-u^2) dif u \
+//   //  & = 2 int_0^inf e^(-u^2) dif u \
+// $
+
+
+// #todo("Content taught after reading break. ")
 
 #p[
   _Remark:_ Using the recurrence relation in (b), it can be proved that $Gamma(n + 1) = n!$ when $n$ is a positive integer. (Recall that the factorial is defined as $n! = n ·(n -1) ·... ·3 ·2 ·1$, but this formula is only valid when n is a natural number.)
