@@ -10,6 +10,8 @@
 #import "@preview/cetz:0.4.2": canvas, draw
 #import "@preview/cetz-plot:0.1.2": plot
 
+#import "@preview/tablex:0.0.9": *
+
 #let (p, feature, variant, syntax) = frames(
   feature: ("Feature",),
   // For each frame kind, you have to provide its supplement title to be displayed
@@ -135,8 +137,8 @@
 
   SCIE 001 Math
 
-  // Noah Virjee\
-  // 45515863
+  Noah Virjee\
+  45515863
 
   #let today = datetime.today()
 
@@ -231,55 +233,89 @@
     ]
     *First a $u$-substitution:*
     $
+      u &= sqrt(a^2 - x^2) wide & u^2 = a^2 - x^2\
+      du &= (1/2)(a^2 - x^2)^(-1/2)(-2x) dx wide& x^2 = a^2 - u^2 \
+      du &= (-x)/sqrt(a^2 - x^2) wide &x = sqrt(a^2 - u^2)\ 
+       
+    $
+    $
       & int 1/x sqrt(a^2 - x^2) dif x \
       // = int x^(-1) sqrt(a^2 - x^2) dif x
-      & = int 1/x ((-2x)/(-2x)) sqrt(a^2 - x^2) dif x \
-      & = int 1/(-2x^2) sqrt(a^2 - x^2) ( -2x) dif x wide u = a^2 - x^2 wide du = - 2x dx wide x = sqrt(a^2 - u) \
-      & =int 1/(-2 (sqrt(a^2 - u))^2) sqrt(u) du \
-      & = 1/(-2) int sqrt(u) /( (a^2 - u)) du \
+      & = int (sqrt(a^2 - x^2)/x)((-x sqrt(a^2 - x^2))/(-x sqrt(a^2 - x^2))) dif x \
+      
+      & = int ((sqrt(a^2 - x^2))^2/(-x^2))((-x)/(sqrt(a^2 - x^2))) dif x \
+
+      & = int u^2/(-(sqrt(a^2 - u^2))^2) du \
+
+      & = - int u^2/(a^2 - u^2) du \
     $
-    Now we do a quick partial fractions:
+    Now we do a quick polynomial division:
+    #align(center)[
+      #tablex(columns: 4, auto-lines: false, stroke: 0.5pt, align: center,
+      $$, vlinex(start: 1, end: 2), $$, $$, $-1$,
+      hlinex(start: 1, end: 5),
+      $- u^2 + a^2$, $u^2$, $+ 0 u$, $+0$, 
+      [], $-(u^2 $, $+ 0u$, $- a^2)$,
+      [], [], [], $ a^2$,
+    )
+    ]
+    Rewriting:
     $
-      sqrt(u) /( a^2 - u) = sqrt(u) / ( (a + sqrt(u)) (a - sqrt(u))) = A / (a + sqrt(u)) + B /(a - sqrt(u)) \
-      A(a - sqrt(u)) + B(a + sqrt(u)) = sqrt(u) \
-      A a - A sqrt(u) + B a + B sqrt(u) = sqrt(u) \
+      & - int u^2/(a^2 - u^2) du \
+      & = - int -1 +  a^2 / (a^2 - u^2) du \
+      // & = - int -1 +  a^2 / (a^2 - u^2) du \
+      & = - ( -u + int a^2 / (a^2 - u^2) du )  \
+      & = u - int a^2 / (a^2 - u^2) du   \
+    $
+
+    Followed by some partial fractions: 
+    $
+      a^2 /( a^2 - u^2) = a^2 / ( (a + u) (a - u)) = A / (a + u) + B /(a - u) \
+      A(a - u) + B(a + u) = a^2 \
+      A a - A u + B a + B u = a^2 \
     $
     $
-      A a + B a = 0 a & wide B sqrt(u) - A sqrt(u) = 1 sqrt(u) \
-            A + B = 0 & wide B - A = 1 \
-               -A = B & wide -A - A = 1 \
-            A = - 1/2 & wide B = 1/2 \
+      A a + B a = a^2 & wide - A u + B u = 0 u \
+            A + B = a & wide - A + B = 0 \
+               2B = a & wide B = A \
+            B = a/2 & wide A = a/2 \
     $
     So we can rewrite:
     $
-      & 1/(-2) int sqrt(u) /( (a^2 - u)) du \
-      & = 1/(-2) int (- 1/2) / (a + sqrt(u)) + (1/2) /(a - sqrt(u)) du \
-      & = 1/(-2) ( (- 1/2) ln(a + sqrt(u)) + (1/2) ln(a - sqrt(u)) ) + C
+      & = u - int a^2 / (a^2 - u^2) du \
+      & = u - int (a/2) / (a + u) + (a/2) /(a - u) du \
+      & = u - ( a/2lna(a + u) - a/2lna(a - u)) + C \
+      & = u - a/2lna(a + u) + a/2lna(a - u)) + C 
     $
+    // Then we can do one more u-sub: 
+    // $
+    //   p = u \ 
+    //   dp = (1/2)u^(-1/2)
+    // $
     Therefore:
     $
-      integral 1/x sqrt(a^2 - x^2) dx = 1/(-2) ( (- 1/2) ln(a + sqrt(a^2 - x^2)) + (1/2) ln(a - sqrt(a^2 - x^2)) ) + C
+      integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C 
     $
 
     *Now to do it with trigonometric substitution:*
     $
       & integral 1/x sqrt(a^2 - x^2) dx \
-      & = integral 1/x sqrt(a^2 - x^2) dx wide x = a sin th wide dx = a cos th dth \
+      & = integral 1/x sqrt(a^2 - x^2) dx wide x = a sin th wide dx = a cos th dth wide th = arcsin(x / a) \
       & =int 1/(a sin th)sqrt(a^2 - (a sin th)^2) a cos th dth \
       & =int (cos th) /( sin th)sqrt(a^2 - (a^2 sin^2 th)) dth \
-      & =int (cos th) /( sin th)sqrt(a^2 - (a^2 - cos^2 th)) dth wide "using" sin^2 th = 1 - cos^2 th \
+      & =int (cos th) /( sin th)sqrt(a^2 - (a^2 - a^2cos^2 th)) dth wide "using" sin^2 th = 1 - cos^2 th \
       & =int (a cos^2 th) /( sin th) dth \
-      & = a int ( 1 + sin^2 th) /( sin th) dth wide "using" sin^2 th = 1 - cos^2 th \
-      & = a int 1/( sin th) + sin th dth \
-      & = - a cos th + a int 1/( sin th) dth \
-      & = - a cos th + a int 1/( sin th) dth \
+      & = a int ( 1 - sin^2 th) /( sin th) dth wide "using" cos^2 th = 1 - sin^2 th \
+      & = a int 1/( sin th) - sin th dth \
+      & = a cos th + a int 1/( sin th) dth \
+      // & = - a cos th + a int 1/( sin th) dth \
     $
     The integral of $1/(sin th)$ can be done separately:
     $
       int 1/( sin th) dth & = int (sin th )/( sin^2 th) dth \
                           & = int (sin th )/( 1 - cos^2 th) dth wide "using" sin^2 th = 1 - cos^2 th \
-                          & = int (sin th )/( 1 - cos^2 th) dth wide u = cos th wide du = sin th \
-                          & = int 1 / (1 - u^2) du \
+                          & = int (sin th )/( 1 - cos^2 th) dth wide u = cos th wide du = - sin th \
+                          & = - int (1) / (1 - u^2) du \
     $
     This becomes a partial fractions:
     $
@@ -295,26 +331,71 @@
 
     So we can rewrite:
     $
-      int 1/( sin th) dth & = int (1/2) / (1 + u) + (1/2) /(1 - u) dth \
-                          & = 1/2 lna(1 + u) + 1/2 lna(1 - u) + C \
-                          & = 1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C \
+      int 1/( sin th) dth & = - int (1/2) / (1 + u) + (1/2) /(1 - u) dth \
+                          & = - (1/2 lna(1 + u) - 1/2 lna(1 - u)) + C \
+                          & = -1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C \
     $
     Returning to our original integral:
     $
       & integral 1/x sqrt(a^2 - x^2) dx \
-      & = - a cos th + a int 1/( sin th) dth \
-      & = - a cos th + a (1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C) \
+      & = a cos th + a int 1/( sin th) dth \
+      & = a cos th + a (- 1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C) \
     $
     Therefore:
     $
-      integral 1/x sqrt(a^2 - x^2) dx = - a cos th + a (1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C)
+      integral 1/x sqrt(a^2 - x^2) dx = a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C)
     $
 
-    #todo[Compare the results]
+    However, this can be simplified. As we know: 
+    $
+      cos^2 th + sin^2 th = 1 \ 
+      cos th = sqrt(1 - sin^2 x) \ 
+    $
+    Since $th = arcsin(x / a) $: 
+    $
+      cos (arcsin(x / a)) &= sqrt(1 - sin^2 (arcsin(x / a))) \ 
+       &= sqrt(1 - (x / a)^2) \ 
+      cos (arcsin(x / a)) &= sqrt(1 - x^2 / a^2) \ 
+    $
 
+    Plugging this into our expression: 
 
+    $
+      integral 1/x sqrt(a^2 - x^2) dx &= \
+      &= a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C) \
 
+      &= a sqrt(1 - x^2 / a^2) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2) ) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \ 
 
+      &= sqrt(a^2( 1 - x^2 / a^2)) - a (1/2 lna(1 + sqrt(1 - x^2 / a^2) ) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \ 
+    $
+
+    Now we can do some rearranging and logarithm shenanigans: 
+
+    $
+    integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2) ) + lna(1 - sqrt(1 - x^2 / a^2))) + C \ 
+
+      &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2) ) + lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) - lna(a)) + C \ 
+
+      &= sqrt(a^2 - x^2) + a/2 ( (-lna(1 + sqrt(1 - x^2 / a^2) ) + lna(a)) + ( lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) ) ) + C \ 
+
+      &= sqrt(a^2 - x^2) + a/2 ( -lna(a(1 + sqrt(1 - x^2 / a^2))))  + lna(a(1 - sqrt(1 - x^2 / a^2))) ) + C \ 
+
+      &= sqrt(a^2 - x^2) + a/2 ( -lna(a + sqrt(a^2 - x^2))  + lna(a - sqrt(a^2 - x^2 )) ) + C \ 
+
+      integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) -  a/2 lna(a + sqrt(a^2 - x^2))  + a/2 lna(a - sqrt(a^2 - x^2 )) + C \ 
+    $
+    * Comparing the two results:*
+
+    Result 1: 
+    $
+      integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C 
+    $
+    Result 2: 
+    $
+      integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) -  a/2 lna(a + sqrt(a^2 - x^2))  + a/2 lna(a - sqrt(a^2 - x^2 )) + C \
+    $
+
+    Result 1 is the same as result 2, therefore the method that you take to solve this integral does not impact the result. 
 
 + #p[
     In tutorial, we looked at metapopulations and the Levins model derived by Richard Levins in 1969 which describes metapopulations as a means for studying spatially structured populations. In particular, the model tracks the proportion of patches that are occupied by the population, but does not track the density of the population nor which specific patches are inhabited. These subpopulations are modelled through the Levins model
@@ -414,7 +495,7 @@
                              & = lim_(T -> inf) -e^(-T) - (-e^(-0) ) \
                              & = lim_(T -> inf) (-e^(-T)) + 1 \
                              & = 0 + 1 \
-      therefore Gamma(1) = 0
+      therefore Gamma(1) &= 1
       //
       //  & = int_0^1 e^(-t) dt + int_1^infinity e^(-t) dt\
       //  & = - int_1^0 e^(-t) dt + int_1^infinity e^(-t) dt\
@@ -471,7 +552,7 @@
       Gamma(x + 1) & = lim_(T->inf) (  - (x (x - 1) (x - 2) (x - 3) (...) T^(x-x) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
     $
 
-    Noting that $x (x - 1) (x - 2) (x - 3) (...)$ exactly $x$ times is equal to $!x$, and $x!$ is finite: 
+    Noting that $x (x - 1) (x - 2) (x - 3) (...)$ exactly $x$ times is equal to $x!$, and $x!$ is finite: 
 
     $
       Gamma(x + 1) & = lim_(T->inf) (  - (x! T^(0) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
