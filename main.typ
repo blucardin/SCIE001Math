@@ -236,14 +236,14 @@
     $
        u & = sqrt(a^2 - x^2) wide                 &     u^2 = a^2 - x^2 \
       du & = (1/2)(a^2 - x^2)^(-1/2)(-2x) dx wide &     x^2 = a^2 - u^2 \
-      du & = (-x)/sqrt(a^2 - x^2) wide            & x = sqrt(a^2 - u^2) \
+      du & = (-x)/sqrt(a^2 - x^2) wide            & x = pm sqrt(a^2 - u^2) \
     $
     $
       & int 1/x sqrt(a^2 - x^2) dif x \
       // = int x^(-1) sqrt(a^2 - x^2) dif x
       & = int (sqrt(a^2 - x^2)/x)((-x sqrt(a^2 - x^2))/(-x sqrt(a^2 - x^2))) dif x \
       & = int ((sqrt(a^2 - x^2))^2/(-x^2))((-x)/(sqrt(a^2 - x^2))) dif x \
-      & = int u^2/(-(sqrt(a^2 - u^2))^2) du \
+      & = int u^2/(-(pm sqrt(a^2 - u^2))^2) du \
       & = - int u^2/(a^2 - u^2) du \
     $
     Now we do a quick polynomial division:
@@ -296,7 +296,7 @@
     $
     So we can rewrite:
     $
-      & = u - int a^2 / (a^2 - u^2) du \
+      & u - int a^2 / (a^2 - u^2) du \
       & = u - int (a/2) / (a + u) + (a/2) /(a - u) du \
       & = u - ( a/2lna(a + u) - a/2lna(a - u)) + C \
       & = u - a/2lna(a + u) + a/2lna(a - u)) + C
@@ -306,15 +306,15 @@
     //   p = u \
     //   dp = (1/2)u^(-1/2)
     // $
-    Therefore:
+    Since $u = sqrt(a^2 - x^2)$, finally:
     $
       integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C
     $
 
-    *Now to do it with trigonometric substitution:*
+    *Now with trigonometric substitution:*
     $
+      x &= a sin th wide dx = a cos th dth wide th = arcsin(x / a) \
       & integral 1/x sqrt(a^2 - x^2) dx \
-      & = integral 1/x sqrt(a^2 - x^2) dx wide x = a sin th wide dx = a cos th dth wide th = arcsin(x / a) \
       & =int 1/(a sin th)sqrt(a^2 - (a sin th)^2) a cos th dth \
       & =int (cos th) /( sin th)sqrt(a^2 - (a^2 sin^2 th)) dth \
       & =int (cos th) /( sin th)sqrt(a^2 - (a^2 - a^2cos^2 th)) dth wide "using" sin^2 th = 1 - cos^2 th \
@@ -328,7 +328,7 @@
     $
       int 1/( sin th) dth & = int (sin th )/( sin^2 th) dth \
                           & = int (sin th )/( 1 - cos^2 th) dth wide "using" sin^2 th = 1 - cos^2 th \
-                          & = int (sin th )/( 1 - cos^2 th) dth wide u = cos th wide du = - sin th \
+                          & = int -(-sin th )/( 1 - cos^2 th) dth wide u = cos th wide du = - sin th \
                           & = - int (1) / (1 - u^2) du \
     $
     This becomes a partial fractions:
@@ -355,7 +355,7 @@
       & = a cos th + a int 1/( sin th) dth \
       & = a cos th + a (- 1/2 lna(1 + cos(theta)) + 1/2 lna(1 - cos(theta)) + C) \
     $
-    Therefore:
+    Since $th = arcsin(x / a)$, finally:
     $
       integral 1/x sqrt(a^2 - x^2) dx = a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C)
     $
@@ -363,22 +363,31 @@
     However, this can be simplified. As we know:
     $
       cos^2 th + sin^2 th = 1 \
-      cos th = sqrt(1 - sin^2 x) \
+      cos th = pm sqrt(1 - sin^2 th) \
     $
+    // Since $-1 < sin(th) < 1$: 
+    // $ 
+    // 0 < sin^2(th) < 1 \ 
+    // 0 > -sin^2(th) > -1 \ 
+    // 1 > 1 - sin^2(th) > 0 \ 
+    // $
+    // Therefore 
+    #todo["look into this"]
+
     Since $th = arcsin(x / a)$:
     $
-      cos (arcsin(x / a)) & = sqrt(1 - sin^2 (arcsin(x / a))) \
-                          & = sqrt(1 - (x / a)^2) \
-      cos (arcsin(x / a)) & = sqrt(1 - x^2 / a^2) \
+      cos (arcsin(x / a)) & = pm sqrt(1 - sin^2 (arcsin(x / a))) \
+                          & = pm sqrt(1 - (x / a)^2) \
+      cos (arcsin(x / a)) & = pm sqrt(1 - x^2 / a^2) \
     $
 
     Plugging this into our expression:
-
+    #todo[Look into the loss of the plus or minus here!]
     $
-      integral 1/x sqrt(a^2 - x^2) dx &= \
+      integral 1/x sqrt(a^2 - x^2) dx // &= \
       &= a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C) \
       &= a sqrt(1 - x^2 / a^2) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
-      &= sqrt(a^2( 1 - x^2 / a^2)) - a (1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
+      &= sqrt(a^2( 1 - x^2 / a^2)) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
     $
 
     Now we can do some rearranging and logarithm shenanigans:
@@ -386,8 +395,8 @@
     $
       integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2)) + lna(1 - sqrt(1 - x^2 / a^2))) + C \
       &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2)) + lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) - lna(a)) + C \
-      &= sqrt(a^2 - x^2) + a/2 ( (-lna(1 + sqrt(1 - x^2 / a^2)) + lna(a)) + ( lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) ) ) + C \
-      &= sqrt(a^2 - x^2) + a/2 ( -lna(a(1 + sqrt(1 - x^2 / a^2)))) + lna(a(1 - sqrt(1 - x^2 / a^2))) ) + C \
+      &= sqrt(a^2 - x^2) + a/2 ( -(lna(1 + sqrt(1 - x^2 / a^2)) + lna(a)) + ( lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) ) ) + C \
+      &= sqrt(a^2 - x^2) + a/2 ( -lna(a(1 + sqrt(1 - x^2 / a^2))) + lna(a(1 - sqrt(1 - x^2 / a^2))) ) + C \
       &= sqrt(a^2 - x^2) + a/2 ( -lna(a + sqrt(a^2 - x^2)) + lna(a - sqrt(a^2 - x^2)) ) + C \
       integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) - a/2 lna(a + sqrt(a^2 - x^2)) + a/2 lna(a - sqrt(a^2 - x^2)) + C \
     $
@@ -463,7 +472,7 @@
 
       // #todo["I believe this breaks into a piecewise function"]
 
-      Looking at the equilibria, when $(dif p)/ (dif t) = 0$:
+      Looking at the equilibria (where $(dif p)/ (dif t) = 0$):
       $
         (dif p)/ (dif t)  = - 3 p^2 + 2 p &= 0 \ 
         p (- 3 p + 2) &= 0 \ 
@@ -494,7 +503,7 @@
 
       So when the population is between $0$ and $2/3$ it will increase over time, and when the population is above $2/3$ it will decrease over time. I.e. $p = 0$ is an unstable equilibrium and p = $2/3$ is a stable equilibrium.
 
-      #todo[add a slope field diagram]
+      // #todo[add a slope field diagram]
 
 
     // $
@@ -537,17 +546,28 @@
 
     When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$. This holds for all initial conditions of $p$ (for all starting fractions of patches) except for when there is no initial inhabited patches $p = 0$. 
 
-    Our expression for $p(t)$ also holds some significance: #todo["Finish this thought"]
+    Our expression for $p(t)$ also holds some significance:
 
+    $
+      p &= 2 / (pm e^(-2(t - C)) + 3)    
+    $ 
+
+    If we consider only the case where: 
+    $
+      p &= 2 / (e^(-2(t - C)) + 3)    
+    $
+
+    This tracks a sigmoid curve as a small fraction of inhabited patches increases the number of patches slowly at first, limited by the number of patches, then quickly as the number of patches grows, then slowly again as the mortality catches up and it reaches an equilibrium. 
+    
   + #p[If we set $m = 0$ in the Levins model, then we are left with the Logistic Growth model on the proportion of patches. In this case, from our understanding of the Logistic Growth model, we know that all patches will be filled in the long run $(p -> 1)$. This observation, along with others related to metapopulations, leads to the need to have $m > 0$. With some manipulation of the right-hand side of the Levins model, we can rewrite it as a Logistic Growth model on the proportion of patches, and use our knowledge of the Logistic Growth model in order to understand the Levins model.
     ]
-  + #p[Manipulate the right-hand side of the Levins model to put it into the form of the Logistic growth model
+    + #p[Manipulate the right-hand side of the Levins model to put it into the form of the Logistic growth model
       $
         (dif p)/ (dif t) = r p (1- p/K)
       $
       and identify the new parameters $r$ and $K$ in terms of $m$ and $c$.]
 
-    $
+      $
       (dif p)/ (dif t) & = c p (1 - p) - m p \
                        & = c p - c p^2 - m p \
                        & = c p - m p - c p^2 \
@@ -556,19 +576,19 @@
                        & = p (c - m) (1 - (c p) / (c - m)) \
                        & = p (c - m) (1 - ((c p) / (c - m)) ) \
                        & = (c - m) p (1 - (p / (1 - m/c)) ) \
-    $
-    Comparing this to the logistic growth equation:
+      $
+      Comparing this to the logistic growth equation:
 
-    $
-      (dif p)/ (dif t) & = r p (1- p/K) \
-      (dif p)/ (dif t) & = (c - m) p (1 - (p / (1 - m/c)) ) \
-    $
+      $
+        (dif p)/ (dif t) & = r p (1- p/K) \
+        (dif p)/ (dif t) & = (c - m) p (1 - (p / (1 - m/c)) ) \
+      $
 
-    This gives:
-    $
-      r = c - m \
-      K = 1 - m/c
-    $
+      This gives:
+      $
+        r = c - m \
+        K = 1 - m/c
+      $
 
     + #p[Interpret the effects of the parameters $m$ and $c$ as they relate to the Logistic Growth model.
       ]
