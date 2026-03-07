@@ -714,11 +714,13 @@
 
     We know that in the Logistic Growth model $K$ represents to the carrying capacity of the ecosystem, i.e. the maximum population size that the system can sustain over time.
 
-    The Logistic Growth model's population size $p$ is analogous to the fraction of inhabited patches $p$ n the Levins Model, and as shown, $K$ is analogous to $1 - m/c$. Therefore, in relation to the Logistic Growth model $1 - m/c$ represents the maximum fraction of inhabited patches that the system can sustain over time, i.e. the fraction of inhabited populations over time will approach one minus the mortality rate over the colonization rate. This makes sense - the fraction of inhabited patches should be dependant on the rate that fractions are removed (mortality) divided by the rate that fractions are gained (colonization), and subtracted from the maximum value of $p$, therefore $K = 1 - m/c$.
+    The Logistic Growth model's population size $p$ is analogous to the fraction of inhabited patches $p$ n the Levins Model, and as shown in b) i., $K$ is analogous to $1 - m/c$. Therefore, in relation to the Logistic Growth model $1 - m/c$ represents the maximum fraction of inhabited patches that the system can sustain over time, i.e. the fraction of inhabited populations over time will approach one minus the mortality rate over the colonization rate. This makes sense - the fraction of inhabited patches should be dependant on the rate that fractions are removed (mortality) divided by the rate that fractions are gained (colonization), and subtracted from the maximum value of $p$, therefore $K = 1 - m/c$.
 
-    Additionally, in the Logistic Growth model $r$ relates to the growth rate, i.e. how fast the population increases or decreases to its carrying capacity. As the population size decreases $dp/dt$ approaches $p r$.
+    Additionally, in the Logistic Growth model $r$ relates to the growth rate, i.e. $r$ controls how fast the population increases or decreases to its carrying capacity. 
+    
+    // As the population size decreases $dp/dt$ approaches $p r$.
 
-    Relating this to the Levins Model, we showed $r$ is analogous to $c - m$. This also makes sense, the growth rate of the fraction of inhabited patches should be the dependant on the rate that fractions are gained (colonization) subtract the rate that fractions are removed (mortality).
+    Relating this to the Levins Model, we showed $r$ is analogous to $c - m$ in b)i.. This also makes sense, the growth rate of the fraction of inhabited patches should be the dependant on the rate that fractions are gained (colonization) subtract the rate that fractions are removed (mortality).
 
 
 + #p[The Gamma function $Gamma(x)$ is a continuous function defined by the improper integral
