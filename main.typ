@@ -705,8 +705,10 @@
 
       This gives:
       $
+      #rect[$
         r = c - m \
         K = 1 - m/c
+        $]
       $
 
     + #p[Interpret the effects of the parameters $m$ and $c$ as they relate to the Logistic Growth model.
@@ -736,10 +738,14 @@
                          & = int_0^infinity (1)e^(-t) dif t \
                          & = lim_(T -> inf) int_0^T e^(-t) dif t \
                          & = lim_(T -> inf) lr(-e^(-t) |)_0^T \
-                         & = lim_(T -> inf) -e^(-T) - (-e^(-0) ) \
-                         & = lim_(T -> inf) (-e^(-T)) + 1 \
+                         & = lim_(T -> inf) (-e^(-T) - (-e^(-0) )) \
+                         & = (lim_(T -> inf) -e^(-T)) + 1 \
                          & = 0 + 1 \
+                         $
+                         $
+                         #rect[$&
       therefore Gamma(1) & = 1
+      $]
       //
       //  & = int_0^1 e^(-t) dt + int_1^infinity e^(-t) dt\
       //  & = - int_1^0 e^(-t) dt + int_1^infinity e^(-t) dt\
@@ -765,6 +771,7 @@
 
   + #p[Use integration by parts to show that $Gamma(x + 1) = x Gamma(x)$ for $x > 0$. ]
     $
+    Gamma(x) &= int_0^infinity t^(x-1)e^(-t) dif t \
       Gamma(x + 1) & = int_0^infinity t^((x + 1)-1)e^(-t) dif t \
                    & = lim_(T->inf) int_0^T t^x e^(-t) dt \
     $
@@ -816,7 +823,9 @@
     We have shown that:
 
     $
+      #rect[$
       Gamma(x + 1) & = x Gamma(x) \
+      $]
     $
 
 
@@ -839,19 +848,23 @@
       Gamma(1/2) & = 2 int_0^inf e^(-u^2) dif u = 2 (sqrt(pi)/ 2)
     $
     $
+    #rect[$
       therefore Gamma(1/2) = sqrt(pi)
+      $]
     $
 
 
   + #p[Find $Gamma(3/2)$.]
 
-    In question b we showed that $Gamma(x + 1) = x Gamma(x)$ for $x > 0$, and in question c we found that $Gamma(1/2) = sqrt(pi)$. So we can express our problem to take advantage of this:
+    In question b) we showed that $Gamma(x + 1) = x Gamma(x)$ for $x > 0$, and in question c) we found that $Gamma(1/2) = sqrt(pi)$. So we can express our problem to take advantage of this:
     $
       Gamma(3/2) = Gamma(1/2 + 1) = 1/2Gamma(1/2) = (1/2)sqrt(pi)
     $
     Therefore:
     $
+    #rect[$
       Gamma(3/2) = sqrt(pi)/2
+      $]
     $
 // $
 //   Gamma(3/2) & = int_0^infinity t^((3/2)-1)e^(-t) dif t \
@@ -866,8 +879,10 @@
 #p[
   _Remark:_ Using the recurrence relation in (b), it can be proved that $Gamma(n + 1) = n!$ when $n$ is a positive integer. (Recall that the factorial is defined as $n! = n ·(n -1) ·... ·3 ·2 ·1$, but this formula is only valid when n is a natural number.)
 
-  In view of this property,$Gamma(x + 1)$ is often written as $x!$ and regarded as an extension of the factorial function to real numbers. Some scientific calculators with the factorial function $n!$ built in actually calculate the gamma function rather than the simpler formula of products of integers. Check whether your calculator does this by asking it for $0.5!$. If you get an error message, it is not using the gamma function. If you get a numerical value, compare it with your answer in (c).
+  In view of this property, $Gamma(x + 1)$ is often written as $x!$ and regarded as an extension of the factorial function to real numbers. Some scientific calculators with the factorial function $n!$ built in actually calculate the gamma function rather than the simpler formula of products of integers. Check whether your calculator does this by asking it for $0.5!$. If you get an error message, it is not using the gamma function. If you get a numerical value, compare it with your answer in (c).
 ]
+
+My calculator gives me an error message, it is not using the gamma function :(
 
 
 
