@@ -459,11 +459,11 @@
     $
     * Comparing the two results:*
 
-    Result 1:
+    Result 1: U-substitution
     $
       integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C
     $
-    Result 2:
+    Result 2: Trigonometric-substitution
     $
       integral 1/x sqrt(a^2 - x^2) dx & = sqrt(a^2 - x^2) - a/2 lna(a + sqrt(a^2 - x^2)) + a/2 lna(a - sqrt(a^2 - x^2)) + C \
     $
@@ -601,7 +601,7 @@
 
     + #p[Interpret your answer in the context of the biological setting of the model: i.e., what are the biological significances of the results you have obtained.]
 
-    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$ over time. This holds for all initial conditions of $p$ (for all starting fractions of patches) except when there is no initial inhabited patches, $p = 0$.
+    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx 66.67%$ over time. This holds for all initial conditions of $p$ (for all starting fractions of patches) except when there is no initial inhabited patches, $p = 0$.
 
     A slope field of this behavior is shown below:
     #figure(
