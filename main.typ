@@ -177,50 +177,50 @@
       If $k$ is an odd positive integer, determine the value of S.
     ]
 
-  // First, we can evaluate the case where $k = 1$:
+    // First, we can evaluate the case where $k = 1$:
 
-  // #todo("Maybe remove this")
+    // #todo("Maybe remove this")
 
-  // $
-  //   S & = int_0^(2pi) sin^1 (x) dif x \
-  //     & = lr(- cos (x) bar)_0^(2pi) \
-  //     & = - cos (2pi) - (- cos (0) ) \
-  //   S & = 0
-  // $
+    // $
+    //   S & = int_0^(2pi) sin^1 (x) dif x \
+    //     & = lr(- cos (x) bar)_0^(2pi) \
+    //     & = - cos (2pi) - (- cos (0) ) \
+    //   S & = 0
+    // $
 
-  // By definition, for all $k != 1$:
-  // $ k > 1 $
+    // By definition, for all $k != 1$:
+    // $ k > 1 $
 
-  // For all $k > 1$:
-  $
-    S = int_0^(2pi) sin^k (x) dif x & = int_0^(2pi) sin^(k - 1) (x) sin^(1) (x) dif x \
-  $
-  All odd numbers subtract 1 are even. And all even numbers are divisible by $2$, and hence are representable by some integer times 2.
+    // For all $k > 1$:
+    $
+      S = int_0^(2pi) sin^k (x) dif x & = int_0^(2pi) sin^(k - 1) (x) sin^(1) (x) dif x \
+    $
+    All odd numbers subtract 1 are even. And all even numbers are divisible by $2$, and hence are representable by some integer times 2.
 
-  Since $k$ is odd, $k - 1$ must be even. Therefore, we can let $2p = k - 1$, where $p$ is some positive integer such that $p >= 0$.
+    Since $k$ is odd, $k - 1$ must be even. Therefore, we can let $2p = k - 1$, where $p$ is some positive integer such that $p >= 0$.
 
-  $
-    S & = int_0^(2pi) sin^(2p) (x) sin^(1) (x) dif x \
-      & = int_0^(2pi) (sin^(2) (x))^p sin^(1) (x) dif x \
-      & = int_0^(2pi) (1 - cos^(2) (x))^p sin^(1) (x) dif x wide "since " sin^2(x) + cos^2(x) = 1 \
-  $
-  $u$-substitution for $cos(x)$:
-  $
-    u = cos(x) wide dif u = -sin(x) dif x \
-  $
-  $
-    S & = int_0^(2pi) - (1 - cos^(2) (x))^p ( - sin^(x)) dif x \
-      & = - int_cos(0)^(cos(2pi)) (1 - u^2)^p dif u \
-      & = - int_1^(1) (1 - u^2)^p dif u \
-  $
-  Any integral from one number to itself is 0. So:
-  $
-    S & = - int_1^(1) (1 - u^2)^p dif u = 0 \
-  $
-  Therefore for any odd positive integer $k$:
-  $
-    #rect[S = 0]
-  $
+    $
+      S & = int_0^(2pi) sin^(2p) (x) sin^(1) (x) dif x \
+        & = int_0^(2pi) (sin^(2) (x))^p sin^(1) (x) dif x \
+        & = int_0^(2pi) (1 - cos^(2) (x))^p sin^(1) (x) dif x wide "since " sin^2(x) + cos^2(x) = 1 \
+    $
+    $u$-substitution for $cos(x)$:
+    $
+      u = cos(x) wide dif u = -sin(x) dif x \
+    $
+    $
+      S & = int_0^(2pi) - (1 - cos^(2) (x))^p ( - sin^(x)) dif x \
+        & = - int_cos(0)^(cos(2pi)) (1 - u^2)^p dif u \
+        & = - int_1^(1) (1 - u^2)^p dif u \
+    $
+    Any integral from one number to itself is 0. So:
+    $
+      S & = - int_1^(1) (1 - u^2)^p dif u = 0 \
+    $
+    Therefore for any odd positive integer $k$:
+    $
+      #rect[S = 0]
+    $
 
 
   + #p[Calculate
@@ -234,8 +234,8 @@
     ]
     *First a $u$-substitution:*
     $
-       u & = sqrt(a^2 - x^2) wide                 &     u^2 = a^2 - x^2 \
-      du & = (1/2)(a^2 - x^2)^(-1/2)(-2x) dx wide &     x^2 = a^2 - u^2 \
+       u & = sqrt(a^2 - x^2) wide                 &        u^2 = a^2 - x^2 \
+      du & = (1/2)(a^2 - x^2)^(-1/2)(-2x) dx wide &        x^2 = a^2 - u^2 \
       du & = (-x)/sqrt(a^2 - x^2) wide            & x = pm sqrt(a^2 - u^2) \
     $
     $
@@ -313,15 +313,15 @@
 
     *Now with trigonometric substitution:*
     $
-      x &= a sin th wide dx = a cos th dth wide th = arcsin(x / a) \
-      & integral 1/x sqrt(a^2 - x^2) dx \
-      & =int 1/(a sin th)sqrt(a^2 - (a sin th)^2) a cos th dth \
-      & =int (cos th) /( sin th)sqrt(a^2 - (a^2 sin^2 th)) dth \
-      & =int (cos th) /( sin th)sqrt(a^2 - (a^2 - a^2cos^2 th)) dth wide "using" sin^2 th = 1 - cos^2 th \
-      & =int (a cos^2 th) /( sin th) dth \
-      & = a int ( 1 - sin^2 th) /( sin th) dth wide "using" cos^2 th = 1 - sin^2 th \
-      & = a int 1/( sin th) - sin th dth \
-      & = a cos th + a int 1/( sin th) dth \
+      x & = a sin th wide dx = a cos th dth wide th = arcsin(x / a) \
+        & integral 1/x sqrt(a^2 - x^2) dx \
+        & =int 1/(a sin th)sqrt(a^2 - (a sin th)^2) a cos th dth \
+        & =int (cos th) /( sin th)sqrt(a^2 - (a^2 sin^2 th)) dth \
+        & =int (cos th) /( sin th)sqrt(a^2 - (a^2 - a^2cos^2 th)) dth wide "using" sin^2 th = 1 - cos^2 th \
+        & =int (a cos^2 th) /( sin th) dth \
+        & = a int ( 1 - sin^2 th) /( sin th) dth wide "using" cos^2 th = 1 - sin^2 th \
+        & = a int 1/( sin th) - sin th dth \
+        & = a cos th + a int 1/( sin th) dth \
       // & = - a cos th + a int 1/( sin th) dth \
     $
     The integral of $1/(sin th)$ can be done separately:
@@ -360,34 +360,89 @@
       integral 1/x sqrt(a^2 - x^2) dx = a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C)
     $
 
-    However, this can be simplified. As we know:
+    However, this can be simplified.
+
+    Since $th = arcsin(x / a)$ and we need $cos(arcsin(x/a))$, we can construct the triangle:
+
+    #align(center, canvas({
+      import draw: *
+      let x = 4
+      line((0, 0), (x, 0), stroke: (thickness: 0.5pt), name: "adj")
+      line((0, 0), (0, 3), name: "opp")
+      line((0, 3), (x, 0), name: "hyp")
+      // Anchor at 30 degree
+
+      // circle((x, 0), radius: 4, name: "theta")
+      arc((x - 1, 0), start: 180deg, stop: 142deg, radius: 1, stroke: (thickness: 0.5pt), name: "theta")
+
+      content(
+        ("adj.start", 50%, "adj.end"),
+        padding: .1,
+        anchor: "north",
+        box(fill: white, $ sqrt(a^2 - x^2) $),
+      )
+
+      content(
+        ("opp.start", 50%, "opp.end"),
+        padding: .1,
+        anchor: "east",
+        box(fill: white, $ x $),
+      )
+
+      content(
+        ("hyp.start", 50%, "hyp.end"),
+        padding: .1,
+        anchor: "south-west",
+        box(fill: white, $ a $),
+      )
+
+      content((name: "theta", anchor: 50%), align(center, $theta$), padding: .1, anchor: "east")
+    }))
+
+    In this triangle:
     $
-      cos^2 th + sin^2 th = 1 \
-      cos th = pm sqrt(1 - sin^2 th) \
+      sin th = x / a
     $
-    // Since $-1 < sin(th) < 1$: 
-    // $ 
-    // 0 < sin^2(th) < 1 \ 
-    // 0 > -sin^2(th) > -1 \ 
-    // 1 > 1 - sin^2(th) > 0 \ 
+    Therefore it satisfies:
+    $
+      th = arcsin(x / a)
+    $
+    Taking the cosine of both sides, we see that finding cosine of the arcsin expression is analogous to finding the cosine of theta.
+    $
+       cos(arcsin(x / a)) & = cos(theta) \
+                          & = sqrt(a^2 - x^2) / a  \
+                          & = sqrt((a^2 - x^2) / a^2 )  \
+      cos (arcsin(x / a)) & = sqrt(1 - x^2 / a^2)
+    $
+
+    // As we know:
     // $
-    // Therefore 
+    //   cos^2 th + sin^2 th = 1 \
+    //   cos th = pm sqrt(1 - sin^2 th) \
+    // $
+    // Since $-1 < sin(th) < 1$:
+    // $
+    // 0 < sin^2(th) < 1 \
+    // 0 > -sin^2(th) > -1 \
+    // 1 > 1 - sin^2(th) > 0 \
+    // $
+    // Therefore
     // #todo["look into this"]
 
-    Since $th = arcsin(x / a)$:
-    $
-      cos (arcsin(x / a)) & = pm sqrt(1 - sin^2 (arcsin(x / a))) \
-                          & = pm sqrt(1 - (x / a)^2) \
-      cos (arcsin(x / a)) & = pm sqrt(1 - x^2 / a^2) \
-    $
+    // Since $th = arcsin(x / a)$:
+    // $
+    //   cos (arcsin(x / a)) & = pm sqrt(1 - sin^2 (arcsin(x / a))) \
+    //                       & = pm sqrt(1 - (x / a)^2) \
+    //   cos (arcsin(x / a)) & = pm sqrt(1 - x^2 / a^2) \
+    // $
 
     Plugging this into our expression:
     // #todo[Look into the loss of the plus or minus here!]
     $
       integral 1/x sqrt(a^2 - x^2) dx // &= \
-      &= a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C) \
-      &= a sqrt(1 - x^2 / a^2) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
-      &= sqrt(a^2( 1 - x^2 / a^2)) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
+        & = a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C) \
+        & = a sqrt(1 - x^2 / a^2) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
+        & = sqrt(a^2( 1 - x^2 / a^2)) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
     $
 
     Now we can do some rearranging and logarithm shenanigans:
@@ -458,52 +513,51 @@
 
       Solving for $p$:
       $
-        t & = 1/2 lna(1 / (- 3 + 2/p)) + C \ 
-
-        e^(2(t - C)) &= abs(1 / (- 3 + 2/p))
+                   t & = 1/2 lna(1 / (- 3 + 2/p)) + C \
+        e^(2(t - C)) & = abs(1 / (- 3 + 2/p))
       $
-      We are attempting to find an expression for $p$ given $t$ so we can remove the absolute value bars and replace them with a plus or minus: 
+      We are attempting to find an expression for $p$ given $t$ so we can remove the absolute value bars and replace them with a plus or minus:
       $
-        e^(2(t - C)) &= (pm 1) / (- 3 + 2/p) \
-        - 3 + 2/p &= (pm 1) / e^(2(t - C))   \
-        2/p &= (1) / (pm e^(2(t - C))) + 3    \
-        p &= 2 / (pm e^(-2(t - C)) + 3)    \
+        e^(2(t - C)) & = (pm 1) / (- 3 + 2/p) \
+           - 3 + 2/p & = (pm 1) / e^(2(t - C)) \
+                 2/p & = (1) / (pm e^(2(t - C))) + 3 \
+                   p & = 2 / (pm e^(-2(t - C)) + 3) \
       $
 
       // #todo["I believe this breaks into a piecewise function"]
 
       Looking at the equilibria (where $(dif p)/ (dif t) = 0$):
       $
-        (dif p)/ (dif t)  = - 3 p^2 + 2 p &= 0 \ 
-        p (- 3 p + 2) &= 0 \ 
-        p = 0 wide &"or"  wide p = 2/3
+        (dif p)/ (dif t) = - 3 p^2 + 2 p & = 0 \
+                           p (- 3 p + 2) & = 0 \
+                              p = 0 wide & "or" wide p = 2/3
       $
 
-      When $ 0 < p < 2/3$:
-      $ 
-      p &< 2/3 \ 
-      -3p &> -2 wide "the comparison flips since " -3 < 0 \ 
-      -3p + 2 &> 0 \ 
-      p &> 0 \ 
-      // p^2 &> 0 wide  "because " p " is negative"\ 
-      // -3p^2 &< 0 \ 
-      p(- 3 p + 2) &> 0\ 
-      therefore (dif p)/ (dif t) &> 0
+      When $0 < p < 2/3$:
+      $
+                                 p & < 2/3 \
+                               -3p & > -2 wide "the comparison flips since " -3 < 0 \
+                           -3p + 2 & > 0 \
+                                 p & > 0 \
+        // p^2 &> 0 wide  "because " p " is negative"\
+        // -3p^2 &< 0 \
+                      p(- 3 p + 2) & > 0 \
+        therefore (dif p)/ (dif t) & > 0
       $
 
-      When $p > 2/3$: 
+      When $p > 2/3$:
       $
-        p &> 2/3 \ 
-        -3p &< -2 wide "the comparison flips since " -3 < 0 \ 
-        -3p + 2 &< 0 \ 
-        p &> 0 \ 
-        p(- 3 p + 2) &< 0\ 
-        therefore (dif p)/ (dif t) &< 0
+                                 p & > 2/3 \
+                               -3p & < -2 wide "the comparison flips since " -3 < 0 \
+                           -3p + 2 & < 0 \
+                                 p & > 0 \
+                      p(- 3 p + 2) & < 0 \
+        therefore (dif p)/ (dif t) & < 0
       $
 
       So when the population is between $0$ and $2/3$ it will increase over time, and when the population is above $2/3$ it will decrease over time. I.e. $p = 0$ is an unstable equilibrium and $p = 2/3$ is a stable equilibrium.
 
-      // #todo[add a slope field diagram]
+    // #todo[add a slope field diagram]
 
 
     // $
@@ -544,31 +598,31 @@
 
     + #p[Interpret your answer in the context of the biological setting of the model: i.e., what are the biological significances of the results you have obtained.]
 
-    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$. This holds for all initial conditions of $p$ (for all starting fractions of patches) except when there is no initial inhabited patches $p = 0$. 
+    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$. This holds for all initial conditions of $p$ (for all starting fractions of patches) except when there is no initial inhabited patches $p = 0$.
 
-    A slope field of this behavior is shown below: 
+    A slope field of this behavior is shown below:
     #figure(
-      image("image.svg", width: 60%), 
-      caption: 
-      [A slope field of the fraction of inhabited patches over time showing an unstable equilibrium at  $p = 0$ and stable equilibrium at $p = 2/3$ is a stable equilibrium]
+      image("image.svg", width: 60%),
+      caption: [A slope field of the fraction of inhabited patches over time showing an unstable equilibrium at  $p = 0$ and stable equilibrium at $p = 2/3$ is a stable equilibrium],
     )
 
     Our expression for $p(t)$ also holds some significance:
 
     $
-      p &= 2 / (pm e^(-2(t - C)) + 3)    
-    $ 
-
-    If we consider only the case where: 
+      p & = 2 / (pm e^(-2(t - C)) + 3)
     $
-      p &= 2 / (e^(-2(t - C)) + 3)    
+
+    If we consider only the case where:
+    $
+      p & = 2 / (e^(-2(t - C)) + 3)
     $
 
     #let fn = (
       (
-      $ p = 2 / (e^(-2(t - C)) + 3), C = 0 $, 
-      x => 2 / ( calc.exp(-2 * (x - 0)) + 3)
-      , (stroke: red)),
+        $ p = 2 / (e^(-2(t - C)) + 3), C = 0 $,
+        x => 2 / (calc.exp(-2 * (x - 0)) + 3),
+        (stroke: red),
+      ),
     )
 
     #align(center)[#canvas({
@@ -610,27 +664,27 @@
       )
     })]
 
-    This tracks a sigmoid curve as a small fraction of inhabited patches increases slowly at first, limited by the number of inhabited patches, then quickly as the number of patches grows, then slowly again as the mortality catches up and the patches reach an equilibrium, showing how the population is expected to behave over time. 
+    This tracks a sigmoid curve as a small fraction of inhabited patches increases slowly at first, limited by the number of inhabited patches, then quickly as the number of patches grows, then slowly again as the mortality catches up and the patches reach an equilibrium, showing how the population is expected to behave over time.
 
 
-    
+
   + #p[If we set $m = 0$ in the Levins model, then we are left with the Logistic Growth model on the proportion of patches. In this case, from our understanding of the Logistic Growth model, we know that all patches will be filled in the long run $(p -> 1)$. This observation, along with others related to metapopulations, leads to the need to have $m > 0$. With some manipulation of the right-hand side of the Levins model, we can rewrite it as a Logistic Growth model on the proportion of patches, and use our knowledge of the Logistic Growth model in order to understand the Levins model.
     ]
     + #p[Manipulate the right-hand side of the Levins model to put it into the form of the Logistic growth model
-      $
-        (dif p)/ (dif t) = r p (1- p/K)
-      $
-      and identify the new parameters $r$ and $K$ in terms of $m$ and $c$.]
+        $
+          (dif p)/ (dif t) = r p (1- p/K)
+        $
+        and identify the new parameters $r$ and $K$ in terms of $m$ and $c$.]
 
       $
-      (dif p)/ (dif t) & = c p (1 - p) - m p \
-                       & = c p - c p^2 - m p \
-                       & = c p - m p - c p^2 \
-                       & = p (c - m) - c p^2 \
-                       & = p (c - m) (1 - (c p^2) / (p (c - m))) \
-                       & = p (c - m) (1 - (c p) / (c - m)) \
-                       & = p (c - m) (1 - ((c p) / (c - m)) ) \
-                       & = (c - m) p (1 - (p / (1 - m/c)) ) \
+        (dif p)/ (dif t) & = c p (1 - p) - m p \
+                         & = c p - c p^2 - m p \
+                         & = c p - m p - c p^2 \
+                         & = p (c - m) - c p^2 \
+                         & = p (c - m) (1 - (c p^2) / (p (c - m))) \
+                         & = p (c - m) (1 - (c p) / (c - m)) \
+                         & = p (c - m) (1 - ((c p) / (c - m)) ) \
+                         & = (c - m) p (1 - (p / (1 - m/c)) ) \
       $
       Comparing this to the logistic growth equation:
 
@@ -648,13 +702,13 @@
     + #p[Interpret the effects of the parameters $m$ and $c$ as they relate to the Logistic Growth model.
       ]
 
-    We know that in the Logistic Growth model $K$ represents to the carrying capacity of the ecosystem, i.e. the maximum population size that the system can sustain over time. 
+    We know that in the Logistic Growth model $K$ represents to the carrying capacity of the ecosystem, i.e. the maximum population size that the system can sustain over time.
 
     The Logistic Growth model's population size $p$ is analogous to the fraction of inhabited patches $p$ n the Levins Model, and as shown, $K$ is analogous to $1 - m/c$. Therefore, in relation to the Logistic Growth model $1 - m/c$ represents the maximum fraction of inhabited patches that the system can sustain over time, i.e. the fraction of inhabited populations over time will approach one minus the mortality rate over the colonization rate. This makes sense - the fraction of inhabited patches should be dependant on the rate that fractions are removed (mortality) divided by the rate that fractions are gained (colonization), and subtracted from the maximum value of $p$, therefore $K = 1 - m/c$.
 
-    Additionally, in the Logistic Growth model $r$ relates to the growth rate, i.e. how fast the population increases or decreases to its carrying capacity. As the population size decreases $dp/dt$ approaches $p r$. 
+    Additionally, in the Logistic Growth model $r$ relates to the growth rate, i.e. how fast the population increases or decreases to its carrying capacity. As the population size decreases $dp/dt$ approaches $p r$.
 
-    Relating this to the Levins Model, we showed $r$ is analogous to $c - m$. This also makes sense, the growth rate of the fraction of inhabited patches should be the dependant on the rate that fractions are gained (colonization) subtract the rate that fractions are removed (mortality). 
+    Relating this to the Levins Model, we showed $r$ is analogous to $c - m$. This also makes sense, the growth rate of the fraction of inhabited patches should be the dependant on the rate that fractions are gained (colonization) subtract the rate that fractions are removed (mortality).
 
 
 + #p[The Gamma function $Gamma(x)$ is a continuous function defined by the improper integral
