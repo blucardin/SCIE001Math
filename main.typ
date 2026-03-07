@@ -124,6 +124,7 @@
 #let dv = $dif v$
 #let dth = $dif th$
 #let lna(x) = $ln abs(#x)$
+#let pm = $plus.minus$
 // #set heading(numbering: "1.")
 
 #align(center + horizon)[
@@ -233,42 +234,55 @@
     ]
     *First a $u$-substitution:*
     $
-      u &= sqrt(a^2 - x^2) wide & u^2 = a^2 - x^2\
-      du &= (1/2)(a^2 - x^2)^(-1/2)(-2x) dx wide& x^2 = a^2 - u^2 \
-      du &= (-x)/sqrt(a^2 - x^2) wide &x = sqrt(a^2 - u^2)\ 
-       
+       u & = sqrt(a^2 - x^2) wide                 &     u^2 = a^2 - x^2 \
+      du & = (1/2)(a^2 - x^2)^(-1/2)(-2x) dx wide &     x^2 = a^2 - u^2 \
+      du & = (-x)/sqrt(a^2 - x^2) wide            & x = sqrt(a^2 - u^2) \
     $
     $
       & int 1/x sqrt(a^2 - x^2) dif x \
       // = int x^(-1) sqrt(a^2 - x^2) dif x
       & = int (sqrt(a^2 - x^2)/x)((-x sqrt(a^2 - x^2))/(-x sqrt(a^2 - x^2))) dif x \
-      
       & = int ((sqrt(a^2 - x^2))^2/(-x^2))((-x)/(sqrt(a^2 - x^2))) dif x \
-
       & = int u^2/(-(sqrt(a^2 - u^2))^2) du \
-
       & = - int u^2/(a^2 - u^2) du \
     $
     Now we do a quick polynomial division:
     #align(center)[
-      #tablex(columns: 4, auto-lines: false, stroke: 0.5pt, align: center,
-      $$, vlinex(start: 1, end: 2), $$, $$, $-1$,
-      hlinex(start: 1, end: 5),
-      $- u^2 + a^2$, $u^2$, $+ 0 u$, $+0$, 
-      [], $-(u^2 $, $+ 0u$, $- a^2)$,
-      [], [], [], $ a^2$,
-    )
+      #tablex(
+        columns: 4,
+        auto-lines: false,
+        stroke: 0.5pt,
+        align: center,
+        $$,
+        vlinex(start: 1, end: 2),
+        $$,
+        $$,
+        $-1$,
+        hlinex(start: 1, end: 5),
+        $- u^2 + a^2$,
+        $u^2$,
+        $+ 0 u$,
+        $+0$,
+        [],
+        $-(u^2$,
+        $+ 0u$,
+        $- a^2)$,
+        [],
+        [],
+        [],
+        $a^2$,
+      )
     ]
     Rewriting:
     $
       & - int u^2/(a^2 - u^2) du \
-      & = - int -1 +  a^2 / (a^2 - u^2) du \
+      & = - int -1 + a^2 / (a^2 - u^2) du \
       // & = - int -1 +  a^2 / (a^2 - u^2) du \
-      & = - ( -u + int a^2 / (a^2 - u^2) du )  \
-      & = u - int a^2 / (a^2 - u^2) du   \
+      & = - ( -u + int a^2 / (a^2 - u^2) du ) \
+      & = u - int a^2 / (a^2 - u^2) du \
     $
 
-    Followed by some partial fractions: 
+    Followed by some partial fractions:
     $
       a^2 /( a^2 - u^2) = a^2 / ( (a + u) (a - u)) = A / (a + u) + B /(a - u) \
       A(a - u) + B(a + u) = a^2 \
@@ -278,23 +292,23 @@
       A a + B a = a^2 & wide - A u + B u = 0 u \
             A + B = a & wide - A + B = 0 \
                2B = a & wide B = A \
-            B = a/2 & wide A = a/2 \
+              B = a/2 & wide A = a/2 \
     $
     So we can rewrite:
     $
       & = u - int a^2 / (a^2 - u^2) du \
       & = u - int (a/2) / (a + u) + (a/2) /(a - u) du \
       & = u - ( a/2lna(a + u) - a/2lna(a - u)) + C \
-      & = u - a/2lna(a + u) + a/2lna(a - u)) + C 
+      & = u - a/2lna(a + u) + a/2lna(a - u)) + C
     $
-    // Then we can do one more u-sub: 
+    // Then we can do one more u-sub:
     // $
-    //   p = u \ 
+    //   p = u \
     //   dp = (1/2)u^(-1/2)
     // $
     Therefore:
     $
-      integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C 
+      integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C
     $
 
     *Now to do it with trigonometric substitution:*
@@ -346,56 +360,49 @@
       integral 1/x sqrt(a^2 - x^2) dx = a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C)
     $
 
-    However, this can be simplified. As we know: 
+    However, this can be simplified. As we know:
     $
-      cos^2 th + sin^2 th = 1 \ 
-      cos th = sqrt(1 - sin^2 x) \ 
+      cos^2 th + sin^2 th = 1 \
+      cos th = sqrt(1 - sin^2 x) \
     $
-    Since $th = arcsin(x / a) $: 
+    Since $th = arcsin(x / a)$:
     $
-      cos (arcsin(x / a)) &= sqrt(1 - sin^2 (arcsin(x / a))) \ 
-       &= sqrt(1 - (x / a)^2) \ 
-      cos (arcsin(x / a)) &= sqrt(1 - x^2 / a^2) \ 
+      cos (arcsin(x / a)) & = sqrt(1 - sin^2 (arcsin(x / a))) \
+                          & = sqrt(1 - (x / a)^2) \
+      cos (arcsin(x / a)) & = sqrt(1 - x^2 / a^2) \
     $
 
-    Plugging this into our expression: 
+    Plugging this into our expression:
 
     $
       integral 1/x sqrt(a^2 - x^2) dx &= \
       &= a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C) \
-
-      &= a sqrt(1 - x^2 / a^2) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2) ) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \ 
-
-      &= sqrt(a^2( 1 - x^2 / a^2)) - a (1/2 lna(1 + sqrt(1 - x^2 / a^2) ) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \ 
+      &= a sqrt(1 - x^2 / a^2) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
+      &= sqrt(a^2( 1 - x^2 / a^2)) - a (1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
     $
 
-    Now we can do some rearranging and logarithm shenanigans: 
+    Now we can do some rearranging and logarithm shenanigans:
 
     $
-    integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2) ) + lna(1 - sqrt(1 - x^2 / a^2))) + C \ 
-
-      &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2) ) + lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) - lna(a)) + C \ 
-
-      &= sqrt(a^2 - x^2) + a/2 ( (-lna(1 + sqrt(1 - x^2 / a^2) ) + lna(a)) + ( lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) ) ) + C \ 
-
-      &= sqrt(a^2 - x^2) + a/2 ( -lna(a(1 + sqrt(1 - x^2 / a^2))))  + lna(a(1 - sqrt(1 - x^2 / a^2))) ) + C \ 
-
-      &= sqrt(a^2 - x^2) + a/2 ( -lna(a + sqrt(a^2 - x^2))  + lna(a - sqrt(a^2 - x^2 )) ) + C \ 
-
-      integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) -  a/2 lna(a + sqrt(a^2 - x^2))  + a/2 lna(a - sqrt(a^2 - x^2 )) + C \ 
+      integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2)) + lna(1 - sqrt(1 - x^2 / a^2))) + C \
+      &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2)) + lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) - lna(a)) + C \
+      &= sqrt(a^2 - x^2) + a/2 ( (-lna(1 + sqrt(1 - x^2 / a^2)) + lna(a)) + ( lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) ) ) + C \
+      &= sqrt(a^2 - x^2) + a/2 ( -lna(a(1 + sqrt(1 - x^2 / a^2)))) + lna(a(1 - sqrt(1 - x^2 / a^2))) ) + C \
+      &= sqrt(a^2 - x^2) + a/2 ( -lna(a + sqrt(a^2 - x^2)) + lna(a - sqrt(a^2 - x^2)) ) + C \
+      integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) - a/2 lna(a + sqrt(a^2 - x^2)) + a/2 lna(a - sqrt(a^2 - x^2)) + C \
     $
     * Comparing the two results:*
 
-    Result 1: 
+    Result 1:
     $
-      integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C 
+      integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C
     $
-    Result 2: 
+    Result 2:
     $
-      integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) -  a/2 lna(a + sqrt(a^2 - x^2))  + a/2 lna(a - sqrt(a^2 - x^2 )) + C \
+      integral 1/x sqrt(a^2 - x^2) dx & = sqrt(a^2 - x^2) - a/2 lna(a + sqrt(a^2 - x^2)) + a/2 lna(a - sqrt(a^2 - x^2)) + C \
     $
 
-    Result 1 is the same as result 2, therefore the method that you take to solve this integral does not impact the result. 
+    Result 1 is the same as result 2, therefore the method that you take to solve this integral does not impact the result.
 
 + #p[
     In tutorial, we looked at metapopulations and the Levins model derived by Richard Levins in 1969 which describes metapopulations as a means for studying spatially structured populations. In particular, the model tracks the proportion of patches that are occupied by the population, but does not track the density of the population nor which specific patches are inhabited. These subpopulations are modelled through the Levins model
@@ -430,56 +437,152 @@
 
       So our integral becomes:
       $
-        t = int (1/2) / p + (3/2)/ (- 3 p + 2) dp \
-        #todo[This just becomes a very nice u-sub, however I ran out of time.]
-        t = int (1/2) (1 / p) + ((-1/2) / ( p + 2/(-3))) dp \
-
-        t = (1/2) ( lna( p )) - (1/2) lna(  p - 2/(3)) + C \
-
-        t = (1/2) ( lna( p )) - (1/2) lna(  p) lna(- 2/(3)) + C \
-        t = (1/2) ( lna( p )) ( 1 - lna(2/(3))) + C \
-        e ^ t = e^( (1/2) ( lna( p )) ( 1 - lna(2/(3))) ) + C \
-        e ^ t = abs(p) ^( (1/2)( 1 - lna(2/(3))) ) + C \
+        t & = int (1/2) / p + (3/2)/ (- 3 p + 2) dp \
+        t & = int (1/2) / p dp + int (-3 (-1/2))/ (- 3 p + 2) dp wide u = - 3 p + 2 wide du = -3 dp \
+        t & = (1/2) lna(p) + int (-1/2)/ (u) du \
+        t & = 1/2 lna(p) -1/2lna(u) + C \
+        t & = 1/2 lna(p) -1/2lna(- 3 p + 2) + C \
+        t & =1/2 (lna(p) - lna(- 3 p + 2) ) + C \
+        t & =1/2 lna(p / (- 3 p + 2)) + C \
+        t & = 1/2 lna(1 / (- 3 + 2/p)) + C
       $
 
-      Population is always greater than 0, so we can rewrite $abs(p) = p$: 
-
+      Solving for $p$:
       $
-        p = (e^t) ^ (1/ ( e^(1/2) e^( 1 - lna(2/(3))) )) + C \
-      $
-      // Solving for $p$: 
-      // $
-      //   t =  ln(abs(p) ^ (1/2) ) +  ln(  abs( p - 2/(3)) ^ (-9/2)) + C \
-      //   e^t =  e^ln(abs(p) ^ (1/2) )e^(ln(  abs( p - 2/(3)) ^ (9/2))) + C \
-      //   e^t =  abs(p) ^ (1/2) abs( p - 2/(3)) ^ (9/2) + C \
-      //   $
-      //   For all $p > 2/3$: 
-      //   $
-      //   p > 0 \ 
-      //   p - 2/(3) >= 0 \ 
+        t & = 1/2 lna(1 / (- 3 + 2/p)) + C \ 
 
-      //   e^t =  p^(1/2) ( p - 2/(3)) ^ (9/2) + C \
-      // $
-      // $
-      //   therefore t = 1/2 lna(p) - 1/2lna(-3p + 2) + C \
-      // $
+        e^(2(t - C)) &= abs(1 / (- 3 + 2/p))
+      $
+      We are attempting to find an expression for $p$ given $t$ so we can remove the absolute value bars and replace them with a plus or minus: 
+      $
+        e^(2(t - C)) &= (pm 1) / (- 3 + 2/p) \
+        - 3 + 2/p &= (pm 1) / e^(2(t - C))   \
+        2/p &= (1) / (pm e^(2(t - C))) + 3    \
+        p &= 2 / (pm e^(-2(t - C)) + 3)    \
+      $
+
+      // #todo["I believe this breaks into a piecewise function"]
+
+      Looking at the equilibria, when $(dif p)/ (dif t) = 0$:
+      $
+        (dif p)/ (dif t)  = - 3 p^2 + 2 p &= 0 \ 
+        p (- 3 p + 2) &= 0 \ 
+        p = 0 wide &"or"  wide p = 2/3
+      $
+
+      When $ 0 < p < 2/3$:
+      $ 
+      p &< 2/3 \ 
+      -3p &> -2 wide "the comparison flips since " -3 < 0 \ 
+      -3p + 2 &> 0 \ 
+      p &> 0 \ 
+      // p^2 &> 0 wide  "because " p " is negative"\ 
+      // -3p^2 &< 0 \ 
+      p(- 3 p + 2) &> 0\ 
+      therefore (dif p)/ (dif t) &> 0
+      $
+
+      When $p > 2/3$: 
+      $
+        p &> 2/3 \ 
+        -3p &< -2 wide "the comparison flips since " -3 < 0 \ 
+        -3p + 2 &< 0 \ 
+        p &> 0 \ 
+        p(- 3 p + 2) &< 0\ 
+        therefore (dif p)/ (dif t) &< 0
+      $
+
+      So when the population is between $0$ and $2/3$ it will increase over time, and when the population is above $2/3$ it will decrease over time. I.e. $p = 0$ is an unstable equilibrium and p = $2/3$ is a stable equilibrium.
+
+      #todo[add a slope field diagram]
+
+
+    // $
+    // #todo[This just becomes a very nice u-sub, however I ran out of time.]
+
+    // t &= int (1/2) (1 / p) + ((-1/2) / ( p + 2/(-3))) dp \
+
+    // t = (1/2) ( lna( p )) - (1/2) lna(  p - 2/(3)) + C \
+
+    // t = (1/2) ( lna( p )) - (1/2) lna(  p) lna(- 2/(3)) + C \
+    // t = (1/2) ( lna( p )) ( 1 - lna(2/(3))) + C \
+    // e ^ t = e^( (1/2) ( lna( p )) ( 1 - lna(2/(3))) ) + C \
+    // e ^ t = abs(p) ^( (1/2)( 1 - lna(2/(3))) ) + C \
+    // $
+
+    // Population is always greater than 0, so we can rewrite $abs(p) = p$:
+
+    // $
+    //   p = (e^t) ^ (1/ ( e^(1/2) e^( 1 - lna(2/(3))) )) + C \
+    // $
+    // Solving for $p$:
+    // $
+    //   t =  ln(abs(p) ^ (1/2) ) +  ln(  abs( p - 2/(3)) ^ (-9/2)) + C \
+    //   e^t =  e^ln(abs(p) ^ (1/2) )e^(ln(  abs( p - 2/(3)) ^ (9/2))) + C \
+    //   e^t =  abs(p) ^ (1/2) abs( p - 2/(3)) ^ (9/2) + C \
+    //   $
+    //   For all $p > 2/3$:
+    //   $
+    //   p > 0 \
+    //   p - 2/(3) >= 0 \
+
+    //   e^t =  p^(1/2) ( p - 2/(3)) ^ (9/2) + C \
+    // $
+    // $
+    //   therefore t = 1/2 lna(p) - 1/2lna(-3p + 2) + C \
+    // $
 
 
     + #p[Interpret your answer in the context of the biological setting of the model: i.e., what are the biological significances of the results you have obtained.]
+
+    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$. This holds for all initial conditions of $p$ (for all starting fractions of patches) except for when there is no initial inhabited patches $p = 0$. 
+
+    Our expression for $p(t)$ also holds some significance: #todo["Finish this thought"]
 
   + #p[If we set $m = 0$ in the Levins model, then we are left with the Logistic Growth model on the proportion of patches. In this case, from our understanding of the Logistic Growth model, we know that all patches will be filled in the long run $(p -> 1)$. This observation, along with others related to metapopulations, leads to the need to have $m > 0$. With some manipulation of the right-hand side of the Levins model, we can rewrite it as a Logistic Growth model on the proportion of patches, and use our knowledge of the Logistic Growth model in order to understand the Levins model.
     ]
   + #p[Manipulate the right-hand side of the Levins model to put it into the form of the Logistic growth model
       $
-        (dif p)/ (dif t) = r p (1- p/k)
+        (dif p)/ (dif t) = r p (1- p/K)
       $
       and identify the new parameters $r$ and $K$ in terms of $m$ and $c$.]
 
+    $
+      (dif p)/ (dif t) & = c p (1 - p) - m p \
+                       & = c p - c p^2 - m p \
+                       & = c p - m p - c p^2 \
+                       & = p (c - m) - c p^2 \
+                       & = p (c - m) (1 - (c p^2) / (p (c - m))) \
+                       & = p (c - m) (1 - (c p) / (c - m)) \
+                       & = p (c - m) (1 - ((c p) / (c - m)) ) \
+                       & = (c - m) p (1 - (p / (1 - m/c)) ) \
+    $
+    Comparing this to the logistic growth equation:
+
+    $
+      (dif p)/ (dif t) & = r p (1- p/K) \
+      (dif p)/ (dif t) & = (c - m) p (1 - (p / (1 - m/c)) ) \
+    $
+
+    This gives:
+    $
+      r = c - m \
+      K = 1 - m/c
+    $
 
     + #p[Interpret the effects of the parameters $m$ and $c$ as they relate to the Logistic Growth model.
       ]
 
-+ #p[The Gamma function Γ(x) is a continuous function defined by the improper integral
+    We know that in the Logistic Growth model $K$ represents to the carrying capacity of the ecosystem, i.e. the maximum population size that the system can sustain over time. 
+
+    The Logistic Growth model's population size $p$ is analogous to the fraction of inhabited patches $p$ n the Levins Model, and as shown, $K$ is analogous to $1 - m/c$. Therefore, in relation to the Logistic Growth model $1 - m/c$ represents the maximum fraction of inhabited patches that the system can sustain over time, i.e. the fraction of inhabited populations over time will approach one minus the mortality rate over the colonization rate. This makes sense - the fraction of inhabited patches should be dependant on the rate that fractions are removed (mortality) divided by the rate that fractions are gained (colonization), and subtracted from the maximum value of $p$, therefore $K = 1 - m/c$.
+
+    Additionally, in the Logistic Growth model $r$ relates to the growth rate, i.e. how fast the population increases or decreases to its carrying capacity. As the population size decreases $dp/dt$ approaches $p r$. 
+
+    Relating this to the Levins Model, we showed $r$ is analogous to $c - m$. This also makes sense, the growth rate of the fraction of inhabited patches should be the dependant on the rate that fractions are gained (colonization) subtract the rate that fractions are removed (mortality). 
+
+
++ #p[The Gamma function $Gamma(x)$ is a continuous function defined by the improper integral
 
     $
       Gamma(x) = int_0^infinity t^(x-1)e^(-t) dif t
@@ -488,14 +591,14 @@
 
   + #p[Compute $Gamma(1)$.]
     $
-                    Gamma(1) & = int_0^infinity t^(1-1)e^(-t) dif t \
-                             & = int_0^infinity (1)e^(-t) dif t \
-                             & = lim_(T -> inf) int_0^T e^(-t) dif t \
-                             & = lim_(T -> inf) lr(-e^(-t) |)_0^T \
-                             & = lim_(T -> inf) -e^(-T) - (-e^(-0) ) \
-                             & = lim_(T -> inf) (-e^(-T)) + 1 \
-                             & = 0 + 1 \
-      therefore Gamma(1) &= 1
+                Gamma(1) & = int_0^infinity t^(1-1)e^(-t) dif t \
+                         & = int_0^infinity (1)e^(-t) dif t \
+                         & = lim_(T -> inf) int_0^T e^(-t) dif t \
+                         & = lim_(T -> inf) lr(-e^(-t) |)_0^T \
+                         & = lim_(T -> inf) -e^(-T) - (-e^(-0) ) \
+                         & = lim_(T -> inf) (-e^(-T)) + 1 \
+                         & = 0 + 1 \
+      therefore Gamma(1) & = 1
       //
       //  & = int_0^1 e^(-t) dt + int_1^infinity e^(-t) dt\
       //  & = - int_1^0 e^(-t) dt + int_1^infinity e^(-t) dt\
@@ -531,50 +634,48 @@
     $
     $
       Gamma(x + 1) & = lim_(T->inf) ( lr(- t^x e^(-t)|)_0^T - int_0^T - e^(-t) x t^(x - 1) dt ) \
-            
-                   & = lim_(T->inf) (  - T^x e^(-T) - (-(0)^x e^(-0))  ) + lim_(T->inf) ( x int_0^T e^(-t) t^(x - 1) dt ) \
-                   & = lim_(T->inf) (  - T^x  / e^(T)) + x lim_(T->inf) ( int_0^T e^(-t) t^(x - 1) dt ) \
-                   
+                   & = lim_(T->inf) ( - T^x e^(-T) - (-(0)^x e^(-0)) ) + lim_(T->inf) ( x int_0^T e^(-t) t^(x - 1) dt ) \
+                   & = lim_(T->inf) ( - T^x / e^(T)) + x lim_(T->inf) ( int_0^T e^(-t) t^(x - 1) dt ) \
     $
 
-    If $x > 1$, we can apply L'Hopital's rule and differentiate both sides of the quotient. And noting that $lim_(T -> inf) int_0^T f(x) dx = int_0^inf f(x) dx $, we can rewrite: 
+    If $x > 1$, we can apply L'Hopital's rule and differentiate both sides of the quotient. And noting that $lim_(T -> inf) int_0^T f(x) dx = int_0^inf f(x) dx$, we can rewrite:
     $
-      Gamma(x + 1) & = lim_(T->inf) (  - (x T^(x-1) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
-    $
-
-    If $x>2$ we can do L'Hopital's rule again to give us: 
-    $
-      Gamma(x + 1) & = lim_(T->inf) (  - (x (x - 1) T^(x-2) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
+      Gamma(x + 1) & = lim_(T->inf) ( - (x T^(x-1) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt \
     $
 
-    For any $x$, do L'Hopital's rule $x$ times, giving you: 
+    If $x>2$ we can do L'Hopital's rule again to give us:
     $
-      Gamma(x + 1) & = lim_(T->inf) (  - (x (x - 1) (x - 2) (x - 3) (...) T^(x-x) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
-    $
-
-    Noting that $x (x - 1) (x - 2) (x - 3) (...)$ exactly $x$ times is equal to $x!$, and $x!$ is finite: 
-
-    $
-      Gamma(x + 1) & = lim_(T->inf) (  - (x! T^(0) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
-      & = lim_(T->inf) (  - ( x! ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
-      & = lim_(T->inf) (  - ( x! ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt  \
-      & = 0 + x int_0^inf e^(-t) t^(x - 1) dt  \
+      Gamma(x + 1) & = lim_(T->inf) ( - (x (x - 1) T^(x-2) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt \
     $
 
-    Therefore: 
+    For any $x$, do L'Hopital's rule $x$ times, giving you:
     $
-      Gamma(x + 1) & = x ( int_0^inf e^(-t) t^(x - 1) dt)  \ 
-    $
-
-    Since we know that: 
-    $
-      Gamma(x ) & = int_0^inf t^(x - 1) e^(-t) dt 
+      Gamma(x + 1) & = lim_(T->inf) ( - (x (x - 1) (x - 2) (x - 3) (...) T^(x-x) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt \
     $
 
-    We have shown that: 
+    Noting that $x (x - 1) (x - 2) (x - 3) (...)$ exactly $x$ times is equal to $x!$, and $x!$ is finite:
 
     $
-      Gamma(x + 1) & = x Gamma(x )  \ 
+      Gamma(x + 1) & = lim_(T->inf) ( - (x! T^(0) ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt \
+                   & = lim_(T->inf) ( - ( x! ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt \
+                   & = lim_(T->inf) ( - ( x! ) / e^(T)) + x int_0^inf e^(-t) t^(x - 1) dt \
+                   & = 0 + x int_0^inf e^(-t) t^(x - 1) dt \
+    $
+
+    Therefore:
+    $
+      Gamma(x + 1) & = x ( int_0^inf e^(-t) t^(x - 1) dt) \
+    $
+
+    Since we know that:
+    $
+      Gamma(x) & = int_0^inf t^(x - 1) e^(-t) dt
+    $
+
+    We have shown that:
+
+    $
+      Gamma(x + 1) & = x Gamma(x) \
     $
 
 
