@@ -372,7 +372,7 @@
     // 1 > 1 - sin^2(th) > 0 \ 
     // $
     // Therefore 
-    #todo["look into this"]
+    // #todo["look into this"]
 
     Since $th = arcsin(x / a)$:
     $
@@ -382,7 +382,7 @@
     $
 
     Plugging this into our expression:
-    #todo[Look into the loss of the plus or minus here!]
+    // #todo[Look into the loss of the plus or minus here!]
     $
       integral 1/x sqrt(a^2 - x^2) dx // &= \
       &= a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C) \
@@ -501,7 +501,7 @@
         therefore (dif p)/ (dif t) &< 0
       $
 
-      So when the population is between $0$ and $2/3$ it will increase over time, and when the population is above $2/3$ it will decrease over time. I.e. $p = 0$ is an unstable equilibrium and p = $2/3$ is a stable equilibrium.
+      So when the population is between $0$ and $2/3$ it will increase over time, and when the population is above $2/3$ it will decrease over time. I.e. $p = 0$ is an unstable equilibrium and $p = 2/3$ is a stable equilibrium.
 
       // #todo[add a slope field diagram]
 
@@ -544,7 +544,14 @@
 
     + #p[Interpret your answer in the context of the biological setting of the model: i.e., what are the biological significances of the results you have obtained.]
 
-    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$. This holds for all initial conditions of $p$ (for all starting fractions of patches) except for when there is no initial inhabited patches $p = 0$. 
+    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$. This holds for all initial conditions of $p$ (for all starting fractions of patches) except when there is no initial inhabited patches $p = 0$. 
+
+    A slope field of this behavior is shown below: 
+    #figure(
+      image("image.svg", width: 60%), 
+      caption: 
+      [A slope field of the fraction of inhabited patches over time showing an unstable equilibrium at  $p = 0$ and stable equilibrium at $p = 2/3$ is a stable equilibrium]
+    )
 
     Our expression for $p(t)$ also holds some significance:
 
@@ -557,7 +564,55 @@
       p &= 2 / (e^(-2(t - C)) + 3)    
     $
 
-    This tracks a sigmoid curve as a small fraction of inhabited patches increases the number of patches slowly at first, limited by the number of patches, then quickly as the number of patches grows, then slowly again as the mortality catches up and it reaches an equilibrium. 
+    #let fn = (
+      (
+      $ p = 2 / (e^(-2(t - C)) + 3), C = 0 $, 
+      x => 2 / ( calc.exp(-2 * (x - 0)) + 3)
+      , (stroke: red)),
+    )
+
+    #align(center)[#canvas({
+      import draw: *
+
+      // Set-up a thin axis style
+      set-style(
+        axes: (stroke: .5pt, tick: (stroke: .5pt)),
+        legend: (stroke: none, orientation: ttb, item: (spacing: .3), scale: 80%),
+      )
+
+      plot.plot(
+        size: (9, 8),
+        x-label: "x",
+        y-label: "y",
+        x-tick-step: 1,
+        y-tick-step: 1,
+        axis-style: "school-book",
+        // x-format: plot.formats.multiple-of,
+        // y-tick-step: 0.25,
+        // y-min: -30, y-max: 30,
+        legend: "inner-north-west",
+        {
+          let domain = (-3, 3)
+
+          for (title, f, style) in fn {
+            plot.add(f, domain: domain, style: style, label: title, samples: 50)
+          }
+
+          // let domain = (2.06, 5)
+          // let s = 0.1;
+
+          // for ((title, f, style)) in fn {
+          //   plot.add(f, domain: domain,
+          //     style: style, label: none,
+          //   samples: 500)
+          // }
+        },
+      )
+    })]
+
+    This tracks a sigmoid curve as a small fraction of inhabited patches increases slowly at first, limited by the number of inhabited patches, then quickly as the number of patches grows, then slowly again as the mortality catches up and the patches reach an equilibrium, showing how the population is expected to behave over time. 
+
+
     
   + #p[If we set $m = 0$ in the Levins model, then we are left with the Logistic Growth model on the proportion of patches. In this case, from our understanding of the Logistic Growth model, we know that all patches will be filled in the long run $(p -> 1)$. This observation, along with others related to metapopulations, leads to the need to have $m > 0$. With some manipulation of the right-hand side of the Levins model, we can rewrite it as a Logistic Growth model on the proportion of patches, and use our knowledge of the Logistic Growth model in order to understand the Levins model.
     ]
