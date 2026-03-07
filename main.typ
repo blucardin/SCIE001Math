@@ -308,7 +308,7 @@
     // $
     Since $u = sqrt(a^2 - x^2)$, finally:
     $
-      integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C
+      #rect[$ integral 1/x sqrt(a^2 - x^2) dx = sqrt(a^2 - x^2) - a/2lna(a + sqrt(a^2 - x^2)) + a/2lna(a - sqrt(a^2 - x^2)) + C $]
     $
 
     *Now with trigonometric substitution:*
@@ -410,8 +410,8 @@
     Taking the cosine of both sides, we see that finding cosine of the arcsin expression is analogous to finding the cosine of theta.
     $
        cos(arcsin(x / a)) & = cos(theta) \
-                          & = sqrt(a^2 - x^2) / a  \
-                          & = sqrt((a^2 - x^2) / a^2 )  \
+                          & = sqrt(a^2 - x^2) / a \
+                          & = sqrt((a^2 - x^2) / a^2) \
       cos (arcsin(x / a)) & = sqrt(1 - x^2 / a^2)
     $
 
@@ -442,18 +442,20 @@
       integral 1/x sqrt(a^2 - x^2) dx // &= \
         & = a cos (arcsin(x / a)) + a (-1/2 lna(1 + cos((arcsin(x / a)))) + 1/2 lna(1 - cos((arcsin(x / a)))) + C) \
         & = a sqrt(1 - x^2 / a^2) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
-        & = sqrt(a^2( 1 - x^2 / a^2)) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
     $
 
     Now we can do some rearranging and logarithm shenanigans:
 
     $
-      integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2)) + lna(1 - sqrt(1 - x^2 / a^2))) + C \
+      integral 1/x sqrt(a^2 - x^2) dx &= a sqrt(1 - x^2 / a^2) + a (-1/2 lna(1 + sqrt(1 - x^2 / a^2)) + 1/2 lna(1 - sqrt(1 - x^2 / a^2))) + C \
+      & = sqrt(a^2( 1 - x^2 / a^2)) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2)) + lna(1 - sqrt(1 - x^2 / a^2))) + C \
       &= sqrt(a^2 - x^2) + a/2 ( -lna(1 + sqrt(1 - x^2 / a^2)) + lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) - lna(a)) + C \
       &= sqrt(a^2 - x^2) + a/2 ( -(lna(1 + sqrt(1 - x^2 / a^2)) + lna(a)) + ( lna(1 - sqrt(1 - x^2 / a^2)) + lna(a) ) ) + C \
       &= sqrt(a^2 - x^2) + a/2 ( -lna(a(1 + sqrt(1 - x^2 / a^2))) + lna(a(1 - sqrt(1 - x^2 / a^2))) ) + C \
       &= sqrt(a^2 - x^2) + a/2 ( -lna(a + sqrt(a^2 - x^2)) + lna(a - sqrt(a^2 - x^2)) ) + C \
-      integral 1/x sqrt(a^2 - x^2) dx &= sqrt(a^2 - x^2) - a/2 lna(a + sqrt(a^2 - x^2)) + a/2 lna(a - sqrt(a^2 - x^2)) + C \
+    $
+    $
+      #rect[$ integral 1/x sqrt(a^2 - x^2) dx & = sqrt(a^2 - x^2) - a/2 lna(a + sqrt(a^2 - x^2)) + a/2 lna(a - sqrt(a^2 - x^2)) + C \ $]
     $
     * Comparing the two results:*
 
@@ -521,7 +523,8 @@
         e^(2(t - C)) & = (pm 1) / (- 3 + 2/p) \
            - 3 + 2/p & = (pm 1) / e^(2(t - C)) \
                  2/p & = (1) / (pm e^(2(t - C))) + 3 \
-                   p & = 2 / (pm e^(-2(t - C)) + 3) \
+      $$
+        #rect[$ p(t) & = 2 / (pm e^(-2(t - C)) + 3)  $]
       $
 
       // #todo["I believe this breaks into a piecewise function"]
@@ -555,7 +558,7 @@
         therefore (dif p)/ (dif t) & < 0
       $
 
-      So when the population is between $0$ and $2/3$ it will increase over time, and when the population is above $2/3$ it will decrease over time. I.e. $p = 0$ is an unstable equilibrium and $p = 2/3$ is a stable equilibrium.
+      Therefore when the fraction of inhabited patches is between $0$ and $2/3$ it will increase over time, and when the fraction is above $2/3$ it will decrease over time, but when the fraction of patches is $2/3$ or $0$ it will remain at where it is. I.e. $p(t)$ has an unstable equilibrium at the $p = 0$ and a stable equilibrium at $p = 2/3$.
 
     // #todo[add a slope field diagram]
 
@@ -598,34 +601,36 @@
 
     + #p[Interpret your answer in the context of the biological setting of the model: i.e., what are the biological significances of the results you have obtained.]
 
-    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$. This holds for all initial conditions of $p$ (for all starting fractions of patches) except when there is no initial inhabited patches $p = 0$.
+    When the mortality of a subpopulation $m$ is $1$ and the colonization rate of a vacant subpopulation $c$ is $3$, the fraction of patches occupied $p$ will approach $2/3 approx %66.67$ over time. This holds for all initial conditions of $p$ (for all starting fractions of patches) except when there is no initial inhabited patches, $p = 0$.
 
     A slope field of this behavior is shown below:
     #figure(
       image("image.svg", width: 60%),
-      caption: [A slope field of the fraction of inhabited patches over time showing an unstable equilibrium at  $p = 0$ and stable equilibrium at $p = 2/3$ is a stable equilibrium],
+      caption: [A slope field of the fraction of inhabited patches over time showing an unstable equilibrium at  $p = 0$ and stable equilibrium at $p = 2/3$],
     )
 
     Our expression for $p(t)$ also holds some significance:
 
     $
-      p & = 2 / (pm e^(-2(t - C)) + 3)
+      p(t) & = 2 / (pm e^(-2(t - C)) + 3)
     $
 
-    If we consider only the case where:
+    If we consider only the case where the exponential is positive:
     $
-      p & = 2 / (e^(-2(t - C)) + 3)
+      p(t) & = 2 / (e^(-2(t - C)) + 3)
     $
 
     #let fn = (
       (
-        $ p = 2 / (e^(-2(t - C)) + 3), C = 0 $,
+        $ p(t) = 2 / (e^(-2(t - C)) + 3),\ C = 0 $,
         x => 2 / (calc.exp(-2 * (x - 0)) + 3),
         (stroke: red),
       ),
     )
 
-    #align(center)[#canvas({
+    #figure(
+      
+      canvas({
       import draw: *
 
       // Set-up a thin axis style
@@ -636,15 +641,15 @@
 
       plot.plot(
         size: (9, 8),
-        x-label: "x",
-        y-label: "y",
+        x-label: "Time",
+        y-label: "Fraction of Inhabited Patches",
         x-tick-step: 1,
-        y-tick-step: 1,
+        y-tick-step: 0.1,
         axis-style: "school-book",
         // x-format: plot.formats.multiple-of,
         // y-tick-step: 0.25,
         // y-min: -30, y-max: 30,
-        legend: "inner-north-west",
+        legend: "inner-east",
         {
           let domain = (-3, 3)
 
@@ -662,9 +667,14 @@
           // }
         },
       )
-    })]
+    }), 
+    caption: 
+    [
+      A plot of the fraction of inhabited patches over time for $C = 0$.  
+    ]
+    )
 
-    This tracks a sigmoid curve as a small fraction of inhabited patches increases slowly at first, limited by the number of inhabited patches, then quickly as the number of patches grows, then slowly again as the mortality catches up and the patches reach an equilibrium, showing how the population is expected to behave over time.
+    The function tracks a sigmoid curve as a small fraction of inhabited patches increases slowly at first, limited by the number of inhabited patches, then quickly as the number of patches grows, then slowly again as the mortality catches up and the patches reach an equilibrium at $p = 2/3$. This gives us more insight into the behavior of the fraction of inhabited patches over time.
 
 
 
