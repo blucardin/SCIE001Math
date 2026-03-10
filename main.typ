@@ -130,6 +130,7 @@
 #let um = "m"
 #let ukg = "kg"
 #let uN = "N"
+#let ukm = "km"
 
 // #set heading(numbering: "1.")
 
@@ -175,13 +176,13 @@
 // #show math.integral: math.display
 
 + #p[Recall that the probability density function for the electron-proton distance r in the hydrogen atom ground state (i.e., the 1s orbital) is given by
-$
-  f(r) &= 4 pi r^2 psi^2_100 (r) \
-  &= A r^2 e^( (- 2 r) / a_0)
-$
-where $a_0$ is the Bohr radius.
+    $
+      f(r) & = 4 pi r^2 psi^2_100 (r) \
+           & = A r^2 e^( (- 2 r) / a_0)
+    $
+    where $a_0$ is the Bohr radius.
 
-]
+  ]
   + #p[Find the cumulative distribution function $F(r)$.]
   + #p[Determine the value of $A$ (i.e., “normalize” the distribution).]
   + #p[Determine the probability that the electron will be found within 2a0 of the proton. Does this seem reasonable?]
@@ -189,13 +190,63 @@ where $a_0$ is the Bohr radius.
 
 + #p[_Newton's universal law of gravitation_ states that the force of attraction between two point masses $m$ and $M$ has magnitude
 
-$
-  F = (G m M) / r^2
-$
+    $
+      F = (G m M) / r^2
+    $
 
-where $r$ is the distance between the masses and $G = 6.67 times 10^(-11) uN dot um^2/(ukg^2) $ is a constant.
-]
-  + #p[
-    If M represents the mass of the centre of the earth and we regard it as a point mass concentrated at its centre, show that Newton's universal law of gravitation at the earth's surface reduces to F = mg, where g = 9.82 m/s2. Assume for the calculation of M that the earth is a sphere with radius 6370 km and mean density $5.52 times 10^3 ukg/um^3$.
-
+    where $r$ is the distance between the masses and $G = 6.67 times 10^(-11) uN dot um^2/(ukg^2)$ is a constant.
   ]
+  + #p[
+      If $M$ represents the mass of the centre of the earth and we regard it as a point mass concentrated at its centre, show that Newton's universal law of gravitation at the earth's surface reduces to $F = m g$, where $g = 9.82 m/s^2$. Assume for the calculation of $M$ that the earth is a sphere with radius $6370 ukm$ and mean density $5.52 times 10^3 ukg/um^3$.
+    ]
+  + #p[Use the original $F = (G m M) / r^2$ with the earth regarded as a point mass to calculate the work required to lift a mass of 10kg from the earth's surface to a height of $10 ukm$.]
+  + #p[
+      Calculate the work in part (b) using the constant gravitational force $F = m g$ in part (a). Is there a significant difference?
+    ]
+
++ #p[In the next problem you will be working with a couple of examples of a fractal. A fractal
+    is a mathematical set that displays a self-similarity property; that is, it exhibits a repeating
+    pattern that displays at every scale.]
+
+  + #p[The Cantor set, named after the German mathematician Georg Cantor (1845-1918), is constructed as follows. We start with the closed interval $[0,1]$ and remove the open interval $(1/3,2/3)$. That leaves the two intervals $[0,1/3]$ and $[2/3,1]$. We then remove the open middle interval third of each of these two remaining intervals. We continue this procedure indefinitely, at each step removing the open middle third of every interval that remains from the preceding step. The Cantor set consists of the numbers that remain in the original interval $[0,1]$ after all those intervals have been removed.]
+
+    + #p[Sketch a diagram that shows the first 5 iterations of the Cantor set.]
+
+    #let draw_cantor(x) = {
+      if x == 0 {
+        line(length: 100%, stroke: 10pt,)
+      } else {
+        let h = draw_cantor(x - 1); 
+        grid(columns:(1fr, 1fr, 1fr),h,[],h,)
+      }
+    }
+    #for value in range(0, 10) {
+      draw_cantor(value)
+    }
+    I wrote this myself using a recursive algorithm in the typst programming language. The code is below:  
+    ```typ
+    #let draw_cantor(x) = {
+      if x == 0 { // base case for the recursive process
+        line(length: 100%, stroke: 10pt,) // just draw the line. 
+      } else {
+        let h = draw_cantor(x - 1);
+        grid(columns:(1fr, 1fr, 1fr),h,[],h,) 
+      }
+    }
+    #for value in range(0, 10) { 
+      draw_cantor(value) // call the draw_cantor function 5 times, each with a 
+    }
+    ```
+    #todo[Include a handwritten drawing as well]
+
+
+
+    + #p[Give examples (at least 5) of some numbers in the Cantor set.]
+    + #p[Show that the total length of all the intervals that are removed is 1. Despite that,
+        the Cantor set is not an empty set.]
+  + #p[The Sierpinski carpet is a two-dimensional counterpart of the Cantor set. It is con-
+      structed by removing the centre one-ninth of a square of side 1, then removing the centres
+      of the eight smaller remaining squares, and so on. A visualization of the Sierpinski carpet
+      is available on Wikipedia (https://en.wikipedia.org/wiki/Sierpinski_carpet).]
+    + #p[Show that the sum of the areas of the removed squares is 1. This implies that the
+        Sierpinski carpet has area 0.]
