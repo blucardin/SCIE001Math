@@ -122,6 +122,7 @@
 #let dp = $dif p$
 #let dt = $dif t$
 #let dv = $dif v$
+#let dr = $dif r$
 #let dth = $dif th$
 #let lna(x) = $ln abs(#x)$
 #let pm = $plus.minus$
@@ -131,6 +132,7 @@
 #let ukg = "kg"
 #let uN = "N"
 #let ukm = "km"
+#let us = "s"
 
 // #set heading(numbering: "1.")
 
@@ -199,7 +201,71 @@
   + #p[
       If $M$ represents the mass of the centre of the earth and we regard it as a point mass concentrated at its centre, show that Newton's universal law of gravitation at the earth's surface reduces to $F = m g$, where $g = 9.82 m/s^2$. Assume for the calculation of $M$ that the earth is a sphere with radius $6370 ukm$ and mean density $5.52 times 10^3 ukg/um^3$.
     ]
+
+    First some variable definitions and unit conversion. \
+    Let:
+    $
+      R = 6370 ukm = (6370 ukm) ((1000 um )/(1 ukm)) = 6,370,000 um \
+      rho = 5.52 times 10^3 ukg/um^3 \
+    $
+
+    Where $R$ is the radius of the earth, and $rho$ is the density of the earth.
+
+    Approximating the earth as a sphere, its mass is approximately:
+    $
+      M = 4/3 pi R^3 rho
+    $
+
+    Approximating the mass of the earth as acting at a point at its center, the distance between any body sufficiently close to the earth's surface would be approximately equal to the radius of the earth. Therefore, from _Newton's universal law of gravitation_ the force experienced by such an object would be:
+
+    $
+      F & = (G m M) / r^2 \
+      // F = (G m M) / R^2 \
+      F & = m (G M) / R^2 \
+    $
+    Calculating $(G M) / R^2$
+    $
+      (G M) / R^2 &= (G ( 4/3 pi R^3 rho) ) / R^2 \
+      &= 4/3 G pi R rho \
+      &= 4/3 (6.67 times 10^(-11) N dot um^2 ukg^(-2)) (3.1415926536) (6,370,000 um) (5.52 times 10^3 ukg/um^3) \
+      (G M) / R^2 &= 9.8241040437 um/us^2 approx 9.82 um/us^2
+    $
+
+    $
+      F & = m (G M) / R^2 \
+      F & = m (9.82 um / us^2)
+    $
+    
+    Therefore, for objects close to earth's surface, _Newton's universal law of gravitation_ can be reduced to : 
+    $
+      F & = m g \
+    $
+    where $g = (9.82 um / us^2)$. 
+
+
   + #p[Use the original $F = (G m M) / r^2$ with the earth regarded as a point mass to calculate the work required to lift a mass of 10kg from the earth's surface to a height of $10 ukm$.]
+
+  $
+    10 ukm = (10 ukm)((1000 um )/(1 ukm)) = 10000 um 
+  $
+
+  Work $W$ is defined as: 
+  $
+    W = int F dr
+  $
+  Where $F$ is the force, and $dr$ is the change in radius. 
+
+  Therefore we can express this work needed as an integral: 
+  $
+    W = int_R^(R+10000 um)  F dr \ 
+  $
+    
+  Plugging in our values and solving we get: 
+  $
+    W = int_R^(R+10000 um)  (G m M) / r^2 dr
+  $ 
+  
+
   + #p[
       Calculate the work in part (b) using the constant gravitational force $F = m g$ in part (a). Is there a significant difference?
     ]
@@ -212,41 +278,99 @@
 
     + #p[Sketch a diagram that shows the first 5 iterations of the Cantor set.]
 
-    #let draw_cantor(x) = {
-      if x == 0 {
-        line(length: 100%, stroke: 10pt,)
-      } else {
-        let h = draw_cantor(x - 1); 
-        grid(columns:(1fr, 1fr, 1fr),h,[],h,)
+      #let draw_cantor(x) = {
+        if x == 0 {
+          line(length: 100%, stroke: 10pt)
+        } else {
+          let h = draw_cantor(x - 1)
+          grid(
+            columns: (1fr, 1fr, 1fr),
+            h, [], h,
+          )
+        }
       }
-    }
-    #for value in range(0, 10) {
-      draw_cantor(value)
-    }
-    I wrote this myself using a recursive algorithm in the typst programming language. The code is below:  
-    ```typ
-    #let draw_cantor(x) = {
-      if x == 0 { // base case for the recursive process
-        line(length: 100%, stroke: 10pt,) // just draw the line. 
-      } else {
-        let h = draw_cantor(x - 1);
-        grid(columns:(1fr, 1fr, 1fr),h,[],h,) 
+      #for value in range(0, 7) {
+        draw_cantor(value)
       }
-    }
-    #for value in range(0, 10) { 
-      draw_cantor(value) // call the draw_cantor function 5 times, each with a 
-    }
-    ```
-    #todo[Include a handwritten drawing as well]
+
+      Where each bar is a closed sub-interval of $[0, 1]$.
+
+      I wrote this myself using a recursive algorithm in the typst programming language. The code is below:
+      ```typ
+      #let draw_cantor(x) = {
+        if x == 0 { // base case for the recursive process
+          line(length: 100%, stroke: 10pt,) // just draw the line.
+        } else {
+          let h = draw_cantor(x - 1);
+          grid(columns:(1fr, 1fr, 1fr),h,[],h,)
+        }
+      }
+      #for value in range(0, 10) {
+        draw_cantor(value) // call the draw_cantor function 5 times, each with a
+      }
+      ```
+      #todo[Include a handwritten drawing as well]
 
 
 
     + #p[Give examples (at least 5) of some numbers in the Cantor set.]
-    + #p[Show that the total length of all the intervals that are removed is 1. Despite that,
-        the Cantor set is not an empty set.]
-  + #p[The Sierpinski carpet is a two-dimensional counterpart of the Cantor set. It is con-
-      structed by removing the centre one-ninth of a square of side 1, then removing the centres
-      of the eight smaller remaining squares, and so on. A visualization of the Sierpinski carpet
-      is available on Wikipedia (https://en.wikipedia.org/wiki/Sierpinski_carpet).]
-    + #p[Show that the sum of the areas of the removed squares is 1. This implies that the
-        Sierpinski carpet has area 0.]
+
+      Since we are always removing the open interval in the middle of a closed interval, the numbers defining closed bounds themselves are never removed. Therefore we can just take the first 5 bounds.
+
+      At each level of the set, to get the next level, we remove the middle third of each interval. Therefore to get the next set of bounds, we can add one third the width of each interval to each lower bound, and subtract one third from each upper bound.
+
+      #align(center)[
+        #table(
+          columns: (1fr, 1fr),
+          stroke: { none },
+          align: center,
+          table.header("Bounds", "One-third the Width of each Interval"),
+          $ [0, 1] $, $ 1/3 $,
+          $ [0, 1/3] union [2/3, 1] $, $ 1/9 $,
+          $ [0, 1/9] union [2/9, 1/3] union [2/3, 7/9] union [8/9, 1] $, $ 1/27 $,
+        )
+      ]
+      This leaves us with our final list:
+      $
+        0, 1/9, 2/9, 1/3, 2/3, 7/9, 8/9, 1,
+      $
+      are all in the cantor set.
+
+
+    + #p[Show that the total length of all the intervals that are removed is $1$. Despite that, the Cantor set is not an empty set.]
+
+    In the first level of recursion, we remove the open middle third of the interval, spanning a length of $1/3$, for a total of $1/3$ length removed.
+
+    In the second level of recursion we remove the open middle third of the two sub-intervals we just created, each spanning a length of $1/9$, for a total of $2/9$ length removed.
+
+    For the $n^"th"$ level of recursion, we remove the middle third of $n$ intervals, spanning a length of $1 / 3^n$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
+
+    $
+      L = sum_(n=1)^inf n (1/3^n)
+    $
+    Where $L$ represents the length removed.
+
+    Now we can show that this infinite series converges:
+    #todo[Show that this infinite series converges.]
+
+  + #p[The Sierpinski carpet is a two-dimensional counterpart of the Cantor set. It is constructed by removing the centre one-ninth of a square of side 1, then removing the centres of the eight smaller remaining squares, and so on. A visualization of the Sierpinski carpet is available on Wikipedia (https://en.wikipedia.org/wiki/Sierpinski_carpet).]
+
+    + #p[Show that the sum of the areas of the removed squares is 1. This implies that the Sierpinski carpet has area 0.]
+
+    Just like problem a)ii., we can construct a series representing the area removed.
+
+    In the first level of recursion we remove the center one-ninth of one square of area $1$, for a total of $(1/9)(1)(1)$ area removed.
+
+    In the second level of recursion we remove the center one-ninth of $8$ squares of area $1/9$, for a total of $(1/9)(8)(1/9)$ area removed.
+
+    For the $n^"th"$ level of recursion, we remove the center one-ninth of $8^(n - 1)$ squares of area $1/9^n$, for a total of $(1/9)(8^(n - 1))(1/9^n)$
+
+    Therefore, to get the total area removed, we can simply take the sum of these removals for an infinite recursion depth.
+
+    $
+      A = sum_(n=1)^inf (1/9)(8^(n - 1))(1/9^n)
+    $
+    Where $A$ represents the length removed.
+
+    Now we can show that this infinite series converges:
+    #todo[Show that this infinite series converges.]
