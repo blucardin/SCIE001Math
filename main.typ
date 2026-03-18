@@ -127,6 +127,7 @@
 #let lna(x) = $ln abs(#x)$
 #let pm = $plus.minus$
 #let ans(x) = $ #rect[$#x$] $
+#let fto(x) = $lr(#x])$
 
 #let um = "m"
 #let ukg = "kg"
@@ -185,9 +186,68 @@
     where $a_0$ is the Bohr radius.
 
   ]
-  + #p[Find the cumulative distribution function $F(r)$.]
+  + #p[Find the cumulative distribution function $F(r)$.] <question1a>
+
+    From the definition of the cumulative distribution function $F(r)$:
+
+    $
+      F(r) = int_(-inf)^(r) f(x) dx
+    $
+    So we can just compute the improper integral. In our case, the electron-proton distance cannot be negative, so the integral spans from $0$ to $inf$.
+    $
+      F(r) & = int_(0)^(r) f(x) dx \
+      F(r) & = int_(0)^(r) A x^2 e^( (- 2 x) / a_0) dx \
+    $
+    We can do integration by parts:
+    $
+      u = A x^2 wide dv = e^( (- 2 x) / a_0) dx \
+      du = 2A x dx wide v = (a_0 ) / (- 2 ) e^( (- 2 x) / a_0)
+    $
+
+    $
+      F(r) & = fto((A x^2) ((a_0 ) / (- 2 ) e^( (- 2 x) / a_0)))_0^r - int_0^r (a_0 ) / (- 2 ) e^( (- 2 x) / a_0) 2A x dx \ 
+      F(r) & = fto((( A  a_0 ) / (- 2 ) x^2 e^( (- 2 x) / a_0)))_0^r - int_0^r -a_0 A x e^( (- 2 x) / a_0)  dx
+    $
+
+    Doing integration by parts again: 
+    $
+      t = -a_0 A x wide dp = e^( (- 2 x) / a_0) dx \ 
+      dt = -a_0 A dx wide p = ( a_0 / (- 2 )) e^( (- 2 x) / a_0) x \ 
+    $
+
+    So we get: 
+    $
+      F(r) & = fto((( A  a_0 ) / (- 2 ) x^2 e^( (- 2 x) / a_0)))_0^r - ( )
+    $
+
+    Which expands to: 
+
+
+
   + #p[Determine the value of $A$ (i.e., “normalize” the distribution).]
-  + #p[Determine the probability that the electron will be found within 2a0 of the proton. Does this seem reasonable?]
+
+    To normalize the function, we can set its indefinite integral equal to $1$, and solve for the normalization function $A$.
+    $
+      int_(0)^(inf) f(x) dx = 1 \
+      int_(0)^(inf) A x^2 e^( (- 2 x) / a_0) dx = 1
+    $
+    Fortunately, we already computed the integral in question #link(<question1a>, "1.a)"), so we can rewrite this integral in terms of the cumulative distribution function.
+    $
+      int_(0)^(inf) f(x) dx = lim_(r -> inf) int_(0)^(r) f(x) dx = lim_(r -> inf) F(r) = 1\
+    $
+
+    So we can write:
+    $
+      1 = lim_(r->inf) F(r)\
+      1 = lim_(r->inf) () \
+    $
+
+
+  + #p[Determine the probability that the electron will be found within $2a_0$ of the proton. Does this seem reasonable?]
+
+    To
+    $$
+
   + #p[Determine the "most probable" and the "expected" radius for the hydrogen atom in the ground state.]
 
 + #p[_Newton's universal law of gravitation_ states that the force of attraction between two point masses $m$ and $M$ has magnitude
@@ -225,46 +285,46 @@
     $
     Calculating $(G M) / R^2$
     $
-      (G M) / R^2 &= (G ( 4/3 pi R^3 rho) ) / R^2 \
-      &= 4/3 G pi R rho \
-      &= 4/3 (6.67 times 10^(-11) N dot um^2 ukg^(-2)) (3.1415926536) (6,370,000 um) (5.52 times 10^3 ukg/um^3) \
-      (G M) / R^2 &= 9.8241040437 um/us^2 approx 9.82 um/us^2
+      (G M) / R^2 & = (G ( 4/3 pi R^3 rho) ) / R^2 \
+                  & = 4/3 G pi R rho \
+                  & = 4/3 (6.67 times 10^(-11) N dot um^2 ukg^(-2)) (3.1415926536) (6,370,000 um) (5.52 times 10^3 ukg/um^3) \
+      (G M) / R^2 & = 9.8241040437 um/us^2 approx 9.82 um/us^2
     $
 
     $
       F & = m (G M) / R^2 \
       F & = m (9.82 um / us^2)
     $
-    
-    Therefore, for objects close to earth's surface, _Newton's universal law of gravitation_ can be reduced to : 
+
+    Therefore, for objects close to earth's surface, _Newton's universal law of gravitation_ can be reduced to :
     $
       F & = m g \
     $
-    where $g = (9.82 um / us^2)$. 
+    where $g = (9.82 um / us^2)$.
 
 
   + #p[Use the original $F = (G m M) / r^2$ with the earth regarded as a point mass to calculate the work required to lift a mass of 10kg from the earth's surface to a height of $10 ukm$.]
 
   $
-    10 ukm = (10 ukm)((1000 um )/(1 ukm)) = 10000 um 
+    10 ukm = (10 ukm)((1000 um )/(1 ukm)) = 10000 um
   $
 
-  Work $W$ is defined as: 
+  Work $W$ is defined as:
   $
     W = int F dr
   $
-  Where $F$ is the force, and $dr$ is the change in radius. 
+  Where $F$ is the force, and $dr$ is the change in radius.
 
-  Therefore we can express this work needed as an integral: 
+  Therefore we can express this work needed as an integral:
   $
-    W = int_R^(R+10000 um)  F dr \ 
+    W = int_R^(R+10000 um) F dr \
   $
-    
-  Plugging in our values and solving we get: 
+
+  Plugging in our values and solving we get:
   $
-    W = int_R^(R+10000 um)  (G m M) / r^2 dr
-  $ 
-  
+    W = int_R^(R+10000 um) (G m M) / r^2 dr
+  $
+
 
   + #p[
       Calculate the work in part (b) using the constant gravitational force $F = m g$ in part (a). Is there a significant difference?
