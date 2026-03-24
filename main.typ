@@ -205,28 +205,45 @@
     $
 
     $
-      F(r) & = fto((A x^2) ((a_0 ) / (- 2 ) e^( (- 2 x) / a_0)))_0^r - int_0^r (a_0 ) / (- 2 ) e^( (- 2 x) / a_0) 2A x dx \ 
-      F(r) & = fto((( A  a_0 ) / (- 2 ) x^2 e^( (- 2 x) / a_0)))_0^r - int_0^r -a_0 A x e^( (- 2 x) / a_0)  dx
+      F(r) & = fto((A x^2) ((a_0 ) / (- 2 ) e^( (- 2 x) / a_0)))_0^r - int_0^r (a_0 ) / (- 2 ) e^( (- 2 x) / a_0) 2A x dx \
+      F(r) & = fto((- ( 1) / ( 2 ) A a_0 x^2 e^( (- 2 x) / a_0)))_0^r - int_0^r -a_0 A x e^( (- 2 x) / a_0) dx
     $
 
-    Doing integration by parts again: 
+    Doing integration by parts again:
     $
-      t = -a_0 A x wide dp = e^( (- 2 x) / a_0) dx \ 
-      dt = -a_0 A dx wide p = ( a_0 / (- 2 )) e^( (- 2 x) / a_0) x \ 
-    $
-
-    So we get: 
-    $
-      F(r) & = fto((( A  a_0 ) / (- 2 ) x^2 e^( (- 2 x) / a_0)))_0^r - ( )
+      t = -a_0 A x wide dp = e^( (- 2 x) / a_0) dx \
+      dt = -a_0 A dx wide p = ( a_0 / (- 2 )) e^( (- 2 x) / a_0) \
     $
 
-    Which expands to: 
+    So we get:
+    $
+      F(r) & = fto((- ( 1) / ( 2 ) A a_0 x^2 e^( (- 2 x) / a_0)))_0^r - ( fto(((-a_0 A x)(( a_0 / (- 2 )) e^( (- 2 x) / a_0) )))_0^r - int_0^r ( a_0 / (- 2 )) e^( (- 2 x) / a_0) (-a_0 A) dx ) \
+      F(r) & = fto((- ( 1) / ( 2 ) A a_0 x^2 e^( (- 2 x) / a_0)))_0^r - ( fto(( 1 / (2 ) a_0^2 A x e^( (- 2 x) / a_0) ))_0^r - int_0^r ( (a_0^2 A) / ( 2 )) e^( (- 2 x) / a_0) dx ) \
+      F(r) & = fto((- ( 1) / ( 2 ) A a_0 x^2 e^( (- 2 x) / a_0)))_0^r - ( fto(( 1 / (2 ) a_0^2 A x e^( (- 2 x) / a_0) ))_0^r - fto(( ( (a_0^2 A) / ( 2 )) ( a_0 / (- 2 )) e^( (- 2 x ) / a_0) ))_0^r ) \
+      F(r) & = fto((- ( 1) / ( 2 ) A a_0 x^2 e^( (- 2 x) / a_0)))_0^r - fto(( 1 / (2 ) a_0^2 A x e^( (- 2 x) / a_0) ))_0^r + fto(( 1 / ( -4 )a_0^3 A e^( (- 2 x) / a_0) ))_0^r \
+      F(r) & =
+      ((- ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 (r)) / a_0))
+        -
+        (- ( 1) / ( 2 ) A a_0 0^2 e^( (- 2 (0)) / a_0)) )
+      - (
+        ( 1 / (2 ) a_0^2 A (r) e^( (- 2 (r)) / a_0) )
+        -( 1 / (2 ) a_0^2 A (0) e^( (- 2 (0)) / a_0) )
+      )
+      \
+      &+
+      (( 1 / ( -4 )a_0^3 A e^( (- 2 (r)) / a_0) )) -
+      (( 1 / ( -4 )a_0^3 A e^( (- 2 (0)) / a_0) ))
+      \
+    $
 
-
+    Which simplifies to:
+    $
+      F(r) & =- ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 r) / a_0)- 1 / (2 ) a_0^2 A r e^( (- 2 r) / a_0)- 1 / (4 )a_0^3 A e^( (- 2 r ) / a_0) + 1 / ( 4 )a_0^3 A \
+    $
 
   + #p[Determine the value of $A$ (i.e., “normalize” the distribution).]
 
-    To normalize the function, we can set its indefinite integral equal to $1$, and solve for the normalization function $A$.
+    To normalize the function, we can set its indefinite integral equal to $1$, and solve for $A$.
     $
       int_(0)^(inf) f(x) dx = 1 \
       int_(0)^(inf) A x^2 e^( (- 2 x) / a_0) dx = 1
@@ -238,8 +255,51 @@
 
     So we can write:
     $
-      1 = lim_(r->inf) F(r)\
-      1 = lim_(r->inf) () \
+      1 &= lim_(r->inf) F(r)\
+      1 &= lim_(r->inf) ( ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 r) / a_0)- 1 / (2 ) a_0^2 A r e^( (- 2 r) / a_0)- 1 / (4 )a_0^3 A e^( (- 2 r ) / a_0) + 1 / ( 4 )a_0^3 A ) \
+      1 &= lim_(r->inf) ( ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 r) / a_0))
+      -
+      lim_(r->inf) (1 / (2 ) a_0^2 A r e^( (- 2 r) / a_0))
+      -
+      lim_(r->inf)(1 / (4 )a_0^3 A e^( (- 2 r ) / a_0))
+      +
+      lim_(r->inf)(1 / ( 4 )a_0^3 A ) \
+
+      1 &= lim_(r->inf) ( ( A a_0 r^2) / (2 e^( ( 2 r) / a_0)))
+      -
+      lim_(r->inf) (( A a_0^2  r)  / (2 e^( ( 2 r) / a_0)))
+      - 0 + 1 / (4) a_0^3 A \    
+    $
+
+    Now we do L'Hôpital's rule on both the limits:
+    $
+      1 &= lim_(r->inf) ( ( 2 A a_0 r) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
+      -
+      lim_(r->inf) (( A a_0^2 )  / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
+      + 1 / (4) a_0^3 A \ 
+
+      1 &= lim_(r->inf) ( ( 2 A a_0 r) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0))) - 0 + 1 / (4) a_0^3 A \ 
+
+    $
+    Doing L'Hopital's rule again on the limit:   
+    $
+      1 &= lim_(r->inf) ( ( 2 A a_0) / (2 ( a_0 / ( 2 )) ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))+ 1 / (4) a_0^3 A \ 
+
+      1 &= 0 + 1 / (4) a_0^3 A \ 
+    $
+
+    Now solving for $A$: 
+    $
+      (4(1)) / a_0^3 &=   A \ 
+    $
+
+    Therefore: 
+
+    $
+      #rect(
+      $
+        A = 4 / a_0^3
+      $)
     $
 
 
