@@ -349,13 +349,63 @@
       mu & = int_(0)^inf x (f(x)) dx \
          & = int_(0)^inf x A x^2 e^( (- 2 x) / a_0) dx \
          & = int_(0)^inf A x^3 e^( (- 2 x) / a_0) dx \
+         & = A int_(0)^inf x^3 e^( (- 2 x) / a_0) dx \
     $
 
     For an integral with such a large exponent on $x$, it is helpful to use the DI method when doing integration by parts.
 
-    
+    #align(center)[
+      #table(
+        columns: (1fr, 1fr, 1fr),
+        align: center,
+        stroke: (x, y) => if x == 0 or x == 1 {
+          (right: 0.7pt + black)
+        },
+        table.header([*Sign*], [*D*], [*I*]),
+        [$+$], [$x^3$], [$e^( (- 2 x) / a_0)$],
+        [$-$], [$3x^2$], [$(- a_0 / 2)e^((- 2 x) / a_0)$] , 
+        [$+$], [$6x $], [$(- a_0 / 2)^2e^((- 2 x) / a_0)$] , 
+        [$-$], [$6$], [$(- a_0 / 2)^3 e^((- 2 x) / a_0)$] , 
+        [$+$], [$0$], [$(- a_0 / 2)^4 e^((- 2 x) / a_0)$] , 
+      )
+    ]
+    Then writing it all out, we get: 
 
-    #todo[Do the integral and find the mean]
+    $
+      mu & = A fto( ((x^3)((- a_0 / 2)e^((- 2 x) / a_0)) - (3x^2)((- a_0 / 2)^2e^((- 2 x) / a_0)) + (6x) ((- a_0 / 2)^3 e^((- 2 x) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 x) / a_0) ))_(0)^inf \ 
+    $
+
+    At the limit to infinity, all of these go to zero, as they turn into a L'Hopital's case, resulting in a polynomial on the top that differentiates to 0, and an exponential on the bottom that increase as x goes to infinity. 
+
+    So we only need to consider the $x = 0$ case: 
+
+    $
+      mu & = A ( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \ 
+    $
+
+    #todo[Write this better]
+
+    Using $A = 4 / a_0^3$ found in part b, we can simplify: 
+
+    $
+      mu & = (4 / a_0^3)( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \ 
+
+      mu & = (4 / a_0^3)( - (- (6) (- a_0 / 2)^4 e^(0) ) )\ 
+
+      mu & = (4 / a_0^3) (6) (a_0^4 / 2^4) \ 
+
+      mu & = (4) (6) (a_0 / 2^4)  \ 
+
+      mu & = (24 / 16 ) (a_0)  \ 
+    $
+
+    Therefore the expected radius is: 
+    $
+      mu & = 24 / 16 a_0
+    $
+
+
+    #todo[Find the mode]
 
 
 + #p[_Newton's universal law of gravitation_ states that the force of attraction between two point masses $m$ and $M$ has magnitude
@@ -441,22 +491,22 @@
       W & = G m M ( -(R+DR)^(-1) + R^(-1) ) \
     $
 
-    As we previously found: 
+    As we previously found:
     $
-      M = 4/3 pi R^3 rho \ 
+      M = 4/3 pi R^3 rho \
       M = 4/3 (3.1415926535) (6,370,000 um)^3 (5.52 times 10^3 ukg/um^3)
     $
 
     Plugging in our values:
 
     $
-      W &= G m M ( -(R+DR)^(-1) + R^(-1) ) \
-      \ 
-      &= (6.67 times 10^(-11) N dot um^2 ukg^(-2)) (10 ukg) times \
-      & (4/3 (3.1415926535) (6,370,000 um)^3 (5.52 times 10^3 ukg/um^3)) times \ 
-      & ( -( (6,370,000 um) + 10000 um)^(-1) + (6,370,000 um)^(-1) ) \
-      \
-      W &= 980 870.576 "J"
+      W & = G m M ( -(R+DR)^(-1) + R^(-1) ) \
+        \
+        & = (6.67 times 10^(-11) N dot um^2 ukg^(-2)) (10 ukg) times \
+        & (4/3 (3.1415926535) (6,370,000 um)^3 (5.52 times 10^3 ukg/um^3)) times \
+        & ( -( (6,370,000 um) + 10000 um)^(-1) + (6,370,000 um)^(-1) ) \
+        \
+      W & = 980 870.576 "J"
     $
 
 
@@ -467,37 +517,37 @@
     As in part (b), let $DR$ represent the change in $R$ from its initial height above the earth to its end position.
 
     $
-      W &= int_R^(R+DR) F dr \
-      &= int_R^(R+DR) m g dr \
-      &= fto(m g r)_R^(R+DR) \
-      &= m g (R+DR) - m g (R) \
-      W &= m g DR \
+      W & = int_R^(R+DR) F dr \
+        & = int_R^(R+DR) m g dr \
+        & = fto(m g r)_R^(R+DR) \
+        & = m g (R+DR) - m g (R) \
+      W & = m g DR \
     $
 
-    Using the value of $g$ we calculated from part $a$: 
+    Using the value of $g$ we calculated from part $a$:
     $
-      g = 9.8241040437 um/us^2 \ 
+      g = 9.8241040437 um/us^2 \
       DR = 10000 um
     $
 
     $
-      W &= m g DR \
-      &= (10 ukg) (9.8241040437 um/us^2) (10000 um) \
-      W &= 982 410.404 "J"
+      W & = m g DR \
+        & = (10 ukg) (9.8241040437 um/us^2) (10000 um) \
+      W & = 982 410.404 "J"
     $
 
-    Calculating the difference: 
+    Calculating the difference:
     $
-      abs( 982 410.404 "J" -  980 870.576 "J" ) = 1539.828 "J"
+      abs(982 410.404 "J" - 980 870.576 "J") = 1539.828 "J"
     $
 
-    Dividing by the integrated form of work, and multiplying by $100 %$, we get a relative difference of: 
+    Dividing by the integrated form of work, and multiplying by $100 %$, we get a relative difference of:
 
     $
       (1539.828 "J" ) / (980 870.576 "J") times 100% = 0.157 %
     $
 
-    Therefore there is a $0.157%$ difference between the values, showing an insignificant difference. 
+    Therefore there is a $0.157%$ difference between the values, showing an insignificant difference.
 
 + #p[In the next problem you will be working with a couple of examples of a fractal. A fractal
     is a mathematical set that displays a self-similarity property; that is, it exhibits a repeating
@@ -574,7 +624,7 @@
 
     In the second level of recursion we remove the open middle third of the two sub-intervals we just created, each spanning a length of $1/9$, for a total of $2/9$ length removed.
 
-    For the $n^"th"$ level of recursion, we remove the middle third of $2^(n - 1) $ intervals, spanning a length of $1 / 3^n$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
+    For the $n^"th"$ level of recursion, we remove the middle third of $2^(n - 1)$ intervals, spanning a length of $1 / 3^n$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
 
     #todo[Clean up the math by simplifying the reasoning like the sierpinski carpet one.]
 
@@ -585,14 +635,14 @@
 
     Now we can show that this infinite series converges to a value.
 
-    With some algebraic manipulation, we can form this into a geometric series: 
+    With some algebraic manipulation, we can form this into a geometric series:
 
     $
-      L &= sum_(n=1)^inf (2^(n - 1) )/3^n \ 
-      &= sum_(n=1)^inf (2^(n - 1) )/(3 (3^(n-1))) \ 
-      &= sum_(n=1)^inf (1/3) (2/3)^(n - 1) \ 
+      L & = sum_(n=1)^inf (2^(n - 1) )/3^n \
+        & = sum_(n=1)^inf (2^(n - 1) )/(3 (3^(n-1))) \
+        & = sum_(n=1)^inf (1/3) (2/3)^(n - 1) \
     $
-    Since $abs(2/3) < 1$, we can use the formula: 
+    Since $abs(2/3) < 1$, we can use the formula:
     $
       sum_(n=1)^inf a r^(n - 1) = a / (1 - r)
     $
@@ -602,30 +652,30 @@
       L = sum_(n=1)^inf (1/3) (2/3)^(n - 1) = (1/3) / (1 - (2/3)) = ((1/3)) / ((1/3)) = 1
     $
 
-    Hence, the length of removed is equal to 1. 
+    Hence, the length of removed is equal to 1.
 
-    // Let $S_n$ represent the $n$th partial sum of $L$: 
-    // $
-    //   S_n = sum_(i = 1) ^ n n/3^n
-    // $
+  // Let $S_n$ represent the $n$th partial sum of $L$:
+  // $
+  //   S_n = sum_(i = 1) ^ n n/3^n
+  // $
 
-    // Now we can take the limit as $n$ approaches infinity: 
-    // $
-    //   S &= lim_(n -> inf) S_n \ 
-    //   & = lim_(n -> inf)  sum_(i = 1) ^ n n/3^n
-    // $
+  // Now we can take the limit as $n$ approaches infinity:
+  // $
+  //   S &= lim_(n -> inf) S_n \
+  //   & = lim_(n -> inf)  sum_(i = 1) ^ n n/3^n
+  // $
 
-    // Taking the limit of the terms as $n$ approaches infinity: 
-    // $
-    //   lim_(n -> inf) n (1/3^n) &= lim_(n -> inf) n /3^n \ 
-    // $
-    // Since this is an indeterminate form, we can use l'Hopital's rule. 
-    // $
-    //   lim_(n -> inf) 1 /( 3^n ln(3)) = 0
-    // $
-    // Therefore the terms approach 0. 
+  // Taking the limit of the terms as $n$ approaches infinity:
+  // $
+  //   lim_(n -> inf) n (1/3^n) &= lim_(n -> inf) n /3^n \
+  // $
+  // Since this is an indeterminate form, we can use l'Hopital's rule.
+  // $
+  //   lim_(n -> inf) 1 /( 3^n ln(3)) = 0
+  // $
+  // Therefore the terms approach 0.
 
-    // #todo[Show that this infinite series sums to 1.]
+  // #todo[Show that this infinite series sums to 1.]
 
 
   + #p[The Sierpinski carpet is a two-dimensional counterpart of the Cantor set. It is constructed by removing the centre one-ninth of a square of side 1, then removing the centres of the eight smaller remaining squares, and so on. A visualization of the Sierpinski carpet is available on Wikipedia (https://en.wikipedia.org/wiki/Sierpinski_carpet).]
@@ -650,21 +700,21 @@
     Now we can show that this infinite series converges.
     // #todo[Show that this infinite series converges.]
 
-    Similar to the previous question, we can rearrange it into a geometric series: 
+    Similar to the previous question, we can rearrange it into a geometric series:
     $
-      A &= sum_(n=1)^inf 8^(n - 1)/9^(n-1) \ 
-      &= sum_(n=1)^inf (8/9)^(n-1) \ 
+      A & = sum_(n=1)^inf 8^(n - 1)/9^(n-1) \
+        & = sum_(n=1)^inf (8/9)^(n-1) \
     $
 
-    Since $abs(8/9) < 1$, we can use the formula: 
+    Since $abs(8/9) < 1$, we can use the formula:
     $
       sum_(n=1)^inf a r^(n - 1) = a / (1 - r)
     $
-    
+
     So:
     $
-      A = sum_(n=1)^inf (1/(9)) (8/9)^(n - 1)  = (1/9) / (1 - (8/9)) = ((1/9)) / ((1/9)) = 1
+      A = sum_(n=1)^inf (1/(9)) (8/9)^(n - 1) = (1/9) / (1 - (8/9)) = ((1/9)) / ((1/9)) = 1
     $
 
-    Therefore the total area removed is 1. 
+    Therefore the total area removed is 1.
 
