@@ -225,7 +225,8 @@
       ((- ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 (r)) / a_0))
         -
         (- ( 1) / ( 2 ) A a_0 0^2 e^( (- 2 (0)) / a_0)) )
-      - (
+      \
+      &- (
         ( 1 / (2 ) a_0^2 A (r) e^( (- 2 (r)) / a_0) )
         -( 1 / (2 ) a_0^2 A (0) e^( (- 2 (0)) / a_0) )
       )
@@ -241,7 +242,7 @@
       F(r) & =- ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 r) / a_0)- 1 / (2 ) a_0^2 A r e^( (- 2 r) / a_0)- 1 / (4 )a_0^3 A e^( (- 2 r ) / a_0) + 1 / ( 4 )a_0^3 A \
     $
 
-  + #p[Determine the value of $A$ (i.e., “normalize” the distribution).]
+  + #p[Determine the value of $A$ (i.e., “normalize” the distribution).] <question1b>
 
     To normalize the function, we can set its indefinite integral equal to $1$, and solve for $A$.
     $
@@ -264,51 +265,98 @@
       lim_(r->inf)(1 / (4 )a_0^3 A e^( (- 2 r ) / a_0))
       +
       lim_(r->inf)(1 / ( 4 )a_0^3 A ) \
-
       1 &= lim_(r->inf) ( ( A a_0 r^2) / (2 e^( ( 2 r) / a_0)))
       -
-      lim_(r->inf) (( A a_0^2  r)  / (2 e^( ( 2 r) / a_0)))
-      - 0 + 1 / (4) a_0^3 A \    
+      lim_(r->inf) (( A a_0^2 r) / (2 e^( ( 2 r) / a_0)))
+      - 0 + 1 / (4) a_0^3 A \
     $
 
     Now we do L'Hôpital's rule on both the limits:
     $
-      1 &= lim_(r->inf) ( ( 2 A a_0 r) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
-      -
-      lim_(r->inf) (( A a_0^2 )  / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
-      + 1 / (4) a_0^3 A \ 
-
-      1 &= lim_(r->inf) ( ( 2 A a_0 r) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0))) - 0 + 1 / (4) a_0^3 A \ 
-
+      1 & = lim_(r->inf) ( ( 2 A a_0 r) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
+          -
+          lim_(r->inf) (( A a_0^2 ) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
+          + 1 / (4) a_0^3 A \
+      1 & = lim_(r->inf) ( ( 2 A a_0 r) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0))) - 0 + 1 / (4) a_0^3 A \
     $
-    Doing L'Hopital's rule again on the limit:   
+    Doing L'Hopital's rule again on the limit:
     $
-      1 &= lim_(r->inf) ( ( 2 A a_0) / (2 ( a_0 / ( 2 )) ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))+ 1 / (4) a_0^3 A \ 
-
-      1 &= 0 + 1 / (4) a_0^3 A \ 
+      1 & = lim_(r->inf) ( ( 2 A a_0) / (2 ( a_0 / ( 2 )) ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))+ 1 / (4) a_0^3 A \
+      1 & = 0 + 1 / (4) a_0^3 A \
     $
 
-    Now solving for $A$: 
+    Now solving for $A$:
     $
-      (4(1)) / a_0^3 &=   A \ 
+      (4(1)) / a_0^3 & = A \
     $
 
-    Therefore: 
+    Therefore:
 
     $
-      #rect(
-      $
-        A = 4 / a_0^3
-      $)
+      #rect($ A = 4 / a_0^3 $)
     $
 
 
   + #p[Determine the probability that the electron will be found within $2a_0$ of the proton. Does this seem reasonable?]
 
-    To
-    $$
+    To determine the probability that the electron will be found within $2a_0$ of the proton, we can evaluate the integral:
+    $
+      P(r < 2a_0) = int_0^(2a_0) f(x) dx
+    $
+    of the Probability Distribution Function $f(x)$ describing the distance from the particle.
+
+    Noting that this is the same evaluating the Cumulative Probability Function $F(x)$ (as found in #link(<question1a>, "1.a)")) at $x = a_0$, we can simplify the problem:
+    $
+      P(r < 2a_0) = int_0^(2a_0) f(x) dx = F(2a_0) & = -( 1) / ( 2 ) A a_0 (2a_0)^2 e^( (- 2 (2a_0)) / a_0)- 1 / (2 ) a_0^2 A (2a_0) e^( (- 2 (2a_0)) / a_0)- 1 / (4 )a_0^3 A e^( (- 2 (2a_0) ) / a_0) + 1 / ( 4 )a_0^3 A \
+    $
+
+    Where $A = 4 / a_0^3$ as found in #link(<question1b>, "1.b)"). So we can rewrite:
+
+    $
+      P(r < 2a_0) & = -( 1) / ( 2 ) (4 / a_0^3) a_0 (2a_0)^2 e^( (- 2 (2a_0)) / a_0)- 1 / (2 ) a_0^2 (4 / a_0^3) (2a_0) e^( (- 2 (2a_0)) / a_0)- 1 / (4 )a_0^3 (4 / a_0^3) e^( (- 2 (2a_0) ) / a_0) + 1 / ( 4 )a_0^3 (4 / a_0^3) \
+      & = -( 1) / ( 2 ) (4 ) (2)^2 e^( (- 2 (2)))
+      - 1 / (2 ) (4) (2) e^( (- 2 (2)) )- 1 / (4 ) (4 ) e^( (- 2 (2) ) ) + 1 / ( 4 ) (4) \
+      & = - (2) (4) e^( -4 )
+      - 4 e^( -4 )- e^(- 4)
+      + 1 \
+      & = -13 e^( -4 ) + 1 \
+    $
+
+    Therefore the probability that the electron will be found within $2a_0$ of the proton is:
+
+    $
+      P(r < 2a_0) = -13 e^( -4 ) + 1
+    $
+
+    This resembles;
+    #todo[Figure out what this resembles.]
+
 
   + #p[Determine the "most probable" and the "expected" radius for the hydrogen atom in the ground state.]
+
+    This is characterized by the mean of the distribution:
+
+    Using the definition of the mean for continuous probability distributions:
+    $
+      mu = int_(-inf)^inf x(f(x)) dx \
+    $
+    Since our distribution is $0$ at $x < 0$, we can rephrase:
+    $
+      mu = int_(0)^inf x(f(x)) dx \
+    $
+    Computing the integral:
+    $
+      mu & = int_(0)^inf x (f(x)) dx \
+         & = int_(0)^inf x A x^2 e^( (- 2 x) / a_0) dx \
+         & = int_(0)^inf A x^3 e^( (- 2 x) / a_0) dx \
+    $
+
+    For an integral with such a large exponent on $x$, it is helpful to use the DI method when doing integration by parts.
+
+    
+
+    #todo[Do the integral and find the mean]
+
 
 + #p[_Newton's universal law of gravitation_ states that the force of attraction between two point masses $m$ and $M$ has magnitude
 
@@ -365,30 +413,91 @@
 
   + #p[Use the original $F = (G m M) / r^2$ with the earth regarded as a point mass to calculate the work required to lift a mass of 10kg from the earth's surface to a height of $10 ukm$.]
 
-  $
-    10 ukm = (10 ukm)((1000 um )/(1 ukm)) = 10000 um
-  $
+    #let DR = $Delta R$;
 
-  Work $W$ is defined as:
-  $
-    W = int F dr
-  $
-  Where $F$ is the force, and $dr$ is the change in radius.
+    Let $DR$ represent the change in $R$ from its initial height above the earth to its end position.
 
-  Therefore we can express this work needed as an integral:
-  $
-    W = int_R^(R+10000 um) F dr \
-  $
+    $
+      DR = 10 ukm = (10 ukm)((1000 um )/(1 ukm)) = 10000 um
+    $
 
-  Plugging in our values and solving we get:
-  $
-    W = int_R^(R+10000 um) (G m M) / r^2 dr
-  $
+    Work $W$ is defined as:
+    $
+      W = int F dr
+    $
+    Where $F$ is the force, and $dr$ is the change in radius.
+
+    Therefore we can express this work needed as an integral:
+    $
+      W = int_R^(R+DR) F dr \
+    $
+
+    Solving we get:
+    $
+      W & = int_R^(R+DR) (G m M) / r^2 dr \
+        & = G m M int_R^(R+DR) r^(-2) dr \
+        & = G m M ( fto(-r^(-1))_R^(R+DR) ) \
+        & = G m M ( -(R+DR)^(-1) - ( -R^(-1) ) ) \
+      W & = G m M ( -(R+DR)^(-1) + R^(-1) ) \
+    $
+
+    As we previously found: 
+    $
+      M = 4/3 pi R^3 rho \ 
+      M = 4/3 (3.1415926535) (6,370,000 um)^3 (5.52 times 10^3 ukg/um^3)
+    $
+
+    Plugging in our values:
+
+    $
+      W &= G m M ( -(R+DR)^(-1) + R^(-1) ) \
+      \ 
+      &= (6.67 times 10^(-11) N dot um^2 ukg^(-2)) (10 ukg) times \
+      & (4/3 (3.1415926535) (6,370,000 um)^3 (5.52 times 10^3 ukg/um^3)) times \ 
+      & ( -( (6,370,000 um) + 10000 um)^(-1) + (6,370,000 um)^(-1) ) \
+      \
+      W &= 980 870.576 "J"
+    $
 
 
   + #p[
       Calculate the work in part (b) using the constant gravitational force $F = m g$ in part (a). Is there a significant difference?
     ]
+
+    As in part (b), let $DR$ represent the change in $R$ from its initial height above the earth to its end position.
+
+    $
+      W &= int_R^(R+DR) F dr \
+      &= int_R^(R+DR) m g dr \
+      &= fto(m g r)_R^(R+DR) \
+      &= m g (R+DR) - m g (R) \
+      W &= m g DR \
+    $
+
+    Using the value of $g$ we calculated from part $a$: 
+    $
+      g = 9.8241040437 um/us^2 \ 
+      DR = 10000 um
+    $
+
+    $
+      W &= m g DR \
+      &= (10 ukg) (9.8241040437 um/us^2) (10000 um) \
+      W &= 982 410.404 "J"
+    $
+
+    Calculating the difference: 
+    $
+      abs( 982 410.404 "J" -  980 870.576 "J" ) = 1539.828 "J"
+    $
+
+    Dividing by the integrated form of work, and multiplying by $100 %$, we get a relative difference of: 
+
+    $
+      (1539.828 "J" ) / (980 870.576 "J") times 100% = 0.157 %
+    $
+
+    Therefore there is a $0.157%$ difference between the values, showing an insignificant difference. 
 
 + #p[In the next problem you will be working with a couple of examples of a fractal. A fractal
     is a mathematical set that displays a self-similarity property; that is, it exhibits a repeating
@@ -409,9 +518,11 @@
           )
         }
       }
-      #for value in range(0, 7) {
-        draw_cantor(value)
-      }
+      #block(breakable: false)[
+        #for value in range(0, 7) {
+          draw_cantor(value)
+        }
+      ]
 
       Where each bar is a closed sub-interval of $[0, 1]$.
 
@@ -463,15 +574,59 @@
 
     In the second level of recursion we remove the open middle third of the two sub-intervals we just created, each spanning a length of $1/9$, for a total of $2/9$ length removed.
 
-    For the $n^"th"$ level of recursion, we remove the middle third of $n$ intervals, spanning a length of $1 / 3^n$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
+    For the $n^"th"$ level of recursion, we remove the middle third of $2^(n - 1) $ intervals, spanning a length of $1 / 3^n$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
+
+    #todo[Clean up the math by simplifying the reasoning like the sierpinski carpet one.]
 
     $
-      L = sum_(n=1)^inf n (1/3^n)
+      L = sum_(n=1)^inf 2^(n - 1) (1/3^n) = sum_(n=1)^inf (2^(n - 1) )/3^n
     $
     Where $L$ represents the length removed.
 
-    Now we can show that this infinite series converges:
-    #todo[Show that this infinite series converges.]
+    Now we can show that this infinite series converges to a value.
+
+    With some algebraic manipulation, we can form this into a geometric series: 
+
+    $
+      L &= sum_(n=1)^inf (2^(n - 1) )/3^n \ 
+      &= sum_(n=1)^inf (2^(n - 1) )/(3 (3^(n-1))) \ 
+      &= sum_(n=1)^inf (1/3) (2/3)^(n - 1) \ 
+    $
+    Since $abs(2/3) < 1$, we can use the formula: 
+    $
+      sum_(n=1)^inf a r^(n - 1) = a / (1 - r)
+    $
+
+    So:
+    $
+      L = sum_(n=1)^inf (1/3) (2/3)^(n - 1) = (1/3) / (1 - (2/3)) = ((1/3)) / ((1/3)) = 1
+    $
+
+    Hence, the length of removed is equal to 1. 
+
+    // Let $S_n$ represent the $n$th partial sum of $L$: 
+    // $
+    //   S_n = sum_(i = 1) ^ n n/3^n
+    // $
+
+    // Now we can take the limit as $n$ approaches infinity: 
+    // $
+    //   S &= lim_(n -> inf) S_n \ 
+    //   & = lim_(n -> inf)  sum_(i = 1) ^ n n/3^n
+    // $
+
+    // Taking the limit of the terms as $n$ approaches infinity: 
+    // $
+    //   lim_(n -> inf) n (1/3^n) &= lim_(n -> inf) n /3^n \ 
+    // $
+    // Since this is an indeterminate form, we can use l'Hopital's rule. 
+    // $
+    //   lim_(n -> inf) 1 /( 3^n ln(3)) = 0
+    // $
+    // Therefore the terms approach 0. 
+
+    // #todo[Show that this infinite series sums to 1.]
+
 
   + #p[The Sierpinski carpet is a two-dimensional counterpart of the Cantor set. It is constructed by removing the centre one-ninth of a square of side 1, then removing the centres of the eight smaller remaining squares, and so on. A visualization of the Sierpinski carpet is available on Wikipedia (https://en.wikipedia.org/wiki/Sierpinski_carpet).]
 
@@ -483,14 +638,33 @@
 
     In the second level of recursion we remove the center one-ninth of $8$ squares of area $1/9$, for a total of $(1/9)(8)(1/9)$ area removed.
 
-    For the $n^"th"$ level of recursion, we remove the center one-ninth of $8^(n - 1)$ squares of area $1/9^n$, for a total of $(1/9)(8^(n - 1))(1/9^n)$
+    For the $n^"th"$ level of recursion, we remove the center one-ninth of $8^(n - 1)$ squares of area $1/9^(n - 1)$, for a total of $(1/9)(8^(n - 1))(1/9^(n-1))$
 
     Therefore, to get the total area removed, we can simply take the sum of these removals for an infinite recursion depth.
 
     $
-      A = sum_(n=1)^inf (1/9)(8^(n - 1))(1/9^n)
+      A = sum_(n=1)^inf (8^(n - 1))(1/9^(n-1))
     $
     Where $A$ represents the length removed.
 
-    Now we can show that this infinite series converges:
-    #todo[Show that this infinite series converges.]
+    Now we can show that this infinite series converges.
+    // #todo[Show that this infinite series converges.]
+
+    Similar to the previous question, we can rearrange it into a geometric series: 
+    $
+      A &= sum_(n=1)^inf 8^(n - 1)/9^(n-1) \ 
+      &= sum_(n=1)^inf (8/9)^(n-1) \ 
+    $
+
+    Since $abs(8/9) < 1$, we can use the formula: 
+    $
+      sum_(n=1)^inf a r^(n - 1) = a / (1 - r)
+    $
+    
+    So:
+    $
+      A = sum_(n=1)^inf (1/(9)) (8/9)^(n - 1)  = (1/9) / (1 - (8/9)) = ((1/9)) / ((1/9)) = 1
+    $
+
+    Therefore the total area removed is 1. 
+
