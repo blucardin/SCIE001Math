@@ -237,9 +237,9 @@
       \
     $
 
-    Which simplifies to:
+    Therefore, the cumulative distribution function is:
     $
-      F(r) & =- ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 r) / a_0)- 1 / (2 ) a_0^2 A r e^( (- 2 r) / a_0)- 1 / (4 )a_0^3 A e^( (- 2 r ) / a_0) + 1 / ( 4 )a_0^3 A \
+      #rect[$ F(r) & =- ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 r) / a_0)- 1 / (2 ) a_0^2 A r e^( (- 2 r) / a_0)- 1 / (4 )a_0^3 A e^( (- 2 r ) / a_0) + 1 / ( 4 )a_0^3 A \ $ ]
     $
 
   + #p[Determine the value of $A$ (i.e., “normalize” the distribution).] <question1b>
@@ -249,7 +249,7 @@
       int_(0)^(inf) f(x) dx = 1 \
       int_(0)^(inf) A x^2 e^( (- 2 x) / a_0) dx = 1
     $
-    Fortunately, we already computed the integral in question #link(<question1a>, "1.a)"), so we can rewrite this integral in terms of the cumulative distribution function.
+    Fortunately, we already computed the integral as part of question #link(<question1a>, "1.a)"), so we can rewrite this integral in terms of the cumulative distribution function.
     $
       int_(0)^(inf) f(x) dx = lim_(r -> inf) int_(0)^(r) f(x) dx = lim_(r -> inf) F(r) = 1\
     $
@@ -290,7 +290,7 @@
       (4(1)) / a_0^3 & = A \
     $
 
-    Therefore:
+    Therefore, to normalize the distribution:
 
     $
       #rect($ A = 4 / a_0^3 $)
@@ -299,11 +299,11 @@
 
   + #p[Determine the probability that the electron will be found within $2a_0$ of the proton. Does this seem reasonable?]
 
-    To determine the probability that the electron will be found within $2a_0$ of the proton, we can evaluate the integral:
+    To determine the probability that the electron will be found within $2a_0$ of the proton, we can evaluate the integral,
     $
       P(r < 2a_0) = int_0^(2a_0) f(x) dx
     $
-    of the Probability Distribution Function $f(x)$ describing the distance from the particle.
+    of the Probability Distribution Function $f(x)$.
 
     Noting that this is the same evaluating the Cumulative Probability Function $F(x)$ (as found in #link(<question1a>, "1.a)")) at $x = a_0$, we can simplify the problem:
     $
@@ -325,10 +325,10 @@
     Therefore the probability that the electron will be found within $2a_0$ of the proton is:
 
     $
-      P(r < 2a_0) = -13 e^( -4 ) + 1 approx 0.7618966944
+      #rect[$ P(r < 2a_0) = -13 e^( -4 ) + 1 approx 0.7618966944 $]
     $
 
-    This is reasonable, as there is a 75% chance that the electron will be found within two Bohr Radii. 
+    This is reasonable, as there is a 75% chance that the electron will be found within two Bohr Radii.
 
 
   // #todo[Figure out what this resembles.]
@@ -336,9 +336,9 @@
 
   + #p[Determine the "most probable" and the "expected" radius for the hydrogen atom in the ground state.]
 
-    This is characterized by the mean of the distribution:
+    The expected radius is characterized by the mean of the Probability Density Function.
 
-    Using the definition of the mean for continuous probability distributions:
+    Using the definition of the mean:
     $
       mu = int_(-inf)^inf x(f(x)) dx \
     $
@@ -377,15 +377,15 @@
       mu & = A fto(((x^3)((- a_0 / 2)e^((- 2 x) / a_0)) - (3x^2)((- a_0 / 2)^2e^((- 2 x) / a_0)) + (6x) ((- a_0 / 2)^3 e^((- 2 x) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 x) / a_0) ))_(0)^inf \
     $
 
-    At the limit to infinity, all of these go to zero, as they turn into a L'Hopital's case, resulting in a polynomial on the top that differentiates to 0, and an exponential on the bottom that increase as x goes to infinity.
+    At the limit to infinity, all these terms go to zero, as they turn into an indeterminate form, resulting in a polynomial on the top that differentiates (over several rounds of applying L'Hopital's rule) to a constant, and an exponential on the bottom that increases as $x$ goes to infinity.
+
+    #todo[Write this out (/ better)]
 
     So we only need to consider the $x = 0$ case:
 
     $
       mu & = A ( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \
     $
-
-    #todo[Write this better]
 
     Using $A = 4 / a_0^3$ found in part b, we can simplify:
 
@@ -402,29 +402,51 @@
       #rect[$ mu & = 3 / 2 a_0 $]
     $
 
-    To find the most probable radius, we can just find the mode of the distribution. The mode is defined as the $r$ value for which the probability density function is maximized. 
+    To find the most probable radius, we can just find the mode of the distribution. The mode is defined as the $r$ value for which the probability density function is maximized.
 
-    Therefore, we must find the global maximum of $f(r)$. 
+    Therefore, we must find the global maximum of $f(r)$.
 
-    Taking a first derivative: 
+    Taking a first derivative:
     $
-      f (r) &= A r^2 e^( (- 2 r) / a_0) \ 
-      f prime (r) &= A ( 2 r e^( (- 2 r) / a_0)  + r^2 e^( (- 2 r) / a_0)  ( - 2  / a_0))  \ 
-    $
-
-    Finding the place where this function is $0$: 
-    $
-      0 &= f(r) = A ( 2 r e^( (- 2 r) / a_0)  + r^2 e^( (- 2 r) / a_0)  ( - 2  / a_0))  \ 
-
-      0 &=  e^( (- 2 r) / a_0) ( 2 r   + r^2 ( - 2  / a_0))  \ 
-       0 &=  2 r   + r^2 ( - 2  / a_0) wide e^( (- 2 r) / a_0) != 0  \
-       0 &=  r ( 2  + r ( - 2  / a_0) ) \ 
-       0 &=   2  + r ( - 2  / a_0) wide r != 0 "the electron cannot be on the nucleus"\ 
-       -2( a_0 / - 2  ) &= r \
-        a_0 &= r 
+            f (r) & = A r^2 e^( (- 2 r) / a_0) \
+      f prime (r) & = A ( 2 r e^( (- 2 r) / a_0) + r^2 e^( (- 2 r) / a_0) ( - 2 / a_0)) \
     $
 
-    Therefore the most probable radius is $r = a_0$. 
+    Finding the place where the derivative is $0$:
+    $
+                      0 & = f prime (r) = A ( 2 r e^( (- 2 r) / a_0) + r^2 e^( (- 2 r) / a_0) ( - 2 / a_0)) \
+                      0 & = e^( (- 2 r) / a_0) ( 2 r + r^2 ( - 2 / a_0)) \
+                      0 & = 2 r + r^2 ( - 2 / a_0) wide e^( (- 2 r) / a_0) != 0 \
+                      0 & = r ( 2 + r ( - 2 / a_0) ) \
+                      0 & = 2 + r ( - 2 / a_0) wide r != 0 "the electron cannot be on the nucleus" \
+      -2( - a_0 /( 2) ) & = r \
+                    a_0 & = r
+    $
+
+    Proving that this is a global maximum, and not a global minimum:
+    $
+           f (r) & = A r^2 e^( (- 2 r) / a_0) wide
+                   A = 4 / a_0^3 \
+         f (a_0) & = 4 / a_0^3 a_0^2 e^( (- 2 a_0) / a_0) = 4 / a_0 e^(- 2) \
+      f (2 a_0 ) & = (4 / a_0^3) (2 a_0 )^2 e^( (- 2 (2 a_0 )) / a_0) = 8 / a_0 e^( - 4 ) \
+    $
+    $
+      (f (2 a_0 )) / (f (a_0) ) = (8 / a_0 e^( - 4 )) / (4 / a_0 e^(- 2)) = 2 e^(-6) approx 0.004957504353 < 0
+    $
+    By definition $(f (x) ) > 0$:
+
+    So:
+    $
+      (f (2 a_0 )) / (f (a_0) ) < 0 \
+      f (2 a_0 ) < f (a_0)
+    $
+
+    Hence $r = a_0$ is a global maximum of $f(x)$:
+
+    Therefore the most probable radius is:
+    $
+      #rect[$ r = a_0 $]
+    $
 
 + #p[_Newton's universal law of gravitation_ states that the force of attraction between two point masses $m$ and $M$ has magnitude
 
@@ -474,7 +496,7 @@
 
     Therefore, for objects close to earth's surface, _Newton's universal law of gravitation_ can be reduced to :
     $
-      F & = m g \
+      #rect[$ F & = m g $] \
     $
     where $g = (9.82 um / us^2)$.
 
@@ -524,7 +546,10 @@
         & (4/3 (3.1415926535) (6,370,000 um)^3 (5.52 times 10^3 ukg/um^3)) times \
         & ( -( (6,370,000 um) + 10000 um)^(-1) + (6,370,000 um)^(-1) ) \
         \
-      W & = 980 870.576 "J"
+    $
+
+    $
+      #rect[$ W & = 980 870.576 "J" $ ]
     $
 
 
@@ -550,8 +575,11 @@
 
     $
       W & = m g DR \
-        & = (10 ukg) (9.8241040437 um/us^2) (10000 um) \
-      W & = 982 410.404 "J"
+      W & = (10 ukg) (9.8241040437 um/us^2) (10000 um) \
+    $
+
+    $
+      #rect[$ W & = 982 410.404 "J" $]
     $
 
     Calculating the difference:
@@ -565,7 +593,9 @@
       (1539.828 "J" ) / (980 870.576 "J") times 100% = 0.157 %
     $
 
+    #rect[
     Therefore there is a $0.157%$ difference between the values, showing an insignificant difference.
+    ]
 
 + #p[In the next problem you will be working with a couple of examples of a fractal. A fractal
     is a mathematical set that displays a self-similarity property; that is, it exhibits a repeating
@@ -631,7 +661,7 @@
       ]
       This leaves us with our final list:
       $
-        0, 1/9, 2/9, 1/3, 2/3, 7/9, 8/9, 1,
+        #rect[$ 0, 1/9, 2/9, 1/3, 2/3, 7/9, 8/9, 1 $]
       $
       are all in the cantor set.
 
@@ -670,7 +700,7 @@
       L = sum_(n=1)^inf (1/3) (2/3)^(n - 1) = (1/3) / (1 - (2/3)) = ((1/3)) / ((1/3)) = 1
     $
 
-    Hence, the length of removed is equal to 1.
+    #rect[Hence, the length of removed is equal to 1.]
 
   // Let $S_n$ represent the $n$th partial sum of $L$:
   // $
@@ -734,5 +764,5 @@
       A = sum_(n=1)^inf (1/(9)) (8/9)^(n - 1) = (1/9) / (1 - (8/9)) = ((1/9)) / ((1/9)) = 1
     $
 
-    Therefore the total area removed is 1.
+    #rect[Therefore the total area removed is 1.]
 
