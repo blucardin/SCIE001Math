@@ -325,11 +325,13 @@
     Therefore the probability that the electron will be found within $2a_0$ of the proton is:
 
     $
-      P(r < 2a_0) = -13 e^( -4 ) + 1
+      P(r < 2a_0) = -13 e^( -4 ) + 1 approx 0.7618966944
     $
 
-    This resembles;
-    #todo[Figure out what this resembles.]
+    This is reasonable, as there is a 75% chance that the electron will be found within two Bohr Radii. 
+
+
+  // #todo[Figure out what this resembles.]
 
 
   + #p[Determine the "most probable" and the "expected" radius for the hydrogen atom in the ground state.]
@@ -363,50 +365,66 @@
         },
         table.header([*Sign*], [*D*], [*I*]),
         [$+$], [$x^3$], [$e^( (- 2 x) / a_0)$],
-        [$-$], [$3x^2$], [$(- a_0 / 2)e^((- 2 x) / a_0)$] , 
-        [$+$], [$6x $], [$(- a_0 / 2)^2e^((- 2 x) / a_0)$] , 
-        [$-$], [$6$], [$(- a_0 / 2)^3 e^((- 2 x) / a_0)$] , 
-        [$+$], [$0$], [$(- a_0 / 2)^4 e^((- 2 x) / a_0)$] , 
+        [$-$], [$3x^2$], [$(- a_0 / 2)e^((- 2 x) / a_0)$],
+        [$+$], [$6x$], [$(- a_0 / 2)^2e^((- 2 x) / a_0)$],
+        [$-$], [$6$], [$(- a_0 / 2)^3 e^((- 2 x) / a_0)$],
+        [$+$], [$0$], [$(- a_0 / 2)^4 e^((- 2 x) / a_0)$],
       )
     ]
-    Then writing it all out, we get: 
+    Then writing it all out, we get:
 
     $
-      mu & = A fto( ((x^3)((- a_0 / 2)e^((- 2 x) / a_0)) - (3x^2)((- a_0 / 2)^2e^((- 2 x) / a_0)) + (6x) ((- a_0 / 2)^3 e^((- 2 x) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 x) / a_0) ))_(0)^inf \ 
+      mu & = A fto(((x^3)((- a_0 / 2)e^((- 2 x) / a_0)) - (3x^2)((- a_0 / 2)^2e^((- 2 x) / a_0)) + (6x) ((- a_0 / 2)^3 e^((- 2 x) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 x) / a_0) ))_(0)^inf \
     $
 
-    At the limit to infinity, all of these go to zero, as they turn into a L'Hopital's case, resulting in a polynomial on the top that differentiates to 0, and an exponential on the bottom that increase as x goes to infinity. 
+    At the limit to infinity, all of these go to zero, as they turn into a L'Hopital's case, resulting in a polynomial on the top that differentiates to 0, and an exponential on the bottom that increase as x goes to infinity.
 
-    So we only need to consider the $x = 0$ case: 
+    So we only need to consider the $x = 0$ case:
 
     $
-      mu & = A ( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \ 
+      mu & = A ( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \
     $
 
     #todo[Write this better]
 
-    Using $A = 4 / a_0^3$ found in part b, we can simplify: 
+    Using $A = 4 / a_0^3$ found in part b, we can simplify:
 
     $
-      mu & = (4 / a_0^3)( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \ 
-
-      mu & = (4 / a_0^3)( - (- (6) (- a_0 / 2)^4 e^(0) ) )\ 
-
-      mu & = (4 / a_0^3) (6) (a_0^4 / 2^4) \ 
-
-      mu & = (4) (6) (a_0 / 2^4)  \ 
-
-      mu & = (24 / 16 ) (a_0)  \ 
+      mu & = (4 / a_0^3)( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \
+      mu & = (4 / a_0^3)( - (- (6) (- a_0 / 2)^4 e^(0) ) )\
+      mu & = (4 / a_0^3) (6) (a_0^4 / 2^4) \
+      mu & = (4) (6) (a_0 / 2^4) \
+      mu & = (24 / 16 ) (a_0) \
     $
 
-    Therefore the expected radius is: 
+    Therefore the expected radius is:
     $
-      mu & = 24 / 16 a_0
+      #rect[$ mu & = 3 / 2 a_0 $]
     $
 
+    To find the most probable radius, we can just find the mode of the distribution. The mode is defined as the $r$ value for which the probability density function is maximized. 
 
-    #todo[Find the mode]
+    Therefore, we must find the global maximum of $f(r)$. 
 
+    Taking a first derivative: 
+    $
+      f (r) &= A r^2 e^( (- 2 r) / a_0) \ 
+      f prime (r) &= A ( 2 r e^( (- 2 r) / a_0)  + r^2 e^( (- 2 r) / a_0)  ( - 2  / a_0))  \ 
+    $
+
+    Finding the place where this function is $0$: 
+    $
+      0 &= f(r) = A ( 2 r e^( (- 2 r) / a_0)  + r^2 e^( (- 2 r) / a_0)  ( - 2  / a_0))  \ 
+
+      0 &=  e^( (- 2 r) / a_0) ( 2 r   + r^2 ( - 2  / a_0))  \ 
+       0 &=  2 r   + r^2 ( - 2  / a_0) wide e^( (- 2 r) / a_0) != 0  \
+       0 &=  r ( 2  + r ( - 2  / a_0) ) \ 
+       0 &=   2  + r ( - 2  / a_0) wide r != 0 "the electron cannot be on the nucleus"\ 
+       -2( a_0 / - 2  ) &= r \
+        a_0 &= r 
+    $
+
+    Therefore the most probable radius is $r = a_0$. 
 
 + #p[_Newton's universal law of gravitation_ states that the force of attraction between two point masses $m$ and $M$ has magnitude
 
