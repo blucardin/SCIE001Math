@@ -134,6 +134,9 @@
 #let uN = "N"
 #let ukm = "km"
 #let us = "s"
+#let uJ = "J"
+#let ukJ = "kJ"
+
 
 // #set heading(numbering: "1.")
 
@@ -549,7 +552,7 @@
     $
 
     $
-      #rect[$ W & = 980 870.576 "J" $ ]
+      #rect[$ W & = 980 870.576 uJ approx 981 ukJ $ ]
     $
 
 
@@ -579,7 +582,7 @@
     $
 
     $
-      #rect[$ W & = 982 410.404 "J" $]
+      #rect[$ W & = 982 410.404 uJ approx 982 ukJ $]
     $
 
     Calculating the difference:
@@ -594,7 +597,7 @@
     $
 
     #rect[
-    Therefore there is a $0.157%$ difference between the values, showing an insignificant difference.
+    Therefore there is a $0.157%$ difference between the values, showing an insignificant difference #todo["Between"].
     ]
 
 + #p[In the next problem you will be working with a couple of examples of a fractal. A fractal
@@ -668,28 +671,31 @@
 
     + #p[Show that the total length of all the intervals that are removed is $1$. Despite that, the Cantor set is not an empty set.]
 
-    In the first level of recursion, we remove the open middle third of the interval, spanning a length of $1/3$, for a total of $1/3$ length removed.
+    In the first level of recursion, we remove the open middle third of one interval of length $1$, for a total of $(1/3)(1)(1)$ length removed.
 
-    In the second level of recursion we remove the open middle third of the two sub-intervals we just created, each spanning a length of $1/9$, for a total of $2/9$ length removed.
+    In the second level of recursion we remove the open middle third of the two sub-intervals we just created, each spanning a length of $1/9$, for a total of $(1/3)(2)(1/9)$ length removed.
 
-    For the $n^"th"$ level of recursion, we remove the middle third of $2^(n - 1)$ intervals, spanning a length of $1 / 3^n$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
+    For the $n^"th"$ level of recursion, we remove the middle third of $2^(n - 1)$ intervals, spanning a length of $1 / 3^(n - 1)$, for a total of $(1/3)(2^(n - 1)) (1 / 3^(n - 1))$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
 
     #todo[Clean up the math by simplifying the reasoning like the sierpinski carpet one.]
 
     $
-      L = sum_(n=1)^inf 2^(n - 1) (1/3^n) = sum_(n=1)^inf (2^(n - 1) )/3^n
+      L = sum_(n=1)^inf (1/3)(2^(n - 1)) (1 / 3^(n - 1)) = sum_(n=1)^inf (1/3)(2 / 3)^(n - 1)
     $
     Where $L$ represents the length removed.
 
     Now we can show that this infinite series converges to a value.
 
-    With some algebraic manipulation, we can form this into a geometric series:
+    This is just a geometric series. 
 
-    $
-      L & = sum_(n=1)^inf (2^(n - 1) )/3^n \
-        & = sum_(n=1)^inf (2^(n - 1) )/(3 (3^(n-1))) \
-        & = sum_(n=1)^inf (1/3) (2/3)^(n - 1) \
-    $
+    // With some algebraic manipulation, we can form this into a geometric series:
+
+    // $
+    //   L & = sum_(n=1)^inf (2^(n - 1) )/3^n \
+    //     & = sum_(n=1)^inf (2^(n - 1) )/(3 (3^(n-1))) \
+    //     & = sum_(n=1)^inf (1/3) (2/3)^(n - 1) \
+    // $
+    // 
     Since $abs(2/3) < 1$, we can use the formula:
     $
       sum_(n=1)^inf a r^(n - 1) = a / (1 - r)
@@ -700,7 +706,7 @@
       L = sum_(n=1)^inf (1/3) (2/3)^(n - 1) = (1/3) / (1 - (2/3)) = ((1/3)) / ((1/3)) = 1
     $
 
-    #rect[Hence, the length of removed is equal to 1.]
+    #rect[Hence, the length removed is equal to 1.]
 
   // Let $S_n$ represent the $n$th partial sum of $L$:
   // $
