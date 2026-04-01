@@ -698,12 +698,14 @@
           grid(columns:(1fr, 1fr, 1fr),h,[],h,)
         }
       }
-      #for value in range(0, 10) {
-        draw_cantor(value) // call the draw_cantor function 5 times, each with a
+      #for value in range(0, 7) {
+        draw_cantor(value) // call the draw_cantor function 7 times (one for each "iteration")
       }
       ```]
       
-      For completeness I also included a hand drawn image with the first few intervals labeled: 
+      (I could have done 5 recursive calls, but I chose to do 7.)
+
+      For completeness I also included a hand drawn image of the first 5 iterations with the first few intervals labeled: 
       #image("IMG_4928.jpeg")
 
 
