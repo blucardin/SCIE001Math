@@ -657,8 +657,11 @@
     $
 
     #rect[
-    Therefore there is a $0.157%$ difference between the values, totaling an absolute difference of about $1539.828 uJ $, showing a small but apparent difference in using the actual equation compared to its reduced form.
+    Therefore there is a $0.157%$ difference between the values, totaling an absolute difference of about $1539.828 uJ $, showing a small but apparent difference in using the actual _law of gravitation_ compared to its reduced form.
+
+    I would say this difference is insignificant. 
     ]
+    
 
 + #p[In the next problem you will be working with a couple of examples of a fractal. A fractal
     is a mathematical set that displays a self-similarity property; that is, it exhibits a repeating
