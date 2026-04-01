@@ -194,9 +194,11 @@
     From the definition of the cumulative distribution function $F(r)$:
 
     $
-      F(r) = int_(-inf)^(r) f(x) dx
+      F(r) = int_(0)^(r) f(x) dx
     $
-    So we can just compute the improper integral. In our case, the electron-proton distance cannot be negative, so the integral spans from $0$ to $inf$.
+    Noting that in our case, the electron-proton distance cannot be negative, so the integral spans from $0$ to $r$ instead of from $-inf$ to $r$.
+
+    So we can just compute the improper integral. 
     $
       F(r) & = int_(0)^(r) f(x) dx \
       F(r) & = int_(0)^(r) A x^2 e^( (- 2 x) / a_0) dx \
@@ -208,7 +210,7 @@
     $
 
     $
-      F(r) & = fto((A x^2) ((a_0 ) / (- 2 ) e^( (- 2 x) / a_0)))_0^r - int_0^r (a_0 ) / (- 2 ) e^( (- 2 x) / a_0) 2A x dx \
+      F(r) & = fto(((A x^2) ((a_0 ) / (- 2 ) e^( (- 2 x) / a_0))))_0^r - int_0^r (a_0 ) / (- 2 ) e^( (- 2 x) / a_0) 2A x dx \
       F(r) & = fto((- ( 1) / ( 2 ) A a_0 x^2 e^( (- 2 x) / a_0)))_0^r - int_0^r -a_0 A x e^( (- 2 x) / a_0) dx
     $
 
@@ -287,7 +289,7 @@
 
     Now we do L'Hôpital's rule on both the limits:
     $
-      1 & = lim_(r->inf) ( ( 2 A a_0 r) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
+      1 & =^("L.H") lim_(r->inf) ( ( 2 A a_0 r) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
           -
           lim_(r->inf) (( A a_0^2 ) / (2 ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))
           + 1 / (4) a_0^3 A \
@@ -295,7 +297,7 @@
     $
     Doing L'Hopital's rule again on the limit:
     $
-      1 & = lim_(r->inf) ( ( 2 A a_0) / (2 ( a_0 / ( 2 )) ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))+ 1 / (4) a_0^3 A \
+      1 & =^("L.H") lim_(r->inf) ( ( 2 A a_0) / (2 ( a_0 / ( 2 )) ( a_0 / ( 2 )) e^( ( 2 r) / a_0)))+ 1 / (4) a_0^3 A \
       1 & = 0 + 1 / (4) a_0^3 A \
     $
 
@@ -342,7 +344,7 @@
       #rect[$ P(r < 2a_0) = -13 e^( -4 ) + 1 approx 0.7618966944 $]
     $
 
-    This is reasonable, as there is a 75% chance that the electron will be found within two Bohr Radii.
+    This is reasonable, as there is about a 75% chance that the electron will be found within two Bohr Radii.
 
 
     #todo[Improve this statement of reasonability]
@@ -366,12 +368,12 @@
                       0 & = e^( (- 2 r) / a_0) ( 2 r + r^2 ( - 2 / a_0)) \
                       0 & = 2 r + r^2 ( - 2 / a_0) wide e^( (- 2 r) / a_0) != 0 \
                       0 & = r ( 2 + r ( - 2 / a_0) ) \
-                      0 & = 2 + r ( - 2 / a_0) wide r != 0 "the electron cannot be on the nucleus" \
+                      0 & = 2 + r ( - 2 / a_0) wide r != 0 "as the electron cannot be on the nucleus" \
       -2( - a_0 /( 2) ) & = r \
                     a_0 & = r
     $
 
-    Proving that this is a global maximum, and not a global minimum:
+    To prove that $a_0$ is a global maximum, and not a global minimum, we can evaluate the function at an arbitrary point and show that its value is less than $f(a_0)$. I choose to evaluate at $2 a_0$
     $
            f (r) & = A r^2 e^( (- 2 r) / a_0) wide
                    A = 4 / a_0^3 \
@@ -379,17 +381,19 @@
       f (2 a_0 ) & = (4 / a_0^3) (2 a_0 )^2 e^( (- 2 (2 a_0 )) / a_0) = 8 / a_0 e^( - 4 ) \
     $
     $
-      (f (2 a_0 )) / (f (a_0) ) = (8 / a_0 e^( - 4 )) / (4 / a_0 e^(- 2)) = 2 e^(-6) approx 0.004957504353 < 0
+      (f (2 a_0 )) / (f (a_0) ) = (8 / a_0 e^( - 4 )) / (4 / a_0 e^(- 2)) = 2 e^(-6) approx 0.004957504353 < 1 \ 
+      // (f (2 a_0 )) / (f (a_0) ) < 1 wide f(a_0)  = 4 / a_0 e^(- 2) > 0 \ 
+      // therefore f(2 a_0 ) < f(a_0)
     $
-    By definition $(f (x) ) > 0$:
+    By definition $f(r)  > 0$:
 
     So:
     $
-      (f (2 a_0 )) / (f (a_0) ) < 0 \
+      (f (2 a_0 )) / (f (a_0) ) < 1 \
       f (2 a_0 ) < f (a_0)
     $
 
-    Hence $r = a_0$ is a global maximum of $f(x)$:
+    Hence $r = a_0$ is a global maximum of $f(r)$:
 
     Therefore the most probable radius is:
     $
@@ -399,14 +403,15 @@
 
     The expected radius is characterized by the mean of the Probability Density Function.
 
-    Using the definition of the mean:
-    $
-      mu = int_(-inf)^inf x(f(x)) dx \
-    $
-    Since our distribution is $0$ at $x < 0$, we can rephrase:
+    Using the definition of the mean: 
     $
       mu = int_(0)^inf x(f(x)) dx \
     $
+    (in our case, the electron-proton distance cannot be negative, so $f(r) > 0$, thus the integral has bounds from $0$ to $inf$.)
+    // Since by definition $f(x) > 0$, we can rephrase:
+    // $
+    //   mu = int_(0)^inf x(f(x)) dx \
+    // $
     Computing the integral:
     $
       mu & = int_(0)^inf x (f(x)) dx \
@@ -417,7 +422,7 @@
 
     For an integral with such a large exponent on $x$, it is helpful to use the DI method when doing integration by parts.
 
-    #align(center)[
+    #block(breakable: false)[#align(center)[
       #table(
         columns: (1fr, 1fr, 1fr),
         align: center,
@@ -431,7 +436,7 @@
         [$-$], [$6$], [$(- a_0 / 2)^3 e^((- 2 x) / a_0)$],
         [$+$], [$0$], [$(- a_0 / 2)^4 e^((- 2 x) / a_0)$],
       )
-    ]
+    ]]
     Then writing it all out, we get:
 
     $
@@ -486,14 +491,14 @@
     $
 
     $
-      mu & = A ( - (- (6) (- a_0 / 2)^4 e^(0) ) ) \
+      mu & = A ( 0 - (- (6) (- a_0 / 2)^4 e^(0) ) ) \
     $
 
     Using $A = 4 / a_0^3$ found in part b, we can simplify:
 
     $
       // mu & = (4 / a_0^3)( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \
-      mu & = (4 / a_0^3)( - (- (6) (- a_0 / 2)^4 e^(0) ) )\
+      mu & = (4 / a_0^3)(0 - (- (6) (- a_0 / 2)^4 e^(0) ) )\
       mu & = (4 / a_0^3) (6) (a_0^4 / 2^4) \
       mu & = (4) (6) (a_0 / 2^4) \
       mu & = (24 / 16 ) (a_0) \
@@ -556,7 +561,7 @@
     $
       #rect[$ F & = m g $] \
     $
-    where $g = (9.82 um / us^2)$.
+    where $g = 9.82 um / us^2$.
 
 
   + #p[Use the original $F = (G m M) / r^2$ with the earth regarded as a point mass to calculate the work required to lift a mass of 10kg from the earth's surface to a height of $10 ukm$.]
@@ -683,7 +688,8 @@
       Where each bar is a closed sub-interval of $[0, 1]$.
 
       I wrote this myself using a recursive algorithm in the typst programming language. The code is below:
-      ```typ
+
+      #block(breakable:false)[```typ
       #let draw_cantor(x) = {
         if x == 0 { // base case for the recursive process
           line(length: 100%, stroke: 10pt,) // just draw the line.
@@ -695,7 +701,8 @@
       #for value in range(0, 10) {
         draw_cantor(value) // call the draw_cantor function 5 times, each with a
       }
-      ```
+      ```]
+
       #todo[Include a handwritten drawing as well]
 
 
@@ -761,7 +768,7 @@
       L = sum_(n=1)^inf (1/3) (2/3)^(n - 1) = (1/3) / (1 - (2/3)) = ((1/3)) / ((1/3)) = 1
     $
 
-    #rect[Hence, the length removed is equal to 1.]
+    $ #rect[Hence, the length removed is equal to 1.] $
 
   // Let $S_n$ represent the $n$th partial sum of $L$:
   // $
@@ -802,7 +809,7 @@
     Therefore, to get the total area removed, we can simply take the sum of these removals for an infinite recursion depth.
 
     $
-      A = sum_(n=1)^inf (8^(n - 1))(1/9^(n-1))
+      A = sum_(n=1)^inf (1/9) (8^(n - 1))(1/9^(n-1))
     $
     Where $A$ represents the length removed.
 
@@ -811,8 +818,8 @@
 
     Similar to the previous question, we can rearrange it into a geometric series:
     $
-      A & = sum_(n=1)^inf 8^(n - 1)/9^(n-1) \
-        & = sum_(n=1)^inf (8/9)^(n-1) \
+      A & = sum_(n=1)^inf (1/9) 8^(n - 1)/9^(n-1) \
+        & = sum_(n=1)^inf (1/9) (8/9)^(n-1) \
     $
 
     Since $abs(8/9) < 1$, we can use the formula:
@@ -825,5 +832,5 @@
       A = sum_(n=1)^inf (1/(9)) (8/9)^(n - 1) = (1/9) / (1 - (8/9)) = ((1/9)) / ((1/9)) = 1
     $
 
-    #rect[Therefore the total area removed is 1.]
+    $ #rect[Therefore the total area removed is 1.] $
 
