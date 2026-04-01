@@ -254,7 +254,7 @@
     $
 
 
-    #todo[Check reduced form]
+    // #todo[Check reduced form]
 
   + #p[Determine the value of $A$ (i.e., “normalize” the distribution).] <question1b>
 
@@ -263,7 +263,7 @@
       int_(0)^(inf) f(x) dx = 1 \ 
       int_(0)^(inf) A x^2 e^( (- 2 x) / a_0) dx = 1
     $
-    #todo[Check correct the bounds and the resoning]
+    // #todo[Check correct the bounds and the resoning]
 
     Fortunately, we already computed the integral as part of question #link(<question1a>, "1.a)"), so we can rewrite this integral in terms of the cumulative distribution function.
     $
@@ -344,10 +344,10 @@
       #rect[$ P(r < 2a_0) = -13 e^( -4 ) + 1 approx 0.7618966944 $]
     $
 
-    This is reasonable, as there is about a 75% chance that the electron will be found within two Bohr Radii.
+    This is reasonable, as there is about a 76% chance that the electron will be found within two Bohr Radii - matching our expectation that the electron should be found close to the nucleus. 
 
 
-    #todo[Improve this statement of reasonability]
+    // #todo[Improve this statement of reasonability]
 
 
   + #p[Determine the "most probable" and the "expected" radius for the hydrogen atom in the ground state.]
@@ -448,7 +448,7 @@
       )_(0)^r \
     $
 
-    At the limit to infinity, all these terms go to zero, as they turn into an indeterminate form, resulting in a polynomial on the top that differentiates (over several rounds of applying L'Hopital's rule) to a constant, and an exponential on the bottom that increases as $x$ goes to infinity.
+    At the limit to infinity of $r$, all these terms go to zero, as they turn into an indeterminate form, resulting in a polynomial on the top that differentiates (over several rounds of applying L'Hopital's rule) to a constant, and an exponential on the bottom that increases as $x$ goes to infinity.
 
     Writing it out for each term (with "L.H" signifying L'Hopital's): 
     $
@@ -472,12 +472,12 @@
        = 0 
 
       \ 
-      &lim_(r -> inf) - (6) (- a_0 / 2)^4 e^((- 2 r) / a_0) ) = 0
+      &lim_(r -> inf) (- (6) (- a_0 / 2)^4 e^((- 2 r) / a_0) ) = 0
       
       \ 
     $
 
-    #todo[Check the write this out better]
+    // #todo[Check the write this out better]
 
     Since all of these terms sum to $0$, the bar expression can be simplified:
 
@@ -657,7 +657,7 @@
     $
 
     #rect[
-    Therefore there is a $0.157%$ difference between the values, totaling about $1539.828 uJ $, showing a small but apparent difference in using the actual equation compared to its reduced form #todo["check between what"].
+    Therefore there is a $0.157%$ difference between the values, totaling an absolute difference of about $1539.828 uJ $, showing a small but apparent difference in using the actual equation compared to its reduced form.
     ]
 
 + #p[In the next problem you will be working with a couple of examples of a fractal. A fractal
@@ -702,8 +702,13 @@
         draw_cantor(value) // call the draw_cantor function 5 times, each with a
       }
       ```]
+      
+      For completeness I also included a hand drawn image with the first few intervals labeled: 
+      #image("IMG_4928.jpeg")
 
-      #todo[Include a handwritten drawing as well]
+
+
+      // #todo[Include a handwritten drawing as well]
 
 
 
@@ -739,7 +744,7 @@
 
     For the $n^"th"$ level of recursion, we remove the middle third of $2^(n - 1)$ intervals, spanning a length of $1 / 3^(n - 1)$, for a total of $(1/3)(2^(n - 1)) (1 / 3^(n - 1))$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
 
-    #todo[Check the clean.]
+    // #todo[Check the clean.]
 
     $
       L = sum_(n=1)^inf (1/3)(2^(n - 1)) (1 / 3^(n - 1)) = sum_(n=1)^inf (1/3)(2 / 3)^(n - 1)
@@ -768,7 +773,7 @@
       L = sum_(n=1)^inf (1/3) (2/3)^(n - 1) = (1/3) / (1 - (2/3)) = ((1/3)) / ((1/3)) = 1
     $
 
-    $ #rect[Hence, the length removed is equal to 1.] $
+    $ #rect[Hence, the total length removed is equal to 1.] $
 
   // Let $S_n$ represent the $n$th partial sum of $L$:
   // $
