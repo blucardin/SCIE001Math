@@ -245,13 +245,24 @@
       #rect[$ F(r) & =- ( 1) / ( 2 ) A a_0 r^2 e^( (- 2 r) / a_0)- 1 / (2 ) a_0^2 A r e^( (- 2 r) / a_0)- 1 / (4 )a_0^3 A e^( (- 2 r ) / a_0) + 1 / ( 4 )a_0^3 A \ $ ]
     $
 
+    Or in a different form: 
+
+    $
+     F(r) & = -(1)/(2) a_0 A ( e^( (- 2 r) / a_0) ( r^2  + a_0 r + 1 / (2 )a_0^2) - 1 / ( 2 )a_0^2)
+    $
+
+
+    #todo[Check reduced form]
+
   + #p[Determine the value of $A$ (i.e., “normalize” the distribution).] <question1b>
 
-    To normalize the function, we can set its indefinite integral equal to $1$, and solve for $A$.
+    To normalize the function, we can set the value of its total indefinite integral equal to $1$, and solve for $A$. In effect ensuring that the probability of all possible outcomes (radii) sums to one. (In our case, the electron-proton distance cannot be negative, so the integral has bounds from $0$ to $inf$.)
     $
-      int_(0)^(inf) f(x) dx = 1 \
+      int_(0)^(inf) f(x) dx = 1 \ 
       int_(0)^(inf) A x^2 e^( (- 2 x) / a_0) dx = 1
     $
+    #todo[Check correct the bounds and the resoning]
+
     Fortunately, we already computed the integral as part of question #link(<question1a>, "1.a)"), so we can rewrite this integral in terms of the cumulative distribution function.
     $
       int_(0)^(inf) f(x) dx = lim_(r -> inf) int_(0)^(r) f(x) dx = lim_(r -> inf) F(r) = 1\
@@ -334,78 +345,12 @@
     This is reasonable, as there is a 75% chance that the electron will be found within two Bohr Radii.
 
 
-  // #todo[Figure out what this resembles.]
+    #todo[Improve this statement of reasonability]
 
 
   + #p[Determine the "most probable" and the "expected" radius for the hydrogen atom in the ground state.]
 
-    The expected radius is characterized by the mean of the Probability Density Function.
-
-    Using the definition of the mean:
-    $
-      mu = int_(-inf)^inf x(f(x)) dx \
-    $
-    Since our distribution is $0$ at $x < 0$, we can rephrase:
-    $
-      mu = int_(0)^inf x(f(x)) dx \
-    $
-    Computing the integral:
-    $
-      mu & = int_(0)^inf x (f(x)) dx \
-         & = int_(0)^inf x A x^2 e^( (- 2 x) / a_0) dx \
-         & = int_(0)^inf A x^3 e^( (- 2 x) / a_0) dx \
-         & = A int_(0)^inf x^3 e^( (- 2 x) / a_0) dx \
-    $
-
-    For an integral with such a large exponent on $x$, it is helpful to use the DI method when doing integration by parts.
-
-    #align(center)[
-      #table(
-        columns: (1fr, 1fr, 1fr),
-        align: center,
-        stroke: (x, y) => if x == 0 or x == 1 {
-          (right: 0.7pt + black)
-        },
-        table.header([*Sign*], [*D*], [*I*]),
-        [$+$], [$x^3$], [$e^( (- 2 x) / a_0)$],
-        [$-$], [$3x^2$], [$(- a_0 / 2)e^((- 2 x) / a_0)$],
-        [$+$], [$6x$], [$(- a_0 / 2)^2e^((- 2 x) / a_0)$],
-        [$-$], [$6$], [$(- a_0 / 2)^3 e^((- 2 x) / a_0)$],
-        [$+$], [$0$], [$(- a_0 / 2)^4 e^((- 2 x) / a_0)$],
-      )
-    ]
-    Then writing it all out, we get:
-
-    $
-      mu & = A fto(((x^3)((- a_0 / 2)e^((- 2 x) / a_0)) - (3x^2)((- a_0 / 2)^2e^((- 2 x) / a_0)) + (6x) ((- a_0 / 2)^3 e^((- 2 x) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 x) / a_0) ))_(0)^inf \
-    $
-
-    At the limit to infinity, all these terms go to zero, as they turn into an indeterminate form, resulting in a polynomial on the top that differentiates (over several rounds of applying L'Hopital's rule) to a constant, and an exponential on the bottom that increases as $x$ goes to infinity.
-
-    #todo[Write this out (/ better)]
-
-    So we only need to consider the $x = 0$ case:
-
-    $
-      mu & = A ( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \
-    $
-
-    Using $A = 4 / a_0^3$ found in part b, we can simplify:
-
-    $
-      mu & = (4 / a_0^3)( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \
-      mu & = (4 / a_0^3)( - (- (6) (- a_0 / 2)^4 e^(0) ) )\
-      mu & = (4 / a_0^3) (6) (a_0^4 / 2^4) \
-      mu & = (4) (6) (a_0 / 2^4) \
-      mu & = (24 / 16 ) (a_0) \
-    $
-
-    Therefore the expected radius is:
-    $
-      #rect[$ mu & = 3 / 2 a_0 $]
-    $
-
-    To find the most probable radius, we can just find the mode of the distribution. The mode is defined as the $r$ value for which the probability density function is maximized.
+   To find the most probable radius, we can just find the mode of the distribution. The mode is defined as the $r$ value for which the probability density function is maximized.
 
     Therefore, we must find the global maximum of $f(r)$.
 
@@ -448,8 +393,118 @@
 
     Therefore the most probable radius is:
     $
-      #rect[$ r = a_0 $]
+      #rect[Most probable radius $ r = a_0 $]
     $
+
+
+    The expected radius is characterized by the mean of the Probability Density Function.
+
+    Using the definition of the mean:
+    $
+      mu = int_(-inf)^inf x(f(x)) dx \
+    $
+    Since our distribution is $0$ at $x < 0$, we can rephrase:
+    $
+      mu = int_(0)^inf x(f(x)) dx \
+    $
+    Computing the integral:
+    $
+      mu & = int_(0)^inf x (f(x)) dx \
+         & = int_(0)^inf x A x^2 e^( (- 2 x) / a_0) dx \
+         & = lim_(r -> inf) int_(0)^r A x^3 e^( (- 2 x) / a_0) dx \
+         & = A lim_(r -> inf) int_(0)^r x^3 e^( (- 2 x) / a_0) dx \
+    $
+
+    For an integral with such a large exponent on $x$, it is helpful to use the DI method when doing integration by parts.
+
+    #align(center)[
+      #table(
+        columns: (1fr, 1fr, 1fr),
+        align: center,
+        stroke: (x, y) => if x == 0 or x == 1 {
+          (right: 0.7pt + black)
+        },
+        table.header([*Sign*], [*D*], [*I*]),
+        [$+$], [$x^3$], [$e^( (- 2 x) / a_0)$],
+        [$-$], [$3x^2$], [$(- a_0 / 2)e^((- 2 x) / a_0)$],
+        [$+$], [$6x$], [$(- a_0 / 2)^2e^((- 2 x) / a_0)$],
+        [$-$], [$6$], [$(- a_0 / 2)^3 e^((- 2 x) / a_0)$],
+        [$+$], [$0$], [$(- a_0 / 2)^4 e^((- 2 x) / a_0)$],
+      )
+    ]
+    Then writing it all out, we get:
+
+    $
+      mu & = A lim_(r -> inf) fto(
+      ((x^3)((- a_0 / 2)e^((- 2 x) / a_0))
+      - (3x^2)((- a_0 / 2)^2e^((- 2 x) / a_0)) 
+      + (6x) ((- a_0 / 2)^3 e^((- 2 x) / a_0)) 
+      - (6) (- a_0 / 2)^4 e^((- 2 x) / a_0) )
+      )_(0)^r \
+    $
+
+    At the limit to infinity, all these terms go to zero, as they turn into an indeterminate form, resulting in a polynomial on the top that differentiates (over several rounds of applying L'Hopital's rule) to a constant, and an exponential on the bottom that increases as $x$ goes to infinity.
+
+    Writing it out for each term (with "L.H" signifying L'Hopital's): 
+    $
+      &lim_(r -> inf) (r^3)((- a_0 / 2)e^((- 2 r) / a_0)) =
+       (- a_0 / 2) lim_(r -> inf)  (r^3) / (e^((2 r) / a_0)) 
+       =^("L.H") (- a_0 / 2) lim_(r -> inf)  (3 r^2) / ( a_0 / (2 r) e^((2 r) / a_0))  
+       =^("L.H") (- a_0 / 2) lim_(r -> inf)  (6 r) / ( (a_0 / (2 r))^2 e^((2 r) / a_0)) 
+       =^("L.H") (- a_0 / 2) lim_(r -> inf)  (6) / ( (a_0 / (2 r))^3 e^((2 r) / a_0)) = 0 \ 
+
+
+      &lim_(r -> inf) - (3r^2)((- a_0 / 2)^2e^((- 2 r) / a_0)) =  
+      - (- a_0 / 2)^2 lim_(r -> inf) (3r^2) / (e^(( 2 r) / a_0))
+      =^("L.H") - (- a_0 / 2)^2 lim_(r -> inf) (6r) / ( (a_0 / (2 r)) e^(( 2 r) / a_0))
+      =^("L.H") - (- a_0 / 2)^2 lim_(r -> inf) (6) / ( (a_0 / (2 r))^2 e^(( 2 r) / a_0))
+      = 0 
+      \ 
+
+      &lim_(r -> inf) (6r) ((- a_0 / 2)^3 e^((- 2 r) / a_0)) = 
+      ((- a_0 / 2)^3 lim_(r -> inf) (6r)  / ( e^((2 r) / a_0)) ) 
+       =^("L.H") ((- a_0 / 2)^3 lim_(r -> inf) (6)  / ( (a_0 / (2 r)) e^((2 r) / a_0)) )
+       = 0 
+
+      \ 
+      &lim_(r -> inf) - (6) (- a_0 / 2)^4 e^((- 2 r) / a_0) ) = 0
+      
+      \ 
+    $
+
+    #todo[Check the write this out better]
+
+    Since all of these terms sum to $0$, the bar expression can be simplified:
+
+    $
+      mu = A (lim_(r -> inf) (
+      ((r^3)((- a_0 / 2)e^((- 2 r) / a_0))
+      - (3r^2)((- a_0 / 2)^2e^((- 2 r) / a_0)) 
+      + (6r) ((- a_0 / 2)^3 e^((- 2 r) / a_0)) 
+      - (6) (- a_0 / 2)^4 e^((- 2 r) / a_0) ))
+      \  - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ))  \
+    $
+
+    $
+      mu & = A ( - (- (6) (- a_0 / 2)^4 e^(0) ) ) \
+    $
+
+    Using $A = 4 / a_0^3$ found in part b, we can simplify:
+
+    $
+      // mu & = (4 / a_0^3)( - (((0)^3)((- a_0 / 2)e^((- 2 (0)) / a_0)) - (3(0)^2)((- a_0 / 2)^2e^((- 2 (0)) / a_0)) + (6(0)) ((- a_0 / 2)^3 e^((- 2 (0)) / a_0)) - (6) (- a_0 / 2)^4 e^((- 2 (0)) / a_0) ) ) \
+      mu & = (4 / a_0^3)( - (- (6) (- a_0 / 2)^4 e^(0) ) )\
+      mu & = (4 / a_0^3) (6) (a_0^4 / 2^4) \
+      mu & = (4) (6) (a_0 / 2^4) \
+      mu & = (24 / 16 ) (a_0) \
+    $
+
+    Therefore the expected radius is:
+    $
+      #rect[Expected radius $ r = mu = 3 / 2 a_0 $]
+    $
+
+   
 
 + #p[_Newton's universal law of gravitation_ states that the force of attraction between two point masses $m$ and $M$ has magnitude
 
@@ -597,7 +652,7 @@
     $
 
     #rect[
-    Therefore there is a $0.157%$ difference between the values, showing an insignificant difference #todo["Between"].
+    Therefore there is a $0.157%$ difference between the values, totaling about $1539.828 uJ $, showing a small but apparent difference in using the actual equation compared to its reduced form #todo["check between what"].
     ]
 
 + #p[In the next problem you will be working with a couple of examples of a fractal. A fractal
@@ -677,7 +732,7 @@
 
     For the $n^"th"$ level of recursion, we remove the middle third of $2^(n - 1)$ intervals, spanning a length of $1 / 3^(n - 1)$, for a total of $(1/3)(2^(n - 1)) (1 / 3^(n - 1))$. Therefore, to get the total length removed, we can simply take the sum of these removals for an infinite recursion depth.
 
-    #todo[Clean up the math by simplifying the reasoning like the sierpinski carpet one.]
+    #todo[Check the clean.]
 
     $
       L = sum_(n=1)^inf (1/3)(2^(n - 1)) (1 / 3^(n - 1)) = sum_(n=1)^inf (1/3)(2 / 3)^(n - 1)
